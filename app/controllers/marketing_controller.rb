@@ -1,0 +1,3 @@
+class MarketingController < ApplicationController
+  
+end

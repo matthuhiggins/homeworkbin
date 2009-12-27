@@ -1,0 +1,15 @@
+<html>
+<head>
+  <%= stylesheet_link_tag 'marketing' %>
+</head>
+<body class="marketing">
+  <div class="menu">
+    <div class="logo">Homework Bin</div>
+    <div class="links">
+      <%= link_to "Start a free course", signup_path %>
+      <%= link_to "Sign in", login_path %>
+    </div>
+  </div>
+  <%= yield %>
+</body>
+</html>

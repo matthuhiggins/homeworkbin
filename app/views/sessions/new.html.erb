@@ -1,0 +1,29 @@
+<style>
+.login-form div {
+  margin: 4px 0;
+}
+.login-form label {
+  display: inline-block;
+  width: 75px;
+}
+.login-form input {
+  padding: 3px;
+}
+.login-form input:focus {
+  
+}
+</style>
+
+<% form_tag({}, {:class => 'login-form'}) do %>
+  <div>
+    <%= label_tag 'email' %>
+    <%= text_field_tag 'email' %>
+  </div>
+  <div>
+    <%= label_tag 'password' %>
+    <%= password_field_tag 'password' %>
+  </div>
+  <div>
+    <%= submit_tag 'Sign in' %>
+  </div>
+<% end %>

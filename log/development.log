@@ -1,0 +1,1153 @@
+  [4;36;1mSQL (2.1ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mselect sqlite_version(*)[0m
+  [4;36;1mSQL (3.4ms)[0m   [0;1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (1.8ms)[0m   [0mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreatePeople (20091225235111)
+  [4;36;1mSQL (0.7ms)[0m   [0;1mCREATE TABLE "people" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255) NOT NULL, "full_name" varchar(255) NOT NULL, "encrypted_password" varchar(128) NOT NULL, "salt" varchar(128) NOT NULL, "confirmation_token" varchar(128) NOT NULL, "remember_token" varchar(128), "email_confirmed" boolean DEFAULT 'f' NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (0.2ms)[0m   [0mCREATE INDEX "index_people_on_id_and_confirmation_token" ON "people" ("id", "confirmation_token")[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mCREATE INDEX "index_people_on_email" ON "people" ("email")[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mCREATE INDEX "index_people_on_remember_token" ON "people" ("remember_token")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20091225235111')[0m
+Migrating to CreateCourses (20091225235505)
+  [4;35;1mSQL (0.6ms)[0m   [0mCREATE TABLE "courses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255) NOT NULL, "description" text NOT NULL, "start" datetime NOT NULL, "end" datetime NOT NULL, "teacher_id" integer NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20091225235505')[0m
+Migrating to CreateLearners (20091225235734)
+  [4;35;1mSQL (0.7ms)[0m   [0mCREATE TABLE "learners" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "student_id" integer NOT NULL, "course_id" integer NOT NULL) [0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20091225235734')[0m
+Migrating to CreateAssignments (20091225235857)
+  [4;35;1mSQL (0.7ms)[0m   [0mCREATE TABLE "assignments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255) NOT NULL, "description" text NOT NULL, "due" datetime NOT NULL, "course_id" integer NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20091225235857')[0m
+Migrating to CreateSubmissions (20091226000017)
+  [4;35;1mSQL (0.6ms)[0m   [0mCREATE TABLE "submissions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "student_id" integer NOT NULL, "learner_id" integer NOT NULL, "assignment_id" integer NOT NULL, "paper" text NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20091226000017')[0m
+  [4;35;1mSQL (0.6ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (0.5ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("assignments")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("courses")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("learners")[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mPRAGMA index_list("people")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_people_on_remember_token')[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mPRAGMA index_info('index_people_on_email')[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mPRAGMA index_info('index_people_on_id_and_confirmation_token')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("submissions")[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (1.2ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mPerson Create (0.0ms)[0m   [0;1mSQLite3::SQLException: people.confirmation_token may not be NULL: INSERT INTO "people" ("encrypted_password", "salt", "created_at", "updated_at", "full_name", "remember_token", "confirmation_token", "email_confirmed", "email") VALUES('0ee345613533068de509e7c476e0c335753df52d', 'EFVFS0o9c4K5dUd2A9Sx2w==', '2009-12-26 00:25:05', '2009-12-26 00:25:05', 'Matty Higgins', NULL, NULL, 'f', 'student1@alaska.edu')[0m
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 21:23:00) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 20ms (View: 18, DB: 0) | 200 OK [http://localhost/marketing]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 21:26:08) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 3ms (View: 1, DB: 0) | 200 OK [http://localhost/marketing]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 21:26:10) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 3ms (View: 1, DB: 0) | 200 OK [http://localhost/marketing]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 21:26:10) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 3ms (View: 1, DB: 0) | 200 OK [http://localhost/marketing]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 21:26:18) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 3ms (View: 1, DB: 0) | 200 OK [http://localhost/marketing]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 21:26:19) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 3ms (View: 1, DB: 0) | 200 OK [http://localhost/marketing]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 21:26:19) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 3ms (View: 1, DB: 0) | 200 OK [http://localhost/marketing]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 21:26:33) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 4ms (View: 2, DB: 0) | 200 OK [http://localhost/marketing]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 21:27:54) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 3ms (View: 1, DB: 0) | 200 OK [http://localhost/marketing]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 21:27:55) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 3ms (View: 1, DB: 0) | 200 OK [http://localhost/marketing]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 21:28:29) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 4ms (View: 1, DB: 0) | 200 OK [http://localhost/marketing]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 21:28:50) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 9ms (View: 7, DB: 0) | 200 OK [http://localhost/marketing]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 21:30:23) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 3ms (View: 1, DB: 0) | 200 OK [http://localhost/marketing]
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2009-12-25 21:31:34) [GET]
+  Parameters: {"action"=>"index", "controller"=>"welcome"}
+
+NameError (uninitialized constant WelcomeController):
+  /opt/local/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /opt/local/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /opt/local/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /opt/local/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /opt/local/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /opt/local/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /opt/local/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /opt/local/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /opt/local/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /opt/local/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (39.4ms)
+Rendered rescues/_request_and_response (1.7ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 21:31:45) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 3ms (View: 1, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 21:35:23) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 3ms (View: 1, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 21:37:08) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 3ms (View: 1, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 21:37:09) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 3ms (View: 1, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 21:39:32) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 4ms (View: 1, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 21:39:56) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 3ms (View: 1, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 21:40:09) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 3ms (View: 1, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 21:40:28) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 91ms (View: 89, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 21:49:44) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 9ms (View: 7, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 21:50:16) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 3ms (View: 1, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 21:50:22) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 4ms (View: 1, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 21:51:07) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 3ms (View: 1, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 21:51:15) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 3ms (View: 1, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 21:51:20) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 3ms (View: 1, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 21:51:51) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 9ms (View: 7, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 21:52:04) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 3ms (View: 1, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 21:53:18) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 9ms (View: 7, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 21:53:24) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 3ms (View: 1, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 21:53:40) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 3ms (View: 1, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 21:54:15) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 9ms (View: 7, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 21:54:25) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 94ms (View: 92, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 21:54:41) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 3ms (View: 1, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 21:56:05) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 14ms (View: 12, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 21:56:42) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 3ms (View: 1, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 21:56:49) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 3ms (View: 1, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 21:56:52) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 3ms (View: 1, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 21:57:28) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 3ms (View: 1, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 21:57:40) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 3ms (View: 1, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 21:58:57) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 3ms (View: 1, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 21:59:12) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 3ms (View: 1, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 21:59:21) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 3ms (View: 1, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 22:00:36) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 3ms (View: 1, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 22:00:48) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 4ms (View: 2, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 22:01:10) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 8ms (View: 6, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 22:02:06) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 4ms (View: 1, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 22:02:12) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 3ms (View: 1, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 22:02:42) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 3ms (View: 1, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 22:02:46) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 3ms (View: 1, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 22:03:43) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 73ms (View: 71, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 22:04:12) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 9ms (View: 8, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 22:04:56) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 9ms (View: 7, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 22:05:02) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 4ms (View: 2, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 22:05:15) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 3ms (View: 2, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 22:05:33) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 4ms (View: 2, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 22:05:34) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 4ms (View: 2, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 22:05:41) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 3ms (View: 1, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 22:06:00) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 4ms (View: 2, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 22:06:12) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 4ms (View: 2, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 22:06:20) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 4ms (View: 2, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 22:06:35) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 4ms (View: 2, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 22:07:35) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 9ms (View: 7, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 22:07:58) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 9ms (View: 7, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 22:09:02) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 3ms (View: 1, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 22:09:18) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 4ms (View: 2, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 22:09:44) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 4ms (View: 2, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 22:10:16) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 3ms (View: 2, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 22:10:47) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 4ms (View: 2, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 22:11:56) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 10ms (View: 8, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 22:12:58) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 4ms (View: 2, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 22:13:16) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 4ms (View: 2, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 22:13:17) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 4ms (View: 2, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 22:13:21) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 4ms (View: 2, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 22:13:28) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 4ms (View: 2, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 22:13:49) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 4ms (View: 2, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 22:14:02) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 3ms (View: 2, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 22:14:07) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 3ms (View: 2, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 22:14:09) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 3ms (View: 2, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 22:14:23) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 3ms (View: 2, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 22:14:37) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 4ms (View: 2, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 22:14:54) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 4ms (View: 2, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 22:17:00) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 9ms (View: 7, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 22:19:31) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 9ms (View: 7, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 22:19:40) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 9ms (View: 7, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 22:21:05) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 4ms (View: 2, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 22:21:25) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 4ms (View: 2, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 22:21:26) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 4ms (View: 2, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 22:21:41) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 4ms (View: 2, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 22:21:50) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 4ms (View: 2, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 22:21:59) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 4ms (View: 2, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 22:22:06) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 3ms (View: 2, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 22:22:07) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 3ms (View: 2, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 22:22:10) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 4ms (View: 2, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 22:23:24) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 10ms (View: 8, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 22:23:25) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 4ms (View: 2, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 22:23:25) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 4ms (View: 2, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 22:23:42) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 9ms (View: 7, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 22:23:43) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 3ms (View: 2, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 22:24:06) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 3ms (View: 2, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 22:24:06) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 4ms (View: 2, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 22:24:07) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 4ms (View: 2, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-25 22:24:29) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 4ms (View: 2, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-26 08:13:40) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 16ms (View: 14, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2009-12-26 08:13:42) [GET]
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Rendering sessions/new
+Completed in 53ms (View: 50, DB: 0) | 200 OK [http://localhost/login]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-26 08:13:55) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 4ms (View: 2, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2009-12-26 08:13:57) [GET]
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Rendering template within layouts/marketing
+Rendering sessions/new
+Completed in 4ms (View: 2, DB: 0) | 200 OK [http://localhost/login]
+
+
+Processing MarketingController#index (for 127.0.0.1 at 2009-12-26 08:14:36) [GET]
+  Parameters: {"action"=>"index", "controller"=>"marketing"}
+Rendering template within layouts/marketing
+Rendering marketing/index
+Completed in 10ms (View: 8, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2009-12-26 08:14:42) [GET]
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Rendering template within layouts/marketing
+Rendering sessions/new
+Completed in 4ms (View: 2, DB: 0) | 200 OK [http://localhost/login]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2009-12-26 08:15:20) [GET]
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Rendering template within layouts/marketing
+Rendering sessions/new
+Completed in 63ms (View: 61, DB: 0) | 200 OK [http://localhost/login]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2009-12-26 08:15:36) [GET]
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Rendering template within layouts/marketing
+Rendering sessions/new
+Completed in 11ms (View: 9, DB: 0) | 200 OK [http://localhost/login]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2009-12-26 08:15:59) [GET]
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Rendering template within layouts/marketing
+Rendering sessions/new
+Completed in 12ms (View: 9, DB: 0) | 200 OK [http://localhost/login]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2009-12-26 08:19:22) [GET]
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Rendering template within layouts/marketing
+Rendering sessions/new
+Completed in 12ms (View: 10, DB: 0) | 200 OK [http://localhost/login]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2009-12-26 08:19:30) [GET]
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Rendering template within layouts/marketing
+Rendering sessions/new
+Completed in 12ms (View: 9, DB: 0) | 200 OK [http://localhost/login]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2009-12-26 08:19:58) [GET]
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Rendering template within layouts/marketing
+Rendering sessions/new
+ERROR: compiling _run_erb_app47views47sessions47new46html46erb RAISED compile error
+/Users/matthuhiggins/websites/homeworkbin/app/views/sessions/new.html.erb:8: syntax error, unexpected ',', expecting kEND
+;  form_tag {}, {:class => 'login-form'} do ;...
+               ^
+/Users/matthuhiggins/websites/homeworkbin/app/views/sessions/new.html.erb:8: syntax error, unexpected kDO, expecting kEND
+...}, {:class => 'login-form'} do ; @output_buffer.concat "\n  ...
+                              ^
+/Users/matthuhiggins/websites/homeworkbin/app/views/sessions/new.html.erb:19: syntax error, unexpected kENSURE, expecting $end
+Function body:           def _run_erb_app47views47sessions47new46html46erb(local_assigns)
+            old_output_buffer = output_buffer;;@output_buffer = '';  __in_erb_template=true ; @output_buffer.concat "<style>\n  label {\n    display: inline-block;\n    width: 75px;\n  }\n</style>\n\n"
+
+
+
+
+
+
+;  form_tag {}, {:class => 'login-form'} do ; @output_buffer.concat "\n  <div>\n    "
+
+; @output_buffer.concat(( label_tag 'email' ).to_s); @output_buffer.concat "\n    "
+; @output_buffer.concat(( text_field_tag 'email' ).to_s); @output_buffer.concat "\n  </div>\n  <div>\n    "
+
+
+; @output_buffer.concat(( label_tag 'password' ).to_s); @output_buffer.concat "\n    "
+; @output_buffer.concat(( password_field_tag 'password' ).to_s); @output_buffer.concat "\n  </div>\n  <div >\n"
+
+
+;  end ; @output_buffer
+          ensure
+            self.output_buffer = old_output_buffer
+          end
+Backtrace: /Users/matthuhiggins/websites/homeworkbin/app/views/sessions/new.html.erb:19:in `compile!'
+/opt/local/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_view/renderable.rb:61:in `compile'
+/opt/local/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_view/renderable.rb:28:in `render'
+/opt/local/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_view/template.rb:205:in `render_template'
+/opt/local/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_view/base.rb:265:in `render'
+/opt/local/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_view/base.rb:348:in `_render_with_layout'
+/opt/local/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_view/base.rb:262:in `render'
+/opt/local/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/base.rb:1250:in `render_for_file'
+/opt/local/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/base.rb:945:in `render_without_benchmark'
+/opt/local/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/benchmarking.rb:51:in `render'
+/opt/local/lib/ruby/gems/1.8/gems/activesupport-2.3.5/lib/active_support/core_ext/benchmark.rb:17:in `ms'
+/opt/local/lib/ruby/1.8/benchmark.rb:308:in `realtime'
+/opt/local/lib/ruby/gems/1.8/gems/activesupport-2.3.5/lib/active_support/core_ext/benchmark.rb:17:in `ms'
+/opt/local/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/benchmarking.rb:51:in `render'
+/opt/local/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/base.rb:1326:in `default_render'
+/opt/local/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/base.rb:1338:in `perform_action_without_filters'
+/opt/local/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/filters.rb:617:in `call_filters'
+/opt/local/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/filters.rb:610:in `perform_action_without_benchmark'
+/opt/local/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+/opt/local/lib/ruby/gems/1.8/gems/activesupport-2.3.5/lib/active_support/core_ext/benchmark.rb:17:in `ms'
+/opt/local/lib/ruby/1.8/benchmark.rb:308:in `realtime'
+/opt/local/lib/ruby/gems/1.8/gems/activesupport-2.3.5/lib/active_support/core_ext/benchmark.rb:17:in `ms'
+/opt/local/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+/opt/local/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/rescue.rb:160:in `perform_action_without_flash'
+/opt/local/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/flash.rb:146:in `perform_action'
+/opt/local/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/base.rb:532:in `send'
+/opt/local/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/base.rb:532:in `process_without_filters'
+/opt/local/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/filters.rb:606:in `process'
+/opt/local/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/base.rb:391:in `process'
+/opt/local/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/base.rb:386:in `call'
+/opt/local/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/routing/route_set.rb:437:in `call'
+/opt/local/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/dispatcher.rb:87:in `dispatch'
+/opt/local/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/dispatcher.rb:121:in `_call'
+/opt/local/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/dispatcher.rb:130:in `build_middleware_stack'
+/opt/local/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/query_cache.rb:29:in `call'
+/opt/local/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/query_cache.rb:29:in `call'
+/opt/local/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/connection_adapters/abstract/query_cache.rb:34:in `cache'
+/opt/local/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/query_cache.rb:9:in `cache'
+/opt/local/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/query_cache.rb:28:in `call'
+/opt/local/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/connection_adapters/abstract/connection_pool.rb:361:in `call'
+/opt/local/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/string_coercion.rb:25:in `call'
+/opt/local/lib/ruby/gems/1.8/gems/rack-1.0.1/lib/rack/head.rb:9:in `call'
+/opt/local/lib/ruby/gems/1.8/gems/rack-1.0.1/lib/rack/methodoverride.rb:24:in `call'
+/opt/local/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/params_parser.rb:15:in `call'
+/opt/local/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/session/cookie_store.rb:93:in `call'
+/opt/local/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/failsafe.rb:26:in `call'
+/opt/local/lib/ruby/gems/1.8/gems/rack-1.0.1/lib/rack/lock.rb:11:in `call'
+/opt/local/lib/ruby/gems/1.8/gems/rack-1.0.1/lib/rack/lock.rb:11:in `synchronize'
+/opt/local/lib/ruby/gems/1.8/gems/rack-1.0.1/lib/rack/lock.rb:11:in `call'
+/opt/local/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/dispatcher.rb:114:in `call'
+/opt/local/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/reloader.rb:34:in `run'
+/opt/local/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/dispatcher.rb:108:in `call'
+/opt/local/lib/ruby/gems/1.8/gems/rails-2.3.5/lib/rails/rack/static.rb:31:in `call'
+/opt/local/lib/ruby/gems/1.8/gems/rack-1.0.1/lib/rack/urlmap.rb:46:in `call'
+/opt/local/lib/ruby/gems/1.8/gems/rack-1.0.1/lib/rack/urlmap.rb:40:in `each'
+/opt/local/lib/ruby/gems/1.8/gems/rack-1.0.1/lib/rack/urlmap.rb:40:in `call'
+/opt/local/lib/ruby/gems/1.8/gems/rails-2.3.5/lib/rails/rack/log_tailer.rb:17:in `call'
+/opt/local/lib/ruby/gems/1.8/gems/rack-1.0.1/lib/rack/content_length.rb:13:in `call'
+/opt/local/lib/ruby/gems/1.8/gems/rack-1.0.1/lib/rack/handler/webrick.rb:50:in `service'
+/opt/local/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+/opt/local/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+/opt/local/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+/opt/local/lib/ruby/1.8/webrick/server.rb:162:in `start'
+/opt/local/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+/opt/local/lib/ruby/1.8/webrick/server.rb:95:in `start'
+/opt/local/lib/ruby/1.8/webrick/server.rb:92:in `each'
+/opt/local/lib/ruby/1.8/webrick/server.rb:92:in `start'
+/opt/local/lib/ruby/1.8/webrick/server.rb:23:in `start'
+/opt/local/lib/ruby/1.8/webrick/server.rb:82:in `start'
+/opt/local/lib/ruby/gems/1.8/gems/rack-1.0.1/lib/rack/handler/webrick.rb:14:in `run'
+/opt/local/lib/ruby/gems/1.8/gems/rails-2.3.5/lib/commands/server.rb:111
+/opt/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+/opt/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+script/server:3
+
+ActionView::TemplateError (compile error
+/Users/matthuhiggins/websites/homeworkbin/app/views/sessions/new.html.erb:8: syntax error, unexpected ',', expecting kEND
+;  form_tag {}, {:class => 'login-form'} do ;...
+               ^
+/Users/matthuhiggins/websites/homeworkbin/app/views/sessions/new.html.erb:8: syntax error, unexpected kDO, expecting kEND
+...}, {:class => 'login-form'} do ; @output_buffer.concat "\n  ...
+                              ^
+/Users/matthuhiggins/websites/homeworkbin/app/views/sessions/new.html.erb:19: syntax error, unexpected kENSURE, expecting $end) on line #8 of app/views/sessions/new.html.erb:
+5:   }
+6: </style>
+7: 
+8: <% form_tag {}, {:class => 'login-form'} do %>
+9:   <div>
+10:     <%= label_tag 'email' %>
+11:     <%= text_field_tag 'email' %>
+
+    app/views/sessions/new.html.erb:19:in `compile!'
+    /opt/local/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /opt/local/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /opt/local/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /opt/local/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /opt/local/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /opt/local/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /opt/local/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /opt/local/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /opt/local/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /opt/local/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (52.6ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2009-12-26 08:20:06) [GET]
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Rendering template within layouts/marketing
+Rendering sessions/new
+Completed in 12ms (View: 10, DB: 0) | 200 OK [http://localhost/login]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2009-12-26 08:20:14) [GET]
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Rendering template within layouts/marketing
+Rendering sessions/new
+Completed in 12ms (View: 10, DB: 0) | 200 OK [http://localhost/login]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2009-12-26 08:20:36) [GET]
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Rendering template within layouts/marketing
+Rendering sessions/new
+Completed in 12ms (View: 9, DB: 0) | 200 OK [http://localhost/login]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2009-12-26 08:20:54) [GET]
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Rendering template within layouts/marketing
+Rendering sessions/new
+Completed in 12ms (View: 10, DB: 0) | 200 OK [http://localhost/login]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2009-12-26 08:21:17) [GET]
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Rendering template within layouts/marketing
+Rendering sessions/new
+Completed in 12ms (View: 10, DB: 0) | 200 OK [http://localhost/login]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2009-12-26 08:21:37) [GET]
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Rendering template within layouts/marketing
+Rendering sessions/new
+Completed in 11ms (View: 9, DB: 0) | 200 OK [http://localhost/login]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2009-12-26 08:22:14) [GET]
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Rendering template within layouts/marketing
+Rendering sessions/new
+Completed in 12ms (View: 10, DB: 0) | 200 OK [http://localhost/login]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2009-12-26 08:22:25) [GET]
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Rendering template within layouts/marketing
+Rendering sessions/new
+Completed in 6ms (View: 4, DB: 0) | 200 OK [http://localhost/session/new]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2009-12-26 08:22:28) [GET]
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Rendering template within layouts/marketing
+Rendering sessions/new
+Completed in 6ms (View: 4, DB: 0) | 200 OK [http://localhost/login]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2009-12-26 08:23:18) [GET]
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Rendering template within layouts/marketing
+Rendering sessions/new
+Completed in 6ms (View: 4, DB: 0) | 200 OK [http://localhost/login]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2009-12-26 08:23:20) [GET]
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Rendering template within layouts/marketing
+Rendering sessions/new
+Completed in 6ms (View: 4, DB: 0) | 200 OK [http://localhost/session/new]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2009-12-26 08:23:31) [GET]
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Rendering template within layouts/marketing
+Rendering sessions/new
+Completed in 93ms (View: 91, DB: 0) | 200 OK [http://localhost/session/new]
+
+
+Processing ApplicationController#new (for 127.0.0.1 at 2009-12-26 08:23:32) [GET]
+  Parameters: {"action"=>"new", "controller"=>"people"}
+
+NameError (uninitialized constant PeopleController):
+  /opt/local/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /opt/local/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /opt/local/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /opt/local/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /opt/local/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /opt/local/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /opt/local/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /opt/local/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /opt/local/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /opt/local/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (37.3ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing PeopleController#new (for 127.0.0.1 at 2009-12-26 08:23:58) [GET]
+  Parameters: {"action"=>"new", "controller"=>"people"}
+Rendering people/new
+Completed in 11ms (View: 9, DB: 0) | 200 OK [http://localhost/signup]
+
+
+Processing PeopleController#new (for 127.0.0.1 at 2009-12-26 08:24:17) [GET]
+  Parameters: {"action"=>"new", "controller"=>"people"}
+Rendering template within layouts/marketing
+Rendering people/new
+Completed in 4ms (View: 2, DB: 0) | 200 OK [http://localhost/signup]
+
+
+Processing PeopleController#new (for 127.0.0.1 at 2009-12-26 08:26:03) [GET]
+  Parameters: {"action"=>"new", "controller"=>"people"}
+Rendering template within layouts/marketing
+Rendering people/new
+Completed in 11ms (View: 9, DB: 0) | 200 OK [http://localhost/signup]
+
+
+Processing PeopleController#new (for 127.0.0.1 at 2009-12-26 16:10:11) [GET]
+  Parameters: {"action"=>"new", "controller"=>"people"}
+Rendering template within layouts/marketing
+Rendering people/new
+Completed in 25ms (View: 23, DB: 0) | 200 OK [http://localhost/signup]
