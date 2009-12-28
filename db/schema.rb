@@ -9,13 +9,22 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091226000017) do
+ActiveRecord::Schema.define(:version => 20091226234927) do
 
   create_table "assignments", :force => true do |t|
     t.string   "title",       :null => false
     t.text     "description", :null => false
     t.datetime "due",         :null => false
     t.integer  "course_id",   :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "compositions", :force => true do |t|
+    t.integer  "student_id",    :null => false
+    t.integer  "learner_id",    :null => false
+    t.integer  "assignment_id", :null => false
+    t.text     "paper",         :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -30,9 +39,28 @@ ActiveRecord::Schema.define(:version => 20091226000017) do
     t.datetime "updated_at"
   end
 
+  create_table "invitations", :force => true do |t|
+    t.string   "email",      :null => false
+    t.integer  "course_id",  :null => false
+    t.integer  "teacher_id", :null => false
+    t.string   "token",      :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "invitations", ["course_id", "email"], :name => "index_invitations_on_course_id_and_email", :unique => true
+  add_index "invitations", ["token"], :name => "index_invitations_on_token", :unique => true
+
   create_table "learners", :force => true do |t|
     t.integer "student_id", :null => false
     t.integer "course_id",  :null => false
+  end
+
+  create_table "lost_passwords", :force => true do |t|
+    t.integer  "person_id",  :null => false
+    t.string   "token",      :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "people", :force => true do |t|
@@ -47,17 +75,17 @@ ActiveRecord::Schema.define(:version => 20091226000017) do
     t.datetime "updated_at"
   end
 
-  add_index "people", ["email"], :name => "index_people_on_email"
-  add_index "people", ["id", "confirmation_token"], :name => "index_people_on_id_and_confirmation_token"
-  add_index "people", ["remember_token"], :name => "index_people_on_remember_token"
+  add_index "people", ["email"], :name => "index_people_on_email", :unique => true
+  add_index "people", ["remember_token"], :name => "index_people_on_remember_token", :unique => true
 
-  create_table "submissions", :force => true do |t|
-    t.integer  "student_id",    :null => false
-    t.integer  "learner_id",    :null => false
-    t.integer  "assignment_id", :null => false
-    t.text     "paper",         :null => false
+  create_table "registrations", :force => true do |t|
+    t.string   "email",                     :null => false
+    t.string   "full_name",                 :null => false
+    t.string   "token",      :limit => 128, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "registrations", ["token"], :name => "index_registrations_on_token", :unique => true
 
 end

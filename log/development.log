@@ -1151,3 +1151,70 @@ Processing PeopleController#new (for 127.0.0.1 at 2009-12-26 16:10:11) [GET]
 Rendering template within layouts/marketing
 Rendering people/new
 Completed in 25ms (View: 23, DB: 0) | 200 OK [http://localhost/signup]
+  [4;36;1mSQL (17.6ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mselect sqlite_version(*)[0m
+  [4;36;1mSQL (3.0ms)[0m   [0;1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (1.8ms)[0m   [0mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreatePeople (20091225235111)
+  [4;36;1mSQL (0.8ms)[0m   [0;1mCREATE TABLE "people" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255) NOT NULL, "full_name" varchar(255) NOT NULL, "encrypted_password" varchar(128) NOT NULL, "salt" varchar(128) NOT NULL, "confirmation_token" varchar(128) NOT NULL, "remember_token" varchar(128), "email_confirmed" boolean DEFAULT 'f' NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (0.6ms)[0m   [0mCREATE UNIQUE INDEX "index_people_on_email" ON "people" ("email")[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mCREATE UNIQUE INDEX "index_people_on_remember_token" ON "people" ("remember_token")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20091225235111')[0m
+Migrating to CreateCourses (20091225235505)
+  [4;36;1mSQL (1.6ms)[0m   [0;1mCREATE TABLE "courses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255) NOT NULL, "description" text NOT NULL, "start" datetime NOT NULL, "end" datetime NOT NULL, "teacher_id" integer NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (0.2ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20091225235505')[0m
+Migrating to CreateLearners (20091225235734)
+  [4;36;1mSQL (0.6ms)[0m   [0;1mCREATE TABLE "learners" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "student_id" integer NOT NULL, "course_id" integer NOT NULL) [0m
+  [4;35;1mSQL (0.2ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20091225235734')[0m
+Migrating to CreateAssignments (20091225235857)
+  [4;36;1mSQL (0.7ms)[0m   [0;1mCREATE TABLE "assignments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255) NOT NULL, "description" text NOT NULL, "due" datetime NOT NULL, "course_id" integer NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (0.9ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20091225235857')[0m
+Migrating to CreateCompositions (20091226000017)
+  [4;36;1mSQL (0.7ms)[0m   [0;1mCREATE TABLE "compositions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "student_id" integer NOT NULL, "learner_id" integer NOT NULL, "assignment_id" integer NOT NULL, "paper" text NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (0.2ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20091226000017')[0m
+Migrating to CreateRegistrations (20091226162714)
+  [4;36;1mSQL (0.6ms)[0m   [0;1mCREATE TABLE "registrations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255) NOT NULL, "full_name" varchar(255) NOT NULL, "token" varchar(128) NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (0.6ms)[0m   [0mCREATE UNIQUE INDEX "index_registrations_on_token" ON "registrations" ("token")[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20091226162714')[0m
+Migrating to CreateInvitations (20091226163114)
+  [4;35;1mSQL (0.7ms)[0m   [0mCREATE TABLE "invitations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255) NOT NULL, "course_id" integer NOT NULL, "teacher_id" integer NOT NULL, "token" varchar(255) NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [4;36;1mSQL (0.8ms)[0m   [0;1mCREATE UNIQUE INDEX "index_invitations_on_course_id_and_email" ON "invitations" ("course_id", "email")[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mCREATE UNIQUE INDEX "index_invitations_on_token" ON "invitations" ("token")[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20091226163114')[0m
+Migrating to CreateLostPasswords (20091226234927)
+  [4;35;1mSQL (0.7ms)[0m   [0mCREATE TABLE "lost_passwords" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "person_id" integer NOT NULL, "token" varchar(255) NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20091226234927')[0m
+  [4;35;1mSQL (0.7ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (0.5ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("assignments")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("compositions")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("courses")[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mPRAGMA index_list("invitations")[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mPRAGMA index_info('index_invitations_on_token')[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mPRAGMA index_info('index_invitations_on_course_id_and_email')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("learners")[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mPRAGMA index_list("lost_passwords")[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mPRAGMA index_list("people")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_people_on_remember_token')[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mPRAGMA index_info('index_people_on_email')[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mPRAGMA index_list("registrations")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_registrations_on_token')[0m
+  [4;35;1mSQL (0.5ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m

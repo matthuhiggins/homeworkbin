@@ -1,3 +1,3 @@
-class Submission < ActiveRecord::Base
+class Composition < ActiveRecord::Base
   belongs_to :student, :class_name => 'Person'
 end
