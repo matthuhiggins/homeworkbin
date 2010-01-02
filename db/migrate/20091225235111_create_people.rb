@@ -5,9 +5,7 @@ class CreatePeople < ActiveRecord::Migration
       t.string   :full_name,          :null => false
       t.string   :encrypted_password, :null => false, :limit => 128
       t.string   :salt,               :null => false, :limit => 128
-      t.string   :confirmation_token, :null => false, :limit => 128
       t.string   :remember_token,     :limit => 128
-      t.boolean  :email_confirmed,    :null => false, :default => false
       t.timestamps
     end
 

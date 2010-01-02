@@ -4,5 +4,5 @@ class Course < ActiveRecord::Base
   has_many :students, :through => :learners
   has_many :assignments
   
-  validatates_presence_of :name
+  validates_presence_of :name
 end

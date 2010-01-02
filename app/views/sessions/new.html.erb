@@ -14,7 +14,7 @@
 }
 </style>
 
-<% form_tag({}, {:class => 'login-form'}) do %>
+<% form_tag(session_path, {:class => 'login-form'}) do %>
   <div>
     <%= label_tag 'email' %>
     <%= text_field_tag 'email' %>

@@ -1,0 +1,757 @@
+
+
+Processing RegistrationsController#new (for 0.0.0.0 at 2010-01-01 21:51:52) [GET]
+  Parameters: {"action"=>"new", "controller"=>"registrations"}
+Rendering template within layouts/marketing
+Rendering registrations/new
+Completed in 72ms (View: 68, DB: 0) | 200 OK [http://test.host/registrations/new]
+
+
+Processing RegistrationsController#create (for 0.0.0.0 at 2010-01-01 21:54:36) [POST]
+  Parameters: {"action"=>"create", "registration"=>{"full_name"=>"matty", "email"=>"foo@bar.com"}, "controller"=>"registrations"}
+  [4;36;1mPerson Load (0.3ms)[0m   [0;1mSELECT "people".id FROM "people" WHERE ("people"."email" = 'foo@bar.com') LIMIT 1[0m
+  [4;35;1mRegistration Create (0.7ms)[0m   [0mINSERT INTO "registrations" ("created_at", "token", "updated_at", "full_name", "email") VALUES('2010-01-02 05:54:36', '2eae43443e18de206d15d4c540dcddc7', '2010-01-02 05:54:36', 'matty', 'foo@bar.com')[0m
+
+
+Processing RegistrationsController#new (for 0.0.0.0 at 2010-01-01 21:54:36) [GET]
+  Parameters: {"action"=>"new", "controller"=>"registrations"}
+Rendering template within layouts/marketing
+Rendering registrations/new
+Completed in 5ms (View: 5, DB: 1) | 200 OK [http://test.host/registrations/new]
+
+
+Processing RegistrationsController#create (for 0.0.0.0 at 2010-01-01 21:55:43) [POST]
+  Parameters: {"action"=>"create", "registration"=>{"full_name"=>"matty", "email"=>"foo@bar.com"}, "controller"=>"registrations"}
+  [4;36;1mPerson Load (0.3ms)[0m   [0;1mSELECT "people".id FROM "people" WHERE ("people"."email" = 'foo@bar.com') LIMIT 1[0m
+  [4;35;1mRegistration Create (0.7ms)[0m   [0mINSERT INTO "registrations" ("created_at", "token", "updated_at", "full_name", "email") VALUES('2010-01-02 05:55:43', '0e96ab6a606f73e2a6933304689279d5', '2010-01-02 05:55:43', 'matty', 'foo@bar.com')[0m
+Sent mail to foo@bar.com
+
+Date: Fri, 1 Jan 2010 21:55:43 -0800
+To: foo@bar.com
+Subject: Confirm your email address
+Mime-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+
+http://example.com/registrations/0e96ab6a606f73e2a6933304689279d5
+Redirected to http://test.host/registrations/thanks
+Completed in 79ms (DB: 1) | 302 Found [http://test.host/registrations?registration%5Bemail%5D=foo%40bar.com&registration%5Bfull_name%5D=matty]
+
+
+Processing RegistrationsController#new (for 0.0.0.0 at 2010-01-01 21:55:43) [GET]
+  Parameters: {"action"=>"new", "controller"=>"registrations"}
+Rendering template within layouts/marketing
+Rendering registrations/new
+Completed in 5ms (View: 5, DB: 0) | 200 OK [http://test.host/registrations/new]
+
+
+Processing RegistrationsController#create (for 0.0.0.0 at 2010-01-01 21:57:22) [POST]
+  Parameters: {"action"=>"create", "registration"=>{"full_name"=>"matty", "email"=>"foo@bar.com"}, "controller"=>"registrations"}
+  [4;36;1mPerson Load (0.3ms)[0m   [0;1mSELECT "people".id FROM "people" WHERE ("people"."email" = 'foo@bar.com') LIMIT 1[0m
+  [4;35;1mRegistration Create (0.7ms)[0m   [0mINSERT INTO "registrations" ("created_at", "token", "updated_at", "full_name", "email") VALUES('2010-01-02 05:57:22', '432b848b266f896fa9274fa434c7854d', '2010-01-02 05:57:22', 'matty', 'foo@bar.com')[0m
+Sent mail to foo@bar.com
+
+Date: Fri, 1 Jan 2010 21:57:22 -0800
+To: foo@bar.com
+Subject: Confirm your email address
+Mime-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+
+http://example.com/registrations/432b848b266f896fa9274fa434c7854d
+Redirected to http://test.host/registrations/thanks
+Completed in 79ms (DB: 1) | 302 Found [http://test.host/registrations?registration%5Bemail%5D=foo%40bar.com&registration%5Bfull_name%5D=matty]
+  [4;36;1mPerson Create (0.0ms)[0m   [0;1mSQLite3::SQLException: people.confirmation_token may not be NULL: INSERT INTO "people" ("encrypted_password", "salt", "created_at", "updated_at", "full_name", "remember_token", "confirmation_token", "email_confirmed", "email") VALUES('0fa274e1da429621fabd6e219b2abc84fea6e246', 'eroVPExDW4e1XKtXtjfD0Q==', '2010-01-02 05:57:22', '2010-01-02 05:57:22', 'Matty Higgins', NULL, NULL, 'f', 'foo@bar.com')[0m
+
+
+Processing RegistrationsController#new (for 0.0.0.0 at 2010-01-01 21:57:22) [GET]
+  Parameters: {"action"=>"new", "controller"=>"registrations"}
+Rendering template within layouts/marketing
+Rendering registrations/new
+Completed in 5ms (View: 5, DB: 0) | 200 OK [http://test.host/registrations/new]
+
+
+Processing RegistrationsController#create (for 0.0.0.0 at 2010-01-01 21:58:16) [POST]
+  Parameters: {"action"=>"create", "registration"=>{"full_name"=>"matty", "email"=>"foo@bar.com"}, "controller"=>"registrations"}
+  [4;36;1mPerson Load (0.3ms)[0m   [0;1mSELECT "people".id FROM "people" WHERE ("people"."email" = 'foo@bar.com') LIMIT 1[0m
+  [4;35;1mRegistration Create (0.7ms)[0m   [0mINSERT INTO "registrations" ("created_at", "token", "updated_at", "full_name", "email") VALUES('2010-01-02 05:58:16', '9d993a7602ccca7c59362ac44d467d01', '2010-01-02 05:58:16', 'matty', 'foo@bar.com')[0m
+Sent mail to foo@bar.com
+
+Date: Fri, 1 Jan 2010 21:58:16 -0800
+To: foo@bar.com
+Subject: Confirm your email address
+Mime-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+
+http://example.com/registrations/9d993a7602ccca7c59362ac44d467d01
+Redirected to http://test.host/registrations/thanks
+Completed in 79ms (DB: 1) | 302 Found [http://test.host/registrations?registration%5Bemail%5D=foo%40bar.com&registration%5Bfull_name%5D=matty]
+  [4;36;1mPerson Create (0.6ms)[0m   [0;1mINSERT INTO "people" ("encrypted_password", "salt", "created_at", "updated_at", "full_name", "remember_token", "email") VALUES('5aec64bb6c323012c425a34cd2ec2d629820cba1', 'MLfKqrymECEuwHd09eko+A==', '2010-01-02 05:58:16', '2010-01-02 05:58:16', 'Matty Higgins', NULL, 'foo@bar.com')[0m
+
+
+Processing RegistrationsController#create (for 0.0.0.0 at 2010-01-01 21:58:16) [POST]
+  Parameters: {"action"=>"create", "registration"=>{"full_name"=>"matty", "email"=>"foo@bar.com"}, "controller"=>"registrations"}
+  [4;35;1mPerson Load (0.3ms)[0m   [0mSELECT "people".id FROM "people" WHERE ("people"."email" = 'foo@bar.com') LIMIT 1[0m
+Rendering template within layouts/marketing
+Rendering registrations/new
+Completed in 7ms (View: 5, DB: 1) | 200 OK [http://test.host/registrations?registration%5Bemail%5D=foo%40bar.com&registration%5Bfull_name%5D=matty]
+
+
+Processing RegistrationsController#new (for 0.0.0.0 at 2010-01-01 21:58:16) [GET]
+  Parameters: {"action"=>"new", "controller"=>"registrations"}
+Rendering template within layouts/marketing
+Rendering registrations/new
+Completed in 3ms (View: 3, DB: 0) | 200 OK [http://test.host/registrations/new]
+
+
+Processing RegistrationsController#create (for 0.0.0.0 at 2010-01-01 21:58:50) [POST]
+  Parameters: {"action"=>"create", "registration"=>{"full_name"=>"matty", "email"=>"foo@bar.com"}, "controller"=>"registrations"}
+  [4;36;1mPerson Load (0.3ms)[0m   [0;1mSELECT "people".id FROM "people" WHERE ("people"."email" = 'foo@bar.com') LIMIT 1[0m
+  [4;35;1mRegistration Create (0.7ms)[0m   [0mINSERT INTO "registrations" ("created_at", "token", "updated_at", "full_name", "email") VALUES('2010-01-02 05:58:50', 'bdf45ed40334d1e0e70012878d57e952', '2010-01-02 05:58:50', 'matty', 'foo@bar.com')[0m
+Sent mail to foo@bar.com
+
+Date: Fri, 1 Jan 2010 21:58:51 -0800
+To: foo@bar.com
+Subject: Confirm your email address
+Mime-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+
+http://example.com/registrations/bdf45ed40334d1e0e70012878d57e952
+Redirected to http://test.host/registrations/thanks
+Completed in 80ms (DB: 1) | 302 Found [http://test.host/registrations?registration%5Bemail%5D=foo%40bar.com&registration%5Bfull_name%5D=matty]
+
+
+Processing RegistrationsController#create (for 0.0.0.0 at 2010-01-01 21:58:51) [POST]
+  Parameters: {"action"=>"create", "registration"=>{"full_name"=>"matty", "email"=>"poopy"}, "controller"=>"registrations"}
+  [4;36;1mPerson Load (0.3ms)[0m   [0;1mSELECT "people".id FROM "people" WHERE ("people"."email" = 'poopy') LIMIT 1[0m
+Rendering template within layouts/marketing
+Rendering registrations/new
+Completed in 9ms (View: 7, DB: 0) | 200 OK [http://test.host/registrations?registration%5Bemail%5D=poopy&registration%5Bfull_name%5D=matty]
+  [4;35;1mPerson Create (0.6ms)[0m   [0mINSERT INTO "people" ("encrypted_password", "salt", "created_at", "updated_at", "full_name", "remember_token", "email") VALUES('54d5704d4ce7f205fd4d569ffae008f5fe1511fb', 'hvu0gJizSLxPhDp3H9H8Mw==', '2010-01-02 05:58:51', '2010-01-02 05:58:51', 'Matty Higgins', NULL, 'foo@bar.com')[0m
+
+
+Processing RegistrationsController#create (for 0.0.0.0 at 2010-01-01 21:58:51) [POST]
+  Parameters: {"action"=>"create", "registration"=>{"full_name"=>"matty", "email"=>"foo@bar.com"}, "controller"=>"registrations"}
+  [4;36;1mPerson Load (0.3ms)[0m   [0;1mSELECT "people".id FROM "people" WHERE ("people"."email" = 'foo@bar.com') LIMIT 1[0m
+Rendering template within layouts/marketing
+Rendering registrations/new
+Completed in 5ms (View: 3, DB: 1) | 200 OK [http://test.host/registrations?registration%5Bemail%5D=foo%40bar.com&registration%5Bfull_name%5D=matty]
+
+
+Processing RegistrationsController#new (for 0.0.0.0 at 2010-01-01 21:58:51) [GET]
+  Parameters: {"action"=>"new", "controller"=>"registrations"}
+Rendering template within layouts/marketing
+Rendering registrations/new
+Completed in 3ms (View: 3, DB: 0) | 200 OK [http://test.host/registrations/new]
+
+
+Processing RegistrationsController#create (for 0.0.0.0 at 2010-01-01 21:59:27) [POST]
+  Parameters: {"action"=>"create", "registration"=>{"full_name"=>"matty", "email"=>"foo@bar.com"}, "controller"=>"registrations"}
+  [4;36;1mPerson Load (0.3ms)[0m   [0;1mSELECT "people".id FROM "people" WHERE ("people"."email" = 'foo@bar.com') LIMIT 1[0m
+  [4;35;1mRegistration Create (0.7ms)[0m   [0mINSERT INTO "registrations" ("created_at", "token", "updated_at", "full_name", "email") VALUES('2010-01-02 05:59:27', '77a07d09783a7b89b620b1ca9dd7acc3', '2010-01-02 05:59:27', 'matty', 'foo@bar.com')[0m
+Sent mail to foo@bar.com
+
+Date: Fri, 1 Jan 2010 21:59:27 -0800
+To: foo@bar.com
+Subject: Confirm your email address
+Mime-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+
+http://example.com/registrations/77a07d09783a7b89b620b1ca9dd7acc3
+Redirected to http://test.host/registrations/thanks
+Completed in 79ms (DB: 1) | 302 Found [http://test.host/registrations?registration%5Bemail%5D=foo%40bar.com&registration%5Bfull_name%5D=matty]
+
+
+Processing RegistrationsController#create (for 0.0.0.0 at 2010-01-01 21:59:27) [POST]
+  Parameters: {"action"=>"create", "registration"=>{"full_name"=>"matty", "email"=>"poopy"}, "controller"=>"registrations"}
+  [4;36;1mPerson Load (0.3ms)[0m   [0;1mSELECT "people".id FROM "people" WHERE ("people"."email" = 'poopy') LIMIT 1[0m
+Rendering template within layouts/marketing
+Rendering registrations/new
+Completed in 9ms (View: 7, DB: 0) | 200 OK [http://test.host/registrations?registration%5Bemail%5D=poopy&registration%5Bfull_name%5D=matty]
+  [4;35;1mPerson Create (0.6ms)[0m   [0mINSERT INTO "people" ("encrypted_password", "salt", "created_at", "updated_at", "full_name", "remember_token", "email") VALUES('db24a321f0abf5a17ca828d5a6b3609403291456', 'ZOKIaNlk5h9TiewcHwhRzA==', '2010-01-02 05:59:27', '2010-01-02 05:59:27', 'Matty Higgins', NULL, 'foo@bar.com')[0m
+
+
+Processing RegistrationsController#create (for 0.0.0.0 at 2010-01-01 21:59:27) [POST]
+  Parameters: {"action"=>"create", "registration"=>{"full_name"=>"matty", "email"=>"foo@bar.com"}, "controller"=>"registrations"}
+  [4;36;1mPerson Load (0.3ms)[0m   [0;1mSELECT "people".id FROM "people" WHERE ("people"."email" = 'foo@bar.com') LIMIT 1[0m
+Rendering template within layouts/marketing
+Rendering registrations/new
+Completed in 5ms (View: 3, DB: 1) | 200 OK [http://test.host/registrations?registration%5Bemail%5D=foo%40bar.com&registration%5Bfull_name%5D=matty]
+
+
+Processing RegistrationsController#new (for 0.0.0.0 at 2010-01-01 21:59:27) [GET]
+  Parameters: {"action"=>"new", "controller"=>"registrations"}
+Rendering template within layouts/marketing
+Rendering registrations/new
+Completed in 3ms (View: 3, DB: 0) | 200 OK [http://test.host/registrations/new]
+  [4;35;1mPerson Load (0.3ms)[0m   [0mSELECT "people".id FROM "people" WHERE ("people"."email" = 'poo@alaska.edu') LIMIT 1[0m
+  [4;36;1mRegistration Create (0.4ms)[0m   [0;1mINSERT INTO "registrations" ("created_at", "token", "updated_at", "full_name", "email") VALUES('2010-01-02 05:59:27', '0e61c4f49686d83d4474da21003df275', '2010-01-02 05:59:27', 'Matthew Higgins', 'poo@alaska.edu')[0m
+Sent mail to poo@alaska.edu
+
+Date: Fri, 1 Jan 2010 21:59:27 -0800
+To: poo@alaska.edu
+Subject: Confirm your email address
+Mime-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+
+http://example.com/registrations/0e61c4f49686d83d4474da21003df275
+
+
+Processing RegistrationsController#create (for 0.0.0.0 at 2010-01-01 22:05:46) [POST]
+  Parameters: {"action"=>"create", "registration"=>{"full_name"=>"matty", "email"=>"foo@bar.com"}, "controller"=>"registrations"}
+  [4;36;1mPerson Load (0.3ms)[0m   [0;1mSELECT "people".id FROM "people" WHERE ("people"."email" = 'foo@bar.com') LIMIT 1[0m
+  [4;35;1mRegistration Create (0.7ms)[0m   [0mINSERT INTO "registrations" ("created_at", "token", "updated_at", "full_name", "email") VALUES('2010-01-02 06:05:46', 'eff11c4b2d4873aed34119c59922da98', '2010-01-02 06:05:46', 'matty', 'foo@bar.com')[0m
+Sent mail to foo@bar.com
+
+Date: Fri, 1 Jan 2010 22:05:46 -0800
+To: foo@bar.com
+Subject: Confirm your email address
+Mime-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+
+http://example.com/registrations/eff11c4b2d4873aed34119c59922da98
+Redirected to http://test.host/registrations/thanks
+Completed in 80ms (DB: 1) | 302 Found [http://test.host/registrations?registration%5Bemail%5D=foo%40bar.com&registration%5Bfull_name%5D=matty]
+
+
+Processing RegistrationsController#create (for 0.0.0.0 at 2010-01-01 22:05:46) [POST]
+  Parameters: {"action"=>"create", "registration"=>{"full_name"=>"matty", "email"=>"poopy"}, "controller"=>"registrations"}
+  [4;36;1mPerson Load (0.3ms)[0m   [0;1mSELECT "people".id FROM "people" WHERE ("people"."email" = 'poopy') LIMIT 1[0m
+Rendering template within layouts/marketing
+Rendering registrations/new
+Completed in 9ms (View: 7, DB: 0) | 200 OK [http://test.host/registrations?registration%5Bemail%5D=poopy&registration%5Bfull_name%5D=matty]
+  [4;35;1mPerson Create (0.6ms)[0m   [0mINSERT INTO "people" ("encrypted_password", "salt", "created_at", "updated_at", "full_name", "remember_token", "email") VALUES('8684180be0f050a3199c87d0a72b3d9773cc1dde', 'vqJDorfKNF3XJaLBsBuFDw==', '2010-01-02 06:05:46', '2010-01-02 06:05:46', 'Matty Higgins', NULL, 'foo@bar.com')[0m
+
+
+Processing RegistrationsController#create (for 0.0.0.0 at 2010-01-01 22:05:46) [POST]
+  Parameters: {"action"=>"create", "registration"=>{"full_name"=>"matty", "email"=>"foo@bar.com"}, "controller"=>"registrations"}
+  [4;36;1mPerson Load (0.3ms)[0m   [0;1mSELECT "people".id FROM "people" WHERE ("people"."email" = 'foo@bar.com') LIMIT 1[0m
+Rendering template within layouts/marketing
+Rendering registrations/new
+Completed in 5ms (View: 3, DB: 1) | 200 OK [http://test.host/registrations?registration%5Bemail%5D=foo%40bar.com&registration%5Bfull_name%5D=matty]
+
+
+Processing RegistrationsController#new (for 0.0.0.0 at 2010-01-01 22:05:46) [GET]
+  Parameters: {"action"=>"new", "controller"=>"registrations"}
+Rendering template within layouts/marketing
+Rendering registrations/new
+Completed in 3ms (View: 3, DB: 0) | 200 OK [http://test.host/registrations/new]
+  [4;35;1mPerson Load (0.3ms)[0m   [0mSELECT "people".id FROM "people" WHERE ("people"."email" = 'poo@alaska.edu') LIMIT 1[0m
+  [4;36;1mRegistration Create (0.5ms)[0m   [0;1mINSERT INTO "registrations" ("created_at", "token", "updated_at", "full_name", "email") VALUES('2010-01-02 06:05:46', '6be82aaee505e4e746bbdb4c574f5d8e', '2010-01-02 06:05:46', 'Matthew Higgins', 'poo@alaska.edu')[0m
+Sent mail to poo@alaska.edu
+
+Date: Fri, 1 Jan 2010 22:05:46 -0800
+To: poo@alaska.edu
+Subject: Confirm your email address
+Mime-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+
+http://example.com/registrations/6be82aaee505e4e746bbdb4c574f5d8e
+
+
+Processing RegistrationsController#show (for 0.0.0.0 at 2010-01-01 22:05:46) [GET]
+  Parameters: {"action"=>"show", "id"=>"6be82aaee505e4e746bbdb4c574f5d8e", "controller"=>"registrations"}
+  [4;35;1mRegistration Load (0.3ms)[0m   [0mSELECT * FROM "registrations" WHERE ("registrations"."token" = '6be82aaee505e4e746bbdb4c574f5d8e') LIMIT 1[0m
+Rendering template within layouts/marketing
+Rendering registrations/show
+Completed in 9ms (View: 6, DB: 1) | 200 OK [http://test.host/registrations/6be82aaee505e4e746bbdb4c574f5d8e]
+  [4;36;1mPerson Load (0.2ms)[0m   [0;1mSELECT "people".id FROM "people" WHERE ("people"."email" = 'poo@alaska.edu') LIMIT 1[0m
+  [4;35;1mRegistration Create (0.4ms)[0m   [0mINSERT INTO "registrations" ("created_at", "token", "updated_at", "full_name", "email") VALUES('2010-01-02 06:05:46', '5c2492d4b217f47381ba92b50b9ca3ce', '2010-01-02 06:05:46', 'Matthew Higgins', 'poo@alaska.edu')[0m
+Sent mail to poo@alaska.edu
+
+Date: Fri, 1 Jan 2010 22:05:46 -0800
+To: poo@alaska.edu
+Subject: Confirm your email address
+Mime-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+
+http://example.com/registrations/5c2492d4b217f47381ba92b50b9ca3ce
+
+
+Processing RegistrationsController#update (for 0.0.0.0 at 2010-01-01 22:05:46) [PUT]
+  Parameters: {"person"=>{"password_confirmation"=>"[FILTERED]", "full_name"=>"matty", "password"=>"[FILTERED]", "email"=>"foo@bar.com"}, "action"=>"update", "id"=>"5c2492d4b217f47381ba92b50b9ca3ce", "controller"=>"registrations"}
+  [4;36;1mRegistration Load (0.5ms)[0m   [0;1mSELECT * FROM "registrations" WHERE ("registrations"."token" = '5c2492d4b217f47381ba92b50b9ca3ce') LIMIT 1[0m
+  [4;35;1mPerson Create (0.4ms)[0m   [0mINSERT INTO "people" ("encrypted_password", "salt", "created_at", "updated_at", "full_name", "remember_token", "email") VALUES('bf9b868d1e91fc8edad2096a54eb2fa4b8a39b8e', 'hM8SkbWXEXEDxV3eiitijA==', '2010-01-02 06:05:46', '2010-01-02 06:05:46', 'matty', NULL, 'foo@bar.com')[0m
+
+
+Processing RegistrationsController#create (for 0.0.0.0 at 2010-01-01 22:06:12) [POST]
+  Parameters: {"action"=>"create", "registration"=>{"full_name"=>"matty", "email"=>"foo@bar.com"}, "controller"=>"registrations"}
+  [4;36;1mPerson Load (0.3ms)[0m   [0;1mSELECT "people".id FROM "people" WHERE ("people"."email" = 'foo@bar.com') LIMIT 1[0m
+  [4;35;1mRegistration Create (0.7ms)[0m   [0mINSERT INTO "registrations" ("created_at", "token", "updated_at", "full_name", "email") VALUES('2010-01-02 06:06:12', '25250944997d0a1187e82c47e62c25d8', '2010-01-02 06:06:12', 'matty', 'foo@bar.com')[0m
+Sent mail to foo@bar.com
+
+Date: Fri, 1 Jan 2010 22:06:12 -0800
+To: foo@bar.com
+Subject: Confirm your email address
+Mime-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+
+http://example.com/registrations/25250944997d0a1187e82c47e62c25d8
+Redirected to http://test.host/registrations/thanks
+Completed in 79ms (DB: 1) | 302 Found [http://test.host/registrations?registration%5Bemail%5D=foo%40bar.com&registration%5Bfull_name%5D=matty]
+
+
+Processing RegistrationsController#create (for 0.0.0.0 at 2010-01-01 22:06:12) [POST]
+  Parameters: {"action"=>"create", "registration"=>{"full_name"=>"matty", "email"=>"poopy"}, "controller"=>"registrations"}
+  [4;36;1mPerson Load (0.3ms)[0m   [0;1mSELECT "people".id FROM "people" WHERE ("people"."email" = 'poopy') LIMIT 1[0m
+Rendering template within layouts/marketing
+Rendering registrations/new
+Completed in 9ms (View: 7, DB: 0) | 200 OK [http://test.host/registrations?registration%5Bemail%5D=poopy&registration%5Bfull_name%5D=matty]
+  [4;35;1mPerson Create (0.6ms)[0m   [0mINSERT INTO "people" ("encrypted_password", "salt", "created_at", "updated_at", "full_name", "remember_token", "email") VALUES('32a70c3e35f70c512b018236a6fbb13f750d452f', 'GlE1ISLI+u7faVL1vUtw6w==', '2010-01-02 06:06:12', '2010-01-02 06:06:12', 'Matty Higgins', NULL, 'foo@bar.com')[0m
+
+
+Processing RegistrationsController#create (for 0.0.0.0 at 2010-01-01 22:06:12) [POST]
+  Parameters: {"action"=>"create", "registration"=>{"full_name"=>"matty", "email"=>"foo@bar.com"}, "controller"=>"registrations"}
+  [4;36;1mPerson Load (0.3ms)[0m   [0;1mSELECT "people".id FROM "people" WHERE ("people"."email" = 'foo@bar.com') LIMIT 1[0m
+Rendering template within layouts/marketing
+Rendering registrations/new
+Completed in 5ms (View: 3, DB: 1) | 200 OK [http://test.host/registrations?registration%5Bemail%5D=foo%40bar.com&registration%5Bfull_name%5D=matty]
+
+
+Processing RegistrationsController#new (for 0.0.0.0 at 2010-01-01 22:06:12) [GET]
+  Parameters: {"action"=>"new", "controller"=>"registrations"}
+Rendering template within layouts/marketing
+Rendering registrations/new
+Completed in 3ms (View: 3, DB: 0) | 200 OK [http://test.host/registrations/new]
+  [4;35;1mPerson Load (0.3ms)[0m   [0mSELECT "people".id FROM "people" WHERE ("people"."email" = 'poo@alaska.edu') LIMIT 1[0m
+  [4;36;1mRegistration Create (0.5ms)[0m   [0;1mINSERT INTO "registrations" ("created_at", "token", "updated_at", "full_name", "email") VALUES('2010-01-02 06:06:12', '969192bcdfc6ee8de93e7bc3d235e263', '2010-01-02 06:06:12', 'Matthew Higgins', 'poo@alaska.edu')[0m
+Sent mail to poo@alaska.edu
+
+Date: Fri, 1 Jan 2010 22:06:12 -0800
+To: poo@alaska.edu
+Subject: Confirm your email address
+Mime-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+
+http://example.com/registrations/969192bcdfc6ee8de93e7bc3d235e263
+
+
+Processing RegistrationsController#show (for 0.0.0.0 at 2010-01-01 22:06:12) [GET]
+  Parameters: {"action"=>"show", "id"=>"969192bcdfc6ee8de93e7bc3d235e263", "controller"=>"registrations"}
+  [4;35;1mRegistration Load (0.3ms)[0m   [0mSELECT * FROM "registrations" WHERE ("registrations"."token" = '969192bcdfc6ee8de93e7bc3d235e263') LIMIT 1[0m
+Rendering template within layouts/marketing
+Rendering registrations/show
+Completed in 9ms (View: 6, DB: 1) | 200 OK [http://test.host/registrations/969192bcdfc6ee8de93e7bc3d235e263]
+  [4;36;1mPerson Load (0.2ms)[0m   [0;1mSELECT "people".id FROM "people" WHERE ("people"."email" = 'poo@alaska.edu') LIMIT 1[0m
+  [4;35;1mRegistration Create (0.4ms)[0m   [0mINSERT INTO "registrations" ("created_at", "token", "updated_at", "full_name", "email") VALUES('2010-01-02 06:06:12', 'de289e788fca5b2b375583591adeb707', '2010-01-02 06:06:12', 'Matthew Higgins', 'poo@alaska.edu')[0m
+Sent mail to poo@alaska.edu
+
+Date: Fri, 1 Jan 2010 22:06:12 -0800
+To: poo@alaska.edu
+Subject: Confirm your email address
+Mime-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+
+http://example.com/registrations/de289e788fca5b2b375583591adeb707
+
+
+Processing RegistrationsController#update (for 0.0.0.0 at 2010-01-01 22:06:12) [PUT]
+  Parameters: {"person"=>{"password_confirmation"=>"[FILTERED]", "full_name"=>"matty", "password"=>"[FILTERED]", "email"=>"foo@bar.com"}, "action"=>"update", "id"=>"de289e788fca5b2b375583591adeb707", "controller"=>"registrations"}
+  [4;36;1mRegistration Load (0.4ms)[0m   [0;1mSELECT * FROM "registrations" WHERE ("registrations"."token" = 'de289e788fca5b2b375583591adeb707') LIMIT 1[0m
+  [4;35;1mPerson Create (0.4ms)[0m   [0mINSERT INTO "people" ("encrypted_password", "salt", "created_at", "updated_at", "full_name", "remember_token", "email") VALUES('57d8a405eabbea10ff877cff12f2b37cfab5235b', 'fPxiO3U1fLkmQBScBoypEQ==', '2010-01-02 06:06:12', '2010-01-02 06:06:12', 'matty', NULL, 'foo@bar.com')[0m
+
+
+Processing RegistrationsController#create (for 0.0.0.0 at 2010-01-01 22:06:24) [POST]
+  Parameters: {"action"=>"create", "registration"=>{"full_name"=>"matty", "email"=>"foo@bar.com"}, "controller"=>"registrations"}
+  [4;36;1mPerson Load (0.3ms)[0m   [0;1mSELECT "people".id FROM "people" WHERE ("people"."email" = 'foo@bar.com') LIMIT 1[0m
+  [4;35;1mRegistration Create (0.7ms)[0m   [0mINSERT INTO "registrations" ("created_at", "token", "updated_at", "full_name", "email") VALUES('2010-01-02 06:06:24', '2673aaf8f85b954a4f1d2a311069278c', '2010-01-02 06:06:24', 'matty', 'foo@bar.com')[0m
+Sent mail to foo@bar.com
+
+Date: Fri, 1 Jan 2010 22:06:24 -0800
+To: foo@bar.com
+Subject: Confirm your email address
+Mime-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+
+http://example.com/registrations/2673aaf8f85b954a4f1d2a311069278c
+Redirected to http://test.host/registrations/thanks
+Completed in 80ms (DB: 1) | 302 Found [http://test.host/registrations?registration%5Bemail%5D=foo%40bar.com&registration%5Bfull_name%5D=matty]
+
+
+Processing RegistrationsController#create (for 0.0.0.0 at 2010-01-01 22:06:25) [POST]
+  Parameters: {"action"=>"create", "registration"=>{"full_name"=>"matty", "email"=>"poopy"}, "controller"=>"registrations"}
+  [4;36;1mPerson Load (0.3ms)[0m   [0;1mSELECT "people".id FROM "people" WHERE ("people"."email" = 'poopy') LIMIT 1[0m
+Rendering template within layouts/marketing
+Rendering registrations/new
+Completed in 11ms (View: 7, DB: 0) | 200 OK [http://test.host/registrations?registration%5Bemail%5D=poopy&registration%5Bfull_name%5D=matty]
+  [4;35;1mPerson Create (0.6ms)[0m   [0mINSERT INTO "people" ("encrypted_password", "salt", "created_at", "updated_at", "full_name", "remember_token", "email") VALUES('dda147bee370d90805c97b99beb5fb4706fcade8', 'xiVVOFIv+M2GDf3Tabj/xw==', '2010-01-02 06:06:25', '2010-01-02 06:06:25', 'Matty Higgins', NULL, 'foo@bar.com')[0m
+
+
+Processing RegistrationsController#create (for 0.0.0.0 at 2010-01-01 22:06:25) [POST]
+  Parameters: {"action"=>"create", "registration"=>{"full_name"=>"matty", "email"=>"foo@bar.com"}, "controller"=>"registrations"}
+  [4;36;1mPerson Load (0.3ms)[0m   [0;1mSELECT "people".id FROM "people" WHERE ("people"."email" = 'foo@bar.com') LIMIT 1[0m
+Rendering template within layouts/marketing
+Rendering registrations/new
+Completed in 5ms (View: 3, DB: 1) | 200 OK [http://test.host/registrations?registration%5Bemail%5D=foo%40bar.com&registration%5Bfull_name%5D=matty]
+
+
+Processing RegistrationsController#new (for 0.0.0.0 at 2010-01-01 22:06:25) [GET]
+  Parameters: {"action"=>"new", "controller"=>"registrations"}
+Rendering template within layouts/marketing
+Rendering registrations/new
+Completed in 3ms (View: 3, DB: 0) | 200 OK [http://test.host/registrations/new]
+  [4;35;1mPerson Load (0.2ms)[0m   [0mSELECT "people".id FROM "people" WHERE ("people"."email" = 'poo@alaska.edu') LIMIT 1[0m
+  [4;36;1mRegistration Create (0.5ms)[0m   [0;1mINSERT INTO "registrations" ("created_at", "token", "updated_at", "full_name", "email") VALUES('2010-01-02 06:06:25', '795237f498e572c0fdc256fd0046120c', '2010-01-02 06:06:25', 'Matthew Higgins', 'poo@alaska.edu')[0m
+Sent mail to poo@alaska.edu
+
+Date: Fri, 1 Jan 2010 22:06:25 -0800
+To: poo@alaska.edu
+Subject: Confirm your email address
+Mime-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+
+http://example.com/registrations/795237f498e572c0fdc256fd0046120c
+
+
+Processing RegistrationsController#show (for 0.0.0.0 at 2010-01-01 22:06:25) [GET]
+  Parameters: {"action"=>"show", "id"=>"795237f498e572c0fdc256fd0046120c", "controller"=>"registrations"}
+  [4;35;1mRegistration Load (0.4ms)[0m   [0mSELECT * FROM "registrations" WHERE ("registrations"."token" = '795237f498e572c0fdc256fd0046120c') LIMIT 1[0m
+Rendering template within layouts/marketing
+Rendering registrations/show
+Completed in 9ms (View: 6, DB: 1) | 200 OK [http://test.host/registrations/795237f498e572c0fdc256fd0046120c]
+  [4;36;1mPerson Load (0.3ms)[0m   [0;1mSELECT "people".id FROM "people" WHERE ("people"."email" = 'poo@alaska.edu') LIMIT 1[0m
+  [4;35;1mRegistration Create (0.5ms)[0m   [0mINSERT INTO "registrations" ("created_at", "token", "updated_at", "full_name", "email") VALUES('2010-01-02 06:06:25', '15b16b9974473dc87e792a8ce063e40d', '2010-01-02 06:06:25', 'Matthew Higgins', 'poo@alaska.edu')[0m
+Sent mail to poo@alaska.edu
+
+Date: Fri, 1 Jan 2010 22:06:25 -0800
+To: poo@alaska.edu
+Subject: Confirm your email address
+Mime-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+
+http://example.com/registrations/15b16b9974473dc87e792a8ce063e40d
+
+
+Processing RegistrationsController#update (for 0.0.0.0 at 2010-01-01 22:06:25) [PUT]
+  Parameters: {"person"=>{"password_confirmation"=>"[FILTERED]", "full_name"=>"matty", "password"=>"[FILTERED]", "email"=>"foo@bar.com"}, "action"=>"update", "id"=>"15b16b9974473dc87e792a8ce063e40d", "controller"=>"registrations"}
+  [4;36;1mRegistration Load (0.6ms)[0m   [0;1mSELECT * FROM "registrations" WHERE ("registrations"."token" = '15b16b9974473dc87e792a8ce063e40d') LIMIT 1[0m
+  [4;35;1mPerson Create (0.3ms)[0m   [0mINSERT INTO "people" ("encrypted_password", "salt", "created_at", "updated_at", "full_name", "remember_token", "email") VALUES('712345d743c0fb955e9ed7f657073d9bf5424566', 'cQMhGEYawKwFcV1KHa9kyA==', '2010-01-02 06:06:25', '2010-01-02 06:06:25', 'matty', NULL, 'foo@bar.com')[0m
+
+
+Processing RegistrationsController#create (for 0.0.0.0 at 2010-01-01 22:06:41) [POST]
+  Parameters: {"action"=>"create", "registration"=>{"full_name"=>"matty", "email"=>"foo@bar.com"}, "controller"=>"registrations"}
+  [4;36;1mPerson Load (0.3ms)[0m   [0;1mSELECT "people".id FROM "people" WHERE ("people"."email" = 'foo@bar.com') LIMIT 1[0m
+  [4;35;1mRegistration Create (0.7ms)[0m   [0mINSERT INTO "registrations" ("created_at", "token", "updated_at", "full_name", "email") VALUES('2010-01-02 06:06:41', '900f53e79c19ccd3a35bed9019951761', '2010-01-02 06:06:41', 'matty', 'foo@bar.com')[0m
+Sent mail to foo@bar.com
+
+Date: Fri, 1 Jan 2010 22:06:41 -0800
+To: foo@bar.com
+Subject: Confirm your email address
+Mime-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+
+http://example.com/registrations/900f53e79c19ccd3a35bed9019951761
+Redirected to http://test.host/registrations/thanks
+Completed in 80ms (DB: 1) | 302 Found [http://test.host/registrations?registration%5Bemail%5D=foo%40bar.com&registration%5Bfull_name%5D=matty]
+
+
+Processing RegistrationsController#create (for 0.0.0.0 at 2010-01-01 22:06:41) [POST]
+  Parameters: {"action"=>"create", "registration"=>{"full_name"=>"matty", "email"=>"poopy"}, "controller"=>"registrations"}
+  [4;36;1mPerson Load (0.3ms)[0m   [0;1mSELECT "people".id FROM "people" WHERE ("people"."email" = 'poopy') LIMIT 1[0m
+Rendering template within layouts/marketing
+Rendering registrations/new
+Completed in 9ms (View: 7, DB: 0) | 200 OK [http://test.host/registrations?registration%5Bemail%5D=poopy&registration%5Bfull_name%5D=matty]
+  [4;35;1mPerson Create (0.6ms)[0m   [0mINSERT INTO "people" ("encrypted_password", "salt", "created_at", "updated_at", "full_name", "remember_token", "email") VALUES('6213d431d3c5dc151b431f990a558e178f5503ce', 'ERkgBo/J0bbmhrbx5M4Gew==', '2010-01-02 06:06:41', '2010-01-02 06:06:41', 'Matty Higgins', NULL, 'foo@bar.com')[0m
+
+
+Processing RegistrationsController#create (for 0.0.0.0 at 2010-01-01 22:06:41) [POST]
+  Parameters: {"action"=>"create", "registration"=>{"full_name"=>"matty", "email"=>"foo@bar.com"}, "controller"=>"registrations"}
+  [4;36;1mPerson Load (0.3ms)[0m   [0;1mSELECT "people".id FROM "people" WHERE ("people"."email" = 'foo@bar.com') LIMIT 1[0m
+Rendering template within layouts/marketing
+Rendering registrations/new
+Completed in 5ms (View: 3, DB: 1) | 200 OK [http://test.host/registrations?registration%5Bemail%5D=foo%40bar.com&registration%5Bfull_name%5D=matty]
+
+
+Processing RegistrationsController#new (for 0.0.0.0 at 2010-01-01 22:06:41) [GET]
+  Parameters: {"action"=>"new", "controller"=>"registrations"}
+Rendering template within layouts/marketing
+Rendering registrations/new
+Completed in 3ms (View: 3, DB: 0) | 200 OK [http://test.host/registrations/new]
+  [4;35;1mPerson Load (0.3ms)[0m   [0mSELECT "people".id FROM "people" WHERE ("people"."email" = 'poo@alaska.edu') LIMIT 1[0m
+  [4;36;1mRegistration Create (0.7ms)[0m   [0;1mINSERT INTO "registrations" ("created_at", "token", "updated_at", "full_name", "email") VALUES('2010-01-02 06:06:41', 'd531e0d1e374c3b38005f70c626a8684', '2010-01-02 06:06:41', 'Matthew Higgins', 'poo@alaska.edu')[0m
+Sent mail to poo@alaska.edu
+
+Date: Fri, 1 Jan 2010 22:06:41 -0800
+To: poo@alaska.edu
+Subject: Confirm your email address
+Mime-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+
+http://example.com/registrations/d531e0d1e374c3b38005f70c626a8684
+
+
+Processing RegistrationsController#show (for 0.0.0.0 at 2010-01-01 22:06:41) [GET]
+  Parameters: {"action"=>"show", "id"=>"d531e0d1e374c3b38005f70c626a8684", "controller"=>"registrations"}
+  [4;35;1mRegistration Load (0.4ms)[0m   [0mSELECT * FROM "registrations" WHERE ("registrations"."token" = 'd531e0d1e374c3b38005f70c626a8684') LIMIT 1[0m
+Rendering template within layouts/marketing
+Rendering registrations/show
+Completed in 9ms (View: 6, DB: 1) | 200 OK [http://test.host/registrations/d531e0d1e374c3b38005f70c626a8684]
+  [4;36;1mPerson Load (0.2ms)[0m   [0;1mSELECT "people".id FROM "people" WHERE ("people"."email" = 'poo@alaska.edu') LIMIT 1[0m
+  [4;35;1mRegistration Create (0.4ms)[0m   [0mINSERT INTO "registrations" ("created_at", "token", "updated_at", "full_name", "email") VALUES('2010-01-02 06:06:41', '9096749e9b43c1f0015580b038d44d8c', '2010-01-02 06:06:41', 'Matthew Higgins', 'poo@alaska.edu')[0m
+Sent mail to poo@alaska.edu
+
+Date: Fri, 1 Jan 2010 22:06:41 -0800
+To: poo@alaska.edu
+Subject: Confirm your email address
+Mime-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+
+http://example.com/registrations/9096749e9b43c1f0015580b038d44d8c
+
+
+Processing RegistrationsController#update (for 0.0.0.0 at 2010-01-01 22:06:41) [PUT]
+  Parameters: {"person"=>{"password_confirmation"=>"[FILTERED]", "full_name"=>"matty", "password"=>"[FILTERED]", "email"=>"foo@bar.com"}, "action"=>"update", "id"=>"9096749e9b43c1f0015580b038d44d8c", "controller"=>"registrations"}
+  [4;36;1mRegistration Load (0.5ms)[0m   [0;1mSELECT * FROM "registrations" WHERE ("registrations"."token" = '9096749e9b43c1f0015580b038d44d8c') LIMIT 1[0m
+  [4;35;1mPerson Create (0.3ms)[0m   [0mINSERT INTO "people" ("encrypted_password", "salt", "created_at", "updated_at", "full_name", "remember_token", "email") VALUES('7c959886e6eda9c1f65f752a2c9219fb6d8ca833', 'SufzszQicqEEjo3VoYHegw==', '2010-01-02 06:06:41', '2010-01-02 06:06:41', 'matty', NULL, 'foo@bar.com')[0m
+  [4;36;1mRegistration Delete all (0.0ms)[0m   [0;1mSQLite3::SQLException: no such column: conditions.email: DELETE FROM "registrations" WHERE ("conditions"."email" = 'poo@alaska.edu') [0m
+
+
+Processing RegistrationsController#create (for 0.0.0.0 at 2010-01-01 22:07:01) [POST]
+  Parameters: {"action"=>"create", "registration"=>{"full_name"=>"matty", "email"=>"foo@bar.com"}, "controller"=>"registrations"}
+  [4;36;1mPerson Load (0.3ms)[0m   [0;1mSELECT "people".id FROM "people" WHERE ("people"."email" = 'foo@bar.com') LIMIT 1[0m
+  [4;35;1mRegistration Create (0.8ms)[0m   [0mINSERT INTO "registrations" ("created_at", "token", "updated_at", "full_name", "email") VALUES('2010-01-02 06:07:01', '430001a86eb11a5793a21fe4f73b868f', '2010-01-02 06:07:01', 'matty', 'foo@bar.com')[0m
+Sent mail to foo@bar.com
+
+Date: Fri, 1 Jan 2010 22:07:01 -0800
+To: foo@bar.com
+Subject: Confirm your email address
+Mime-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+
+http://example.com/registrations/430001a86eb11a5793a21fe4f73b868f
+Redirected to http://test.host/registrations/thanks
+Completed in 79ms (DB: 1) | 302 Found [http://test.host/registrations?registration%5Bemail%5D=foo%40bar.com&registration%5Bfull_name%5D=matty]
+
+
+Processing RegistrationsController#create (for 0.0.0.0 at 2010-01-01 22:07:01) [POST]
+  Parameters: {"action"=>"create", "registration"=>{"full_name"=>"matty", "email"=>"poopy"}, "controller"=>"registrations"}
+  [4;36;1mPerson Load (0.3ms)[0m   [0;1mSELECT "people".id FROM "people" WHERE ("people"."email" = 'poopy') LIMIT 1[0m
+Rendering template within layouts/marketing
+Rendering registrations/new
+Completed in 9ms (View: 7, DB: 0) | 200 OK [http://test.host/registrations?registration%5Bemail%5D=poopy&registration%5Bfull_name%5D=matty]
+  [4;35;1mPerson Create (0.6ms)[0m   [0mINSERT INTO "people" ("encrypted_password", "salt", "created_at", "updated_at", "full_name", "remember_token", "email") VALUES('c2aba6999454767f12ff3e2e411b03cc6fc6ec1a', 'CoV4VdIzpQbjTr3GvOxDeQ==', '2010-01-02 06:07:01', '2010-01-02 06:07:01', 'Matty Higgins', NULL, 'foo@bar.com')[0m
+
+
+Processing RegistrationsController#create (for 0.0.0.0 at 2010-01-01 22:07:01) [POST]
+  Parameters: {"action"=>"create", "registration"=>{"full_name"=>"matty", "email"=>"foo@bar.com"}, "controller"=>"registrations"}
+  [4;36;1mPerson Load (0.3ms)[0m   [0;1mSELECT "people".id FROM "people" WHERE ("people"."email" = 'foo@bar.com') LIMIT 1[0m
+Rendering template within layouts/marketing
+Rendering registrations/new
+Completed in 5ms (View: 3, DB: 1) | 200 OK [http://test.host/registrations?registration%5Bemail%5D=foo%40bar.com&registration%5Bfull_name%5D=matty]
+
+
+Processing RegistrationsController#new (for 0.0.0.0 at 2010-01-01 22:07:01) [GET]
+  Parameters: {"action"=>"new", "controller"=>"registrations"}
+Rendering template within layouts/marketing
+Rendering registrations/new
+Completed in 3ms (View: 3, DB: 0) | 200 OK [http://test.host/registrations/new]
+  [4;35;1mPerson Load (0.3ms)[0m   [0mSELECT "people".id FROM "people" WHERE ("people"."email" = 'poo@alaska.edu') LIMIT 1[0m
+  [4;36;1mRegistration Create (0.5ms)[0m   [0;1mINSERT INTO "registrations" ("created_at", "token", "updated_at", "full_name", "email") VALUES('2010-01-02 06:07:01', '61de80968082f14f5b543d7730b735ad', '2010-01-02 06:07:01', 'Matthew Higgins', 'poo@alaska.edu')[0m
+Sent mail to poo@alaska.edu
+
+Date: Fri, 1 Jan 2010 22:07:01 -0800
+To: poo@alaska.edu
+Subject: Confirm your email address
+Mime-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+
+http://example.com/registrations/61de80968082f14f5b543d7730b735ad
+
+
+Processing RegistrationsController#show (for 0.0.0.0 at 2010-01-01 22:07:01) [GET]
+  Parameters: {"action"=>"show", "id"=>"61de80968082f14f5b543d7730b735ad", "controller"=>"registrations"}
+  [4;35;1mRegistration Load (0.4ms)[0m   [0mSELECT * FROM "registrations" WHERE ("registrations"."token" = '61de80968082f14f5b543d7730b735ad') LIMIT 1[0m
+Rendering template within layouts/marketing
+Rendering registrations/show
+Completed in 9ms (View: 6, DB: 1) | 200 OK [http://test.host/registrations/61de80968082f14f5b543d7730b735ad]
+  [4;36;1mPerson Load (0.2ms)[0m   [0;1mSELECT "people".id FROM "people" WHERE ("people"."email" = 'poo@alaska.edu') LIMIT 1[0m
+  [4;35;1mRegistration Create (0.4ms)[0m   [0mINSERT INTO "registrations" ("created_at", "token", "updated_at", "full_name", "email") VALUES('2010-01-02 06:07:01', '061e527b735b3fdd2b86952c018de0dd', '2010-01-02 06:07:01', 'Matthew Higgins', 'poo@alaska.edu')[0m
+Sent mail to poo@alaska.edu
+
+Date: Fri, 1 Jan 2010 22:07:01 -0800
+To: poo@alaska.edu
+Subject: Confirm your email address
+Mime-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+
+http://example.com/registrations/061e527b735b3fdd2b86952c018de0dd
+
+
+Processing RegistrationsController#update (for 0.0.0.0 at 2010-01-01 22:07:01) [PUT]
+  Parameters: {"person"=>{"password_confirmation"=>"[FILTERED]", "full_name"=>"matty", "password"=>"[FILTERED]", "email"=>"foo@bar.com"}, "action"=>"update", "id"=>"061e527b735b3fdd2b86952c018de0dd", "controller"=>"registrations"}
+  [4;36;1mRegistration Load (0.5ms)[0m   [0;1mSELECT * FROM "registrations" WHERE ("registrations"."token" = '061e527b735b3fdd2b86952c018de0dd') LIMIT 1[0m
+  [4;35;1mPerson Create (0.3ms)[0m   [0mINSERT INTO "people" ("encrypted_password", "salt", "created_at", "updated_at", "full_name", "remember_token", "email") VALUES('962bb3da3beaae84bd817760a70a93d98dec8a52', 'UHgJOKP5fcbXUHrEytPQiQ==', '2010-01-02 06:07:01', '2010-01-02 06:07:01', 'matty', NULL, 'foo@bar.com')[0m
+  [4;36;1mRegistration Delete all (0.1ms)[0m   [0;1mDELETE FROM "registrations" WHERE ("registrations"."email" = 'poo@alaska.edu') [0m
+Redirected to http://test.host/courses
+Completed in 4ms (DB: 2) | 302 Found [http://test.host/registrations/061e527b735b3fdd2b86952c018de0dd?person%5Bemail%5D=foo%40bar.com&person%5Bfull_name%5D=matty&person%5Bpassword%5D=sekret&person%5Bpassword_confirmation%5D=sekret]
+  [4;35;1mRegistration Load (0.1ms)[0m   [0mSELECT * FROM "registrations" WHERE ("registrations"."id" = 1) [0m
+
+
+Processing RegistrationsController#create (for 0.0.0.0 at 2010-01-01 22:10:48) [POST]
+  Parameters: {"action"=>"create", "registration"=>{"full_name"=>"matty", "email"=>"foo@bar.com"}, "controller"=>"registrations"}
+  [4;36;1mPerson Load (0.3ms)[0m   [0;1mSELECT "people".id FROM "people" WHERE ("people"."email" = 'foo@bar.com') LIMIT 1[0m
+  [4;35;1mRegistration Create (0.7ms)[0m   [0mINSERT INTO "registrations" ("created_at", "token", "updated_at", "full_name", "email") VALUES('2010-01-02 06:10:48', '113bc8247fa3e4b1f9ea20af795a7bbe', '2010-01-02 06:10:48', 'matty', 'foo@bar.com')[0m
+Sent mail to foo@bar.com
+
+Date: Fri, 1 Jan 2010 22:10:48 -0800
+To: foo@bar.com
+Subject: Confirm your email address
+Mime-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+
+http://example.com/registrations/113bc8247fa3e4b1f9ea20af795a7bbe
+Redirected to http://test.host/registrations/thanks
+Completed in 79ms (DB: 1) | 302 Found [http://test.host/registrations?registration%5Bemail%5D=foo%40bar.com&registration%5Bfull_name%5D=matty]
+
+
+Processing RegistrationsController#create (for 0.0.0.0 at 2010-01-01 22:10:48) [POST]
+  Parameters: {"action"=>"create", "registration"=>{"full_name"=>"matty", "email"=>"poopy"}, "controller"=>"registrations"}
+  [4;36;1mPerson Load (0.3ms)[0m   [0;1mSELECT "people".id FROM "people" WHERE ("people"."email" = 'poopy') LIMIT 1[0m
+Rendering template within layouts/marketing
+Rendering registrations/new
+Completed in 9ms (View: 7, DB: 0) | 200 OK [http://test.host/registrations?registration%5Bemail%5D=poopy&registration%5Bfull_name%5D=matty]
+  [4;35;1mPerson Create (0.6ms)[0m   [0mINSERT INTO "people" ("encrypted_password", "salt", "created_at", "updated_at", "full_name", "remember_token", "email") VALUES('742eeeec0a18a36e9a0ae13f5888f5a880289eee', 'cNPbBz6tGJ3DWY+FSqFXxg==', '2010-01-02 06:10:48', '2010-01-02 06:10:48', 'Matty Higgins', NULL, 'foo@bar.com')[0m
+
+
+Processing RegistrationsController#create (for 0.0.0.0 at 2010-01-01 22:10:48) [POST]
+  Parameters: {"action"=>"create", "registration"=>{"full_name"=>"matty", "email"=>"foo@bar.com"}, "controller"=>"registrations"}
+  [4;36;1mPerson Load (0.3ms)[0m   [0;1mSELECT "people".id FROM "people" WHERE ("people"."email" = 'foo@bar.com') LIMIT 1[0m
+Rendering template within layouts/marketing
+Rendering registrations/new
+Completed in 5ms (View: 3, DB: 1) | 200 OK [http://test.host/registrations?registration%5Bemail%5D=foo%40bar.com&registration%5Bfull_name%5D=matty]
+
+
+Processing RegistrationsController#new (for 0.0.0.0 at 2010-01-01 22:10:48) [GET]
+  Parameters: {"action"=>"new", "controller"=>"registrations"}
+Rendering template within layouts/marketing
+Rendering registrations/new
+Completed in 3ms (View: 3, DB: 0) | 200 OK [http://test.host/registrations/new]
+  [4;35;1mPerson Load (0.3ms)[0m   [0mSELECT "people".id FROM "people" WHERE ("people"."email" = 'poo@alaska.edu') LIMIT 1[0m
+  [4;36;1mRegistration Create (0.5ms)[0m   [0;1mINSERT INTO "registrations" ("created_at", "token", "updated_at", "full_name", "email") VALUES('2010-01-02 06:10:48', '1c9dbfb874ff32df7efc4b7a3ac66444', '2010-01-02 06:10:48', 'Matthew Higgins', 'poo@alaska.edu')[0m
+Sent mail to poo@alaska.edu
+
+Date: Fri, 1 Jan 2010 22:10:48 -0800
+To: poo@alaska.edu
+Subject: Confirm your email address
+Mime-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+
+http://example.com/registrations/1c9dbfb874ff32df7efc4b7a3ac66444
+
+
+Processing RegistrationsController#show (for 0.0.0.0 at 2010-01-01 22:10:48) [GET]
+  Parameters: {"action"=>"show", "id"=>"1c9dbfb874ff32df7efc4b7a3ac66444", "controller"=>"registrations"}
+  [4;35;1mRegistration Load (0.3ms)[0m   [0mSELECT * FROM "registrations" WHERE ("registrations"."token" = '1c9dbfb874ff32df7efc4b7a3ac66444') LIMIT 1[0m
+Rendering template within layouts/marketing
+Rendering registrations/show
+Completed in 8ms (View: 6, DB: 1) | 200 OK [http://test.host/registrations/1c9dbfb874ff32df7efc4b7a3ac66444]
+  [4;36;1mPerson Load (0.2ms)[0m   [0;1mSELECT "people".id FROM "people" WHERE ("people"."email" = 'poo@alaska.edu') LIMIT 1[0m
+  [4;35;1mRegistration Create (0.4ms)[0m   [0mINSERT INTO "registrations" ("created_at", "token", "updated_at", "full_name", "email") VALUES('2010-01-02 06:10:48', 'ac21d84913eefcace3495f076d00d24a', '2010-01-02 06:10:48', 'Matthew Higgins', 'poo@alaska.edu')[0m
+Sent mail to poo@alaska.edu
+
+Date: Fri, 1 Jan 2010 22:10:48 -0800
+To: poo@alaska.edu
+Subject: Confirm your email address
+Mime-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+
+http://example.com/registrations/ac21d84913eefcace3495f076d00d24a
+
+
+Processing RegistrationsController#update (for 0.0.0.0 at 2010-01-01 22:10:48) [PUT]
+  Parameters: {"person"=>{"password_confirmation"=>"[FILTERED]", "full_name"=>"matty", "password"=>"[FILTERED]", "email"=>"foo@bar.com"}, "action"=>"update", "id"=>"ac21d84913eefcace3495f076d00d24a", "controller"=>"registrations"}
+  [4;36;1mRegistration Load (0.7ms)[0m   [0;1mSELECT * FROM "registrations" WHERE ("registrations"."token" = 'ac21d84913eefcace3495f076d00d24a') LIMIT 1[0m
+  [4;35;1mPerson Create (0.3ms)[0m   [0mINSERT INTO "people" ("encrypted_password", "salt", "created_at", "updated_at", "full_name", "remember_token", "email") VALUES('e0d9a4d1c1b6e94bfcf1c16445149f9c53d64d57', 'KpmymlkuT18OZ9No7+QSpw==', '2010-01-02 06:10:48', '2010-01-02 06:10:48', 'matty', NULL, 'foo@bar.com')[0m
+  [4;36;1mRegistration Delete all (0.1ms)[0m   [0;1mDELETE FROM "registrations" WHERE ("registrations"."email" = 'poo@alaska.edu') [0m
+Redirected to http://test.host/courses
+Completed in 5ms (DB: 2) | 302 Found [http://test.host/registrations/ac21d84913eefcace3495f076d00d24a?person%5Bemail%5D=foo%40bar.com&person%5Bfull_name%5D=matty&person%5Bpassword%5D=sekret&person%5Bpassword_confirmation%5D=sekret]
+  [4;35;1mRegistration Load (0.1ms)[0m   [0mSELECT * FROM "registrations" WHERE ("registrations"."id" = 1) [0m
+
+
+Processing RegistrationsController#update (for 0.0.0.0 at 2010-01-01 22:10:48) [PUT]
+  Parameters: {"person"=>{"password_confirmation"=>"[FILTERED]", "full_name"=>"matty", "password"=>"[FILTERED]", "email"=>"foo@bar.com"}, "action"=>"update", "id"=>"poopy", "controller"=>"registrations"}
+  [4;36;1mRegistration Load (0.3ms)[0m   [0;1mSELECT * FROM "registrations" WHERE ("registrations"."token" = 'poopy') LIMIT 1[0m
+
+
+Processing RegistrationsController#create (for 0.0.0.0 at 2010-01-01 22:11:22) [POST]
+  Parameters: {"action"=>"create", "registration"=>{"full_name"=>"matty", "email"=>"foo@bar.com"}, "controller"=>"registrations"}
+  [4;36;1mPerson Load (0.3ms)[0m   [0;1mSELECT "people".id FROM "people" WHERE ("people"."email" = 'foo@bar.com') LIMIT 1[0m
+  [4;35;1mRegistration Create (0.7ms)[0m   [0mINSERT INTO "registrations" ("created_at", "token", "updated_at", "full_name", "email") VALUES('2010-01-02 06:11:22', 'cc0271a9060d9475fd1aa33fd51d1914', '2010-01-02 06:11:22', 'matty', 'foo@bar.com')[0m
+Sent mail to foo@bar.com
+
+Date: Fri, 1 Jan 2010 22:11:22 -0800
+To: foo@bar.com
+Subject: Confirm your email address
+Mime-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+
+http://example.com/registrations/cc0271a9060d9475fd1aa33fd51d1914
+Redirected to http://test.host/registrations/thanks
+Completed in 81ms (DB: 1) | 302 Found [http://test.host/registrations?registration%5Bemail%5D=foo%40bar.com&registration%5Bfull_name%5D=matty]
+
+
+Processing RegistrationsController#create (for 0.0.0.0 at 2010-01-01 22:11:22) [POST]
+  Parameters: {"action"=>"create", "registration"=>{"full_name"=>"matty", "email"=>"poopy"}, "controller"=>"registrations"}
+  [4;36;1mPerson Load (0.3ms)[0m   [0;1mSELECT "people".id FROM "people" WHERE ("people"."email" = 'poopy') LIMIT 1[0m
+Rendering template within layouts/marketing
+Rendering registrations/new
+Completed in 9ms (View: 7, DB: 0) | 200 OK [http://test.host/registrations?registration%5Bemail%5D=poopy&registration%5Bfull_name%5D=matty]
+  [4;35;1mPerson Create (0.6ms)[0m   [0mINSERT INTO "people" ("encrypted_password", "salt", "created_at", "updated_at", "full_name", "remember_token", "email") VALUES('90c2e7f07f06b3b75a4575af04f80ef54f5b26c0', 'LgkLY2QAz2V33jeGysoOmA==', '2010-01-02 06:11:22', '2010-01-02 06:11:22', 'Matty Higgins', NULL, 'foo@bar.com')[0m
+
+
+Processing RegistrationsController#create (for 0.0.0.0 at 2010-01-01 22:11:22) [POST]
+  Parameters: {"action"=>"create", "registration"=>{"full_name"=>"matty", "email"=>"foo@bar.com"}, "controller"=>"registrations"}
+  [4;36;1mPerson Load (0.3ms)[0m   [0;1mSELECT "people".id FROM "people" WHERE ("people"."email" = 'foo@bar.com') LIMIT 1[0m
+Rendering template within layouts/marketing
+Rendering registrations/new
+Completed in 6ms (View: 4, DB: 1) | 200 OK [http://test.host/registrations?registration%5Bemail%5D=foo%40bar.com&registration%5Bfull_name%5D=matty]
+
+
+Processing RegistrationsController#new (for 0.0.0.0 at 2010-01-01 22:11:22) [GET]
+  Parameters: {"action"=>"new", "controller"=>"registrations"}
+Rendering template within layouts/marketing
+Rendering registrations/new
+Completed in 3ms (View: 3, DB: 0) | 200 OK [http://test.host/registrations/new]
+  [4;35;1mPerson Load (0.3ms)[0m   [0mSELECT "people".id FROM "people" WHERE ("people"."email" = 'poo@alaska.edu') LIMIT 1[0m
+  [4;36;1mRegistration Create (0.5ms)[0m   [0;1mINSERT INTO "registrations" ("created_at", "token", "updated_at", "full_name", "email") VALUES('2010-01-02 06:11:22', '2f93fc5f71fb535a0924d305b7d211e0', '2010-01-02 06:11:22', 'Matthew Higgins', 'poo@alaska.edu')[0m
+Sent mail to poo@alaska.edu
+
+Date: Fri, 1 Jan 2010 22:11:22 -0800
+To: poo@alaska.edu
+Subject: Confirm your email address
+Mime-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+
+http://example.com/registrations/2f93fc5f71fb535a0924d305b7d211e0
+
+
+Processing RegistrationsController#show (for 0.0.0.0 at 2010-01-01 22:11:22) [GET]
+  Parameters: {"action"=>"show", "id"=>"2f93fc5f71fb535a0924d305b7d211e0", "controller"=>"registrations"}
+  [4;35;1mRegistration Load (0.4ms)[0m   [0mSELECT * FROM "registrations" WHERE ("registrations"."token" = '2f93fc5f71fb535a0924d305b7d211e0') LIMIT 1[0m
+Rendering template within layouts/marketing
+Rendering registrations/show
+Completed in 9ms (View: 6, DB: 1) | 200 OK [http://test.host/registrations/2f93fc5f71fb535a0924d305b7d211e0]
+  [4;36;1mPerson Load (0.2ms)[0m   [0;1mSELECT "people".id FROM "people" WHERE ("people"."email" = 'poo@alaska.edu') LIMIT 1[0m
+  [4;35;1mRegistration Create (0.4ms)[0m   [0mINSERT INTO "registrations" ("created_at", "token", "updated_at", "full_name", "email") VALUES('2010-01-02 06:11:22', 'bdb704de9df22b8420b5e7a061247ebf', '2010-01-02 06:11:22', 'Matthew Higgins', 'poo@alaska.edu')[0m
+Sent mail to poo@alaska.edu
+
+Date: Fri, 1 Jan 2010 22:11:22 -0800
+To: poo@alaska.edu
+Subject: Confirm your email address
+Mime-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+
+http://example.com/registrations/bdb704de9df22b8420b5e7a061247ebf
+
+
+Processing RegistrationsController#update (for 0.0.0.0 at 2010-01-01 22:11:22) [PUT]
+  Parameters: {"person"=>{"password_confirmation"=>"[FILTERED]", "full_name"=>"matty", "password"=>"[FILTERED]", "email"=>"foo@bar.com"}, "action"=>"update", "id"=>"bdb704de9df22b8420b5e7a061247ebf", "controller"=>"registrations"}
+  [4;36;1mRegistration Load (0.7ms)[0m   [0;1mSELECT * FROM "registrations" WHERE ("registrations"."token" = 'bdb704de9df22b8420b5e7a061247ebf') LIMIT 1[0m
+  [4;35;1mPerson Create (0.3ms)[0m   [0mINSERT INTO "people" ("encrypted_password", "salt", "created_at", "updated_at", "full_name", "remember_token", "email") VALUES('59bfcb536c0a023726c495b5d49a48334998370a', '7is6fQXtG0k9KpuavaiHvA==', '2010-01-02 06:11:22', '2010-01-02 06:11:22', 'matty', NULL, 'foo@bar.com')[0m
+  [4;36;1mRegistration Delete all (0.1ms)[0m   [0;1mDELETE FROM "registrations" WHERE ("registrations"."email" = 'poo@alaska.edu') [0m
+Redirected to http://test.host/courses
+Completed in 5ms (DB: 2) | 302 Found [http://test.host/registrations/bdb704de9df22b8420b5e7a061247ebf?person%5Bemail%5D=foo%40bar.com&person%5Bfull_name%5D=matty&person%5Bpassword%5D=sekret&person%5Bpassword_confirmation%5D=sekret]
+  [4;35;1mRegistration Load (0.1ms)[0m   [0mSELECT * FROM "registrations" WHERE ("registrations"."id" = 1) [0m
+
+
+Processing RegistrationsController#update (for 0.0.0.0 at 2010-01-01 22:11:22) [PUT]
+  Parameters: {"action"=>"update", "id"=>"poopy", "controller"=>"registrations"}
+  [4;36;1mRegistration Load (0.3ms)[0m   [0;1mSELECT * FROM "registrations" WHERE ("registrations"."token" = 'poopy') LIMIT 1[0m
