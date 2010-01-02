@@ -1,0 +1,25 @@
+<% form_for :person do |f| %>
+  <div>
+    <%= f.label :full_name, 'Your name' %>
+    <%= f.text_field :full_name %>
+    <%= f.error_message_on :full_name, :prepend_text => 'Your name ' %>
+  </div>
+  <div>
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+    <%= f.error_message_on :email, :prepend_text => 'Email ' %>
+  </div>
+  <div>
+    <%= f.label :password %>
+    <%= f.text_field :password %>
+    <%= f.error_message_on :password, :prepend_text => 'Password ' %>
+  </div>
+  <div>
+    <%= f.label :password_confirmation, 'Confirm' %>
+    <%= f.text_field :password_confirmation %>
+    <%= f.error_message_on :password_confirmation, :prepend_text => 'Confirmation ' %>
+  </div>
+  <div>
+    <%= f.submit 'Create account' %>
+  </div>
+<% end %>
