@@ -5,6 +5,9 @@ class Invitation < ActiveRecord::Base
   belongs_to :course
   belongs_to :teacher
   
+  extend Concerns::Denormalization
+  denormalizes :teacher, :through => :course
+  
   def existing_person
     Person.find_by_email email
   end
