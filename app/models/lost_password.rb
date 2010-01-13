@@ -12,7 +12,7 @@ class LostPassword < ActiveRecord::Base
   
   validate_on_create do |lost_password|
     if lost_password.person.blank?
-      errors.add :email, 'does not exist'
+      lost_password.errors.add :email, 'does not exist'
     end
   end
 

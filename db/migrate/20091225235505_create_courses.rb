@@ -1,7 +1,7 @@
 class CreateCourses < ActiveRecord::Migration
   def self.up
     create_table :courses do |t|
-      t.string    :title,       :null => false
+      t.string    :name,        :null => false
       t.text      :description, :null => false
       t.datetime  :start,       :null => false
       t.datetime  :end,         :null => false

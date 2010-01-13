@@ -3219,3 +3219,801 @@ Migrating to CreateLostPasswords (20091226234927)
   [4;36;1mSQL (2.2ms)[0m   [0;1mINSERT INTO "schema_migrations" (version) VALUES ('20091226000017')[0m
   [4;35;1mSQL (2.2ms)[0m   [0mINSERT INTO "schema_migrations" (version) VALUES ('20091226162714')[0m
   [4;36;1mSQL (2.6ms)[0m   [0;1mINSERT INTO "schema_migrations" (version) VALUES ('20091226163114')[0m
+  [4;36;1mSQL (14.7ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mselect sqlite_version(*)[0m
+  [4;36;1mSQL (2.4ms)[0m   [0;1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (2.4ms)[0m   [0mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreatePeople (20091225235111)
+  [4;36;1mSQL (0.7ms)[0m   [0;1mCREATE TABLE "people" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255) NOT NULL, "full_name" varchar(255) NOT NULL, "encrypted_password" varchar(128) NOT NULL, "salt" varchar(128) NOT NULL, "remember_token" varchar(128), "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (0.6ms)[0m   [0mCREATE UNIQUE INDEX "index_people_on_email" ON "people" ("email")[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mCREATE UNIQUE INDEX "index_people_on_remember_token" ON "people" ("remember_token")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20091225235111')[0m
+Migrating to CreateCourses (20091225235505)
+  [4;36;1mSQL (0.7ms)[0m   [0;1mCREATE TABLE "courses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255) NOT NULL, "description" text NOT NULL, "start" datetime NOT NULL, "end" datetime NOT NULL, "teacher_id" integer NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20091225235505')[0m
+Migrating to CreateLearners (20091225235734)
+  [4;36;1mSQL (0.6ms)[0m   [0;1mCREATE TABLE "learners" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "student_id" integer NOT NULL, "course_id" integer NOT NULL) [0m
+  [4;35;1mSQL (0.2ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20091225235734')[0m
+Migrating to CreateAssignments (20091225235857)
+  [4;36;1mSQL (0.7ms)[0m   [0;1mCREATE TABLE "assignments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255) NOT NULL, "description" text NOT NULL, "due" datetime NOT NULL, "course_id" integer NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (0.2ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20091225235857')[0m
+Migrating to CreateCompositions (20091226000017)
+  [4;36;1mSQL (0.8ms)[0m   [0;1mCREATE TABLE "compositions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "learner_id" integer NOT NULL, "assignment_id" integer NOT NULL, "paper" text NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (0.4ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20091226000017')[0m
+Migrating to CreateRegistrations (20091226162714)
+  [4;36;1mSQL (0.7ms)[0m   [0;1mCREATE TABLE "registrations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255) NOT NULL, "full_name" varchar(255) NOT NULL, "token" varchar(128) NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (0.6ms)[0m   [0mCREATE UNIQUE INDEX "index_registrations_on_token" ON "registrations" ("token")[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20091226162714')[0m
+Migrating to CreateInvitations (20091226163114)
+  [4;35;1mSQL (0.7ms)[0m   [0mCREATE TABLE "invitations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255) NOT NULL, "course_id" integer NOT NULL, "teacher_id" integer NOT NULL, "token" varchar(255) NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mCREATE UNIQUE INDEX "index_invitations_on_course_id_and_email" ON "invitations" ("course_id", "email")[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mCREATE UNIQUE INDEX "index_invitations_on_token" ON "invitations" ("token")[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20091226163114')[0m
+Migrating to CreateLostPasswords (20091226234927)
+  [4;35;1mSQL (0.7ms)[0m   [0mCREATE TABLE "lost_passwords" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "person_id" integer NOT NULL, "token" varchar(255) NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20091226234927')[0m
+  [4;35;1mSQL (0.6ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (0.5ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("assignments")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("compositions")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("courses")[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mPRAGMA index_list("invitations")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_invitations_on_token')[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mPRAGMA index_info('index_invitations_on_course_id_and_email')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("learners")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("lost_passwords")[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mPRAGMA index_list("people")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_people_on_remember_token')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_people_on_email')[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mPRAGMA index_list("registrations")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_registrations_on_token')[0m
+  [4;35;1mSQL (0.5ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mPerson Create (1.0ms)[0m   [0;1mINSERT INTO "people" ("encrypted_password", "salt", "created_at", "updated_at", "full_name", "remember_token", "email") VALUES('046928d3a2df61ba07d57fd19269fe7255bb0f2e', '8alBeW9Fi22bHPewIhUAAg==', '2010-01-13 02:14:37', '2010-01-13 02:14:37', 'Matty Higgins', NULL, 'student1@alaska.edu')[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mselect sqlite_version(*)[0m
+  [4;36;1mSQL (3.1ms)[0m   [0;1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (1.9ms)[0m   [0mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreatePeople (20091225235111)
+  [4;36;1mSQL (0.8ms)[0m   [0;1mCREATE TABLE "people" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255) NOT NULL, "full_name" varchar(255) NOT NULL, "encrypted_password" varchar(128) NOT NULL, "salt" varchar(128) NOT NULL, "remember_token" varchar(128), "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (0.6ms)[0m   [0mCREATE UNIQUE INDEX "index_people_on_email" ON "people" ("email")[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mCREATE UNIQUE INDEX "index_people_on_remember_token" ON "people" ("remember_token")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20091225235111')[0m
+Migrating to CreateCourses (20091225235505)
+  [4;36;1mSQL (0.7ms)[0m   [0;1mCREATE TABLE "courses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255) NOT NULL, "description" text NOT NULL, "start" datetime NOT NULL, "end" datetime NOT NULL, "teacher_id" integer NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (0.2ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20091225235505')[0m
+Migrating to CreateLearners (20091225235734)
+  [4;36;1mSQL (0.6ms)[0m   [0;1mCREATE TABLE "learners" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "student_id" integer NOT NULL, "course_id" integer NOT NULL) [0m
+  [4;35;1mSQL (0.2ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20091225235734')[0m
+Migrating to CreateAssignments (20091225235857)
+  [4;36;1mSQL (0.6ms)[0m   [0;1mCREATE TABLE "assignments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255) NOT NULL, "description" text NOT NULL, "due" datetime NOT NULL, "course_id" integer NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (0.2ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20091225235857')[0m
+Migrating to CreateCompositions (20091226000017)
+  [4;36;1mSQL (0.6ms)[0m   [0;1mCREATE TABLE "compositions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "learner_id" integer NOT NULL, "assignment_id" integer NOT NULL, "paper" text NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (0.2ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20091226000017')[0m
+Migrating to CreateRegistrations (20091226162714)
+  [4;36;1mSQL (0.7ms)[0m   [0;1mCREATE TABLE "registrations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255) NOT NULL, "full_name" varchar(255) NOT NULL, "token" varchar(128) NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (0.6ms)[0m   [0mCREATE UNIQUE INDEX "index_registrations_on_token" ON "registrations" ("token")[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20091226162714')[0m
+Migrating to CreateInvitations (20091226163114)
+  [4;35;1mSQL (0.6ms)[0m   [0mCREATE TABLE "invitations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255) NOT NULL, "course_id" integer NOT NULL, "teacher_id" integer NOT NULL, "token" varchar(255) NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [4;36;1mSQL (0.7ms)[0m   [0;1mCREATE UNIQUE INDEX "index_invitations_on_course_id_and_email" ON "invitations" ("course_id", "email")[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mCREATE UNIQUE INDEX "index_invitations_on_token" ON "invitations" ("token")[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20091226163114')[0m
+Migrating to CreateLostPasswords (20091226234927)
+  [4;35;1mSQL (0.7ms)[0m   [0mCREATE TABLE "lost_passwords" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "person_id" integer NOT NULL, "token" varchar(255) NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20091226234927')[0m
+  [4;35;1mSQL (0.6ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (0.4ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("assignments")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("compositions")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("courses")[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mPRAGMA index_list("invitations")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_invitations_on_token')[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mPRAGMA index_info('index_invitations_on_course_id_and_email')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("learners")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("lost_passwords")[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mPRAGMA index_list("people")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_people_on_remember_token')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_people_on_email')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("registrations")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_registrations_on_token')[0m
+  [4;35;1mSQL (0.6ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mPerson Create (0.8ms)[0m   [0;1mINSERT INTO "people" ("encrypted_password", "salt", "created_at", "updated_at", "full_name", "remember_token", "email") VALUES('3556e3b6307cee3620fb38b3042576a5bee3345f', '3NrqQOMdYZCmb9Wq2L/n3A==', '2010-01-13 02:15:45', '2010-01-13 02:15:45', 'Matty Higgins', NULL, 'student1@alaska.edu')[0m
+  [4;36;1mPerson Create (0.0ms)[0m   [0;1mSQLite3::SQLException: column email is not unique: INSERT INTO "people" ("encrypted_password", "salt", "created_at", "updated_at", "full_name", "remember_token", "email") VALUES('afa09c1e4effdbc9b0f64c56cbcb70a37aa2f0f4', 'dmHOpMWafb4hxYr8abu97Q==', '2010-01-13 02:16:12', '2010-01-13 02:16:12', 'Matty Higgins', NULL, 'student1@alaska.edu')[0m
+  [4;35;1mPerson Create (1.1ms)[0m   [0mINSERT INTO "people" ("encrypted_password", "salt", "created_at", "updated_at", "full_name", "remember_token", "email") VALUES('ba25fccecb64c76c2202b1c998876269ddf698d8', 'Mzoc9ztIHL2ivYYtXukinw==', '2010-01-13 02:16:29', '2010-01-13 02:16:29', 'Matty Higgins', NULL, 'student2@alaska.edu')[0m
+  [4;36;1mPerson Create (0.8ms)[0m   [0;1mINSERT INTO "people" ("encrypted_password", "salt", "created_at", "updated_at", "full_name", "remember_token", "email") VALUES('e0c362ecab2caf884e385b6679a2cbc3ddb617f5', 'vMTMargFMe16i9yHwxU4jw==', '2010-01-13 02:16:36', '2010-01-13 02:16:36', 'Matty Higgins', NULL, 'student3@alaska.edu')[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mselect sqlite_version(*)[0m
+  [4;36;1mSQL (3.0ms)[0m   [0;1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (1.9ms)[0m   [0mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreatePeople (20091225235111)
+  [4;36;1mSQL (0.7ms)[0m   [0;1mCREATE TABLE "people" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255) NOT NULL, "full_name" varchar(255) NOT NULL, "encrypted_password" varchar(128) NOT NULL, "salt" varchar(128) NOT NULL, "remember_token" varchar(128), "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (0.5ms)[0m   [0mCREATE UNIQUE INDEX "index_people_on_email" ON "people" ("email")[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mCREATE UNIQUE INDEX "index_people_on_remember_token" ON "people" ("remember_token")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20091225235111')[0m
+Migrating to CreateCourses (20091225235505)
+  [4;36;1mSQL (0.6ms)[0m   [0;1mCREATE TABLE "courses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255) NOT NULL, "description" text NOT NULL, "start" datetime NOT NULL, "end" datetime NOT NULL, "teacher_id" integer NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (0.2ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20091225235505')[0m
+Migrating to CreateLearners (20091225235734)
+  [4;36;1mSQL (0.6ms)[0m   [0;1mCREATE TABLE "learners" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "student_id" integer NOT NULL, "course_id" integer NOT NULL) [0m
+  [4;35;1mSQL (0.2ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20091225235734')[0m
+Migrating to CreateAssignments (20091225235857)
+  [4;36;1mSQL (0.6ms)[0m   [0;1mCREATE TABLE "assignments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255) NOT NULL, "description" text NOT NULL, "due" datetime NOT NULL, "course_id" integer NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (0.2ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20091225235857')[0m
+Migrating to CreateCompositions (20091226000017)
+  [4;36;1mSQL (0.8ms)[0m   [0;1mCREATE TABLE "compositions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "learner_id" integer NOT NULL, "assignment_id" integer NOT NULL, "paper" text NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (0.3ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20091226000017')[0m
+Migrating to CreateRegistrations (20091226162714)
+  [4;36;1mSQL (0.7ms)[0m   [0;1mCREATE TABLE "registrations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255) NOT NULL, "full_name" varchar(255) NOT NULL, "token" varchar(128) NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (0.6ms)[0m   [0mCREATE UNIQUE INDEX "index_registrations_on_token" ON "registrations" ("token")[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20091226162714')[0m
+Migrating to CreateInvitations (20091226163114)
+  [4;35;1mSQL (0.7ms)[0m   [0mCREATE TABLE "invitations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255) NOT NULL, "course_id" integer NOT NULL, "teacher_id" integer NOT NULL, "token" varchar(255) NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [4;36;1mSQL (0.7ms)[0m   [0;1mCREATE UNIQUE INDEX "index_invitations_on_course_id_and_email" ON "invitations" ("course_id", "email")[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mCREATE UNIQUE INDEX "index_invitations_on_token" ON "invitations" ("token")[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20091226163114')[0m
+Migrating to CreateLostPasswords (20091226234927)
+  [4;35;1mSQL (0.7ms)[0m   [0mCREATE TABLE "lost_passwords" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "person_id" integer NOT NULL, "token" varchar(255) NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20091226234927')[0m
+  [4;35;1mSQL (0.6ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (0.5ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("assignments")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("compositions")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("courses")[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mPRAGMA index_list("invitations")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_invitations_on_token')[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mPRAGMA index_info('index_invitations_on_course_id_and_email')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("learners")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("lost_passwords")[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mPRAGMA index_list("people")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_people_on_remember_token')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_people_on_email')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("registrations")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_registrations_on_token')[0m
+  [4;35;1mSQL (0.5ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mPerson Create (0.8ms)[0m   [0;1mINSERT INTO "people" ("encrypted_password", "salt", "created_at", "updated_at", "full_name", "remember_token", "email") VALUES('a294db37e0c51986e68c0a3680cb7094399b452d', 'Vt9vG2WTUHpGZiyJuuoyfQ==', '2010-01-13 02:17:27', '2010-01-13 02:17:27', 'Matty Higgins', NULL, 'student1@alaska.edu')[0m
+  [4;35;1mCourse Create (0.7ms)[0m   [0mINSERT INTO "courses" ("name", "created_at", "updated_at", "end", "start", "teacher_id", "description") VALUES('Environmental Science 110', '2010-01-13 02:17:27', '2010-01-13 02:17:27', '2004-03-17 08:00:00', '2004-01-01 08:00:00', 1, 'Easiest class in the world')[0m
+  [4;36;1mPerson Create (0.7ms)[0m   [0;1mINSERT INTO "people" ("encrypted_password", "salt", "created_at", "updated_at", "full_name", "remember_token", "email") VALUES('ca0d62f4640ae5f0f84263b076f6d16609ff232c', 'c+CJmQa0z95+g0kSF7uhXg==', '2010-01-13 02:17:55', '2010-01-13 02:17:55', 'Matty Higgins', NULL, 'student2@alaska.edu')[0m
+  [4;35;1mCourse Create (0.4ms)[0m   [0mINSERT INTO "courses" ("name", "created_at", "updated_at", "end", "start", "teacher_id", "description") VALUES('Environmental Science 110', '2010-01-13 02:17:55', '2010-01-13 02:17:55', '2004-03-17 08:00:00', '2004-01-01 08:00:00', 2, 'Easiest class in the world')[0m
+  [4;36;1mPerson Create (0.7ms)[0m   [0;1mINSERT INTO "people" ("encrypted_password", "salt", "created_at", "updated_at", "full_name", "remember_token", "email") VALUES('6a29fd806d15c42c4b52d3b5f02cf178b27e7b3a', 'g1LIIOTqGdYPEWvXQhckWw==', '2010-01-13 02:17:55', '2010-01-13 02:17:55', 'Matty Higgins', NULL, 'student3@alaska.edu')[0m
+  [4;35;1mLearner Create (0.5ms)[0m   [0mINSERT INTO "learners" ("student_id", "course_id") VALUES(3, 2)[0m
+  [4;36;1mPerson Load (0.3ms)[0m   [0;1mSELECT "people".id FROM "people" WHERE ("people"."email" = 'poo@alaska.edu') LIMIT 1[0m
+  [4;35;1mRegistration Create (0.5ms)[0m   [0mINSERT INTO "registrations" ("created_at", "token", "updated_at", "full_name", "email") VALUES('2010-01-13 02:18:08', 'e42a2e25d4f3625e991335eed4c34646', '2010-01-13 02:18:08', 'Matthew Higgins', 'poo@alaska.edu')[0m
+Sent mail to poo@alaska.edu
+
+Date: Tue, 12 Jan 2010 18:18:08 -0800
+To: poo@alaska.edu
+Subject: Confirm your email address
+Mime-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+
+http://localhost:3000/registrations/e42a2e25d4f3625e991335eed4c34646
+  [4;36;1mPerson Create (0.7ms)[0m   [0;1mINSERT INTO "people" ("encrypted_password", "salt", "created_at", "updated_at", "full_name", "remember_token", "email") VALUES('b6389638a97531b12d651381e820606b5cb99a5f', 'lkNjhIVRf1941YOceTg26g==', '2010-01-13 02:18:23', '2010-01-13 02:18:23', 'Matty Higgins', NULL, 'student4@alaska.edu')[0m
+  [4;35;1mCourse Create (0.5ms)[0m   [0mINSERT INTO "courses" ("name", "created_at", "updated_at", "end", "start", "teacher_id", "description") VALUES('Environmental Science 110', '2010-01-13 02:18:23', '2010-01-13 02:18:23', '2004-03-17 08:00:00', '2004-01-01 08:00:00', 4, 'Easiest class in the world')[0m
+  [4;36;1mAssignment Create (0.6ms)[0m   [0;1mINSERT INTO "assignments" ("name", "created_at", "updated_at", "description", "due", "course_id") VALUES('Make an online posting', '2010-01-13 02:18:23', '2010-01-13 02:18:23', 'Create a useless post or response on the bulletin board', '2004-02-15 20:00:00', 3)[0m
+  [4;36;1mSQL (1.4ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (1.5ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mPerson Create (0.0ms)[0m   [0;1mSQLite3::SQLException: column email is not unique: INSERT INTO "people" ("encrypted_password", "salt", "created_at", "updated_at", "full_name", "remember_token", "email") VALUES('930d2f17e5733a7dcbe390e4988b7cdafc70e687', 'QJRSMBr7s+6JyTfBvRt+wg==', '2010-01-13 02:28:39', '2010-01-13 02:28:39', 'Matty Higgins', NULL, 'student1@alaska.edu')[0m
+  [4;36;1mPerson Create (0.0ms)[0m   [0;1mSQLite3::SQLException: column email is not unique: INSERT INTO "people" ("encrypted_password", "salt", "created_at", "updated_at", "full_name", "remember_token", "email") VALUES('13dd9fb9eed9940ab72db611c7a7879afe96e486', '7RojeCGllNV6hQ9sjXze/A==', '2010-01-13 02:33:18', '2010-01-13 02:33:18', 'Matty Higgins', NULL, 'student1@alaska.edu')[0m
+  [4;35;1mPerson Create (0.0ms)[0m   [0mSQLite3::SQLException: column email is not unique: INSERT INTO "people" ("encrypted_password", "salt", "created_at", "updated_at", "full_name", "remember_token", "email") VALUES('ca0ee3da3b5f39694454cf6bc067eb973fab7c93', 'AVk1r4Z65ZN6S4uoh2wNFw==', '2010-01-13 02:33:48', '2010-01-13 02:33:48', 'Matty Higgins', NULL, 'student2@alaska.edu')[0m
+  [4;36;1mPerson Delete all (5.1ms)[0m   [0;1mDELETE FROM "people" WHERE 1=1[0m
+  [4;35;1mPerson Create (0.6ms)[0m   [0mINSERT INTO "people" ("encrypted_password", "salt", "created_at", "updated_at", "full_name", "remember_token", "email") VALUES('9435cb46526569eb8952de5a4a355e52ba5b4ed2', 'k33xF8SrTvkRUdlEylZGTw==', '2010-01-13 02:34:18', '2010-01-13 02:34:18', 'Matty Higgins', NULL, 'student1@alaska.edu')[0m
+  [4;36;1mCourse Create (0.5ms)[0m   [0;1mINSERT INTO "courses" ("name", "created_at", "updated_at", "end", "start", "teacher_id", "description") VALUES('Environmental Science 110', '2010-01-13 02:34:18', '2010-01-13 02:34:18', '2004-03-17 08:00:00', '2004-01-01 08:00:00', 5, 'Easiest class in the world')[0m
+  [4;35;1mPerson Create (0.5ms)[0m   [0mINSERT INTO "people" ("encrypted_password", "salt", "created_at", "updated_at", "full_name", "remember_token", "email") VALUES('da87b069abf739a829521a21ea11b5456e447fbe', '6AA+RuUnrcTKMYBfsXh1cQ==', '2010-01-13 02:34:18', '2010-01-13 02:34:18', 'Matty Higgins', NULL, 'student2@alaska.edu')[0m
+  [4;36;1mLearner Create (0.5ms)[0m   [0;1mINSERT INTO "learners" ("student_id", "course_id") VALUES(6, 4)[0m
+  [4;35;1mPerson Create (0.6ms)[0m   [0mINSERT INTO "people" ("encrypted_password", "salt", "created_at", "updated_at", "full_name", "remember_token", "email") VALUES('edbd47bace0febb45b43487832d741bc2bcf8257', 'kh2obd8SiJxc5aLrhAL16g==', '2010-01-13 02:34:25', '2010-01-13 02:34:25', 'Matty Higgins', NULL, 'student3@alaska.edu')[0m
+  [4;36;1mCourse Create (0.4ms)[0m   [0;1mINSERT INTO "courses" ("name", "created_at", "updated_at", "end", "start", "teacher_id", "description") VALUES('Environmental Science 110', '2010-01-13 02:34:25', '2010-01-13 02:34:25', '2004-03-17 08:00:00', '2004-01-01 08:00:00', 7, 'Easiest class in the world')[0m
+  [4;35;1mAssignment Create (0.6ms)[0m   [0mINSERT INTO "assignments" ("name", "created_at", "updated_at", "description", "due", "course_id") VALUES('Make an online posting', '2010-01-13 02:34:25', '2010-01-13 02:34:25', 'Create a useless post or response on the bulletin board', '2004-02-15 20:00:00', 5)[0m
+  [4;36;1mPerson Create (0.5ms)[0m   [0;1mINSERT INTO "people" ("encrypted_password", "salt", "created_at", "updated_at", "full_name", "remember_token", "email") VALUES('ee6ec4430d8e12eb6c9c13b0b4d4d5ca9e895ad5', 'WFFsIoPATSQXEHHPvMOZ6w==', '2010-01-13 02:34:25', '2010-01-13 02:34:25', 'Matty Higgins', NULL, 'student4@alaska.edu')[0m
+  [4;35;1mCourse Create (0.6ms)[0m   [0mINSERT INTO "courses" ("name", "created_at", "updated_at", "end", "start", "teacher_id", "description") VALUES('Environmental Science 110', '2010-01-13 02:34:25', '2010-01-13 02:34:25', '2004-03-17 08:00:00', '2004-01-01 08:00:00', 8, 'Easiest class in the world')[0m
+  [4;36;1mPerson Create (0.5ms)[0m   [0;1mINSERT INTO "people" ("encrypted_password", "salt", "created_at", "updated_at", "full_name", "remember_token", "email") VALUES('d9a410774c552974ea7ca4e355e08a6a81a3e259', 'nWyJiwDxXHzxX0ShVwahIw==', '2010-01-13 02:34:25', '2010-01-13 02:34:25', 'Matty Higgins', NULL, 'student5@alaska.edu')[0m
+  [4;35;1mLearner Create (0.4ms)[0m   [0mINSERT INTO "learners" ("student_id", "course_id") VALUES(9, 6)[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mselect sqlite_version(*)[0m
+  [4;36;1mSQL (2.9ms)[0m   [0;1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (1.9ms)[0m   [0mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreatePeople (20091225235111)
+  [4;36;1mSQL (0.7ms)[0m   [0;1mCREATE TABLE "people" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255) NOT NULL, "full_name" varchar(255) NOT NULL, "encrypted_password" varchar(128) NOT NULL, "salt" varchar(128) NOT NULL, "remember_token" varchar(128), "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (0.6ms)[0m   [0mCREATE UNIQUE INDEX "index_people_on_email" ON "people" ("email")[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mCREATE UNIQUE INDEX "index_people_on_remember_token" ON "people" ("remember_token")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20091225235111')[0m
+Migrating to CreateCourses (20091225235505)
+  [4;36;1mSQL (0.7ms)[0m   [0;1mCREATE TABLE "courses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255) NOT NULL, "description" text NOT NULL, "start" datetime NOT NULL, "end" datetime NOT NULL, "teacher_id" integer NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (0.2ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20091225235505')[0m
+Migrating to CreateLearners (20091225235734)
+  [4;36;1mSQL (0.6ms)[0m   [0;1mCREATE TABLE "learners" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "student_id" integer NOT NULL, "course_id" integer NOT NULL) [0m
+  [4;35;1mSQL (0.2ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20091225235734')[0m
+Migrating to CreateAssignments (20091225235857)
+  [4;36;1mSQL (0.6ms)[0m   [0;1mCREATE TABLE "assignments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255) NOT NULL, "description" text NOT NULL, "due" datetime NOT NULL, "course_id" integer NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (0.2ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20091225235857')[0m
+Migrating to CreateCompositions (20091226000017)
+  [4;36;1mSQL (0.9ms)[0m   [0;1mCREATE TABLE "compositions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "learner_id" integer NOT NULL, "student_id" integer NOT NULL, "assignment_id" integer NOT NULL, "course_id" integer NOT NULL, "paper" text NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (0.3ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20091226000017')[0m
+Migrating to CreateRegistrations (20091226162714)
+  [4;36;1mSQL (0.8ms)[0m   [0;1mCREATE TABLE "registrations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255) NOT NULL, "full_name" varchar(255) NOT NULL, "token" varchar(128) NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (0.6ms)[0m   [0mCREATE UNIQUE INDEX "index_registrations_on_token" ON "registrations" ("token")[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20091226162714')[0m
+Migrating to CreateInvitations (20091226163114)
+  [4;35;1mSQL (0.7ms)[0m   [0mCREATE TABLE "invitations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255) NOT NULL, "course_id" integer NOT NULL, "teacher_id" integer NOT NULL, "token" varchar(255) NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mCREATE UNIQUE INDEX "index_invitations_on_course_id_and_email" ON "invitations" ("course_id", "email")[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mCREATE UNIQUE INDEX "index_invitations_on_token" ON "invitations" ("token")[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20091226163114')[0m
+Migrating to CreateLostPasswords (20091226234927)
+  [4;35;1mSQL (0.7ms)[0m   [0mCREATE TABLE "lost_passwords" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "person_id" integer NOT NULL, "token" varchar(255) NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20091226234927')[0m
+  [4;35;1mSQL (0.7ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (0.5ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("assignments")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("compositions")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("courses")[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mPRAGMA index_list("invitations")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_invitations_on_token')[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mPRAGMA index_info('index_invitations_on_course_id_and_email')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("learners")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("lost_passwords")[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mPRAGMA index_list("people")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_people_on_remember_token')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_people_on_email')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("registrations")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_registrations_on_token')[0m
+  [4;35;1mSQL (0.5ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mPerson Create (0.8ms)[0m   [0;1mINSERT INTO "people" ("encrypted_password", "salt", "created_at", "updated_at", "full_name", "remember_token", "email") VALUES('6f2092c375d830369d3bd949cc63747375ebfa54', 'U11rDERv0e6EJC6jSpxYmQ==', '2010-01-13 02:34:51', '2010-01-13 02:34:51', 'Matty Higgins', NULL, 'student1@alaska.edu')[0m
+  [4;35;1mCourse Create (0.6ms)[0m   [0mINSERT INTO "courses" ("name", "created_at", "updated_at", "end", "start", "teacher_id", "description") VALUES('Environmental Science 110', '2010-01-13 02:34:51', '2010-01-13 02:34:51', '2004-03-17 08:00:00', '2004-01-01 08:00:00', 1, 'Easiest class in the world')[0m
+  [4;36;1mAssignment Create (0.4ms)[0m   [0;1mINSERT INTO "assignments" ("name", "created_at", "updated_at", "description", "due", "course_id") VALUES('Make an online posting', '2010-01-13 02:34:51', '2010-01-13 02:34:51', 'Create a useless post or response on the bulletin board', '2004-02-15 20:00:00', 1)[0m
+  [4;35;1mPerson Create (0.6ms)[0m   [0mINSERT INTO "people" ("encrypted_password", "salt", "created_at", "updated_at", "full_name", "remember_token", "email") VALUES('39c556c73f52704fa360fd43ad1f87c26c5e8ba9', 'QKLH/qNHbwB/5f2/26hKdw==', '2010-01-13 02:34:51', '2010-01-13 02:34:51', 'Matty Higgins', NULL, 'student2@alaska.edu')[0m
+  [4;36;1mCourse Create (0.4ms)[0m   [0;1mINSERT INTO "courses" ("name", "created_at", "updated_at", "end", "start", "teacher_id", "description") VALUES('Environmental Science 110', '2010-01-13 02:34:51', '2010-01-13 02:34:51', '2004-03-17 08:00:00', '2004-01-01 08:00:00', 2, 'Easiest class in the world')[0m
+  [4;35;1mPerson Create (0.5ms)[0m   [0mINSERT INTO "people" ("encrypted_password", "salt", "created_at", "updated_at", "full_name", "remember_token", "email") VALUES('f6a4effd83f5ccd2bdfe5eb9a17890878464fcad', '48N3NDXkcnwhH9Q5o9ijNg==', '2010-01-13 02:34:51', '2010-01-13 02:34:51', 'Matty Higgins', NULL, 'student3@alaska.edu')[0m
+  [4;36;1mLearner Create (0.4ms)[0m   [0;1mINSERT INTO "learners" ("student_id", "course_id") VALUES(3, 2)[0m
+  [4;35;1mSQL (0.6ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mPerson Create (1.1ms)[0m   [0;1mINSERT INTO "people" ("encrypted_password", "salt", "created_at", "updated_at", "full_name", "remember_token", "email") VALUES('b24367fc1933df788ae3161d3164f34dd3124f80', 'qJl0Z+E5hKMOOvio62hfhQ==', '2010-01-13 02:35:37', '2010-01-13 02:35:37', 'Matty Higgins', NULL, 'student4@alaska.edu')[0m
+  [4;35;1mCourse Create (0.5ms)[0m   [0mINSERT INTO "courses" ("name", "created_at", "updated_at", "end", "start", "teacher_id", "description") VALUES('Environmental Science 110', '2010-01-13 02:35:37', '2010-01-13 02:35:37', '2004-03-17 08:00:00', '2004-01-01 08:00:00', 4, 'Easiest class in the world')[0m
+  [4;36;1mAssignment Create (0.6ms)[0m   [0;1mINSERT INTO "assignments" ("name", "created_at", "updated_at", "description", "due", "course_id") VALUES('Make an online posting', '2010-01-13 02:35:37', '2010-01-13 02:35:37', 'Create a useless post or response on the bulletin board', '2004-02-15 20:00:00', 3)[0m
+  [4;35;1mPerson Create (0.6ms)[0m   [0mINSERT INTO "people" ("encrypted_password", "salt", "created_at", "updated_at", "full_name", "remember_token", "email") VALUES('4aed135ee00796064d6820ae8d238e9a44dbf06c', 'fwAcdYHjzhvvkVA0cSDNWw==', '2010-01-13 02:35:37', '2010-01-13 02:35:37', 'Matty Higgins', NULL, 'student5@alaska.edu')[0m
+  [4;36;1mCourse Create (0.4ms)[0m   [0;1mINSERT INTO "courses" ("name", "created_at", "updated_at", "end", "start", "teacher_id", "description") VALUES('Environmental Science 110', '2010-01-13 02:35:37', '2010-01-13 02:35:37', '2004-03-17 08:00:00', '2004-01-01 08:00:00', 5, 'Easiest class in the world')[0m
+  [4;35;1mPerson Create (0.5ms)[0m   [0mINSERT INTO "people" ("encrypted_password", "salt", "created_at", "updated_at", "full_name", "remember_token", "email") VALUES('7d00680289007d4ba8309c99f83863040cad6476', 'guI4ezK8TVuecxoMPOlh9w==', '2010-01-13 02:35:37', '2010-01-13 02:35:37', 'Matty Higgins', NULL, 'student6@alaska.edu')[0m
+  [4;36;1mLearner Create (0.4ms)[0m   [0;1mINSERT INTO "learners" ("student_id", "course_id") VALUES(6, 4)[0m
+  [4;35;1mSQL (0.6ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mPerson Delete all (4.4ms)[0m   [0;1mDELETE FROM "people" WHERE 1=1[0m
+  [4;35;1mPerson Create (0.7ms)[0m   [0mINSERT INTO "people" ("encrypted_password", "salt", "created_at", "updated_at", "full_name", "remember_token", "email") VALUES('cf69df0d8a809d46dc1aff933552ef4fa4a1055f', 'OxjHkl/ASGIOD2nZAFC3Yw==', '2010-01-13 02:35:54', '2010-01-13 02:35:54', 'Matty Higgins', NULL, 'student1@alaska.edu')[0m
+  [4;36;1mCourse Create (0.5ms)[0m   [0;1mINSERT INTO "courses" ("name", "created_at", "updated_at", "end", "start", "teacher_id", "description") VALUES('Environmental Science 110', '2010-01-13 02:35:54', '2010-01-13 02:35:54', '2004-03-17 08:00:00', '2004-01-01 08:00:00', 7, 'Easiest class in the world')[0m
+  [4;35;1mAssignment Create (0.5ms)[0m   [0mINSERT INTO "assignments" ("name", "created_at", "updated_at", "description", "due", "course_id") VALUES('Make an online posting', '2010-01-13 02:35:54', '2010-01-13 02:35:54', 'Create a useless post or response on the bulletin board', '2004-02-15 20:00:00', 5)[0m
+  [4;36;1mPerson Create (0.6ms)[0m   [0;1mINSERT INTO "people" ("encrypted_password", "salt", "created_at", "updated_at", "full_name", "remember_token", "email") VALUES('eeaa8f94c93e35018ade73c9816078b589e86eb6', 'yBzHRyaYRRtgFtfbpyOL6Q==', '2010-01-13 02:35:54', '2010-01-13 02:35:54', 'Matty Higgins', NULL, 'student2@alaska.edu')[0m
+  [4;35;1mCourse Create (0.4ms)[0m   [0mINSERT INTO "courses" ("name", "created_at", "updated_at", "end", "start", "teacher_id", "description") VALUES('Environmental Science 110', '2010-01-13 02:35:54', '2010-01-13 02:35:54', '2004-03-17 08:00:00', '2004-01-01 08:00:00', 8, 'Easiest class in the world')[0m
+  [4;36;1mPerson Create (0.5ms)[0m   [0;1mINSERT INTO "people" ("encrypted_password", "salt", "created_at", "updated_at", "full_name", "remember_token", "email") VALUES('6aa13e1b79728b58ad69e9fc7c44ca44ccbe9328', 'TfQkQzwH7I/0VlG7EpzjcA==', '2010-01-13 02:35:54', '2010-01-13 02:35:54', 'Matty Higgins', NULL, 'student3@alaska.edu')[0m
+  [4;35;1mLearner Create (0.4ms)[0m   [0mINSERT INTO "learners" ("student_id", "course_id") VALUES(9, 6)[0m
+  [4;36;1mComposition Create (0.4ms)[0m   [0;1mINSERT INTO "compositions" ("student_id", "created_at", "paper", "updated_at", "assignment_id", "learner_id", "course_id") VALUES(9, '2010-01-13 02:35:54', 'The quick brown fox jumped over the lazy dog', '2010-01-13 02:35:54', 3, 3, 5)[0m
+  [4;36;1mSQL (1.4ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (0.3ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (2.7ms)[0m   [0;1mCREATE TABLE "assignments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255) NOT NULL, "description" text NOT NULL, "due" datetime NOT NULL, "course_id" integer NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (0.3ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (1.9ms)[0m   [0;1mCREATE TABLE "compositions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "learner_id" integer NOT NULL, "student_id" integer NOT NULL, "assignment_id" integer NOT NULL, "course_id" integer NOT NULL, "paper" text NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (0.4ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (2.4ms)[0m   [0;1mCREATE TABLE "courses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255) NOT NULL, "description" text NOT NULL, "start" datetime NOT NULL, "end" datetime NOT NULL, "teacher_id" integer NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (0.3ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (1.9ms)[0m   [0;1mCREATE TABLE "invitations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255) NOT NULL, "course_id" integer NOT NULL, "teacher_id" integer NOT NULL, "token" varchar(255) NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (2.1ms)[0m   [0mCREATE UNIQUE INDEX "index_invitations_on_course_id_and_email" ON "invitations" ("course_id", "email")[0m
+  [4;36;1mSQL (2.3ms)[0m   [0;1mCREATE UNIQUE INDEX "index_invitations_on_token" ON "invitations" ("token")[0m
+  [4;35;1mSQL (0.4ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (2.2ms)[0m   [0;1mCREATE TABLE "learners" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "student_id" integer NOT NULL, "course_id" integer NOT NULL) [0m
+  [4;35;1mSQL (0.4ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mCREATE TABLE "lost_passwords" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "person_id" integer NOT NULL, "token" varchar(255) NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (0.4ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (2.6ms)[0m   [0;1mCREATE TABLE "people" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255) NOT NULL, "full_name" varchar(255) NOT NULL, "encrypted_password" varchar(128) NOT NULL, "salt" varchar(128) NOT NULL, "remember_token" varchar(128), "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (2.4ms)[0m   [0mCREATE UNIQUE INDEX "index_people_on_email" ON "people" ("email")[0m
+  [4;36;1mSQL (2.2ms)[0m   [0;1mCREATE UNIQUE INDEX "index_people_on_remember_token" ON "people" ("remember_token")[0m
+  [4;35;1mSQL (0.4ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (2.9ms)[0m   [0;1mCREATE TABLE "registrations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255) NOT NULL, "full_name" varchar(255) NOT NULL, "token" varchar(128) NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (2.5ms)[0m   [0mCREATE UNIQUE INDEX "index_registrations_on_token" ON "registrations" ("token")[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (2.8ms)[0m   [0mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [4;36;1mSQL (2.8ms)[0m   [0;1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [4;35;1mSQL (0.5ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT version FROM "schema_migrations"[0m
+  [4;35;1mSQL (2.1ms)[0m   [0mINSERT INTO "schema_migrations" (version) VALUES ('20091226234927')[0m
+  [4;36;1mSQL (2.1ms)[0m   [0;1mINSERT INTO "schema_migrations" (version) VALUES ('20091225235111')[0m
+  [4;35;1mSQL (2.1ms)[0m   [0mINSERT INTO "schema_migrations" (version) VALUES ('20091225235505')[0m
+  [4;36;1mSQL (2.3ms)[0m   [0;1mINSERT INTO "schema_migrations" (version) VALUES ('20091225235734')[0m
+  [4;35;1mSQL (2.5ms)[0m   [0mINSERT INTO "schema_migrations" (version) VALUES ('20091225235857')[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mINSERT INTO "schema_migrations" (version) VALUES ('20091226000017')[0m
+  [4;35;1mSQL (2.0ms)[0m   [0mINSERT INTO "schema_migrations" (version) VALUES ('20091226162714')[0m
+  [4;36;1mSQL (2.4ms)[0m   [0;1mINSERT INTO "schema_migrations" (version) VALUES ('20091226163114')[0m
+  [4;36;1mSQL (1.7ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (0.3ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (3.0ms)[0m   [0;1mCREATE TABLE "assignments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255) NOT NULL, "description" text NOT NULL, "due" datetime NOT NULL, "course_id" integer NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (0.3ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (1.8ms)[0m   [0;1mCREATE TABLE "compositions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "learner_id" integer NOT NULL, "student_id" integer NOT NULL, "assignment_id" integer NOT NULL, "course_id" integer NOT NULL, "paper" text NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (0.4ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (2.2ms)[0m   [0;1mCREATE TABLE "courses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255) NOT NULL, "description" text NOT NULL, "start" datetime NOT NULL, "end" datetime NOT NULL, "teacher_id" integer NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (0.4ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (2.1ms)[0m   [0;1mCREATE TABLE "invitations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255) NOT NULL, "course_id" integer NOT NULL, "teacher_id" integer NOT NULL, "token" varchar(255) NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (2.1ms)[0m   [0mCREATE UNIQUE INDEX "index_invitations_on_course_id_and_email" ON "invitations" ("course_id", "email")[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mCREATE UNIQUE INDEX "index_invitations_on_token" ON "invitations" ("token")[0m
+  [4;35;1mSQL (0.3ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mCREATE TABLE "learners" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "student_id" integer NOT NULL, "course_id" integer NOT NULL) [0m
+  [4;35;1mSQL (0.4ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mCREATE TABLE "lost_passwords" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "person_id" integer NOT NULL, "token" varchar(255) NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (0.5ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (2.5ms)[0m   [0;1mCREATE TABLE "people" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255) NOT NULL, "full_name" varchar(255) NOT NULL, "encrypted_password" varchar(128) NOT NULL, "salt" varchar(128) NOT NULL, "remember_token" varchar(128), "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (2.1ms)[0m   [0mCREATE UNIQUE INDEX "index_people_on_email" ON "people" ("email")[0m
+  [4;36;1mSQL (2.1ms)[0m   [0;1mCREATE UNIQUE INDEX "index_people_on_remember_token" ON "people" ("remember_token")[0m
+  [4;35;1mSQL (0.5ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (2.8ms)[0m   [0;1mCREATE TABLE "registrations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255) NOT NULL, "full_name" varchar(255) NOT NULL, "token" varchar(128) NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (2.4ms)[0m   [0mCREATE UNIQUE INDEX "index_registrations_on_token" ON "registrations" ("token")[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (2.4ms)[0m   [0mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [4;36;1mSQL (2.3ms)[0m   [0;1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [4;35;1mSQL (0.5ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT version FROM "schema_migrations"[0m
+  [4;35;1mSQL (2.1ms)[0m   [0mINSERT INTO "schema_migrations" (version) VALUES ('20091226234927')[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mINSERT INTO "schema_migrations" (version) VALUES ('20091225235111')[0m
+  [4;35;1mSQL (1.9ms)[0m   [0mINSERT INTO "schema_migrations" (version) VALUES ('20091225235505')[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mINSERT INTO "schema_migrations" (version) VALUES ('20091225235734')[0m
+  [4;35;1mSQL (2.1ms)[0m   [0mINSERT INTO "schema_migrations" (version) VALUES ('20091225235857')[0m
+  [4;36;1mSQL (2.1ms)[0m   [0;1mINSERT INTO "schema_migrations" (version) VALUES ('20091226000017')[0m
+  [4;35;1mSQL (2.0ms)[0m   [0mINSERT INTO "schema_migrations" (version) VALUES ('20091226162714')[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mINSERT INTO "schema_migrations" (version) VALUES ('20091226163114')[0m
+  [4;36;1mSQL (1.7ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (0.3ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (2.8ms)[0m   [0;1mCREATE TABLE "assignments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255) NOT NULL, "description" text NOT NULL, "due" datetime NOT NULL, "course_id" integer NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (0.3ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (1.8ms)[0m   [0;1mCREATE TABLE "compositions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "learner_id" integer NOT NULL, "student_id" integer NOT NULL, "assignment_id" integer NOT NULL, "course_id" integer NOT NULL, "paper" text NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (0.3ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (2.3ms)[0m   [0;1mCREATE TABLE "courses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255) NOT NULL, "description" text NOT NULL, "start" datetime NOT NULL, "end" datetime NOT NULL, "teacher_id" integer NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (0.4ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (2.2ms)[0m   [0;1mCREATE TABLE "invitations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255) NOT NULL, "course_id" integer NOT NULL, "teacher_id" integer NOT NULL, "token" varchar(255) NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (2.2ms)[0m   [0mCREATE UNIQUE INDEX "index_invitations_on_course_id_and_email" ON "invitations" ("course_id", "email")[0m
+  [4;36;1mSQL (2.1ms)[0m   [0;1mCREATE UNIQUE INDEX "index_invitations_on_token" ON "invitations" ("token")[0m
+  [4;35;1mSQL (0.4ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (2.3ms)[0m   [0;1mCREATE TABLE "learners" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "student_id" integer NOT NULL, "course_id" integer NOT NULL) [0m
+  [4;35;1mSQL (0.4ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mCREATE TABLE "lost_passwords" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "person_id" integer NOT NULL, "token" varchar(255) NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (0.4ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (2.4ms)[0m   [0;1mCREATE TABLE "people" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255) NOT NULL, "full_name" varchar(255) NOT NULL, "encrypted_password" varchar(128) NOT NULL, "salt" varchar(128) NOT NULL, "remember_token" varchar(128), "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (2.1ms)[0m   [0mCREATE UNIQUE INDEX "index_people_on_email" ON "people" ("email")[0m
+  [4;36;1mSQL (2.1ms)[0m   [0;1mCREATE UNIQUE INDEX "index_people_on_remember_token" ON "people" ("remember_token")[0m
+  [4;35;1mSQL (0.4ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (3.3ms)[0m   [0;1mCREATE TABLE "registrations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255) NOT NULL, "full_name" varchar(255) NOT NULL, "token" varchar(128) NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (2.5ms)[0m   [0mCREATE UNIQUE INDEX "index_registrations_on_token" ON "registrations" ("token")[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (2.4ms)[0m   [0mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [4;36;1mSQL (2.4ms)[0m   [0;1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [4;35;1mSQL (0.6ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT version FROM "schema_migrations"[0m
+  [4;35;1mSQL (2.2ms)[0m   [0mINSERT INTO "schema_migrations" (version) VALUES ('20091226234927')[0m
+  [4;36;1mSQL (2.1ms)[0m   [0;1mINSERT INTO "schema_migrations" (version) VALUES ('20091225235111')[0m
+  [4;35;1mSQL (2.1ms)[0m   [0mINSERT INTO "schema_migrations" (version) VALUES ('20091225235505')[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mINSERT INTO "schema_migrations" (version) VALUES ('20091225235734')[0m
+  [4;35;1mSQL (1.9ms)[0m   [0mINSERT INTO "schema_migrations" (version) VALUES ('20091225235857')[0m
+  [4;36;1mSQL (2.3ms)[0m   [0;1mINSERT INTO "schema_migrations" (version) VALUES ('20091226000017')[0m
+  [4;35;1mSQL (1.9ms)[0m   [0mINSERT INTO "schema_migrations" (version) VALUES ('20091226162714')[0m
+  [4;36;1mSQL (1.9ms)[0m   [0;1mINSERT INTO "schema_migrations" (version) VALUES ('20091226163114')[0m
+  [4;36;1mPerson Load (0.3ms)[0m   [0;1mSELECT * FROM "people" WHERE ("people"."email" = 'sally@washington.edu') LIMIT 1[0m
+  [4;35;1mSQL (0.5ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mPerson Load (0.2ms)[0m   [0;1mSELECT * FROM "people" WHERE ("people"."email" = 'sally@washington.edu') LIMIT 1[0m
+  [4;36;1mPerson Create (0.0ms)[0m   [0;1mSQLite3::SQLException: column email is not unique: INSERT INTO "people" ("encrypted_password", "salt", "created_at", "updated_at", "full_name", "remember_token", "email") VALUES('d4f40c2ef8e3717322f54dcc5cd55f2b8c466dcd', 'dJ0RMGfX9INs36HbhSxdlg==', '2010-01-13 02:52:54', '2010-01-13 02:52:54', 'Matty Higgins', NULL, 'student1@alaska.edu')[0m
+  [4;35;1mPerson Delete all (364.3ms)[0m   [0mDELETE FROM "people" WHERE 1=1[0m
+  [4;36;1mPerson Create (0.9ms)[0m   [0;1mINSERT INTO "people" ("encrypted_password", "salt", "created_at", "updated_at", "full_name", "remember_token", "email") VALUES('4484db8014f25e66070d9b3039524edad1c62eb8', 'hpf4l0/A7YX2DJKhiTsliw==', '2010-01-13 02:53:12', '2010-01-13 02:53:12', 'Matty Higgins', NULL, 'student2@alaska.edu')[0m
+  [4;35;1mPerson Load (0.6ms)[0m   [0mSELECT * FROM "people" WHERE ("people"."email" = 'student2@alaska.edu') LIMIT 1[0m
+  [4;36;1mLostPassword Create (0.6ms)[0m   [0;1mINSERT INTO "lost_passwords" ("created_at", "token", "updated_at", "person_id") VALUES('2010-01-13 02:53:12', '715a65e36109412acfe0cbd53f54242c', '2010-01-13 02:53:12', 10)[0m
+Sent mail to student2@alaska.edu
+
+Date: Tue, 12 Jan 2010 18:53:12 -0800
+To: student2@alaska.edu
+Subject: Create your new password
+Mime-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+
+  [4;35;1mPerson Create (0.9ms)[0m   [0mINSERT INTO "people" ("encrypted_password", "salt", "created_at", "updated_at", "full_name", "remember_token", "email") VALUES('5d0702f3b054f1e7eecef3b293cf5c9447343740', '563Pkt1KYDdGkvMbOVBO3w==', '2010-01-13 02:53:13', '2010-01-13 02:53:13', 'Matty Higgins', NULL, 'student3@alaska.edu')[0m
+  [4;36;1mPerson Load (0.6ms)[0m   [0;1mSELECT * FROM "people" WHERE ("people"."email" = 'student3@alaska.edu') LIMIT 1[0m
+  [4;35;1mLostPassword Create (0.5ms)[0m   [0mINSERT INTO "lost_passwords" ("created_at", "token", "updated_at", "person_id") VALUES('2010-01-13 02:53:13', 'b1765fc71cfe7cedd60bef3e3200e724', '2010-01-13 02:53:13', 11)[0m
+Sent mail to student3@alaska.edu
+
+Date: Tue, 12 Jan 2010 18:53:13 -0800
+To: student3@alaska.edu
+Subject: Create your new password
+Mime-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+
+  [4;36;1mSQL (1.7ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (0.3ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (2.9ms)[0m   [0;1mCREATE TABLE "assignments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255) NOT NULL, "description" text NOT NULL, "due" datetime NOT NULL, "course_id" integer NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (0.3ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (2.1ms)[0m   [0;1mCREATE TABLE "compositions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "learner_id" integer NOT NULL, "student_id" integer NOT NULL, "assignment_id" integer NOT NULL, "course_id" integer NOT NULL, "paper" text NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (0.4ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (2.3ms)[0m   [0;1mCREATE TABLE "courses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255) NOT NULL, "description" text NOT NULL, "start" datetime NOT NULL, "end" datetime NOT NULL, "teacher_id" integer NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (0.4ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (2.2ms)[0m   [0;1mCREATE TABLE "invitations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255) NOT NULL, "course_id" integer NOT NULL, "teacher_id" integer NOT NULL, "token" varchar(255) NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (2.2ms)[0m   [0mCREATE UNIQUE INDEX "index_invitations_on_course_id_and_email" ON "invitations" ("course_id", "email")[0m
+  [4;36;1mSQL (2.1ms)[0m   [0;1mCREATE UNIQUE INDEX "index_invitations_on_token" ON "invitations" ("token")[0m
+  [4;35;1mSQL (0.4ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (2.3ms)[0m   [0;1mCREATE TABLE "learners" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "student_id" integer NOT NULL, "course_id" integer NOT NULL) [0m
+  [4;35;1mSQL (0.4ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mCREATE TABLE "lost_passwords" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "person_id" integer NOT NULL, "token" varchar(255) NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (0.5ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (2.6ms)[0m   [0;1mCREATE TABLE "people" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255) NOT NULL, "full_name" varchar(255) NOT NULL, "encrypted_password" varchar(128) NOT NULL, "salt" varchar(128) NOT NULL, "remember_token" varchar(128), "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (2.1ms)[0m   [0mCREATE UNIQUE INDEX "index_people_on_email" ON "people" ("email")[0m
+  [4;36;1mSQL (2.1ms)[0m   [0;1mCREATE UNIQUE INDEX "index_people_on_remember_token" ON "people" ("remember_token")[0m
+  [4;35;1mSQL (0.5ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (3.1ms)[0m   [0;1mCREATE TABLE "registrations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255) NOT NULL, "full_name" varchar(255) NOT NULL, "token" varchar(128) NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (2.9ms)[0m   [0mCREATE UNIQUE INDEX "index_registrations_on_token" ON "registrations" ("token")[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (3.0ms)[0m   [0mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [4;36;1mSQL (2.4ms)[0m   [0;1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [4;35;1mSQL (1.5ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT version FROM "schema_migrations"[0m
+  [4;35;1mSQL (2.1ms)[0m   [0mINSERT INTO "schema_migrations" (version) VALUES ('20091226234927')[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mINSERT INTO "schema_migrations" (version) VALUES ('20091225235111')[0m
+  [4;35;1mSQL (2.0ms)[0m   [0mINSERT INTO "schema_migrations" (version) VALUES ('20091225235505')[0m
+  [4;36;1mSQL (2.1ms)[0m   [0;1mINSERT INTO "schema_migrations" (version) VALUES ('20091225235734')[0m
+  [4;35;1mSQL (2.4ms)[0m   [0mINSERT INTO "schema_migrations" (version) VALUES ('20091225235857')[0m
+  [4;36;1mSQL (2.1ms)[0m   [0;1mINSERT INTO "schema_migrations" (version) VALUES ('20091226000017')[0m
+  [4;35;1mSQL (1.9ms)[0m   [0mINSERT INTO "schema_migrations" (version) VALUES ('20091226162714')[0m
+  [4;36;1mSQL (1.9ms)[0m   [0;1mINSERT INTO "schema_migrations" (version) VALUES ('20091226163114')[0m
+  [4;36;1mPerson Load (0.2ms)[0m   [0;1mSELECT * FROM "people" WHERE ("people"."email" = 'joe@spu.edu') LIMIT 1[0m
+  [4;36;1mSQL (1.5ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (0.3ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (3.1ms)[0m   [0;1mCREATE TABLE "assignments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255) NOT NULL, "description" text NOT NULL, "due" datetime NOT NULL, "course_id" integer NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (0.3ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (2.1ms)[0m   [0;1mCREATE TABLE "compositions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "learner_id" integer NOT NULL, "student_id" integer NOT NULL, "assignment_id" integer NOT NULL, "course_id" integer NOT NULL, "paper" text NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (0.3ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (2.3ms)[0m   [0;1mCREATE TABLE "courses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255) NOT NULL, "description" text NOT NULL, "start" datetime NOT NULL, "end" datetime NOT NULL, "teacher_id" integer NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (0.4ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (2.1ms)[0m   [0;1mCREATE TABLE "invitations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255) NOT NULL, "course_id" integer NOT NULL, "teacher_id" integer NOT NULL, "token" varchar(255) NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (2.4ms)[0m   [0mCREATE UNIQUE INDEX "index_invitations_on_course_id_and_email" ON "invitations" ("course_id", "email")[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mCREATE UNIQUE INDEX "index_invitations_on_token" ON "invitations" ("token")[0m
+  [4;35;1mSQL (0.3ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (2.1ms)[0m   [0;1mCREATE TABLE "learners" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "student_id" integer NOT NULL, "course_id" integer NOT NULL) [0m
+  [4;35;1mSQL (0.4ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (2.2ms)[0m   [0;1mCREATE TABLE "lost_passwords" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "person_id" integer NOT NULL, "token" varchar(255) NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (0.4ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (2.7ms)[0m   [0;1mCREATE TABLE "people" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255) NOT NULL, "full_name" varchar(255) NOT NULL, "encrypted_password" varchar(128) NOT NULL, "salt" varchar(128) NOT NULL, "remember_token" varchar(128), "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (2.0ms)[0m   [0mCREATE UNIQUE INDEX "index_people_on_email" ON "people" ("email")[0m
+  [4;36;1mSQL (2.3ms)[0m   [0;1mCREATE UNIQUE INDEX "index_people_on_remember_token" ON "people" ("remember_token")[0m
+  [4;35;1mSQL (0.5ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (2.9ms)[0m   [0;1mCREATE TABLE "registrations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255) NOT NULL, "full_name" varchar(255) NOT NULL, "token" varchar(128) NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (2.9ms)[0m   [0mCREATE UNIQUE INDEX "index_registrations_on_token" ON "registrations" ("token")[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (3.0ms)[0m   [0mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [4;36;1mSQL (2.3ms)[0m   [0;1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [4;35;1mSQL (0.5ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT version FROM "schema_migrations"[0m
+  [4;35;1mSQL (2.1ms)[0m   [0mINSERT INTO "schema_migrations" (version) VALUES ('20091226234927')[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mINSERT INTO "schema_migrations" (version) VALUES ('20091225235111')[0m
+  [4;35;1mSQL (2.0ms)[0m   [0mINSERT INTO "schema_migrations" (version) VALUES ('20091225235505')[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mINSERT INTO "schema_migrations" (version) VALUES ('20091225235734')[0m
+  [4;35;1mSQL (2.1ms)[0m   [0mINSERT INTO "schema_migrations" (version) VALUES ('20091225235857')[0m
+  [4;36;1mSQL (2.3ms)[0m   [0;1mINSERT INTO "schema_migrations" (version) VALUES ('20091226000017')[0m
+  [4;35;1mSQL (2.0ms)[0m   [0mINSERT INTO "schema_migrations" (version) VALUES ('20091226162714')[0m
+  [4;36;1mSQL (1.9ms)[0m   [0;1mINSERT INTO "schema_migrations" (version) VALUES ('20091226163114')[0m
+  [4;36;1mSQL (1.5ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (0.3ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (3.2ms)[0m   [0;1mCREATE TABLE "assignments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255) NOT NULL, "description" text NOT NULL, "due" datetime NOT NULL, "course_id" integer NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (0.3ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (2.4ms)[0m   [0;1mCREATE TABLE "compositions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "learner_id" integer NOT NULL, "student_id" integer NOT NULL, "assignment_id" integer NOT NULL, "course_id" integer NOT NULL, "paper" text NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (0.3ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (2.3ms)[0m   [0;1mCREATE TABLE "courses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255) NOT NULL, "description" text NOT NULL, "start" datetime NOT NULL, "end" datetime NOT NULL, "teacher_id" integer NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (0.3ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (2.1ms)[0m   [0;1mCREATE TABLE "invitations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255) NOT NULL, "course_id" integer NOT NULL, "teacher_id" integer NOT NULL, "token" varchar(255) NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (2.6ms)[0m   [0mCREATE UNIQUE INDEX "index_invitations_on_course_id_and_email" ON "invitations" ("course_id", "email")[0m
+  [4;36;1mSQL (2.1ms)[0m   [0;1mCREATE UNIQUE INDEX "index_invitations_on_token" ON "invitations" ("token")[0m
+  [4;35;1mSQL (0.4ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mCREATE TABLE "learners" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "student_id" integer NOT NULL, "course_id" integer NOT NULL) [0m
+  [4;35;1mSQL (0.4ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (2.2ms)[0m   [0;1mCREATE TABLE "lost_passwords" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "person_id" integer NOT NULL, "token" varchar(255) NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (0.5ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (2.4ms)[0m   [0;1mCREATE TABLE "people" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255) NOT NULL, "full_name" varchar(255) NOT NULL, "encrypted_password" varchar(128) NOT NULL, "salt" varchar(128) NOT NULL, "remember_token" varchar(128), "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (2.0ms)[0m   [0mCREATE UNIQUE INDEX "index_people_on_email" ON "people" ("email")[0m
+  [4;36;1mSQL (2.2ms)[0m   [0;1mCREATE UNIQUE INDEX "index_people_on_remember_token" ON "people" ("remember_token")[0m
+  [4;35;1mSQL (0.6ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (3.2ms)[0m   [0;1mCREATE TABLE "registrations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255) NOT NULL, "full_name" varchar(255) NOT NULL, "token" varchar(128) NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (2.4ms)[0m   [0mCREATE UNIQUE INDEX "index_registrations_on_token" ON "registrations" ("token")[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (2.6ms)[0m   [0mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [4;36;1mSQL (2.3ms)[0m   [0;1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [4;35;1mSQL (0.5ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT version FROM "schema_migrations"[0m
+  [4;35;1mSQL (2.0ms)[0m   [0mINSERT INTO "schema_migrations" (version) VALUES ('20091226234927')[0m
+  [4;36;1mSQL (2.1ms)[0m   [0;1mINSERT INTO "schema_migrations" (version) VALUES ('20091225235111')[0m
+  [4;35;1mSQL (2.1ms)[0m   [0mINSERT INTO "schema_migrations" (version) VALUES ('20091225235505')[0m
+  [4;36;1mSQL (2.1ms)[0m   [0;1mINSERT INTO "schema_migrations" (version) VALUES ('20091225235734')[0m
+  [4;35;1mSQL (1.9ms)[0m   [0mINSERT INTO "schema_migrations" (version) VALUES ('20091225235857')[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mINSERT INTO "schema_migrations" (version) VALUES ('20091226000017')[0m
+  [4;35;1mSQL (2.2ms)[0m   [0mINSERT INTO "schema_migrations" (version) VALUES ('20091226162714')[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mINSERT INTO "schema_migrations" (version) VALUES ('20091226163114')[0m

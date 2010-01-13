@@ -12,7 +12,7 @@
 ActiveRecord::Schema.define(:version => 20091226234927) do
 
   create_table "assignments", :force => true do |t|
-    t.string   "title",       :null => false
+    t.string   "name",        :null => false
     t.text     "description", :null => false
     t.datetime "due",         :null => false
     t.integer  "course_id",   :null => false
@@ -21,16 +21,17 @@ ActiveRecord::Schema.define(:version => 20091226234927) do
   end
 
   create_table "compositions", :force => true do |t|
-    t.integer  "student_id",    :null => false
     t.integer  "learner_id",    :null => false
+    t.integer  "student_id",    :null => false
     t.integer  "assignment_id", :null => false
+    t.integer  "course_id",     :null => false
     t.text     "paper",         :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "courses", :force => true do |t|
-    t.string   "title",       :null => false
+    t.string   "name",        :null => false
     t.text     "description", :null => false
     t.datetime "start",       :null => false
     t.datetime "end",         :null => false
