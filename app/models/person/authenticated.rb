@@ -10,10 +10,9 @@ module Person::Authenticated
       attr_accessor :password, :lost_password_token
       attr_protected :encrypted_password, :salt
 
-      validates_confirmation_of :password
+      validates_confirmation_of :password, :on => :create
       validates_presence_of     :password, :on => :create
       validates_presence_of     :password, :on => :update, :unless => Proc.new { |person| person.password.nil? }
-      validate_on_update        :validate_password_update, :unless => Proc.new { |person| person.password.nil? }
 
       extend ClassMethods
     end
@@ -21,7 +20,7 @@ module Person::Authenticated
 
   module ClassMethods
     def authenticate(email, password)
-      if person = find_by_email(email) && person.authenticate(password)
+      if (person = find_by_email(email)) && person.authenticate(password)
         person
       end
     end
@@ -34,7 +33,7 @@ module Person::Authenticated
 
   def authenticate(pwd)
     return false unless pwd.is_a?(String)
-    self.encrypted_password == self.class.encrypted_password(pwd, self.salt)
+    self.encrypted_password == self.class.encrypt_password(pwd, self.salt)
   end
 
   private
@@ -43,14 +42,5 @@ module Person::Authenticated
       self.salt = ActiveSupport::SecureRandom.base64(16)
       self.encrypted_password = self.class.encrypt_password(self.password, self.salt)
       self.password = self.password_confirmation = nil
-    end
-
-    def validate_password_update
-      if self.lost_password_token
-        lost_password = lost_passwords.find_by_token(self.lost_password_token)
-        if lost_password.nil?
-          errors.add :lost_password_token, 'is invalid'
-        end
-      end
     end
 end

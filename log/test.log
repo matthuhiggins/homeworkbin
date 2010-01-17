@@ -1034,3 +1034,50 @@ Content-Type: text/plain; charset=utf-8
   [4;35;1mPerson Create (0.6ms)[0m   [0mINSERT INTO "people" ("encrypted_password", "salt", "created_at", "updated_at", "full_name", "remember_token", "email") VALUES('3cba9de51a8580be2459786fef3ee78a71444380', 'RJMl7d6s3UCG+ZjncT2Krg==', '2010-01-13 02:55:18', '2010-01-13 02:55:18', 'Matty Higgins', NULL, 'joe@spu.edu')[0m
   [4;36;1mPerson Load (0.3ms)[0m   [0;1mSELECT * FROM "people" WHERE ("people"."email" = 'joe@spu.edu') LIMIT 1[0m
   [4;35;1mPerson Load (0.2ms)[0m   [0mSELECT * FROM "people" WHERE ("people"."email" = 'joe@spu.edu') LIMIT 1[0m
+** [Hoptoad] Notifier 2.0.18 ready to catch errors
+** [Hoptoad] Notifier 2.0.18 ready to catch errors
+** [Hoptoad] Notifier 2.0.18 ready to catch errors
+  [4;36;1mPerson Create (0.9ms)[0m   [0;1mINSERT INTO "people" ("encrypted_password", "salt", "created_at", "updated_at", "full_name", "remember_token", "email") VALUES('e54f1f2cf08012f49a5f0911ae8b4a290658175d', 'oGpERqsYT6T98r5JUkfVQg==', '2010-01-17 05:38:03', '2010-01-17 05:38:03', 'Matty Higgins', NULL, 'student1@alaska.edu')[0m
+  [4;35;1mPerson Load (0.4ms)[0m   [0mSELECT * FROM "people" WHERE ("people"."email" = 'student1@alaska.edu') LIMIT 1[0m
+** [Hoptoad] Notifier 2.0.18 ready to catch errors
+  [4;36;1mPerson Create (0.8ms)[0m   [0;1mINSERT INTO "people" ("encrypted_password", "salt", "created_at", "updated_at", "full_name", "remember_token", "email") VALUES('d8ee5b926d856e17d294b00b815ed5c7c8f7da4d', 'pebBtwxCN/71o/KXSQjR2w==', '2010-01-17 05:38:46', '2010-01-17 05:38:46', 'Matty Higgins', NULL, 'student1@alaska.edu')[0m
+  [4;35;1mPerson Load (0.3ms)[0m   [0mSELECT * FROM "people" WHERE ("people"."email" = 'student1@alaska.edu') LIMIT 1[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+** [Hoptoad] Notifier 2.0.18 ready to catch errors
+  [4;36;1mPerson Create (0.8ms)[0m   [0;1mINSERT INTO "people" ("encrypted_password", "salt", "created_at", "updated_at", "full_name", "remember_token", "email") VALUES('0e2af34c10fb292e8c9cefe004429203f9489adf', 'WuzTTs6X2/Q9hpHn6bEFWA==', '2010-01-17 05:39:07', '2010-01-17 05:39:07', 'Matty Higgins', NULL, 'student1@alaska.edu')[0m
+  [4;35;1mPerson Load (0.3ms)[0m   [0mSELECT * FROM "people" WHERE ("people"."email" = 'student1@alaska.edu') LIMIT 1[0m
+  [4;36;1mPerson Load (0.2ms)[0m   [0;1mSELECT * FROM "people" WHERE ("people"."email" = 'student1@alaska.edu') LIMIT 1[0m
+** [Hoptoad] Notifier 2.0.18 ready to catch errors
+  [4;36;1mPerson Create (0.8ms)[0m   [0;1mINSERT INTO "people" ("encrypted_password", "salt", "created_at", "updated_at", "full_name", "remember_token", "email") VALUES('b24c924c21ae49d2c36112bee7faef90c2e502cd', 'A55WT5WWnGpZQ2FjqGb64g==', '2010-01-17 05:40:12', '2010-01-17 05:40:12', 'Matty Higgins', NULL, 'student1@alaska.edu')[0m
+  [4;35;1mPerson Load (0.4ms)[0m   [0mSELECT * FROM "people" WHERE ("people"."email" = 'student1@alaska.edu') LIMIT 1[0m
+  [4;36;1mPerson Load (0.3ms)[0m   [0;1mSELECT * FROM "people" WHERE ("people"."email" = 'student1@alaska.edu') LIMIT 1[0m
+** [Hoptoad] Notifier 2.0.18 ready to catch errors
+  [4;36;1mPerson Create (0.8ms)[0m   [0;1mINSERT INTO "people" ("encrypted_password", "salt", "created_at", "updated_at", "full_name", "remember_token", "email") VALUES('2a90b264fc2cab1b537780b6bd828825c507c1e8', 'ERcVkZ2UadEHpXI5hmckAw==', '2010-01-17 05:40:50', '2010-01-17 05:40:50', 'Matty Higgins', NULL, 'student1@alaska.edu')[0m
+  [4;35;1mPerson Load (0.3ms)[0m   [0mSELECT * FROM "people" WHERE ("people"."email" = 'student1@alaska.edu') LIMIT 1[0m
+  [4;36;1mPerson Load (0.3ms)[0m   [0;1mSELECT * FROM "people" WHERE ("people"."email" = 'student1@alaska.edu') LIMIT 1[0m
+** [Hoptoad] Notifier 2.0.18 ready to catch errors
+  [4;36;1mPerson Create (0.8ms)[0m   [0;1mINSERT INTO "people" ("encrypted_password", "salt", "created_at", "updated_at", "full_name", "remember_token", "email") VALUES('2171265439191c5924300cc917ad392cc12b370c', 'YbOy6KU19IeO62qC7ciN7g==', '2010-01-17 05:45:57', '2010-01-17 05:45:57', 'Matty Higgins', NULL, 'student1@alaska.edu')[0m
+  [4;35;1mPerson Load (0.3ms)[0m   [0mSELECT * FROM "people" WHERE ("people"."email" = 'student1@alaska.edu') LIMIT 1[0m
+  [4;36;1mPerson Load (0.2ms)[0m   [0;1mSELECT * FROM "people" WHERE ("people"."email" = 'student1@alaska.edu') LIMIT 1[0m
+** [Hoptoad] Notifier 2.0.18 ready to catch errors
+  [4;36;1mPerson Create (0.8ms)[0m   [0;1mINSERT INTO "people" ("encrypted_password", "salt", "created_at", "updated_at", "full_name", "remember_token", "email") VALUES('d016e0d79bfab01fa965b34ea4b3325a9dff003b', 'eIzK0KC03XtgzCOPpGtstA==', '2010-01-17 05:47:20', '2010-01-17 05:47:20', 'Matty Higgins', NULL, 'student1@alaska.edu')[0m
+  [4;35;1mPerson Load (0.3ms)[0m   [0mSELECT * FROM "people" WHERE ("people"."email" = 'student1@alaska.edu') LIMIT 1[0m
+  [4;36;1mPerson Load (0.2ms)[0m   [0;1mSELECT * FROM "people" WHERE ("people"."email" = 'student1@alaska.edu') LIMIT 1[0m
+** [Hoptoad] Notifier 2.0.18 ready to catch errors
+  [4;36;1mPerson Create (0.8ms)[0m   [0;1mINSERT INTO "people" ("encrypted_password", "salt", "created_at", "updated_at", "full_name", "remember_token", "email") VALUES('22c25888249b6cffe4e878366b8dde9e81e2b1fb', 'U80kZ19oaL0N5rNptPWZvw==', '2010-01-17 05:48:00', '2010-01-17 05:48:00', 'Matty Higgins', NULL, 'student1@alaska.edu')[0m
+  [4;35;1mPerson Load (0.3ms)[0m   [0mSELECT * FROM "people" WHERE ("people"."email" = 'student1@alaska.edu') LIMIT 1[0m
+  [4;36;1mPerson Load (0.3ms)[0m   [0;1mSELECT * FROM "people" WHERE ("people"."email" = 'student1@alaska.edu') LIMIT 1[0m
+** [Hoptoad] Notifier 2.0.18 ready to catch errors
+  [4;36;1mPerson Create (0.8ms)[0m   [0;1mINSERT INTO "people" ("encrypted_password", "salt", "created_at", "updated_at", "full_name", "remember_token", "email") VALUES('dde5c1a6b00489e00e1363c0d73ed006cfebde9c', 'v59MT0CVkeND1PTlM1iucg==', '2010-01-17 05:49:38', '2010-01-17 05:49:38', 'Matty Higgins', NULL, 'student1@alaska.edu')[0m
+  [4;35;1mPerson Load (0.3ms)[0m   [0mSELECT * FROM "people" WHERE ("people"."email" = 'student1@alaska.edu') LIMIT 1[0m
+  [4;36;1mPerson Load (0.2ms)[0m   [0;1mSELECT * FROM "people" WHERE ("people"."email" = 'student1@alaska.edu') LIMIT 1[0m
+  [4;35;1mPerson Create (0.5ms)[0m   [0mINSERT INTO "people" ("encrypted_password", "salt", "created_at", "updated_at", "full_name", "remember_token", "email") VALUES('acaba88b23055785d2fe19ceaa0462d59c8460f8', 'EuLcOUZP9xMmlF/zy9Y7cg==', '2010-01-17 05:49:38', '2010-01-17 05:49:38', 'Matty Higgins', NULL, 'student5@alaska.edu')[0m
+** [Hoptoad] Notifier 2.0.18 ready to catch errors
+  [4;36;1mPerson Create (0.8ms)[0m   [0;1mINSERT INTO "people" ("encrypted_password", "salt", "created_at", "updated_at", "full_name", "remember_token", "email") VALUES('347e622261aad041a6da9e8035b773a5cfe7dfdf', 'ZhCxPJ45CTqSZNPuAcE4wA==', '2010-01-17 05:50:44', '2010-01-17 05:50:44', 'Matty Higgins', NULL, 'student1@alaska.edu')[0m
+  [4;35;1mPerson Load (0.3ms)[0m   [0mSELECT * FROM "people" WHERE ("people"."email" = 'student1@alaska.edu') LIMIT 1[0m
+  [4;36;1mPerson Load (0.2ms)[0m   [0;1mSELECT * FROM "people" WHERE ("people"."email" = 'student1@alaska.edu') LIMIT 1[0m
+  [4;35;1mPerson Create (0.6ms)[0m   [0mINSERT INTO "people" ("encrypted_password", "salt", "created_at", "updated_at", "full_name", "remember_token", "email") VALUES('8280f15d0582817ed9ba23c48ead95716da9c3fd', 'l7FXyqtiVW/eRlgELCnjTg==', '2010-01-17 05:50:44', '2010-01-17 05:50:44', 'Matty Higgins', NULL, 'student5@alaska.edu')[0m
+  [4;36;1mPerson Update (0.6ms)[0m   [0;1mUPDATE "people" SET "updated_at" = '2010-01-17 05:50:44', "encrypted_password" = '67a0e37409cdadac099b070ffeb25edcc72eef9e', "salt" = 'FVjjIN20VpYI2DJkANZG+g==' WHERE "id" = 1[0m
