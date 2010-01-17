@@ -7,13 +7,13 @@ class Mailer < ActionMailer::Base
   
   def invitation invitation
     recipients  invitation.email
-    subject     "#{invitation.teacher} invited you to #{invitation.course}"
+    subject     "#{invitation.teacher} added you to #{invitation.course.name}"
     body        :invitation => invitation
   end
   
   def lost_password lost_password
     recipients  lost_password.person.email
-    subject     "Create your new password"
+    subject     "Homework Bin password change"
     body        :lost_password => lost_password
   end
   
