@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  layout 'marketing'
+  layout 'playground'
   
   def create
     if person = People.authenticate(params[:person])

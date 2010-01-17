@@ -1,5 +1,5 @@
 class RegistrationsController < ApplicationController
-  layout 'facade'
+  layout 'playground'
 
   def create
     @registration = Registration.new params[:registration]

@@ -24,57 +24,57 @@ a, a:visited {
   color: #55c;
 }
 
-.marketing {
+.playground {
 }
 
-.marketing .menu {
+.playground .menu {
   background-color: #ddd;
   font-weight: bolder;
   overflow: hidden;
   padding: 5px 12px;
 }
 
-.marketing .menu .logo {
+.playground .menu .logo {
   float: left;
   font-family: "Didot";
   font-size: 36px;
 }
 
-.marketing .menu .links {
+.playground .menu .links {
   float: right;
   text-align: right;
 }
 
-.marketing .menu .links a {
+.playground .menu .links a {
   display: block;
   padding-bottom: 5px;
 }
 
-.marketing .index {
+.playground .index {
   padding: 20px;
 }
 
-.marketing .index {
+.playground .index {
   font-family: "Lucida Grande", sans-serif;
 }
 
-.marketing .index .slogan {
+.playground .index .slogan {
   font-size: 42px;
 /*  text-decoration: underline;*/
 }
 
-.marketing .index .blurbs {
+.playground .index .blurbs {
   margin-top: 20px;
   overflow: hidden;
 }
 
-.marketing .index .blurb {
+.playground .index .blurb {
   float: left;
   padding-right: 35px;
   width: 240px;
 }
 
-.marketing .index .question {
+.playground .index .question {
   border-bottom: 1px dashed #ccc;
   color: #444;
   font-size: 24px;
@@ -83,6 +83,6 @@ a, a:visited {
   padding-bottom: 6px;
 }
 
-.marketing .index .answer p {
+.playground .index .answer p {
   margin-bottom: 1px;
 }

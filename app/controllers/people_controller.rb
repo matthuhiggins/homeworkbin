@@ -1,5 +1,5 @@
 class PeopleController < ApplicationController
-  layout 'marketing'
+  layout 'playground'
   
   def new
     @registration = Registration.find_by_token! params[:token]

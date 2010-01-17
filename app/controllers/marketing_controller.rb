@@ -1,3 +1,3 @@
 class MarketingController < ApplicationController
-  layout 'facade'
+  layout 'playground'
 end
