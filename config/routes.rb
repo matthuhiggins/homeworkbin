@@ -2,6 +2,7 @@ ActionController::Routing::Routes.draw do |map|
   map.root :controller => 'marketing'
   
   map.resources :registrations, :collection => {'thanks' => :get}
+  map.resources :invitation
   map.resources :people
   map.resources :courses
   map.resource :session

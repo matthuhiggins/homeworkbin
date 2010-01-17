@@ -2,9 +2,7 @@ module ActiveSupport
   class TestCase
     module Concerns
       module EmailValidationTests
-        p "OMG"
         def test_email_format#(klass, column)
-          p "WTF"
           ok = %w(matthewh@napera.com crazy-email@acme123.net)
           bad = %w(joe joe@x.c joe@acme @acme.net acme.net )
 
