@@ -3,12 +3,12 @@ class Invitation < ActiveRecord::Base
   include Concerns::EmailValidation
 
   belongs_to :course
-  belongs_to :teacher, :class_name => 'Person'
+  belongs_to :teacher
   
   extend Concerns::Denormalization
   denormalizes :teacher, :through => :course
   
-  def existing_person
+  def student
     Person.find_by_email email
   end
   
