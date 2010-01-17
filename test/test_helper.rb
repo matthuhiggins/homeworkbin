@@ -4,4 +4,16 @@ require 'test_help'
 
 class ActiveSupport::TestCase
   self.use_transactional_fixtures = true
+  
+  def target_class
+    self.class.name.sub(/Test$/, '').constantize
+  rescue NameError
+    nil
+  end
+
+  module Concerns
+    # extend ActiveSupport::Autoload
+    autoload :EmailValidationTests, 'concerns/email_validation_tests'
+    autoload :TokenizedTests, 'concerns/tokenized_tests'
+  end
 end
