@@ -1,12 +1,9 @@
 class Invitation < ActiveRecord::Base
   include Concerns::Tokenized
   include Concerns::EmailValidation
-
-  belongs_to :course
-  belongs_to :teacher
-  
   extend Concerns::Denormalization
-  denormalizes :teacher, :through => :course
+
+  belongs_to :course, :denormalize => :teacher
   
   def student
     Student.find_by_email email
