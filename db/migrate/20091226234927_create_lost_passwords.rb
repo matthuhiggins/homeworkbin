@@ -5,6 +5,8 @@ class CreateLostPasswords < ActiveRecord::Migration
       t.string  :token,     :null => false
       t.timestamps
     end
+    
+    add_foreign_key :lost_passwords, :people, :dependent => :delete
   end
 
   def self.down

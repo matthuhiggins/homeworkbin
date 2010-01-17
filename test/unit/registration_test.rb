@@ -29,6 +29,5 @@ class RegistrationTest < ActiveSupport::TestCase
     assert teacher.new_record?
     assert_equal registration.full_name, teacher.full_name
     assert_equal registration.email, teacher.email
-    assert_equal 1, teacher.courses_in_stock
   end
 end

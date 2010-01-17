@@ -3,6 +3,7 @@ ActionController::Routing::Routes.draw do |map|
   
   map.resources :registrations, :collection => {'thanks' => :get}
   map.resources :invitation
+  map.resources :lost_passwords
   map.resources :people
   map.resources :courses
   map.resource :session

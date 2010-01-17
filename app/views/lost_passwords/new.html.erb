@@ -1,0 +1,5 @@
+<% form_for @lost_password do |f| %>
+  <%= f.label :email, 'Your email' %>
+  <%= f.text_field :email %>
+  <%= f.error_message_on :email, :prepend_text => 'Email ' %>
+<% end %>

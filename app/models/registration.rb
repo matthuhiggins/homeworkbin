@@ -15,6 +15,6 @@ class Registration < ActiveRecord::Base
   end
 
   def build_teacher
-    Teacher.new :email => email, :full_name => full_name, :courses_in_stock => 1
+    Teacher.new :email => email, :full_name => full_name
   end
 end
