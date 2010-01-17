@@ -9,7 +9,7 @@ class Invitation < ActiveRecord::Base
   denormalizes :teacher, :through => :course
   
   def student
-    Person.find_by_email email
+    Student.find_by_email email
   end
   
   after_create do |invitation|

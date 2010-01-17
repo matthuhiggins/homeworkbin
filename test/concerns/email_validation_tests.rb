@@ -2,20 +2,19 @@ module ActiveSupport
   class TestCase
     module Concerns
       module EmailValidationTests
-        def test_email_format#(klass, column)
-          ok = %w(matthewh@napera.com crazy-email@acme123.net)
-          bad = %w(joe joe@x.c joe@acme @acme.net acme.net )
-
-          ok.each do |email|
+        def test_valid_email_formats
+          %w(matthewh@napera.com crazy-email@acme123.net).each do |email|
             record = target_class.new(:email => email)
             record.valid?
-            assert_not_equal record.errors.on(:email), I18n.translate('activerecord.errors.messages.invalid')
+            assert !Array.wrap(record.errors.on(:email)).include?(I18n.translate('activerecord.errors.messages.invalid'))
           end
+        end
 
-          bad.each do |email|
+        def test_invalid_email_formats
+          %w(joe joe@x.c joe@acme @acme.net acme.net ).each do |email|
             record = target_class.new(:email => email)
-            assert !record.valid?
-            assert_equal record.errors.on(:email), I18n.translate('activerecord.errors.messages.invalid')
+            assert record.invalid?
+            assert Array.wrap(record.errors.on(:email)).include?(I18n.translate('activerecord.errors.messages.invalid'))
           end
         end
       end

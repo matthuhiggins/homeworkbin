@@ -5,7 +5,7 @@ class Registration < ActiveRecord::Base
   validates_presence_of :full_name
 
   validate_on_create do |registration|
-    if Person.exists? :email => registration.email
+    if Teacher.exists? :email => registration.email
       registration.errors.add :email, 'is already in use'
     end
   end
@@ -14,7 +14,7 @@ class Registration < ActiveRecord::Base
     Mailer.deliver_registration registration
   end
 
-  def build_person
-    Person.new :email => email, :full_name => full_name
+  def build_teacher
+    Teacher.new :email => email, :full_name => full_name, :courses_in_stock => 1
   end
 end
