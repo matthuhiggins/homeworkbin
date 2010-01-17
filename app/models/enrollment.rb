@@ -1,4 +1,4 @@
-class Invitation < ActiveRecord::Base
+class Enrollment < ActiveRecord::Base
   include Concerns::Tokenized
   include Concerns::EmailValidation
   extend Concerns::Denormalization
@@ -13,7 +13,7 @@ class Invitation < ActiveRecord::Base
     Student.new :email => email
   end
   
-  after_create do |invitation|
-    Mailer.deliver_invitation invitation
+  after_create do |enrollment|
+    Mailer.deliver_enrollment enrollment
   end
 end

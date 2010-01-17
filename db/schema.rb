@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(:version => 20091226234927) do
     t.datetime "updated_at"
   end
 
-  create_table "invitations", :force => true do |t|
+  create_table "enrollments", :force => true do |t|
     t.string   "email",      :null => false
     t.integer  "course_id",  :null => false
     t.integer  "teacher_id", :null => false
@@ -49,8 +49,8 @@ ActiveRecord::Schema.define(:version => 20091226234927) do
     t.datetime "updated_at"
   end
 
-  add_index "invitations", ["course_id", "email"], :name => "index_invitations_on_course_id_and_email", :unique => true
-  add_index "invitations", ["token"], :name => "index_invitations_on_token", :unique => true
+  add_index "enrollments", ["course_id", "email"], :name => "index_enrollments_on_course_id_and_email", :unique => true
+  add_index "enrollments", ["token"], :name => "index_enrollments_on_token", :unique => true
 
   create_table "learners", :force => true do |t|
     t.integer "student_id", :null => false

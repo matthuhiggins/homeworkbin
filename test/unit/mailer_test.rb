@@ -10,12 +10,12 @@ class MailerTest < ActionMailer::TestCase
     end
   end
   
-  def test_invitation
-    invitation = Factory :invitation
-    with_mail :invitation, invitation do |sent|
-      assert_equal "#{invitation.teacher} added you to #{invitation.course.name}", sent.subject
-      assert_equal [invitation.email], sent.to
-      assert_match invitation.token, sent.body
+  def test_enrollment
+    enrollment = Factory :enrollment
+    with_mail :enrollment, enrollment do |sent|
+      assert_equal "Confirm your enrollment in #{enrollment.course.name}", sent.subject
+      assert_equal [enrollment.email], sent.to
+      assert_match enrollment.token, sent.body
     end
   end
 

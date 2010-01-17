@@ -5,10 +5,10 @@ class Mailer < ActionMailer::Base
     body        :registration => registration
   end
   
-  def invitation invitation
-    recipients  invitation.email
-    subject     "#{invitation.teacher} added you to #{invitation.course.name}"
-    body        :invitation => invitation
+  def enrollment enrollment
+    recipients  enrollment.email
+    subject     "Confirm your enrollment in #{enrollment.course.name}"
+    body        :enrollment => enrollment
   end
   
   def lost_password lost_password
