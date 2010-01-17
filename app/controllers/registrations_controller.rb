@@ -16,13 +16,13 @@ class RegistrationsController < ApplicationController
 
   def show
     @registration = Registration.find_by_token! params[:id]
-    @person = @registration.build_person
+    @teacher = @registration.build_teacher
   end
   
   def update
     @registration = Registration.find_by_token! params[:id]
-    @person = Person.new params[:person]
-    if @person.save
+    @teacher = Teacher.new params[:teacher]
+    if @teacher.save
       Registration.delete_all :email => @registration.email
       redirect_to courses_path
     else

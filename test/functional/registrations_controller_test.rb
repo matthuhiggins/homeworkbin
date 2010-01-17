@@ -14,7 +14,7 @@ class RegistrationsControllerTest < ActionController::TestCase
   end
   
   def test_create_using_existing_email
-    Factory :person, :email => 'foo@bar.com'
+    Factory :teacher, :email => 'foo@bar.com'
     post :create, :registration => {:email => 'foo@bar.com', :full_name => 'matty'}
     assert_template 'new'
   end
@@ -28,14 +28,14 @@ class RegistrationsControllerTest < ActionController::TestCase
     registration = Factory :registration
     get :show, :id => registration.token
     assert_equal registration, assigns(:registration)
-    assert_not_nil assigns(:person)
+    assert_not_nil assigns(:teacher)
   end
   
   def test_update
     registration = Factory :registration
     put :update,
         :id => registration.token,
-        :person => {
+        :teacher => {
           :email                  => 'foo@bar.com',
           :full_name              => 'matty',
           :password               => 'sekret',
@@ -43,7 +43,7 @@ class RegistrationsControllerTest < ActionController::TestCase
         }
     assert_redirected_to courses_path
     assert_raises(ActiveRecord::RecordNotFound) { registration.reload }
-    assert !assigns(:person).new_record?
+    assert !assigns(:teacher).new_record?
   end
   
   def test_update_fails_with_bad_token
