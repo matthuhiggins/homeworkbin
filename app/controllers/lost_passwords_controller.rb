@@ -13,17 +13,19 @@ class LostPasswordsController < ApplicationController
   end
   
   def show
-    @lost_password = LostPassword.find_by_token! params[:token]
+    @lost_password = LostPassword.find_by_token! params[:id]
     @person = @lost_password.person
   end
   
   def update
-    @lost_password = LostPassword.find_by_token! params[:token]
+    @lost_password = LostPassword.find_by_token! params[:id]
     @person = @lost_password.person
     
     if @person.update_attribute(:password, params[:password])
       @lost_password.destroy
+      login @person
     else
+      render 'show'
     end
   end
 end
