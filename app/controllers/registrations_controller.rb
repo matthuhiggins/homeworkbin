@@ -22,7 +22,7 @@ class RegistrationsController < ApplicationController
   def update
     @registration = Registration.find_by_token! params[:id]
     @teacher = Teacher.new params[:teacher]
-    if @teacher.save
+    if @teacher.save!
       Registration.delete_all :email => @registration.email
       redirect_to courses_path
     else
