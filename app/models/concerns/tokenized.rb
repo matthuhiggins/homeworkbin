@@ -1,9 +1,9 @@
-module Concerns::Tokenized
-  def self.included(model)
-    model.before_create :create_token
-  end
-  
-  def create_token
-    self.token = ActiveSupport::SecureRandom.hex(16)
+module Concerns
+  module Tokenized
+    def self.included model
+      model.before_create do |record|
+        record.token = ActiveSupport::SecureRandom.hex(16)
+      end
+    end
   end
 end
