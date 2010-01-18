@@ -1,13 +1,11 @@
 class Person
   module Remembered
     def remember_me!
-      self.remember_token = ActiveSupport::SecureRandom.base64(32)
-      save#(false)
+      update_attribute :remember_token, ActiveSupport::SecureRandom.base64(32)
     end
 
     def forget_me!
-      self.remember_token = nil
-      save#(false)
+      update_attribute :remember_token, nil
     end
   end
 end
