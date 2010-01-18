@@ -13,6 +13,11 @@ class EnrollmentTest < ActiveSupport::TestCase
     assert_equal student, Factory.build(:enrollment, :email => student.email).student
   end
   
+  def test_new_student?
+    assert Factory.build(:enrollment).new_student?
+    assert !Factory.build(:enrollment, :email => Factory(:student).email).new_student?
+  end
+  
   def test_mail
     assert_emails 1 do
       Factory :enrollment

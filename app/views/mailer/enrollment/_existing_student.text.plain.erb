@@ -1,0 +1,5 @@
+Hey <%= @enrollment.student.full_name %>,
+
+I set up a new course on Homework Bin, where I will be posting assignments, and you will be submitting homework. Please enroll in this course by following the link below:
+
+<%= enrollment_url @enrollment.token %>

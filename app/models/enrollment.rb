@@ -6,7 +6,11 @@ class Enrollment < ActiveRecord::Base
   belongs_to :course, :denormalize => :teacher
   
   def student
-    Student.find_by_email email
+    @student ||= Student.find_by_email(email)
+  end
+  
+  def new_student?
+    student.blank?
   end
   
   def build_student
