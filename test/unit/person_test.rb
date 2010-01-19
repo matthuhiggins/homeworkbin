@@ -7,17 +7,16 @@ class PersonTest < ActiveSupport::TestCase
     teacher = Factory :teacher
     assert !teacher.teacher?
 
-    teacher.courses.create Factory.attributes_for(:course)
+    Factory :course, :teacher => teacher
     teacher.reload
     assert teacher.teacher?
   end
   
   def test_student?
     student = Factory :student
-    course = Factory :course
     assert !student.student?
     
-    student.courses << course
+    student.learning << Factory(:course)
     student.reload
     assert student.student?
   end

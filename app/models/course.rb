@@ -5,4 +5,8 @@ class Course < ActiveRecord::Base
   has_many :assignments
   
   validates_presence_of :name
+  
+  after_create do |course|
+    course.teacher.decrement! :courses_available
+  end
 end

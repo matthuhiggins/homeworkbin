@@ -1,5 +1,5 @@
 class Teacher < Person
-  has_many :courses
+  has_many :teaching, :class_name => 'Course'
   
   before_create do |teacher|
     teacher.courses_available = 1
