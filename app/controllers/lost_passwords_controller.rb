@@ -8,7 +8,9 @@ class LostPasswordsController < ApplicationController
   def create
     @lost_password = LostPassword.new params[:lost_password]
     if @lost_password.save
+      render 'confirm'
     else
+      render 'new'
     end
   end
   
@@ -21,9 +23,8 @@ class LostPasswordsController < ApplicationController
     @lost_password = LostPassword.find_by_token! params[:id]
     @person = @lost_password.person
     
-    if @person.update_attribute(:password, params[:password])
-      @lost_password.destroy
-      login @person
+    if @lost_password.update_attributes params[:lost_password]
+      login @lost_password.person
     else
       render 'show'
     end

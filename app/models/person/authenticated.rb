@@ -8,7 +8,7 @@ class Person
 
         before_save :encrypt_password
 
-        attr_accessor :password, :lost_password_token
+        attr_accessor :password
         attr_protected :encrypted_password, :salt
 
         validates_confirmation_of :password, :on => :create
