@@ -1,6 +1,5 @@
 class LostPassword < ActiveRecord::Base
   include Concerns::Tokenized
-  include Concerns::EmailValidation
 
   belongs_to :person
 

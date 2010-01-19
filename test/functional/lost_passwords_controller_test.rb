@@ -7,6 +7,24 @@ class LostPasswordsControllerTest < ActionController::TestCase
     assert_kind_of LostPassword, assigns(:lost_password)
   end
   
+  def test_create_success
+    person = Factory :person
+
+    post :create, :lost_password => {
+      :email => person.email
+    }
+    
+    assert_template 'confirm'
+  end
+  
+  def test_create_failure
+    post :create, :lost_password => {
+      :email => 'invalid'
+    }
+    
+    assert_template 'new'
+  end
+  
   def test_show
     lost_password = Factory :lost_password
 
@@ -17,12 +35,18 @@ class LostPasswordsControllerTest < ActionController::TestCase
   end
   
   def test_update_success
-    # TODO
+    lost_password = Factory :lost_password
+    
+    put :update, :id => lost_password.token, :lost_password => {:new_password => 'snoopy'}
+    
+    assert_equal lost_password.person.id, @controller.session[:person_id].to_i
   end
   
   def test_update_failure
-    # TODO
     lost_password = Factory :lost_password
-    # update :update, :id => lost_password.token
+    
+    put :update, :id => lost_password.token, :lost_password => {:new_password => ''}
+    
+    assert_template 'show'
   end
 end
