@@ -42,12 +42,12 @@ class RegistrationsControllerTest < ActionController::TestCase
           :password_confirmation  => 'sekret'
         }
     assert_redirected_to courses_path
-    assert_raises(ActiveRecord::RecordNotFound) { registration.reload }
+    assert_raise(ActiveRecord::RecordNotFound) { registration.reload }
     assert !assigns(:teacher).new_record?
   end
   
   def test_update_fails_with_bad_token
-    assert_raises ActiveRecord::RecordNotFound do
+    assert_raise ActiveRecord::RecordNotFound do
       put :update, :id => 'poopy'
     end
   end
