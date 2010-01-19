@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class TeacherTest < ActiveSupport::TestCase
-  def test_courses_in_stock_default
-    assert_equal 1, Factory(:teacher).courses_in_stock
+  def test_courses_available_default
+    assert_equal 1, Factory(:teacher).courses_available
   end
 end

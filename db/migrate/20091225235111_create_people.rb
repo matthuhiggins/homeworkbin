@@ -6,7 +6,9 @@ class CreatePeople < ActiveRecord::Migration
       t.string   :encrypted_password, :null => false, :limit => 128
       t.string   :salt,               :null => false, :limit => 128
       t.string   :remember_token,     :null => true,  :limit => 128
-      t.integer  :courses_in_stock,   :null => false, :default => 0
+      t.integer  :courses_taught,     :null => false, :default => 0
+      t.integer  :courses_learned,    :null => false, :default => 0
+      t.integer  :courses_available,  :null => false, :default => 0
       t.timestamps
     end
 

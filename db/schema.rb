@@ -31,11 +31,12 @@ ActiveRecord::Schema.define(:version => 20091226234927) do
   end
 
   create_table "courses", :force => true do |t|
-    t.string   "name",        :null => false
-    t.text     "description", :null => false
-    t.datetime "start",       :null => false
-    t.datetime "end",         :null => false
-    t.integer  "teacher_id",  :null => false
+    t.string   "name",                          :null => false
+    t.text     "description",                   :null => false
+    t.datetime "start",                         :null => false
+    t.datetime "end",                           :null => false
+    t.integer  "teacher_id",                    :null => false
+    t.integer  "students_count", :default => 0, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -70,7 +71,9 @@ ActiveRecord::Schema.define(:version => 20091226234927) do
     t.string   "encrypted_password", :limit => 128,                :null => false
     t.string   "salt",               :limit => 128,                :null => false
     t.string   "remember_token",     :limit => 128
-    t.integer  "courses_in_stock",                  :default => 0, :null => false
+    t.integer  "courses_taught",                    :default => 0, :null => false
+    t.integer  "courses_learned",                   :default => 0, :null => false
+    t.integer  "courses_available",                 :default => 0, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
