@@ -16,7 +16,7 @@ class PersonTest < ActiveSupport::TestCase
     student = Factory :student
     assert !student.student?
     
-    student.learning << Factory(:course)
+    student.studying << Factory(:course)
     student.reload
     assert student.student?
   end

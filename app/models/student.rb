@@ -1,4 +1,4 @@
 class Student < Person
   has_many :learners
-  has_many :learning, :through => :learners, :source => :course
+  has_many :studying, :through => :learners, :source => :course
 end

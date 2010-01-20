@@ -17,3 +17,8 @@ class ActiveSupport::TestCase
     autoload :TokenizedTests, 'concerns/tokenized_tests'
   end
 end
+
+module ActionController
+  autoload :StudentTestCase, 'concerns/student_test_case'
+  autoload :TeacherTestCase, 'concerns/teacher_test_case'
+end
