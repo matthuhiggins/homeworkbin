@@ -9,7 +9,7 @@ class Enrollment < ActiveRecord::Base
     @student ||= Student.find_by_email(email)
   end
   
-  def new_studying?
+  def test_new_student?
     student.blank?
   end
   
