@@ -5,5 +5,9 @@ module Concerns
         record.token = ActiveSupport::SecureRandom.hex(16)
       end
     end
+    
+    def to_param
+      token
+    end
   end
 end

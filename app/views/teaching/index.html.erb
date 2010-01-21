@@ -1,3 +1,7 @@
 <%= link_to 'Start a new course', new_teaching_path %>
 
-<%= debug @courses %>
+<ul>
+  <% @courses.each do |course| %>
+    <li><%= link_to course.name %></li>
+  <% end %>
+</ul>

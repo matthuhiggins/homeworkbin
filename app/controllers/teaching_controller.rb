@@ -1,5 +1,6 @@
 class TeachingController < ApplicationController
   layout 'classroom'
+  require_login
 
   def index
     @courses = current_teacher.teaching

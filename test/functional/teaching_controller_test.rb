@@ -25,5 +25,19 @@ class TeachingControllerTest < ActionController::TeacherTestCase
       :start        => '5/6/2010',
       :end          => '8/1/2010'
     }
+    
+    assert !assigns(:course).new_record?
+    assert_redirected_to teaching_path(assigns(:course))
+  end
+  
+  def test_failed_create
+    teacher_post :create, :course => {
+      :name         => '',
+      :description  => '',
+      :start        => '5/6/2010',
+      :end          => '8/1/2010'
+    }
+    
+    assert_template 'new'
   end
 end
