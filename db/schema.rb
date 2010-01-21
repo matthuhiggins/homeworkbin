@@ -66,14 +66,15 @@ ActiveRecord::Schema.define(:version => 20091226234927) do
   end
 
   create_table "people", :force => true do |t|
-    t.string   "email",                                            :null => false
-    t.string   "full_name",                                        :null => false
-    t.string   "encrypted_password", :limit => 128,                :null => false
-    t.string   "salt",               :limit => 128,                :null => false
+    t.string   "email",                                                :null => false
+    t.string   "full_name",                                            :null => false
+    t.string   "encrypted_password", :limit => 128,                    :null => false
+    t.string   "salt",               :limit => 128,                    :null => false
     t.string   "remember_token",     :limit => 128
-    t.integer  "courses_taught",                    :default => 0, :null => false
-    t.integer  "courses_learned",                   :default => 0, :null => false
-    t.integer  "courses_available",                 :default => 0, :null => false
+    t.integer  "courses_taught",                    :default => 0,     :null => false
+    t.integer  "courses_learned",                   :default => 0,     :null => false
+    t.integer  "courses_available",                 :default => 0,     :null => false
+    t.boolean  "started_as_teacher",                :default => false, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

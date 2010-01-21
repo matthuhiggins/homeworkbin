@@ -4,7 +4,7 @@ class Person < ActiveRecord::Base
   include Concerns::EmailValidation
   
   def teacher?
-    courses_taught > 0
+    started_as_teacher
   end
   
   def student?

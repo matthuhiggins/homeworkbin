@@ -4,12 +4,9 @@ class PersonTest < ActiveSupport::TestCase
   include Concerns::EmailValidationTests
   
   def test_teacher?
-    teacher = Factory :teacher
-    assert !teacher.teacher?
-
-    Factory :course, :teacher => teacher
-    teacher.reload
-    assert teacher.teacher?
+    assert !Factory(:person).teacher?
+    assert !Factory(:student).teacher?
+    assert Factory(:teacher).teacher?
   end
   
   def test_student?

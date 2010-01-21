@@ -3,5 +3,6 @@ class Teacher < Person
   
   before_create do |teacher|
     teacher.courses_available = 1
+    teacher.started_as_teacher = true
   end
 end
