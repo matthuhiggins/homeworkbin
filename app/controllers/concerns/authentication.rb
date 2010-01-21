@@ -38,9 +38,9 @@ module Concerns
 
       private
         def default_home
-          if current_person.teacher?
+          if current_person.teaching?
             teachings_path
-          else#if current_person.student?
+          else#if current_person.studying?
             studyings_path
           end
         end

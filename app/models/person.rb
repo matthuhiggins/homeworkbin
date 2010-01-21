@@ -3,11 +3,11 @@ class Person < ActiveRecord::Base
   include Person::Remembered
   include Concerns::EmailValidation
   
-  def teacher?
+  def teaching?
     registered_as_teacher
   end
   
-  def student?
+  def studying?
     courses_learned > 0
   end
 end

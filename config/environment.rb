@@ -9,6 +9,11 @@ Rails::Initializer.run do |config|
   config.gem 'will_paginate',           :version => '2.3.11',   :lib => 'will_paginate'
   config.gem 'factory_girl',            :version => '1.2.3',    :lib => 'factory_girl'
   config.gem 'json',                    :version => '1.2.0'
+  
+  config.action_mailer.default_url_options = {
+    :host => 'www.homeworkbin.com',
+    :only_path => false
+  }
 
   config.after_initialize do
     ActiveSupport::JSON.backend = 'JSONGem'
