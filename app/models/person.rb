@@ -8,6 +8,6 @@ class Person < ActiveRecord::Base
   end
   
   def studying?
-    courses_learned > 0
+    courses_studied > 0
   end
 end

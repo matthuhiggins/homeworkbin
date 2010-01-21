@@ -1,7 +1,7 @@
 class CreateCompositions < ActiveRecord::Migration
   def self.up
     create_table :compositions do |t|
-      t.integer :learner_id,      :null => false
+      t.integer :studier_id,      :null => false
       t.integer :student_id,      :null => false
       t.integer :assignment_id,   :null => false
       t.integer :course_id,       :null => false
@@ -10,7 +10,7 @@ class CreateCompositions < ActiveRecord::Migration
     end
     
     add_foreign_key :compositions, :people,      :dependent => :delete, :column => 'student_id'
-    add_foreign_key :compositions, :learners,    :dependent => :delete
+    add_foreign_key :compositions, :studiers,    :dependent => :delete
     add_foreign_key :compositions, :assignments, :dependent => :delete
   end
 

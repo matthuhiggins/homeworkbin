@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(:version => 20091226234927) do
   end
 
   create_table "compositions", :force => true do |t|
-    t.integer  "learner_id",    :null => false
+    t.integer  "studier_id",    :null => false
     t.integer  "student_id",    :null => false
     t.integer  "assignment_id", :null => false
     t.integer  "course_id",     :null => false
@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(:version => 20091226234927) do
   add_index "enrollments", ["course_id", "email"], :name => "index_enrollments_on_course_id_and_email", :unique => true
   add_index "enrollments", ["token"], :name => "index_enrollments_on_token", :unique => true
 
-  create_table "learners", :force => true do |t|
+  create_table "studiers", :force => true do |t|
     t.integer "student_id", :null => false
     t.integer "course_id",  :null => false
   end
@@ -66,14 +66,14 @@ ActiveRecord::Schema.define(:version => 20091226234927) do
   end
 
   create_table "people", :force => true do |t|
-    t.string   "email",                                                   :null => false
-    t.string   "full_name",                                               :null => false
-    t.string   "encrypted_password",    :limit => 128,                    :null => false
-    t.string   "salt",                  :limit => 128,                    :null => false
-    t.string   "remember_token",        :limit => 128
-    t.integer  "courses_taught",                       :default => 0,     :null => false
-    t.integer  "courses_learned",                      :default => 0,     :null => false
-    t.integer  "courses_available",                    :default => 0,     :null => false
+    t.string   "email",                                                :null => false
+    t.string   "full_name",                                            :null => false
+    t.string   "encrypted_password", :limit => 128,                    :null => false
+    t.string   "salt",               :limit => 128,                    :null => false
+    t.string   "remember_token",     :limit => 128
+    t.integer  "courses_taught",                    :default => 0,     :null => false
+    t.integer  "courses_studied",                   :default => 0,     :null => false
+    t.integer  "courses_available",                 :default => 0,     :null => false
     t.boolean  "registered_as_teacher",                :default => false, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
