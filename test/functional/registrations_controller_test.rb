@@ -41,7 +41,7 @@ class RegistrationsControllerTest < ActionController::TestCase
           :password               => 'sekret',
           :password_confirmation  => 'sekret'
         }
-    assert_redirected_to courses_path
+
     assert_raise(ActiveRecord::RecordNotFound) { registration.reload }
     assert !assigns(:teacher).new_record?
   end

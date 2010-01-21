@@ -1,4 +1,6 @@
 class TeachingController < ApplicationController
+  layout 'classroom'
+
   def index
     @courses = current_teacher.teaching
   end
