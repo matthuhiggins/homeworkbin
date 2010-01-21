@@ -9,7 +9,9 @@ ActionController::Routing::Routes.draw do |map|
   map.resource :session
 
   map.resources :studyings, :controller => 'studying/courses', :as => 'studying' do |studying|
-    studying.resources :assignments
+    studying.resources :assignments do |assignment|
+      assignment.resource :composition, :name_prefix => 'studying_'
+    end
   end
   
   map.resources :teachings, :controller => 'teaching/courses', :as => 'teaching' do |teaching|
