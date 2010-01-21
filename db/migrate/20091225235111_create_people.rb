@@ -9,7 +9,7 @@ class CreatePeople < ActiveRecord::Migration
       t.integer  :courses_taught,     :null => false, :default => 0
       t.integer  :courses_learned,    :null => false, :default => 0
       t.integer  :courses_available,  :null => false, :default => 0
-      t.boolean  :started_as_teacher, :null => false, :default => false
+      t.boolean  :registered_as_teacher, :null => false, :default => false
       t.timestamps
     end
 
