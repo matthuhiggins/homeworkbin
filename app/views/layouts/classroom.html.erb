@@ -5,8 +5,12 @@
 <body class="classroom">
   <div class="menu">
     <ul>
-      <li><%= link_to 'Courses', teaching_path(current_teacher) %></li>
+      <li><%= link_to 'Courses', teachings_path %></li>
+      <% if current_course.present? %>
+        <li><%= current_course.name %></li>
+      <% end %>
     </ul>
   </div>
   <%= yield %>
 </body>
+</html>
