@@ -8,13 +8,12 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :courses
   map.resource :session
 
-  map.resources :studyings, :controller => 'studying', :as => 'studying' do |studying|
-    studying.resources :courses
-    studying.resources :assignments 
+  map.resources :studyings, :controller => 'studying/courses', :as => 'studying' do |studying|
+    studying.resources :assignments
   end
   
-  map.resources :teachings, :controller => 'teaching', :as => 'teaching' do |teaching|
-    teaching.resources :courses
+  map.resources :teachings, :controller => 'teaching/courses', :as => 'teaching' do |teaching|
+    teaching.resources :assignments, :controller => 'teaching/assignments'
   end
   
   map.login 'login',    :controller => 'sessions',      :action => 'new'

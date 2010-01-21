@@ -1,7 +1,4 @@
-class TeachingController < ApplicationController
-  layout 'classroom'
-  require_login
-
+class Teaching::CoursesController < Teaching::BaseController
   def index
     @courses = current_teacher.teaching
   end
@@ -39,9 +36,4 @@ class TeachingController < ApplicationController
   def destroy
     @course = current_teacher.teaching.find params[:id]
   end
-  
-  private
-    def current_teacher
-      @current_teacher ||= current_person.becomes(Teacher)
-    end
 end

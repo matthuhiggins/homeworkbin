@@ -1,13 +1,13 @@
-<%= debug current_person %>
-
-<% form_for :course do |f| %>
+<% form_for @course, :url => teachings_path do |f| %>
   <div>
-    <%= f.label :name %>
+    <%= f.label :name, 'Course name' %>
     <%= f.text_field :name %>
+    <%= f.error_message_on :name, :prepend_text => 'Course name ' %>
   </div>
   <div>
     <%= f.label :description %>
     <%= f.text_field :description %>
+    <%= f.error_message_on :description, :prepend_text => 'Description ' %>
   </div>
   <div>
     <%= f.label :start, 'from' %>

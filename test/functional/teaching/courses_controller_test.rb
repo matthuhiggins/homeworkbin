@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class TeachingControllerTest < ActionController::TeacherTestCase
+class Teaching::CoursesControllerTest < ActionController::TeacherTestCase
   def test_index
     teacher_get :index
     
