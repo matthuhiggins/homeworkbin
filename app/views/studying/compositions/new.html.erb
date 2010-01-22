@@ -1,0 +1,4 @@
+<% form_for @composition, :url => studying_composition_path(current_course, current_assignment) do |f| %>
+  <%= f.text_area :paper %>
+  <%= f.submit %>
+<% end %>
