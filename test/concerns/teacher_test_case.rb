@@ -1,7 +1,7 @@
 module ActionController
   class TeacherTestCase < TestCase
     def teacher_request(http_method, action, params = {}, options = {})
-      process(action, params, {:person_id => current_teacher.id}, {}, http_method)
+      process(action, params.reverse_merge(:teaching_id => current_course.to_param), {:person_id => current_teacher.id}, {}, http_method)
     end
     
     def teacher_get(action, params = {}, options = {})
