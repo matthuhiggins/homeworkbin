@@ -19,7 +19,7 @@ class Mailer < ActionMailer::Base
   
   def assignment assignment, student
     recipients  student.email
-    subject     "There's a new assignment in #{assignment.course.name}"
+    subject     "New assignment in #{assignment.course.name}"
     body        :assignment => assignment, :student => student
   end
 end

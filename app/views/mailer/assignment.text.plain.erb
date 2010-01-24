@@ -1,0 +1,8 @@
+Hello, <%= @student.full_name %>,
+
+There's a new assignment in <%= @assignment.course.name %>. Please follow the link below to submit your homework:
+
+<%= studying_assignment_url(@assignment.course, @assignment) %>
+
+Thanks,
+<%= @assignment.course.teacher.full_name %>
