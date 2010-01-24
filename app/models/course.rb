@@ -3,6 +3,7 @@ class Course < ActiveRecord::Base
   has_many :studiers
   has_many :students, :through => :studiers
   has_many :assignments
+  has_many :enrollments, :extend => Enrollment::Matriculation
   
   validates_presence_of :name
   

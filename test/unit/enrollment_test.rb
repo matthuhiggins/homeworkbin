@@ -4,6 +4,11 @@ class EnrollmentTest < ActiveSupport::TestCase
   include Concerns::TokenizedTests
   include Concerns::EmailValidationTests
   
+  def test_teacher_delegation
+    enrollment = Factory :enrollment
+    assert_equal enrollment.course.teacher, enrollment.teacher
+  end
+  
   def test_nil_student
     assert_nil Factory.build(:enrollment).student
   end
@@ -16,11 +21,5 @@ class EnrollmentTest < ActiveSupport::TestCase
   def test_test_new_student?
     assert Factory.build(:enrollment).test_new_student?
     assert !Factory.build(:enrollment, :email => Factory(:student).email).test_new_student?
-  end
-  
-  def test_mail
-    assert_emails 1 do
-      Factory :enrollment
-    end
   end
 end

@@ -1,9 +1,9 @@
 class Enrollment < ActiveRecord::Base
   include Concerns::Tokenized
   include Concerns::EmailValidation
-  extend Concerns::Denormalization
-
-  belongs_to :course, :denormalize => :teacher
+  
+  belongs_to :course
+  delegate :teacher, :to => :course
   
   def student
     @student ||= Student.find_by_email(email)
@@ -15,9 +15,5 @@ class Enrollment < ActiveRecord::Base
   
   def build_student
     Student.new :email => email
-  end
-  
-  after_create do |enrollment|
-    Mailer.deliver_enrollment enrollment
   end
 end
