@@ -2,11 +2,10 @@ ActionController::Routing::Routes.draw do |map|
   map.root :controller => 'marketing'
   
   map.resources :registrations, :collection => {'thanks' => :get}
-  map.resources :enrollment
   map.resources :lost_passwords
-  map.resources :people
-  map.resources :courses
   map.resource :session
+
+  map.resources :enrollments, :controller => 'studying/enrollments'
 
   map.resources :studyings, :controller => 'studying/courses', :as => 'studying' do |studying|
     studying.resources :assignments do |assignment|
@@ -16,7 +15,7 @@ ActionController::Routing::Routes.draw do |map|
   
   map.resources :teachings, :controller => 'teaching/courses', :as => 'teaching' do |teaching|
     teaching.resources :assignments, :controller => 'teaching/assignments'
-    teaching.resources :enrollments
+    teaching.resources :enrollments, :controller => 'teaching/enrollments'
   end
   
   map.login 'login',    :controller => 'sessions',      :action => 'new'
