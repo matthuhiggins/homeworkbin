@@ -1,19 +1,13 @@
 require 'digest/sha1'
 
-class Person
+module Concerns
   module Authenticated
-    def self.included(person)
-      person.class_eval do
-        has_many :lost_passwords
-
-        before_save :encrypt_password
+    def self.included(model)
+      model.class_eval do
+        before_save :encrypt_password, :if => :password_given?
 
         attr_accessor :password
         attr_protected :encrypted_password, :salt
-
-        validates_confirmation_of :password, :on => :create
-        validates_presence_of     :password, :on => :create
-        validates_presence_of     :password, :on => :update, :unless => Proc.new { |person| person.password.nil? }
 
         extend ClassMethods
       end
@@ -21,8 +15,8 @@ class Person
 
     module ClassMethods
       def authenticate(email, password)
-        if (person = find_by_email(email)) && person.authenticate(password)
-          person
+        if (record = find_by_email(email)) && record.authenticate(password)
+          record
         end
       end
     
@@ -38,11 +32,14 @@ class Person
     end
 
     private
+      def password_given?
+        !password.nil?
+      end
+    
       def encrypt_password
-        return if password.nil?
         self.salt = ActiveSupport::SecureRandom.base64(16)
         self.encrypted_password = self.class.encrypt_password(self.password, self.salt)
-        self.password = self.password_confirmation = nil
+        self.password = nil
       end
   end
 end

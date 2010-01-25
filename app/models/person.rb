@@ -1,7 +1,16 @@
 class Person < ActiveRecord::Base
-  include Person::Authenticated
+  validates_presence_of :password, :if => :password_given?
+  
+  # validate do |person|
+    # p "password = #{person.password}"
+  # end
+
   include Person::Remembered
+  include Concerns::Authenticated
   include Concerns::EmailValidation
+  
+  has_many :lost_passwords
+  
   
   def teaching?
     registered_as_teacher

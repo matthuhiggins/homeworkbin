@@ -1,8 +1,10 @@
 class Registration < ActiveRecord::Base
   include Concerns::Tokenized
   include Concerns::EmailValidation
+  include Concerns::Authenticated
 
-  validates_presence_of :full_name
+  validates_presence_of :full_name, :on => :create
+  validates_presence_of :password, :on => :create
 
   validate_on_create do |registration|
     if Teacher.exists? :email => registration.email
@@ -14,7 +16,14 @@ class Registration < ActiveRecord::Base
     Mailer.deliver_registration registration
   end
 
-  def build_teacher
-    Teacher.new :email => email, :full_name => full_name
+  def create_teacher!
+    Registration.delete_all :email => email
+
+    Teacher.create do |teacher|
+      teacher.email               = email
+      teacher.full_name           = full_name
+      teacher.encrypted_password  = encrypted_password
+      teacher.salt                = salt
+    end
   end
 end

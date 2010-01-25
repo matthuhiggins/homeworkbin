@@ -2,6 +2,7 @@ require 'test_helper'
 
 class PersonTest < ActiveSupport::TestCase
   include Concerns::EmailValidationTests
+  include Concerns::AuthenticatedTests
   
   def test_teaching?
     assert !Factory(:person).teaching?
@@ -16,5 +17,15 @@ class PersonTest < ActiveSupport::TestCase
     student.studying << Factory(:course)
     student.reload
     assert student.studying?
+  end
+  
+  def test_validate_presence_of_password
+    person = Factory :person
+
+    person.update_attributes(:password => nil)
+    assert_nil person.errors.on(:password)
+    
+    person.update_attributes(:password => '')
+    assert_equal "can't be blank", person.errors.on(:password)
   end
 end

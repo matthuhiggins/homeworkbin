@@ -3,11 +3,11 @@ module ActiveSupport
     module Concerns
       module TokenizedTests
         def test_token_generated
-          assert_not_nil Factory(target_class.to_s.underscore).token
+          assert_not_nil Factory(factory_name).token
         end
         
         def test_to_param
-          record = Factory(target_class.to_s.underscore)
+          record = Factory(target_klass.to_s.underscore)
           assert_equal record.token, record.to_param
         end
       end

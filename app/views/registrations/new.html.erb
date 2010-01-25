@@ -14,6 +14,11 @@
     <%= f.error_message_on :email, :prepend_text => 'Email ' %>
   </div>
   <div>
+    <%= f.label :password %>
+    <%= f.text_field :password %>
+    <%= f.error_message_on :password, :prepend_text => 'Password ' %>
+  </div>
+  <div>
     <%= f.submit 'Start your free course' %>
   </div>
 <% end %>
