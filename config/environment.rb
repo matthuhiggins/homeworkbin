@@ -11,7 +11,7 @@ Rails::Initializer.run do |config|
   config.gem 'json',                    :version => '1.2.0'
   
   config.action_mailer.default_url_options = {
-    :host => 'www.homeworkbin.com',
+    :host => 'homeworkbin.com',
     :only_path => false
   }
 
