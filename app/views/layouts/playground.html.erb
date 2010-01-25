@@ -3,13 +3,21 @@
   <%= stylesheet_link_tag 'playground' %>
 </head>
 <body class="playground">
-  <div class="menu">
-    <div class="logo">Homework Bin</div>
-    <div class="links">
-      <%= link_to "Start a free course", signup_path %>
-      <%= link_to "Sign in", login_path %>
+  <div class="header">
+    <div class="menu">
+      <div class="logo">
+        <% link_to root_path do %>
+          Homework Bin
+        <% end %>
+      </div>
+      <div class="links">
+        <%= link_to "Start a free course", signup_path %>
+        <%= link_to "Sign in", login_path %>
+      </div>
     </div>
   </div>
-  <%= yield %>
+  <div class="content">
+    <%= yield %>
+  </div>
 </body>
 </html>

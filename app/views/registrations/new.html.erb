@@ -1,3 +1,7 @@
+<%= stylesheet_link_tag 'form' %>
+
+<style>
+</style>
 <% form_for @registration do |f| %>
   <div>
     <%= f.label :full_name, 'Your name' %>
@@ -10,6 +14,6 @@
     <%= f.error_message_on :email, :prepend_text => 'Email ' %>
   </div>
   <div>
-    <%= f.submit 'Start a free course' %>
+    <%= f.submit 'Start your free course' %>
   </div>
 <% end %>

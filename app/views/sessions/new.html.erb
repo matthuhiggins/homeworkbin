@@ -1,30 +1,20 @@
+<%= stylesheet_link_tag 'form' %>
 <style>
-.login-form div {
-  margin: 4px 0;
-}
-.login-form label {
-  display: inline-block;
-  width: 75px;
-}
-.login-form input {
-  padding: 3px;
-}
-.login-form input:focus {
-  
-}
 </style>
 
-<% form_tag(session_path, {:class => 'login-form'}) do %>
+<% form_tag(session_path, :class => 'login_form') do %>
   <div>
     <%= label_tag 'email' %>
     <%= text_field_tag 'email' %>
   </div>
   <div>
-    <%= label_tag 'password' %>
+    <% content_tag :label, :for => 'password' do %>
+      Password
+      (<%= link_to 'Lose your password?', new_lost_password_path %>)
+    <% end %>
     <%= password_field_tag 'password' %>
   </div>
   <div>
     <%= submit_tag 'Sign in' %>
   </div>
-  <%= link_to 'Lose your password?', new_lost_password_path %>
 <% end %>

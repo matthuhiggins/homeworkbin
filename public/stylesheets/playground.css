@@ -3,16 +3,16 @@
 }
 
 html {
-  height: 100%;
+  height: auto;
+  min-height: 100%;
   margin: 0;
   padding: 0;
 }
 
 body {
   font-family: Arial, "MS Trebuchet", sans-serif;
-  margin: 0 auto;
+  margin: 0;
   padding: 0;
-  width: 600px;
 }
 
 p {
@@ -22,22 +22,38 @@ p {
 
 a, a:visited {
   color: #55c;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
 }
 
 .playground {
 }
 
+.playground .header {
+  background-color: #FAFAFA;
+  border-bottom: 5px solid #F6F6F6;
+}
+
 .playground .menu {
-  background-color: #ddd;
-  font-weight: bolder;
+  font-weight: bold;
+  margin: 0 auto;
   overflow: hidden;
   padding: 5px 12px;
+  width: 650px;
 }
 
 .playground .menu .logo {
   float: left;
   font-family: "Didot";
   font-size: 36px;
+}
+
+.playground .menu .logo a {
+  color: black;
+  text-decoration: none;
 }
 
 .playground .menu .links {
@@ -50,39 +66,8 @@ a, a:visited {
   padding-bottom: 5px;
 }
 
-.playground .index {
+.playground .content {
+  margin: 0 auto;
   padding: 20px;
-}
-
-.playground .index {
-  font-family: "Lucida Grande", sans-serif;
-}
-
-.playground .index .slogan {
-  font-size: 42px;
-/*  text-decoration: underline;*/
-}
-
-.playground .index .blurbs {
-  margin-top: 20px;
-  overflow: hidden;
-}
-
-.playground .index .blurb {
-  float: left;
-  padding-right: 35px;
-  width: 240px;
-}
-
-.playground .index .question {
-  border-bottom: 1px dashed #ccc;
-  color: #444;
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 6px;
-  padding-bottom: 6px;
-}
-
-.playground .index .answer p {
-  margin-bottom: 1px;
+  width: 650px;
 }

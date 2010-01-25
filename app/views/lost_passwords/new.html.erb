@@ -1,3 +1,5 @@
+<%= stylesheet_link_tag 'form' %>
+
 <% form_for @lost_password do |f| %>
   <div>
     <%= f.label :email, 'Your email' %>
@@ -5,6 +7,6 @@
     <%= f.error_message_on :email, :prepend_text => 'Email ' %>
   </div>  
   <div>
-    <%= f.submit %>
+    <%= f.submit 'Reset password' %>
   </div>
 <% end %>
