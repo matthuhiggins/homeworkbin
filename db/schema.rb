@@ -14,7 +14,7 @@ ActiveRecord::Schema.define(:version => 20091226234927) do
   create_table "assignments", :force => true do |t|
     t.string   "name",        :null => false
     t.text     "description", :null => false
-    t.datetime "due",         :null => false
+    t.datetime "due_at",      :null => false
     t.integer  "course_id",   :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -33,8 +33,8 @@ ActiveRecord::Schema.define(:version => 20091226234927) do
   create_table "courses", :force => true do |t|
     t.string   "name",                          :null => false
     t.text     "description",                   :null => false
-    t.datetime "start",                         :null => false
-    t.datetime "end",                           :null => false
+    t.date     "start_date",                    :null => false
+    t.date     "end_date",                      :null => false
     t.integer  "teacher_id",                    :null => false
     t.integer  "students_count", :default => 0, :null => false
     t.datetime "created_at"

@@ -3,7 +3,7 @@ class CreateAssignments < ActiveRecord::Migration
     create_table :assignments do |t|
       t.string    :name,        :null => false
       t.text      :description, :null => false
-      t.datetime  :due,         :null => false
+      t.datetime  :due_at,         :null => false
       t.integer   :course_id,   :null => false
       t.timestamps
     end

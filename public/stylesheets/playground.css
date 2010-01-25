@@ -15,6 +15,15 @@ body {
   padding: 0;
 }
 
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style-type: none;
+}
+
 p {
   margin: 0;
   padding: 0;
@@ -56,13 +65,12 @@ a:hover {
   text-decoration: none;
 }
 
-.playground .menu .links {
+.playground .menu ul.links {
   float: right;
   text-align: right;
 }
 
-.playground .menu .links a {
-  display: block;
+.playground .menu ul.links li {
   padding-bottom: 5px;
 }
 

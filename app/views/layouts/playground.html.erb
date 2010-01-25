@@ -1,6 +1,9 @@
 <html>
 <head>
   <%= stylesheet_link_tag 'playground' %>
+  <title>
+    Homework Bin<%= yield :title %>
+  </title>
 </head>
 <body class="playground">
   <div class="header">
@@ -10,10 +13,10 @@
           Homework Bin
         <% end %>
       </div>
-      <div class="links">
-        <%= link_to "Start a free course", signup_path %>
-        <%= link_to "Sign in", login_path %>
-      </div>
+      <ul class="links">
+        <li><%= link_to "Start a free course", signup_path %></li>
+        <li><%= link_to "Sign in", login_path %></li>
+      </ul>
     </div>
   </div>
   <div class="content">

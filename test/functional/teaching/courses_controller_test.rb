@@ -22,8 +22,8 @@ class Teaching::CoursesControllerTest < ActionController::TeacherTestCase
     teacher_post :create, :course => {
       :name         => 'ENV 101',
       :description  => 'ez cheese',
-      :start        => '5/6/2010',
-      :end          => '8/1/2010'
+      :start_date   => '5/6/2010',
+      :end_date     => '8/1/2010'
     }
     
     assert !assigns(:course).new_record?
@@ -34,8 +34,8 @@ class Teaching::CoursesControllerTest < ActionController::TeacherTestCase
     teacher_post :create, :course => {
       :name         => '',
       :description  => '',
-      :start        => '5/6/2010',
-      :end          => '8/1/2010'
+      :start_date   => '5/6/2010',
+      :end_date     => '8/1/2010'
     }
     
     assert_template 'new'
