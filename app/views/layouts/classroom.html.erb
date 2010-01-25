@@ -1,16 +1,30 @@
 <html>
 <head>
-  <%= stylesheet_link_tag 'classroom' %>
+  <%= stylesheet_link_tag 'reset', 'classroom' %>
 </head>
 <body class="classroom">
-  <div class="menu">
-    <ul>
-      <li><%= link_to 'Courses', teachings_path %></li>
-      <% if current_course.present? %>
-        <li><%= current_course.name %></li>
-      <% end %>
-    </ul>
+  <div class="main-menu">
+    <div class="logo">
+      Homework Bin
+    </div>
   </div>
-  <%= yield %>
+  <% if current_course.present? %>
+    <div class="course-menu">
+      <div class="course-name">
+        <%= current_course.name %>
+      </div>
+      <ul class="course-operations">
+        <li>
+          <%= link_to 'Assignments', teaching_assignments_path(current_course) %>
+        </li>
+        <li>
+          <%= link_to 'Students', teaching_assignments_path %>
+        </li>
+      </ul>
+    </div>
+  <% end %>
+  <div class="content">
+    <%= yield %>
+  </div>
 </body>
 </html>

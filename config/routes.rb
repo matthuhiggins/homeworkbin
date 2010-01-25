@@ -16,6 +16,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :teachings, :controller => 'teaching/courses', :as => 'teaching' do |teaching|
     teaching.resources :assignments, :controller => 'teaching/assignments'
     teaching.resources :enrollments, :controller => 'teaching/enrollments'
+    teaching.resources :students, :controller => 'teaching/students'
   end
   
   map.login 'login',    :controller => 'sessions',      :action => 'new'
