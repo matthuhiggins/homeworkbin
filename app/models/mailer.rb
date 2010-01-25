@@ -1,6 +1,6 @@
 class Mailer < ActionMailer::Base
   def registration registration
-    from        %{"Homework Bin" <no-reply@homeworkbin.com>}
+    from        "<no-reply@homeworkbin.com"
     recipients  registration.email
     subject     'Confirm your email address'
     body        :registration => registration
@@ -21,7 +21,8 @@ class Mailer < ActionMailer::Base
   end
   
   def assignment assignment, student
-    from        %{"Homework Bin" <no-reply@homeworkbin.com>}
+    # from        %{"Homework Bin" <no-reply@homeworkbin.com>}
+    from        "<no-reply@homeworkbin.com"
     recipients  student.email
     subject     "New assignment in #{assignment.course.name}"
     body        :assignment => assignment, :student => student
