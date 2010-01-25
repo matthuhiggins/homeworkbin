@@ -15,7 +15,14 @@ Rails::Initializer.run do |config|
     :only_path => false
   }
   
-  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :address        => "mail.spiz.us",
+    :port           => 587,
+    :domain         => "haikuvillage.com",
+    :user_name      => "village",
+    :password       => "haiku575",
+    :authentication => :login
+  }
 
   config.after_initialize do
     ActiveSupport::JSON.backend = 'JSONGem'
