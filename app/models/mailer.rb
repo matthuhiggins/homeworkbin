@@ -1,6 +1,6 @@
 class Mailer < ActionMailer::Base
   def registration registration
-    from        "<no-reply@homeworkbin.com"
+    from        "no-reply@homeworkbin.com"
     recipients  registration.email
     subject     'Confirm your email address'
     body        :registration => registration
