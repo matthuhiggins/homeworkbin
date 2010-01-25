@@ -14,6 +14,8 @@ Rails::Initializer.run do |config|
     :host => 'www.homeworkbin.com',
     :only_path => false
   }
+  
+  config.action_mailer.delivery_method = :smtp
 
   config.after_initialize do
     ActiveSupport::JSON.backend = 'JSONGem'
