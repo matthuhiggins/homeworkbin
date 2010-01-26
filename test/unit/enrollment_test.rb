@@ -9,6 +9,17 @@ class EnrollmentTest < ActiveSupport::TestCase
     assert_equal enrollment.course.teacher, enrollment.teacher
   end
   
+  def test_student_already_studying
+    course = Factory :course
+    student = Factory :student
+    course.students << student
+    
+    enrollment = Factory.build :enrollment, :course => course, :email => student.email
+    
+    assert enrollment.invalid?
+    assert_equal 'is already in this course', enrollment.errors.on(:email)
+  end
+  
   def test_nil_student
     assert_nil Factory.build(:enrollment).student
   end
