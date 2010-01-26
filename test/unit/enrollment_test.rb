@@ -19,7 +19,7 @@ class EnrollmentTest < ActiveSupport::TestCase
   end
   
   def test_test_new_student?
-    assert Factory.build(:enrollment).test_new_student?
-    assert !Factory.build(:enrollment, :email => Factory(:student).email).test_new_student?
+    assert Factory.build(:enrollment).new_student?
+    assert !Factory.build(:enrollment, :email => Factory(:student).email).new_student?
   end
 end
