@@ -8,7 +8,6 @@ Rails::Initializer.run do |config|
   config.gem 'matthuhiggins-foreigner', :version => '0.4.1',    :lib => 'foreigner'
   config.gem 'will_paginate',           :version => '2.3.11'
   config.gem 'json',                    :version => '1.2.0'
-  config.gem 'factory_girl',            :version => '1.2.3'
   
   config.action_mailer.default_url_options = {
     :host => 'homeworkbin.com',

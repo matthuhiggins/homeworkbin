@@ -10,3 +10,5 @@ config.action_mailer.default_url_options = {
   :host => 'localhost:3000',
   :only_path => false
 }
+
+config.gem 'factory_girl', :version => '1.2.3'
