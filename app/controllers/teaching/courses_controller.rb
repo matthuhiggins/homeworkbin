@@ -36,4 +36,9 @@ class Teaching::CoursesController < Teaching::BaseController
   def destroy
     @course = current_teacher.teaching.find params[:id]
   end
+  
+  private
+    def current_course
+      @current_course ||= current_teacher.teaching.find params[:teaching_id]
+    end
 end
