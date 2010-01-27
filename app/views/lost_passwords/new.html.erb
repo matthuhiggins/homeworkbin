@@ -4,9 +4,9 @@
 
 <% form_for @lost_password do |f| %>
   <div>
-    <%= f.label :email, 'Your email' %>
-    <%= f.text_field :email %>
-    <%= f.error_message_on :email, :prepend_text => 'Email ' %>
+    <p><%= f.label :email, 'Your email' %></p>
+    <p><%= f.text_field :email %></p>
+    <p><%= f.error_message_on :email, :prepend_text => 'Email ' %></p>
   </div>  
   <div>
     <%= f.submit 'Reset password' %>

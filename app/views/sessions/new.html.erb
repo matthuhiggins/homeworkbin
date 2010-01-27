@@ -2,17 +2,23 @@
 
 <% title 'Sign in' %>
 
-<% form_tag(session_path, :class => 'login_form') do %>
+<% form_tag(login_path, :class => 'login_form') do %>
   <div>
-    <%= label_tag 'email' %>
-    <%= text_field_tag 'email' %>
+    <p><%= label_tag :email %></p>
+    <p><%= text_field_tag :email, params[:email] %></p>
   </div>
   <div>
-    <% content_tag :label, :for => 'password' do %>
-      Password
-      (<%= link_to 'Lose your password?', new_lost_password_path %>)
-    <% end %>
-    <%= password_field_tag 'password' %>
+    <p>
+      <% content_tag :label, :for => :password do %>
+        Password
+        (<%= link_to 'Lose your password?', new_lost_password_path %>)
+      <% end %>
+    </p>
+    <p><%= password_field_tag :password %></p>
+  </div>
+  <div>
+    <%= check_box_tag :remember_me, "1", params[:remember_me].present? %>
+    <%= label_tag :remember_me %>
   </div>
   <div>
     <%= submit_tag 'Sign in' %>

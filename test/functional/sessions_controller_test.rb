@@ -11,11 +11,10 @@ class SessionsControllerTest < ActionController::TestCase
 
     post :create, :email => person.email, :password => 'wrong_sekret'
 
-    assert_equal "Incorrect e-mail/password", flash[:notice]
-    assert_equal person.email, flash[:email_attempt]
+    assert_equal "Incorrect e-mail/password", flash[:warning]
     assert_nil @controller.session[:person_id]
     assert_nil @response.cookies['last_email']
-    assert_redirected_to(login_path)
+    assert_template 'new'
   end
   
   def test_login

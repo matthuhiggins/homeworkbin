@@ -20,6 +20,9 @@
     </div>
   </div>
   <div class="content">
+    <% if flash[:warning].present? %>
+      <%= content_tag :div, flash[:warning], :class => 'warning' %>
+    <% end %>
     <%= yield %>
   </div>
 </body>

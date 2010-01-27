@@ -61,3 +61,10 @@ a:hover {
   padding: 20px;
   width: 650px;
 }
+
+.playground .content .warning {
+  background-color: #FFEBE8;
+  border: 1px solid #DD3C10;
+  margin: 4px 0 10px 0;
+  padding: 10px;
+}
