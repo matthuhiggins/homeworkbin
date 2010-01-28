@@ -1,0 +1,40 @@
+html {
+  height: auto;
+  min-height: 100%;
+}
+
+body {
+  font-family: Arial, "MS Trebuchet", sans-serif;
+}
+
+a, a:visited {
+  color: #55c;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+body > .header {
+  background-color: #FAFAFA;
+  border-bottom: 5px solid #F6F6F6;
+}
+
+body > .header .main.menu {
+  margin: 0 auto;
+  overflow: hidden;
+  padding: 5px 12px;
+  width: 650px;
+}
+
+body > .header .main.menu .logo {
+  color: black;
+  float: left;
+  font-family: Georgia;
+  font-size: 36px;
+  text-decoration: none;
+}
+
+body > .header .main.menu .logo a {
+}

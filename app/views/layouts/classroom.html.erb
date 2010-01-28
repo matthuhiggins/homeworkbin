@@ -1,13 +1,13 @@
 <html>
 <head>
-  <%= stylesheet_link_tag 'reset', 'classroom' %>
+  <%= stylesheet_link_tag 'reset', 'core', 'classroom' %>
 </head>
 <body class="classroom">
   <div class="header">
     <div class="main menu">
-      <div class="logo">
+      <% link_to teachings_path, :class => 'logo' do %>
         Homework Bin
-      </div>
+      <% end %>
       <ul class="links">
         <li><%= link_to 'Courses', teachings_path %></li>
       </ul>

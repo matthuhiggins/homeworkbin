@@ -2,48 +2,7 @@
   outline-style: none;
 }
 
-html {
-  height: auto;
-  min-height: 100%;
-}
-
-body {
-  font-family: Arial, "MS Trebuchet", sans-serif;
-}
-
-a, a:visited {
-  color: #55c;
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
 .playground {
-}
-
-.playground .header {
-  background-color: #FAFAFA;
-  border-bottom: 5px solid #F6F6F6;
-}
-
-.playground .menu {
-  margin: 0 auto;
-  overflow: hidden;
-  padding: 5px 12px;
-  width: 650px;
-}
-
-.playground .menu .logo {
-  float: left;
-  font-family: Georgia;
-  font-size: 36px;
-}
-
-.playground .menu .logo a {
-  color: black;
-  text-decoration: none;
 }
 
 .playground .menu ul.links {

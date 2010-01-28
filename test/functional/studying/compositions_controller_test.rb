@@ -18,7 +18,7 @@ class Studying::CompositionsControllerTest < ActionController::StudentTestCase
   def test_show
     composition = Factory :composition, :assignment => assignment, :studier => current_studier
     
-    student_get :show, :id => @composition.to_param
+    student_get :show, :id => composition.to_param
     
     assert_equal composition, assigns(:composition)
   end

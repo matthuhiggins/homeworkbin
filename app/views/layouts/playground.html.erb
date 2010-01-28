@@ -1,18 +1,16 @@
 <html>
 <head>
-  <%= stylesheet_link_tag 'reset', 'playground' %>
+  <%= stylesheet_link_tag 'reset', 'core', 'playground' %>
   <title>
     Homework Bin<%= yield :title %>
   </title>
 </head>
 <body class="playground">
   <div class="header">
-    <div class="menu">
-      <div class="logo">
-        <% link_to root_path do %>
-          Homework Bin
-        <% end %>
-      </div>
+    <div class="main menu">
+      <% link_to root_path, :class => 'logo' do %>
+        Homework Bin
+      <% end %>
       <ul class="links">
         <li><%= link_to "Start a free course", signup_path %></li>
         <li><%= link_to "Sign in", login_path %></li>
