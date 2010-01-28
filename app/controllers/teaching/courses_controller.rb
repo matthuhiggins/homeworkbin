@@ -39,6 +39,8 @@ class Teaching::CoursesController < Teaching::BaseController
   
   private
     def current_course
-      @current_course ||= current_teacher.teaching.find params[:teaching_id]
+      if params[:id].present?
+        @current_course ||= current_teacher.teaching.find params[:id]
+      end
     end
 end

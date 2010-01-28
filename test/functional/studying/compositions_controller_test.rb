@@ -15,6 +15,14 @@ class Studying::CompositionsControllerTest < ActionController::StudentTestCase
     assert !assigns(:composition).new_record?
   end
   
+  def test_show
+    composition = Factory :composition, :assignment => assignment, :studier => current_studier
+    
+    student_get :show, :id => @composition.to_param
+    
+    assert_equal composition, assigns(:composition)
+  end
+  
   private
     def assignment
       @assignment ||= Factory(:assignment, :course => current_course)

@@ -1,8 +1,25 @@
 .classroom {
-  
+  font-family: Arial, sans-serif;
 }
 
-.classroom .course-menu {
+.classroom .menu {
+  margin: 0 auto;
+  overflow: hidden;
+  width: 700px;
+}
+
+.classroom .main.menu .logo {
+  float: left;
+  font-family: Georgia;
+  font-size: 36px;
+}
+
+.classroom .main.menu ul.links {
+  float: right;
+  text-align: right;
+}
+
+.classroom .course.menu {
   overflow: hidden;
   padding: 6px 20px;
 }
@@ -22,4 +39,10 @@
 .classroom .course-operations li {
   float: left;
   margin-right: 10px;
+}
+
+.classroom .content {
+  margin: 0 auto;
+  overflow: hidden;
+  width: 700px;
 }

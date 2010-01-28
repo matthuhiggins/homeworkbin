@@ -3,26 +3,31 @@
   <%= stylesheet_link_tag 'reset', 'classroom' %>
 </head>
 <body class="classroom">
-  <div class="main-menu">
-    <div class="logo">
-      Homework Bin
-    </div>
-  </div>
-  <% if current_course.present? %>
-    <div class="course-menu">
-      <div class="course-name">
-        <%= current_course.name %>
+  <div class="header">
+    <div class="main menu">
+      <div class="logo">
+        Homework Bin
       </div>
-      <ul class="course-operations">
-        <li>
-          <%= link_to 'Assignments', teaching_assignments_path(current_course) %>
-        </li>
-        <li>
-          <%= link_to 'Students', teaching_students_path(current_course) %>
-        </li>
+      <ul class="links">
+        <li><%= link_to 'Courses', teachings_path %></li>
       </ul>
     </div>
-  <% end %>
+    <% if current_course.present? %>
+      <div class="course menu">
+        <div class="course-name">
+          <%= current_course.name %>
+        </div>
+        <ul class="course-operations">
+          <li>
+            <%= link_to 'Assignments', teaching_assignments_path(current_course) %>
+          </li>
+          <li>
+            <%= link_to 'Students', teaching_students_path(current_course) %>
+          </li>
+        </ul>
+      </div>
+    <% end %>
+  </div>
   <div class="content">
     <%= yield %>
   </div>
