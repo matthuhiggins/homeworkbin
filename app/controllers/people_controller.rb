@@ -1,5 +1,6 @@
 class PeopleController < ApplicationController
   require_login
+
   layout 'classroom'
   
   def show
@@ -11,6 +12,4 @@ class PeopleController < ApplicationController
     end
     redirect_to :back
   end
-
-  
 end

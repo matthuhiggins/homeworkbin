@@ -1,5 +1,5 @@
 class Studier < ActiveRecord::Base
-  belongs_to :course, :counter_cache => :students_count
-  belongs_to :student, :counter_cache => :courses_studied
+  belongs_to :course
+  belongs_to :student
   has_many :compositions
 end

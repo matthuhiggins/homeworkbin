@@ -1,5 +1,5 @@
 class Course < ActiveRecord::Base
-  belongs_to :teacher, :counter_cache => :courses_taught
+  belongs_to :teacher
   has_many :studiers
   has_many :students, :through => :studiers
   has_many :assignments

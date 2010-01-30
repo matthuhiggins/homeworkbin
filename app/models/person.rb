@@ -1,10 +1,6 @@
 class Person < ActiveRecord::Base
   validates_presence_of :password, :if => :password_given?
   
-  # validate do |person|
-    # p "password = #{person.password}"
-  # end
-
   include Person::Remembered
   include Concerns::Authenticated
   include Concerns::EmailValidation
@@ -17,6 +13,6 @@ class Person < ActiveRecord::Base
   end
   
   def studying?
-    courses_studied > 0
+    Studier.exists? :student_id => self
   end
 end

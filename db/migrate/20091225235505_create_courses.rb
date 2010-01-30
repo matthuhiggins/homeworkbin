@@ -6,7 +6,6 @@ class CreateCourses < ActiveRecord::Migration
       t.date      :start_date,      :null => false
       t.date      :end_date,        :null => false
       t.integer   :teacher_id,      :null => false
-      t.integer   :students_count,  :null => false, :default => 0
       t.timestamps
     end
     

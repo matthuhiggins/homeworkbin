@@ -1,4 +1,4 @@
-<%= @course.students_count %> students,
+<%= @course.students.count %> students,
 <%= @course.assignments.count %> assignments
 
 <%= link_to 'New assignment', new_teaching_assignment_path(@course) %>
