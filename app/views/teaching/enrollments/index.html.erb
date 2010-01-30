@@ -1,4 +1,8 @@
-<%= debug @enrollments %>
+<ul>
+  <% @enrollments.each do |enrollment| %>
+    <li><%= render enrollment %></li>
+  <% end %>
+</ul>
 
 <% form_tag do %>
   <%= text_area_tag :emails %>

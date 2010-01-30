@@ -8,4 +8,8 @@ class Studying::EnrollmentsControllerTest < ActionController::TestCase
     
     assert_equal enrollment, assigns(:enrollment)
   end
+  
+  def test_update
+    
+  end
 end
