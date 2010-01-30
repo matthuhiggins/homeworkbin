@@ -1,8 +1,8 @@
 require 'action_controller_test'
 
-class Teaching::StudentsControllerTest < ActionController::TeacherTestCase
+class Teaching::StudentsControllerTest < ActionController::TeachingTestCase
   def test_index
-    teacher_get :index
+    teaching_get :index
     assert_not_nil assigns(:students)
   end
   
@@ -10,7 +10,7 @@ class Teaching::StudentsControllerTest < ActionController::TeacherTestCase
     student = Factory :student
     current_course.students << student
     
-    teacher_get :show, :id => student.to_param
+    teaching_get :show, :id => student.to_param
     
     assert_equal student, assigns(:student)
   end
@@ -19,7 +19,7 @@ class Teaching::StudentsControllerTest < ActionController::TeacherTestCase
     student = Factory :student
     current_course.students << student
 
-    teacher_delete :destroy, :id => student.to_param
+    teaching_delete :destroy, :id => student.to_param
 
     assert_raise ActiveRecord::RecordNotFound do
       student.reload

@@ -36,5 +36,8 @@ body > .header .main.menu .logo {
   text-decoration: none;
 }
 
-body > .header .main.menu .logo a {
+body > .content {
+  margin: 0 auto;
+  padding: 20px;
+  width: 650px;
 }

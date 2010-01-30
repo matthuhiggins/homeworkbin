@@ -41,7 +41,7 @@ class RegistrationTest < ActiveSupport::TestCase
     assert_equal registration.encrypted_password, teacher.encrypted_password
   end
   
-  def test_create_teacher_destroys_related_registrations
+  def test_create_teaching_destroys_related_registrations
     primary_registration = Factory :registration, :email => 'a@b.com'
     duplicate_registration = Factory :registration, :email => 'a@b.com'
     other_registration = Factory :registration, :email => 'x@y.com'

@@ -1,6 +1,6 @@
 require 'action_controller_test'
 
-class Teaching::BaseControllerTest < ActionController::TeacherTestCase
+class Teaching::BaseControllerTest < ActionController::TeachingTestCase
   class Controller < Teaching::BaseController
     def index
       render :text => 'foo'

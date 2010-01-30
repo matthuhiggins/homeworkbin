@@ -1,14 +1,14 @@
 require 'action_controller_test'
 
-class Studying::CoursesControllerTest < ActionController::StudentTestCase
+class Studying::CoursesControllerTest < ActionController::StudyingTestCase
   def test_index
-    student_get :index
+    studying_get :index
     
     assert_not_nil assigns(:courses)
   end
 
   def show
-    # student_get :show, :id => current_course.id
+    # studying_get :show, :id => current_course.id
     
     # assert_kind_of Course, assigns(:course)
   end

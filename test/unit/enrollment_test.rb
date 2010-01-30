@@ -4,7 +4,7 @@ class EnrollmentTest < ActiveSupport::TestCase
   include ActiveRecord::TokenizedTests
   include ActiveRecord::EmailValidationTests
   
-  def test_teacher_delegation
+  def test_teaching_delegation
     enrollment = Factory :enrollment
     assert_equal enrollment.course.teacher, enrollment.teacher
   end

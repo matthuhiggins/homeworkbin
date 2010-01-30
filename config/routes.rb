@@ -4,6 +4,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :registrations, :collection => {'thanks' => :get}
   map.resources :lost_passwords
   map.resource :session
+  map.resource :person
 
   map.resources :enrollments, :controller => 'studying/enrollments'
 
