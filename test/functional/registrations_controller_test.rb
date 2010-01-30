@@ -1,4 +1,4 @@
-require 'test_helper'
+require 'action_controller_test'
 
 class RegistrationsControllerTest < ActionController::TestCase
   def test_new

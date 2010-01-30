@@ -5,7 +5,7 @@
 <% form_tag(login_path, :class => 'login_form') do %>
   <div>
     <p><%= label_tag :email %></p>
-    <p><%= text_field_tag :email, params[:email] %></p>
+    <p><%= text_field_tag :email, email_login_value %></p>
   </div>
   <div>
     <p>

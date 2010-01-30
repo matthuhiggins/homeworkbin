@@ -1,4 +1,4 @@
-require 'test_helper'
+require 'active_record_test'
 
 class CourseTest < ActiveSupport::TestCase
   def test_create_course_decrements_courses_available

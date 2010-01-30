@@ -1,4 +1,4 @@
-require 'test_helper'
+require 'active_record_test'
 
 class Enrollment::MatriculationTest < ActiveSupport::TestCase
   def test_matriculate_emails

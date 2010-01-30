@@ -1,4 +1,4 @@
-require 'test_helper'
+require 'action_controller_test'
 
 class MarketingControllerTest < ActionController::TestCase
   def test_static_views

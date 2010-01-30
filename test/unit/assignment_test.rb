@@ -1,4 +1,4 @@
-require 'test_helper'
+require 'active_record_test'
 
 class AssignmentTest < ActiveSupport::TestCase
   def test_teacher_delegation

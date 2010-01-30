@@ -1,4 +1,4 @@
-require 'test_helper'
+require 'action_controller_test'
 
 class Studying::CoursesControllerTest < ActionController::StudentTestCase
   def test_index

@@ -1,9 +1,9 @@
-require 'test_helper'
+require 'active_record_test'
 
 class RegistrationTest < ActiveSupport::TestCase
-  include Concerns::TokenizedTests
-  include Concerns::EmailValidationTests
-  include Concerns::AuthenticatedTests
+  include ActiveRecord::TokenizedTests
+  include ActiveRecord::EmailValidationTests
+  include ActiveRecord::AuthenticatedTests
   
   def test_mail
     assert_emails 1 do

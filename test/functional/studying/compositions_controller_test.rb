@@ -1,4 +1,4 @@
-require 'test_helper'
+require 'action_controller_test'
 
 class Studying::CompositionsControllerTest < ActionController::StudentTestCase
   def test_new

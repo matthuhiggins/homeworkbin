@@ -1,4 +1,4 @@
-require 'test_helper'
+require 'active_record_test'
 
 class MailerTest < ActionMailer::TestCase
   def test_registration

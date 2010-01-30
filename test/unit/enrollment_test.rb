@@ -1,8 +1,8 @@
-require 'test_helper'
+require 'active_record_test'
 
 class EnrollmentTest < ActiveSupport::TestCase
-  include Concerns::TokenizedTests
-  include Concerns::EmailValidationTests
+  include ActiveRecord::TokenizedTests
+  include ActiveRecord::EmailValidationTests
   
   def test_teacher_delegation
     enrollment = Factory :enrollment

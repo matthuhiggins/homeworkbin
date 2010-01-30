@@ -1,7 +1,7 @@
-require 'test_helper'
+require 'active_record_test'
 
 class LostPasswordTest < ActiveSupport::TestCase
-  include Concerns::TokenizedTests
+  include ActiveRecord::TokenizedTests
 
   def test_unknown_email
     lost_password = Factory.build :lost_password, :email => 'joe@spu.edu'

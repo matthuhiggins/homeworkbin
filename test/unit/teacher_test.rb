@@ -1,4 +1,4 @@
-require 'test_helper'
+require 'active_record_test'
 
 class TeacherTest < ActiveSupport::TestCase
   def test_courses_available_default
