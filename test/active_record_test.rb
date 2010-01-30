@@ -1,4 +1,4 @@
-require 'test_helper'
+require 'active_support_test'
 
 module ActiveRecord
   autoload :EmailValidationTests, 'active_record/email_validation_tests'

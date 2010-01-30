@@ -1,4 +1,4 @@
-require 'test_helper'
+require 'active_support_test'
 
 module ActionView
   class TestCase

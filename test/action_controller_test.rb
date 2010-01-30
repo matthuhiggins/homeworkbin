@@ -1,4 +1,4 @@
-require 'test_helper'
+require 'active_support_test'
 require 'action_controller/request_methods'
 
 module ActionController
