@@ -1,6 +1,6 @@
 require 'action_controller_test'
 
-class RegistrationsControllerTest < ActionController::TestCase
+class Teaching::RegistrationsControllerTest < ActionController::TestCase
   def test_new
     get :new
 

@@ -1,4 +1,4 @@
-class RegistrationsController < ApplicationController
+class Teaching::RegistrationsController < ApplicationController
   layout 'playground'
 
   def create
