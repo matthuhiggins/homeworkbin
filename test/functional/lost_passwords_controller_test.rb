@@ -39,7 +39,7 @@ class LostPasswordsControllerTest < ActionController::TestCase
     
     put :update, :id => lost_password.token, :lost_password => {:new_password => 'snoopy'}
     
-    assert_equal lost_password.person.id, @controller.session[:person_id].to_i
+    assert_logged_in_as lost_password.person
   end
   
   def test_update_failure

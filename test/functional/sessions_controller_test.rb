@@ -22,7 +22,7 @@ class SessionsControllerTest < ActionController::TestCase
     
     post :create, valid_credentials(person)
     
-    assert_equal person.id, @controller.session[:person_id]
+    assert_logged_in_as person
     assert_equal person.email, @response.cookies['last_email']
   end
   

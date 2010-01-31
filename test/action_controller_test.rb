@@ -1,9 +1,11 @@
 require 'active_support_test'
 require 'action_controller/request_methods'
+require 'action_controller/hall_pass_assertions'
 
 module ActionController
   TestCase.class_eval do
     extend RequestMethods
+    include HallPassAssertions
   end
 
   autoload :PersonTestCase, 'action_controller/person_test_case'

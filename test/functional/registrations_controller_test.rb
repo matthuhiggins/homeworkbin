@@ -42,7 +42,7 @@ class RegistrationsControllerTest < ActionController::TestCase
     assert_equal registration, assigns(:registration)
     assert_raise(ActiveRecord::RecordNotFound) { registration.reload }
     assert !assigns(:teacher).new_record?
-    assert_equal assigns(:teacher).id, @controller.session[:person_id]
+    assert_logged_in_as assigns(:teacher)
   end
   
   def test_show_with_bad_token
