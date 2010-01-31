@@ -1,5 +1,5 @@
 module Concerns
-  module Authentication
+  module HallMonitor
     def self.included(controller)
       controller.class_eval do
         extend ClassMethods
