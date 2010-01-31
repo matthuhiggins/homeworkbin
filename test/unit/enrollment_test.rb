@@ -51,8 +51,9 @@ class EnrollmentTest < ActiveSupport::TestCase
     student = Factory :student, :automatically_enroll => false
     enrollment = Factory :enrollment, :email => student.email
     
-    enrollment.enroll_student!
+    studier = enrollment.enroll_student!
     
+    assert_kind_of Studier, studier
     assert enrollment.course.students.include?(student)
     assert_raises ActiveRecord::RecordNotFound do
       enrollment.reload
@@ -61,16 +62,20 @@ class EnrollmentTest < ActiveSupport::TestCase
   
   def test_enabled_automatic_enrollment
     student = Factory :student, :automatically_enroll => true
-    enrollment = Factory :enrollment, :email => student.email
-    
-    assert enrollment.course.students.include?(student)
+
+    assert_emails 1 do
+      enrollment = Factory :enrollment, :email => student.email
+      assert enrollment.course.students.include?(student)
+    end
   end
   
   def test_disabled_automatic_enrollment
     student = Factory :student, :automatically_enroll => false
-    enrollment = Factory :enrollment, :email => student.email
     
-    assert !enrollment.course.students.include?(student)
+    assert_emails 1 do
+      enrollment = Factory :enrollment, :email => student.email
+      assert !enrollment.course.students.include?(student)
+    end
   end
   
   def test_new_student_accepts_enrollment

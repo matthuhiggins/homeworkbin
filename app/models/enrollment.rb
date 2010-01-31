@@ -20,7 +20,8 @@ class Enrollment < ActiveRecord::Base
     end
   end
   
-  after_save :enroll_student!, :if => :enroll_after_save?
+  after_create :enroll_or_query_student
+  after_update :enroll_student!, :if => :accept_enrollment
   
   def student
     @student ||= (Student.find_by_email(email) || Student.new(:email => email))
@@ -34,15 +35,22 @@ class Enrollment < ActiveRecord::Base
   def new_student?
     student.new_record?
   end
-
-  def enroll_after_save?
-    accept_enrollment || student.automatically_enroll
-  end
-
+  
   def enroll_student!
     if student.valid?
-      course.students << student
+      studier = course.studiers.create :student => student
       destroy
+      studier
     end
   end
+
+  private
+    def enroll_or_query_student
+      if student.automatically_enroll
+        studier = enroll_student!
+        Mailer.deliver_studier studier
+      else
+        Mailer.deliver_enrollment self
+      end
+    end
 end

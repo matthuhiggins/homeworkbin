@@ -7,11 +7,13 @@ class Enrollment
     end
   
     def matriculate_email(email)
-      find_or_create_by_email(email).tap do |enrollment|
-        if enrollment.valid?
-          Mailer.deliver_enrollment enrollment
-        end
+      if enrollment = find_by_email(email)
+        Mailer.deliver_enrollment enrollment
+      else
+        enrollment = create(:email => email)
       end
+
+      enrollment
     end
   end
 end

@@ -12,10 +12,9 @@ class Enrollment::MatriculationTest < ActiveSupport::TestCase
   def test_matriculate_new_email
     course = Factory :course
     
-    assert_emails 1 do
-      enrollment = course.enrollments.matriculate_email 'a@b.com'
-      assert !enrollment.new_record?
-    end
+    enrollment = course.enrollments.matriculate_email 'a@b.com'
+    assert !enrollment.new_record?
+    assert_equal 'a@b.com', enrollment.email
   end
   
   def test_matriculate_existing_email
