@@ -5,6 +5,7 @@ class CreateStudiers < ActiveRecord::Migration
       t.integer :course_id,   :null => false
     end
     
+    add_index :studiers, [:course_id, :student_id], :unique => true
     add_foreign_key :studiers, :people,   :dependent => :delete, :column => 'student_id'
     add_foreign_key :studiers, :courses,  :dependent => :delete
   end
