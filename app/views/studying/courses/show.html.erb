@@ -1,1 +1,7 @@
-<%= debug @course %>
+<strong><%= @course.name %></strong>
+
+<ul>
+  <% @course.assignments.each do |assignment| %>
+    <li><%= @assignment.name %></li>
+  <% end %>
+</ul>
