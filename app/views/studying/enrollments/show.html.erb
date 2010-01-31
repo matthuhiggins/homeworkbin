@@ -4,23 +4,10 @@
   <%= f.hidden_field :accept_enrollment, 'value' => '1' %>
 
   <% f.fields_for @enrollment.student do |s| %>
-    <div>
-      <p><%= s.label :full_name, 'Your name' %></p>
-      <p><%= s.text_field :full_name %></p>
-      <p><%= s.error_message_on :full_name, :prepend_text => 'Your name ' %></p>
-    </div>
-    <div>
-      <p><%= s.label :email %></p>
-      <p><%= s.text_field :email %></p>
-      <p><%= s.error_message_on :email, :prepend_text => 'Email ' %></p>
-    </div>
-    <div>
-      <p><%= s.label :password %></p>
-      <p><%= s.password_field :password %></p>
-      <p><%= s.error_message_on :password, :prepend_text => 'Password ' %></p>
-    </div>
-    <div>
-      <%= f.submit 'Enroll for class' %>
-    </div>
+    <%= render enrollment_fields_partial(@enrollment), :object => s %>
   <% end %>
+
+  <div>
+    <%= f.submit 'Enroll for class' %>
+  </div>
 <% end %>

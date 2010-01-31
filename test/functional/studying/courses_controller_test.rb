@@ -8,8 +8,8 @@ class Studying::CoursesControllerTest < ActionController::StudyingTestCase
   end
 
   def show
-    # studying_get :show, :id => current_course.id
+    studying_get :show, :id => current_course.to_param
     
-    # assert_kind_of Course, assigns(:course)
+    assert_equal current_course, assigns(:course)
   end
 end

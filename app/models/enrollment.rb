@@ -28,7 +28,7 @@ class Enrollment < ActiveRecord::Base
   
   def student=(attributes)
     self.student_attributes_submitted = true
-    @student = Student.new attributes
+    student.attributes = attributes
   end
   
   def new_student?

@@ -43,7 +43,8 @@ class Studying::EnrollmentsControllerTest < ActionController::TestCase
     put :update,
       :id         => enrollment.to_param,
       :enrollment => {
-        :accept_enrollment  => '1'
+        :accept_enrollment  => '1',
+        :student            => {:automatically_enroll => '1'}
       }
     
     assert_logged_in_as student
