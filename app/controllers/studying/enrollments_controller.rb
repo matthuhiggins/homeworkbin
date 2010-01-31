@@ -11,4 +11,10 @@ class Studying::EnrollmentsController < ApplicationController
       render 'show'
     end
   end
+  
+  def destroy
+    @enrollment = Enrollment.find_by_token! params[:id]
+    @enrollment.destroy
+    redirect_to root_path
+  end
 end

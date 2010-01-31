@@ -21,7 +21,11 @@ class EnrollmentTest < ActiveSupport::TestCase
   end
   
   def test_nil_student
-    assert_nil Factory.build(:enrollment).student
+    enrollment = Factory :enrollment
+    student = enrollment.student
+
+    assert student.new_record?
+    assert_equal enrollment.email, student.email
   end
   
   def test_existing_student
@@ -29,8 +33,12 @@ class EnrollmentTest < ActiveSupport::TestCase
     assert_equal student, Factory.build(:enrollment, :email => student.email).student
   end
   
-  def test_test_new_student?
+  def test_new_student?
     assert Factory.build(:enrollment).new_student?
     assert !Factory.build(:enrollment, :email => Factory(:student).email).new_student?
+  end
+  
+  def test_
+    
   end
 end

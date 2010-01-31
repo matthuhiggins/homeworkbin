@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(:version => 20091226234927) do
     t.string   "remember_token",        :limit => 128
     t.integer  "courses_available",                    :default => 0,     :null => false
     t.boolean  "registered_as_teacher",                :default => false, :null => false
+    t.boolean  "automatically_enroll",                 :default => true,  :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -90,5 +91,7 @@ ActiveRecord::Schema.define(:version => 20091226234927) do
     t.integer "student_id", :null => false
     t.integer "course_id",  :null => false
   end
+
+  add_index "studiers", ["course_id", "student_id"], :name => "index_studiers_on_course_id_and_student_id", :unique => true
 
 end

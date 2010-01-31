@@ -1,5 +1,6 @@
 class Person < ActiveRecord::Base
   validates_presence_of :password, :if => :password_given?
+  validates_presence_of :full_name
   
   include Person::Remembered
   include Concerns::Authenticated
