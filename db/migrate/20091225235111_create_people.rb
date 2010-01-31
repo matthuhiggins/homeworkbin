@@ -8,7 +8,7 @@ class CreatePeople < ActiveRecord::Migration
       t.string   :remember_token,         :null => true,  :limit => 128
       t.integer  :courses_available,      :null => false, :default => 0
       t.boolean  :registered_as_teacher,  :null => false, :default => false
-      t.boolean  :automatically_enroll,   :null => false, :default => true
+      t.boolean  :automatically_enroll,   :null => false, :default => false
       t.timestamps
     end
 

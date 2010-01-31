@@ -8,7 +8,7 @@ class Studying::EnrollmentsController < ApplicationController
   def update
     @enrollment = Enrollment.find_by_token! params[:id]
     if @enrollment.update_attributes params[:enrollment]
-      login @enrollment.student
+      login @enrollment.student, :redirect => studying_path(@enrollment.course)
     else
       render 'show'
     end

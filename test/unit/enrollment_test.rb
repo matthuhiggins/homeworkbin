@@ -76,7 +76,10 @@ class EnrollmentTest < ActiveSupport::TestCase
   def test_new_student_accepts_enrollment
     enrollment = Factory :enrollment
     
-    enrollment.update_attributes :student => Factory.attributes_for(:student)
+    enrollment.update_attributes(
+      :student            => Factory.attributes_for(:student),
+      :accept_enrollment  => true
+    )
     
     assert !enrollment.student.new_record?
     assert enrollment.course.students.include?(enrollment.student)

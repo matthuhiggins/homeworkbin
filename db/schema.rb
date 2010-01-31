@@ -66,7 +66,7 @@ ActiveRecord::Schema.define(:version => 20091226234927) do
     t.string   "remember_token",        :limit => 128
     t.integer  "courses_available",                    :default => 0,     :null => false
     t.boolean  "registered_as_teacher",                :default => false, :null => false
-    t.boolean  "automatically_enroll",                 :default => true,  :null => false
+    t.boolean  "automatically_enroll",                 :default => false, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

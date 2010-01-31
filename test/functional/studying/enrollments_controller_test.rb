@@ -13,20 +13,41 @@ class Studying::EnrollmentsControllerTest < ActionController::TestCase
     enrollment = Factory :enrollment
     
     put :update,
-        :id => enrollment.to_param, 
-        :enrollment => {:student => Factory.attributes_for(:student)}
+      :id         => enrollment.to_param, 
+      :enrollment => {
+        :student            => Factory.attributes_for(:student),
+        :accept_enrollment  => '1'
+      }
     
     assert_logged_in_as assigns(:enrollment).student
+    assert_redirected_to studying_path(enrollment.course)
   end
   
   def test_update_new_invalid_student
     enrollment = Factory :enrollment
     
     put :update,
-        :id => enrollment.to_param, 
-        :enrollment => {:student => {:email => 'foo'}}
+      :id         => enrollment.to_param,
+      :enrollment => {
+        :student            => {:email => 'foo'},
+        :accept_enrollment  => '1'
+      }
     
     assert_template 'show'
+  end
+  
+  def test_update_existing_student
+    student = Factory :student
+    enrollment = Factory :enrollment, :email => student.email
+    
+    put :update,
+      :id         => enrollment.to_param,
+      :enrollment => {
+        :accept_enrollment  => '1'
+      }
+    
+    assert_logged_in_as student
+    assert_redirected_to studying_path(enrollment.course)
   end
   
   def test_destroy
