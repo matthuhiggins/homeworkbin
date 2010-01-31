@@ -9,7 +9,7 @@ class EnrollmentTest < ActiveSupport::TestCase
     assert_equal enrollment.course.teacher, enrollment.teacher
   end
   
-  def test_student_already_studying
+  def test_validate_existing_studier
     course = Factory :course
     student = Factory :student
     course.students << student
@@ -20,7 +20,16 @@ class EnrollmentTest < ActiveSupport::TestCase
     assert_equal 'is already in this course', enrollment.errors.on(:email)
   end
   
-  def test_nil_student
+  def test_validate_student
+    enrollment = Factory :enrollment
+    
+    enrollment.student = {:email => 'poo'}
+    
+    assert enrollment.invalid?
+    assert_equal 'is invalid', enrollment.errors.on(:student)
+  end
+  
+  def test_empty_student
     enrollment = Factory :enrollment
     student = enrollment.student
 
@@ -38,7 +47,38 @@ class EnrollmentTest < ActiveSupport::TestCase
     assert !Factory.build(:enrollment, :email => Factory(:student).email).new_student?
   end
   
-  def test_
+  def test_enroll_student
+    student = Factory :student, :automatically_enroll => false
+    enrollment = Factory :enrollment, :email => student.email
     
+    enrollment.enroll_student!
+    
+    assert enrollment.course.students.include?(student)
+    assert_raises ActiveRecord::RecordNotFound do
+      enrollment.reload
+    end
+  end
+  
+  def test_enabled_automatic_enrollment
+    student = Factory :student, :automatically_enroll => true
+    enrollment = Factory :enrollment, :email => student.email
+    
+    assert enrollment.course.students.include?(student)
+  end
+  
+  def test_disabled_automatic_enrollment
+    student = Factory :student, :automatically_enroll => false
+    enrollment = Factory :enrollment, :email => student.email
+    
+    assert !enrollment.course.students.include?(student)
+  end
+  
+  def test_student_added_after_update
+    enrollment = Factory :enrollment
+    
+    enrollment.update_attributes :student => Factory.attributes_for(:student)
+    
+    assert !enrollment.student.new_record?
+    assert enrollment.course.students.include?(enrollment.student)
   end
 end

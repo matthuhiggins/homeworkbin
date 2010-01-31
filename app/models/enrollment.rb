@@ -5,32 +5,39 @@ class Enrollment < ActiveRecord::Base
   belongs_to :course
   delegate :teacher, :to => :course
 
-  # validates_uniqueness_of :email, :scoped => :course_id
-
   validate_on_create do |enrollment|
     if enrollment.course.students.exists?(:email => enrollment.email)
       enrollment.errors.add :email, 'is already in this course'
     end
   end
   
-  after_save do |enrollment|
-    if enrollment.student.try :automatically_enroll
-      enrollment.enroll_student!
+  attr_accessor :student_attributes_submitted
+
+  validate_on_update :if => :student_attributes_submitted do |enrollment|
+    if enrollment.student.invalid?
+      enrollment.errors.add :student, 'is invalid'
     end
   end
+  
+  after_save :enroll_student!, :if => :perform_enrollment?
   
   def student
     @student ||= (Student.find_by_email(email) || Student.new(:email => email))
   end
   
   def student=(attributes)
+    self.student_attributes_submitted = true
     @student = Student.new attributes
   end
   
   def new_student?
     student.new_record?
   end
-  
+
+  def perform_enrollment?
+    student.valid? && student.automatically_enroll
+  end
+
   def enroll_student!
     if student.valid?
       course.students << student
