@@ -26,4 +26,11 @@ class Mailer < ActionMailer::Base
     subject     "New assignment in #{assignment.course.name}"
     body        :assignment => assignment, :student => student
   end
+  
+  def studier studier
+    from        "no-reply@homeworkbin.com"
+    recipients  studier.student.email
+    subject     "You are enrolled in #{studier.course.name}"
+    body        :studier => studier
+  end
 end

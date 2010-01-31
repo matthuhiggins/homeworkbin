@@ -1,0 +1,8 @@
+Hey <%= @studier.student.full_name %>,
+
+I enrolled you in <%= @studier.course.name %>. You can access this course by following the link below:
+
+<%= studying_url @studier.course %>
+
+Thanks,
+<%= @studier.teacher.full_name %>

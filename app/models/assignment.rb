@@ -1,10 +1,12 @@
 class Assignment < ActiveRecord::Base
   has_many :compositions
   belongs_to :course
+
   delegate :teacher, :to => :course
+
   validates_presence_of :name
   
-  after_create :notify_students
+  after_create :notify_students#, :if => :publish_assignment
   
   private
     def notify_students
