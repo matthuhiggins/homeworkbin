@@ -12,6 +12,7 @@ class Enrollment < ActiveRecord::Base
   end
   
   attr_accessor :student_attributes_submitted
+  attr_accessor :accept_enrollment
 
   validate_on_update :if => :student_attributes_submitted do |enrollment|
     if enrollment.student.invalid?
@@ -19,7 +20,7 @@ class Enrollment < ActiveRecord::Base
     end
   end
   
-  after_save :enroll_student!, :if => :perform_enrollment?
+  after_save :enroll_student!, :if => :enroll_after_save?
   
   def student
     @student ||= (Student.find_by_email(email) || Student.new(:email => email))
@@ -34,8 +35,8 @@ class Enrollment < ActiveRecord::Base
     student.new_record?
   end
 
-  def perform_enrollment?
-    student.valid? && student.automatically_enroll
+  def enroll_after_save?
+    accept_enrollment || student.automatically_enroll
   end
 
   def enroll_student!

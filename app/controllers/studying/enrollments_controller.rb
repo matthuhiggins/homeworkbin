@@ -1,4 +1,6 @@
 class Studying::EnrollmentsController < ApplicationController
+  layout 'playground'
+
   def show
     @enrollment = Enrollment.find_by_token! params[:id]
   end

@@ -1,5 +1,9 @@
+<%= stylesheet_link_tag 'form' %>
+
 <% form_for @enrollment do |f| %>
-  <% fields_for @enrollment.student do |s| %>
+  <%= f.hidden_field :accept_enrollment, 'value' => '1' %>
+
+  <% f.fields_for @enrollment.student do |s| %>
     <div>
       <p><%= s.label :full_name, 'Your name' %></p>
       <p><%= s.text_field :full_name %></p>
