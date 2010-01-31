@@ -23,17 +23,15 @@ class SessionsControllerTest < ActionController::TestCase
     post :create, valid_credentials(person)
     
     assert_logged_in_as person
-    assert_equal person.email, @response.cookies['last_email']
   end
   
   def test_login_with_remember_me
     person = Factory :person
 
-    post :create, valid_credentials(person).update(:remember_me => "1")
+    post :create, valid_credentials(person).update(:remember_me => '1')
     
     person.reload
-    assert @response.cookies['remember_token'].present?
-    assert_equal person.remember_token, @response.cookies['remember_token']
+    assert_remembered_as person
   end
   
   private

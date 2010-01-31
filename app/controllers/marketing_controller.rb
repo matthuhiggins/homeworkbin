@@ -2,6 +2,6 @@ class MarketingController < ApplicationController
   layout 'playground'
   
   def index
-    redirect_to_home if authenticated?
+    redirect_after_login if authenticated?
   end
 end

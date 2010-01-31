@@ -24,14 +24,17 @@ module Concerns
           @current_person ||= (person_from_session || person_from_cookie)
         end
         
-        def login(person, remember = false)
+        # Options:
+        #   :remember - Use :remember => true to save the user's login in a cookie
+        #   :redirect - Define the url to redirect to
+        def login(person, options = {})
           initiate_authenticated_session(person)
-          remember_person(person) if remember
-          redirect_to_home
+          remember_person(person) if options[:remember]
+          redirect_after_login(options[:redirect])
         end
 
-        def redirect_to_home
-          uri = session[:original_uri] || default_home
+        def redirect_after_login(redirect_path = nil)
+          uri = redirect_path || session[:original_uri] || default_home
           session[:original_uri] = nil
           redirect_to(uri)
         end
