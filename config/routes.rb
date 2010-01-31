@@ -24,7 +24,7 @@ ActionController::Routing::Routes.draw do |map|
   map.login   'login',    :controller => 'sessions',      :action => 'new', :conditions => { :method => :get }
   map.connect 'login',    :controller => 'sessions',      :action => 'create', :conditions => { :method => :post }
   map.logout  'logout',   :controller => 'sessions',      :action => 'destroy'
-  map.signup  'signup',   :controller => 'registrations', :action => 'new'
+  map.signup  'signup',   :controller => 'teaching/registrations', :action => 'new'
 
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'
