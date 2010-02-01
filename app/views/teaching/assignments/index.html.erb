@@ -1,1 +1,7 @@
-<%= debug @assignments %>
+<ul>
+  <% @assignments.each do |assignment| %>
+    <li><%= render assignment %></li>
+  <% end %>
+</ul>
+
+<%= link_to 'New assignment', new_teaching_assignment_path(current_course) %>

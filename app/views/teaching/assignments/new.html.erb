@@ -1,15 +1,15 @@
 <% form_for @assignment, :url => teaching_assignments_path(current_course) do |f| %>
   <div>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+    <p><%= f.label :name %></p>
+    <p><%= f.text_field :name %></p>
   </div>
   <div>
-    <%= f.label :description %>
-    <%= f.text_field :description %>
+    <p><%= f.label :description %></p>
+    <p><%= f.text_field :description %></p>
   </div>
   <div>
-    <%= f.label :due_at, 'Due date' %>
-    <%= f.text_field :due_at %>
+    <p><%= f.label :due_at, 'Due date' %></p>
+    <p><%= f.text_field :due_at %></p>
   </div>
   <div>
     <%= f.submit %>

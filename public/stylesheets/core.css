@@ -5,6 +5,7 @@ html {
 
 body {
   font-family: Arial, "MS Trebuchet", sans-serif;
+  font-size: 14px;
 }
 
 a, a:visited {
@@ -21,11 +22,14 @@ body > .header {
   border-bottom: 5px solid #F6F6F6;
 }
 
-body > .header .main.menu {
+body > .header .menu {
   margin: 0 auto;
   overflow: hidden;
-  padding: 5px 12px;
   width: 650px;
+}
+
+body > .header .main.menu {
+  padding: 5px 12px;  
 }
 
 body > .header .main.menu .logo {
@@ -34,6 +38,18 @@ body > .header .main.menu .logo {
   font-family: Georgia;
   font-size: 36px;
   text-decoration: none;
+}
+
+body > .header .main.menu ul.links {
+  float: right;
+  padding-top: 12px;
+  text-align: right;
+}
+
+body > .header .main.menu ul.links li {
+  float: left;
+  margin-left: 8px;
+  padding: 1px 2px;
 }
 
 body > .content {

@@ -9,14 +9,18 @@
         Homework Bin
       <% end %>
       <ul class="links">
-        <li><%= link_to 'Courses', teachings_path %></li>
-        <li><%= link_to 'Settings', person_path %>
+        <li><%= link_to 'Your Courses', teachings_path %></li>
+        <li>|</li>
+        <li><%= link_to 'Settings', person_path %></li>
+        <li>|</li>
+        <li><%= link_to 'Sign out', logout_path %></li>
       </ul>
     </div>
     <% if current_course.present? %>
       <div class="course menu">
         <div class="course-name">
           <%= current_course.name %>
+          »
         </div>
         <ul class="course-operations">
           <li>

@@ -1,10 +1,5 @@
-.classroom .main.menu ul.links {
-  float: right;
-  text-align: right;
-}
-
 .classroom .course.menu {
-  overflow: hidden;
+  border-top: 1px solid #E1E1E1;
   padding: 6px 20px;
 }
 
@@ -12,7 +7,7 @@
   float: left;
   font-size: 20px;
   font-weight: bold;
-  margin-right: 20px;
+  margin-right: 10px;
 }
 
 .classroom .course-operations {
@@ -22,5 +17,5 @@
 
 .classroom .course-operations li {
   float: left;
-  margin-right: 10px;
+  margin: 5px 10px 0 5px;
 }
