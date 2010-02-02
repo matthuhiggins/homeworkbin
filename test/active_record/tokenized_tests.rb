@@ -18,5 +18,9 @@ module ActiveRecord
       assert_raise(ActiveRecord::RecordNotFound) { old_record.reload }
       assert_nothing_raised { recent_record.reload }
     end
+    
+    def test_included_in_models
+      assert Concerns::Tokenized.models.include?(target_klass)
+    end
   end
 end

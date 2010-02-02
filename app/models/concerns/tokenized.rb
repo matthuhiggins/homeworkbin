@@ -1,11 +1,18 @@
 module Concerns
   module Tokenized
+    mattr_accessor :models
+    self.models = []
+    
     def self.included model
-      model.before_create do |record|
-        record.token = ActiveSupport::SecureRandom.hex(16)
-      end
+      models << model
       
-      model.extend ClassMethods
+      model.class_eval do
+        before_create do |record|
+          record.token = ActiveSupport::SecureRandom.hex(16)
+        end
+      
+        extend ClassMethods
+      end
     end
 
     module ClassMethods
