@@ -5,8 +5,18 @@ module ActiveRecord
     end
     
     def test_to_param
-      record = Factory(target_klass.to_s.underscore)
+      record = Factory factory_name
       assert_equal record.token, record.to_param
+    end
+    
+    def test_prune
+      old_record = Factory factory_name, :created_at => 2.weeks.ago
+      recent_record = Factory factory_name, :created_at => 1.day.ago
+      
+      target_klass.prune
+      
+      assert_raise(ActiveRecord::RecordNotFound) { old_record.reload }
+      assert_nothing_raised { recent_record.reload }
     end
   end
 end
