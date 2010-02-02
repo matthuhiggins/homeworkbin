@@ -1,6 +1,6 @@
 require 'digest/sha1'
 
-module Concerns
+module ActiveRecord
   module Authenticated
     def self.included(model)
       model.class_eval do

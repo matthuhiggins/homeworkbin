@@ -1,4 +1,4 @@
-module Concerns
+module ActiveRecord
   module Tokenized
     mattr_accessor :models
     self.models = []

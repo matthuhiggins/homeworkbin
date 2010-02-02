@@ -1,4 +1,4 @@
-module Concerns
+module ActiveRecord
   module Denormalization
     # class Comment < ActiveRecord::Base
     #   belongs_to :post, :denormalize => :user

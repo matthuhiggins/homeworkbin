@@ -20,7 +20,7 @@ module ActiveRecord
     end
     
     def test_included_in_models
-      assert Concerns::Tokenized.models.include?(target_klass)
+      assert ActiveRecord::Tokenized.models.include?(target_klass)
     end
   end
 end

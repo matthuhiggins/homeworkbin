@@ -3,8 +3,8 @@ class Person < ActiveRecord::Base
   validates_presence_of :full_name
   
   include Person::Remembered
-  include Concerns::Authenticated
-  include Concerns::EmailValidation
+  include ActiveRecord::Authenticated
+  include ActiveRecord::EmailValidation
   
   has_many :lost_passwords
   

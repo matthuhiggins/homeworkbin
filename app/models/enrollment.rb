@@ -1,6 +1,6 @@
 class Enrollment < ActiveRecord::Base
-  include Concerns::Tokenized
-  include Concerns::EmailValidation
+  include ActiveRecord::Tokenized
+  include ActiveRecord::EmailValidation
   
   belongs_to :course
   delegate :teacher, :to => :course

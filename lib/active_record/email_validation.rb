@@ -1,4 +1,4 @@
-module Concerns
+module ActiveRecord
   module EmailValidation
     def self.included model
       model.class_eval do

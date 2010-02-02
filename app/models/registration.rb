@@ -1,7 +1,7 @@
 class Registration < ActiveRecord::Base
-  include Concerns::Tokenized
-  include Concerns::EmailValidation
-  include Concerns::Authenticated
+  include ActiveRecord::Tokenized
+  include ActiveRecord::EmailValidation
+  include ActiveRecord::Authenticated
 
   validates_presence_of :full_name, :on => :create
   validates_presence_of :password, :on => :create

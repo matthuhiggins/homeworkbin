@@ -1,5 +1,5 @@
 class LostPassword < ActiveRecord::Base
-  include Concerns::Tokenized
+  include ActiveRecord::Tokenized
 
   belongs_to :person
 
