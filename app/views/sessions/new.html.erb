@@ -23,4 +23,4 @@
   </div>
 <% end %>
 
-<%= focus 'email' %>
+<%= focus email_login_value.blank? ? 'email' : 'password' %>
