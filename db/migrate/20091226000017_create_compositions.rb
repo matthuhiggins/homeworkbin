@@ -1,11 +1,12 @@
 class CreateCompositions < ActiveRecord::Migration
   def self.up
     create_table :compositions do |t|
-      t.integer :studier_id,      :null => false
-      t.integer :student_id,      :null => false
-      t.integer :assignment_id,   :null => false
-      t.integer :course_id,       :null => false
-      t.text    :paper,           :null => false
+      t.integer   :studier_id,      :null => false
+      t.integer   :student_id,      :null => false
+      t.integer   :assignment_id,   :null => false
+      t.integer   :course_id,       :null => false
+      t.text      :paper,           :null => false
+      t.datetime  :handed_in_at,    :null => true
       t.timestamps
     end
     

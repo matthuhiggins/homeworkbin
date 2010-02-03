@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(:version => 20091226234927) do
     t.integer  "assignment_id", :null => false
     t.integer  "course_id",     :null => false
     t.text     "paper",         :null => false
+    t.datetime "handed_in_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
