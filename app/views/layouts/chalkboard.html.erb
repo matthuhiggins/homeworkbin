@@ -1,0 +1,43 @@
+<html>
+<head>
+  <%= stylesheet_link_tag 'reset', 'core', 'form', 'chalkboard' %>
+  <title>
+    Homework Bin<%= yield :title %>
+  </title>
+</head>
+<body class="chalkboard">
+  <div class="header">
+    <div class="main menu">
+      <% link_to teachings_path, :class => 'logo' do %>
+        Homework Bin
+      <% end %>
+      <ul class="links">
+        <li><%= link_to 'Your Courses', teachings_path %></li>
+        <li>|</li>
+        <li><%= link_to 'Settings', person_path %></li>
+        <li>|</li>
+        <li><%= link_to 'Sign out', logout_path %></li>
+      </ul>
+    </div>
+    <% if current_course.present? %>
+      <div class="course menu">
+        <div class="course-name">
+          <%= current_course.name %>
+          »
+        </div>
+        <ul class="course-operations">
+          <li>
+            <%= link_to 'Assignments', teaching_assignments_path(current_course) %>
+          </li>
+          <li>
+            <%= link_to 'Students', teaching_studiers_path(current_course) %>
+          </li>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+  <div class="content">
+    <%= yield %>
+  </div>
+</body>
+</html>

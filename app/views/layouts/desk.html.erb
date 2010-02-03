@@ -1,18 +1,18 @@
 <html>
 <head>
-  <%= stylesheet_link_tag 'reset', 'core', 'form', 'classroom' %>
+  <%= stylesheet_link_tag 'reset', 'core', 'form', 'desk' %>
   <title>
     Homework Bin<%= yield :title %>
   </title>
 </head>
-<body class="classroom">
+<body class="desk">
   <div class="header">
     <div class="main menu">
-      <% link_to teachings_path, :class => 'logo' do %>
+      <% link_to studyings_path, :class => 'logo' do %>
         Homework Bin
       <% end %>
       <ul class="links">
-        <li><%= link_to 'Your Courses', teachings_path %></li>
+        <li><%= link_to 'Courses', studyings_path %></li>
         <li>|</li>
         <li><%= link_to 'Settings', person_path %></li>
         <li>|</li>
@@ -28,9 +28,6 @@
         <ul class="course-operations">
           <li>
             <%= link_to 'Assignments', teaching_assignments_path(current_course) %>
-          </li>
-          <li>
-            <%= link_to 'Students', teaching_studiers_path(current_course) %>
           </li>
         </ul>
       </div>

@@ -1,7 +1,7 @@
 class PeopleController < ApplicationController
   require_login
 
-  layout 'classroom'
+  layout 'chalkboard'
   
   def show
   end

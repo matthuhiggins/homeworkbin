@@ -1,21 +1,21 @@
-.classroom .course.menu {
+.chalkboard .course.menu {
   border-top: 1px solid #E1E1E1;
   padding: 6px 20px;
 }
 
-.classroom .course-name {
+.chalkboard .course-name {
   float: left;
   font-size: 20px;
   font-weight: bold;
   margin-right: 10px;
 }
 
-.classroom .course-operations {
+.chalkboard .course-operations {
   float: left;
   overflow: hidden;
 }
 
-.classroom .course-operations li {
+.chalkboard .course-operations li {
   float: left;
   margin: 5px 10px 0 5px;
 }
