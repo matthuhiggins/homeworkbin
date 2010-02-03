@@ -1,4 +1,6 @@
 class Mailer < ActionMailer::Base
+  helper ActionController::Base.send(:all_application_helpers)
+  
   def registration registration
     from        "no-reply@homeworkbin.com"
     recipients  registration.email

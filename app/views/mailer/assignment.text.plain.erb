@@ -1,6 +1,6 @@
 Hello, <%= @student.full_name %>,
 
-There's a new assignment in <%= @assignment.course.name %>. Please follow the link below to submit your homework:
+The assignment "<%= @assignment.name %>" is due <%= assignment_due_at(@assignment) %>. Please follow the link below to submit your homework:
 
 <%= studying_assignment_url(@assignment.course, @assignment) %>
 
