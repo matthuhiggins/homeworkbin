@@ -6,10 +6,11 @@ class Assignment::HandoutTest < ActiveSupport::TestCase
     Factory :studier, :course => course
     
     assert_emails 1 do
-      Factory :assignment, :course => course, :handout => true
+      assignment = Factory :assignment, :course => course, :handout => true
+      assert_equal 1, assignment.handout_count
     end
   end
-  
+
   def test_handout_on_update
     course = Factory :course
     Factory :studier, :course => course
@@ -17,15 +18,17 @@ class Assignment::HandoutTest < ActiveSupport::TestCase
     
     assert_emails 1 do
       assignment.update_attribute(:handout, true)
+      assert_equal 1, assignment.handout_count
     end
   end
-  
+
   def test_not_handouted
     course = Factory :course
     Factory :studier, :course => course
     
     assert_no_emails do
-      Factory :assignment, :course => course, :handout => false
+      assignment = Factory :assignment, :course => course, :handout => false
+      assert_equal 0, assignment.handout_count
     end
   end
 end

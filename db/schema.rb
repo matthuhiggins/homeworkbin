@@ -12,10 +12,11 @@
 ActiveRecord::Schema.define(:version => 20091226234927) do
 
   create_table "assignments", :force => true do |t|
-    t.string   "name",        :null => false
-    t.text     "description", :null => false
-    t.datetime "due_at",      :null => false
-    t.integer  "course_id",   :null => false
+    t.string   "name",                         :null => false
+    t.text     "description",                  :null => false
+    t.datetime "due_at",                       :null => false
+    t.integer  "course_id",                    :null => false
+    t.integer  "handout_count", :default => 0, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
