@@ -5,14 +5,4 @@ class AssignmentTest < ActiveSupport::TestCase
     assignment = Factory :assignment
     assert_equal assignment.course.teacher, assignment.teacher
   end
-
-  def test_notify_students
-    course = Factory :course
-    course.students << Factory(:student)
-    course.students << Factory(:student)
-    
-    assert_emails 2 do
-      Factory :assignment, :course => course
-    end
-  end
 end
