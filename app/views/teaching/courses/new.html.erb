@@ -1,3 +1,6 @@
+<%= yui_javascript 'yahoo/yahoo', 'event/event', 'dom/dom', 'calendar/calendar' %>
+<%= yui_stylesheet 'calendar/assets/skins/sam/calendar' %> 
+
 <style>
 .course-dates {
   overflow: hidden;
@@ -19,11 +22,6 @@
     <p><%= f.text_field :name %></p>
     <p><%= f.error_message_on :name, :prepend_text => 'Course name ' %></p>
   </div>
-  <div>
-    <p><%= f.label :description %></p>
-    <p><%= f.text_field :description %></p>
-    <p><%= f.error_message_on :description, :prepend_text => 'Description ' %></p>
-  </div>
   <div class="course-dates">
     <div class="course-date">
       <p><%= f.label :start_date, 'from' %></p>
@@ -40,3 +38,53 @@
 <% end %>
 
 <%= focus 'course_name' %>
+
+<div class="yui-skin-sam">
+  <div id="start_date_calendar"></div> 
+</div>
+
+<div class="yui-skin-sam">
+  <div id="end_date_calendar"></div> 
+</div>
+
+<script> 
+YAHOO.util.Event.onDOMReady(function() {
+  function fieldToCalendar(field, calendar) {
+    if (field.value != "") { 
+      calendar.select(field.value); 
+      var date = calendar.getSelectedDates()[0]; 
+      if (date != null) {
+        calendar.cfg.setProperty("pagedate", (date.getMonth() + 1) + "/" + date.getFullYear());
+        calendar.render(); 
+      }
+    }
+  }
+  
+  function calendarToField(calendar, field) {
+    var date = calendar.getSelectedDates()[0];
+    field.value = (date.getMonth() + 1) + "/" + date.getDate() + "/" + date.getFullYear();     
+  }
+  
+  function configureCalendar(attribute) {
+    var calendar = new YAHOO.widget.Calendar(attribute + '_calendar'),
+        field = document.getElementById('course_' + attribute); 
+
+    function handleCalendarSelect() {
+      calendarToField(calendar, field);
+    }
+    
+    function handleFieldChange() {
+      fieldToCalendar(field, calendar);
+    }
+    
+    calendar.selectEvent.subscribe(handleCalendarSelect, calendar, true);
+    YAHOO.util.Event.addListener(field, "change", handleFieldChange);
+
+    calendar.render();    
+    handleFieldChange();
+  }
+
+  configureCalendar('start_date');
+  configureCalendar('end_date');
+});
+</script>

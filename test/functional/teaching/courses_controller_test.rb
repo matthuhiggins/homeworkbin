@@ -21,7 +21,6 @@ class Teaching::CoursesControllerTest < ActionController::TeachingTestCase
   def test_create
     teaching_post :create, :course => {
       :name         => 'ENV 101',
-      :description  => 'ez cheese',
       :start_date   => '5/6/2010',
       :end_date     => '8/1/2010'
     }
@@ -33,7 +32,6 @@ class Teaching::CoursesControllerTest < ActionController::TeachingTestCase
   def test_failed_create
     teaching_post :create, :course => {
       :name         => '',
-      :description  => '',
       :start_date   => '5/6/2010',
       :end_date     => '8/1/2010'
     }
