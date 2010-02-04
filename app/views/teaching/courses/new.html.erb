@@ -24,18 +24,6 @@
   margin-top: 20px;
 }
 
-#course-form .course-dates {
-/*  overflow: hidden;*/
-/*  clear: left;*/
-/*  margin-top: 5px;*/
-}
-
-/*#course-form .course-dates > div {
-  float: left;
-  height: 300px;
-  width: 48%;
-}*/
-
 #course-form .calendar-wrap {
   margin-top: 4px;
   position: relative;
@@ -63,6 +51,7 @@
       <div class="calendar-wrap yui-skin-sam">
         <div class="calendar" id="start_date_calendar"></div> 
       </div>
+      <p><%= f.error_message_on :start_date %></p>
     </div>
     <div id="end_date" class="yui-skin-sam">
       <p><%= f.label :end_date, 'to' %></p>
@@ -70,6 +59,7 @@
       <div class="calendar-wrap yui-skin-sam">
         <div class="calendar" id="end_date_calendar"></div> 
       </div>
+      <p><%= f.error_message_on :end_date %></p>
     </div>
     <div class="submit">
       <%= f.submit 'Create course »' %>

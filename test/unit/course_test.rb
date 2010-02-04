@@ -24,7 +24,7 @@ class CourseTest < ActiveSupport::TestCase
       ['', nil, '12/40/2004', '12/25', '10-2004'].each do |value|
         course[attribute] = value
         assert course.invalid?
-        assert_equal 'is not mm/dd/yyyy', course.errors.on(attribute)
+        assert_equal 'must be mm/dd/yyyy', course.errors.on(attribute)
       end
     end
     

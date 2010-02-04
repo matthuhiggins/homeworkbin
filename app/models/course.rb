@@ -4,14 +4,14 @@ class Course < ActiveRecord::Base
   has_many :students, :through => :studiers
   has_many :assignments
   has_many :enrollments, :extend => Enrollment::Matriculation
-  
+
   validates_presence_of :name
-  
-  validates_each :start_date, :end_date do |course, column, value|
+
+  validates_each :start_date, :end_date do |course, attribute, value|
     begin
-      !value.is_a?(Date) && Date.strptime(value, "%m/%d/%Y")
+      !value.is_a?(Date) && Date.strptime(value, '%m/%d/%Y')
     rescue
-      course.errors.add(column, 'is not mm/dd/yyyy')
+      course.errors.add(attribute, 'must be mm/dd/yyyy')
     end
   end
 
