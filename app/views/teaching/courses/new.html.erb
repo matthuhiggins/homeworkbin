@@ -2,53 +2,87 @@
 <%= yui_stylesheet 'calendar/assets/skins/sam/calendar' %> 
 
 <style>
-.course-dates {
+#course-form .course-name {
+}
+
+#course-form .fields {
   overflow: hidden;
 }
 
-.course-date {
+#course-form .fields > div {
   float: left;
-  margin-right: 6px;
+  height: 300px;
+  margin-right: 9px;
+  width: 145px;
 }
 
-.course-date input[type="text"] {
-  width: 10em;
+#course-form .fields > div input[type="text"] {
+  width: 100%;
+}
+
+#course-form .fields > div.submit {
+  margin-top: 20px;
+}
+
+#course-form .course-dates {
+/*  overflow: hidden;*/
+/*  clear: left;*/
+/*  margin-top: 5px;*/
+}
+
+/*#course-form .course-dates > div {
+  float: left;
+  height: 300px;
+  width: 48%;
+}*/
+
+#course-form .calendar-wrap {
+  margin-top: 4px;
+  position: relative;
+  width: 300px;
+}
+
+#course-form .calendar {
+  display: none;
+  left: 0;  
+  position: absolute;
+  top: 0;
 }
 </style>
 
-<% form_for @course, :url => teachings_path do |f| %>
-  <div>
+<% form_for @course, :url => teachings_path, :html => {:id => 'course-form'} do |f| %>
+  <div class="course-name">
     <p><%= f.label :name, 'Course name' %></p>
     <p><%= f.text_field :name %></p>
     <p><%= f.error_message_on :name, :prepend_text => 'Course name ' %></p>
   </div>
-  <div class="course-dates">
-    <div class="course-date">
+  <div class="fields">
+    <div id="start_date" class="yui-skin-sam">
       <p><%= f.label :start_date, 'from' %></p>
       <p><%= f.text_field :start_date %></p>
+      <div class="calendar-wrap yui-skin-sam">
+        <div class="calendar" id="start_date_calendar"></div> 
+      </div>
     </div>
-    <div class="course-date">
+    <div id="end_date" class="yui-skin-sam">
       <p><%= f.label :end_date, 'to' %></p>
       <p><%= f.text_field :end_date %></p>
+      <div class="calendar-wrap yui-skin-sam">
+        <div class="calendar" id="end_date_calendar"></div> 
+      </div>
     </div>
-  </div>
-  <div>
-    <%= f.submit 'Create course' %>
+    <div class="submit">
+      <%= f.submit 'Create course »' %>
+    </div>
   </div>
 <% end %>
 
 <%= focus 'course_name' %>
 
-<div class="yui-skin-sam">
-  <div id="start_date_calendar"></div> 
-</div>
-
-<div class="yui-skin-sam">
-  <div id="end_date_calendar"></div> 
-</div>
-
 <script> 
 YAHOO.util.Event.onDOMReady(function() {
+  var calendars = [];
+
   function fieldToCalendar(field, calendar) {
     if (field.value != "") { 
       calendar.select(field.value); 
@@ -71,15 +105,32 @@ YAHOO.util.Event.onDOMReady(function() {
 
     function handleCalendarSelect() {
       calendarToField(calendar, field);
+      calendar.hide();
+      YAHOO.util.Event.removeListener(field, "focus", handleFieldFocus);
+      field.focus();
+      YAHOO.util.Event.addListener(field, "focus", handleFieldFocus);
     }
     
     function handleFieldChange() {
       fieldToCalendar(field, calendar);
     }
     
-    calendar.selectEvent.subscribe(handleCalendarSelect, calendar, true);
-    YAHOO.util.Event.addListener(field, "change", handleFieldChange);
+    function handleFieldFocus() {
+      for (var i = 0; i < calendars.length; i++) {
+        calendars[i].hide();
+      }
+      calendar.show();
+    }
 
+    calendar.selectEvent.subscribe(handleCalendarSelect);
+    YAHOO.util.Event.addListener(field, "change", handleFieldChange);
+    YAHOO.util.Event.addListener(field, "focus", handleFieldFocus);
+    YAHOO.util.Event.addListener(attribute, "click", function(e) {
+      YAHOO.util.Event. stopEvent(e);
+    });
+    YAHOO.util.Event.addListener(document, "click", calendar.hide, calendar, true);
+
+    calendars.push(calendar);
     calendar.render();    
     handleFieldChange();
   }

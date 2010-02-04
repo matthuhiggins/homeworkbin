@@ -1,6 +1,6 @@
 form > div {
   margin-bottom: 11px;
-  padding: 2px
+  padding: 2px;
 }
 
 form p + p {
@@ -10,7 +10,7 @@ form p + p {
 form input[type="text"],
 form input[type="password"] {
   padding: 3px;
-  width: 25em;
+  width: 300px;
 }
 
 form input[type="checkbox"] {

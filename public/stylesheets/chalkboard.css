@@ -3,19 +3,19 @@
   padding: 6px 20px;
 }
 
-.chalkboard .course-name {
+.chalkboard .course.menu .course-name {
   float: left;
   font-size: 20px;
   font-weight: bold;
   margin-right: 10px;
 }
 
-.chalkboard .course-operations {
+.chalkboard .course.menu .course-operations {
   float: left;
   overflow: hidden;
 }
 
-.chalkboard .course-operations li {
+.chalkboard .course.menu .course-operations li {
   float: left;
   margin: 5px 10px 0 5px;
 }
