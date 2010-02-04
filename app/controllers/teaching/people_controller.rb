@@ -1,4 +1,4 @@
-class PeopleController < ApplicationController
+class Teaching::PeopleController < Teaching::BaseController
   require_login
 
   layout 'chalkboard'
@@ -12,4 +12,9 @@ class PeopleController < ApplicationController
     end
     redirect_to :back
   end
+  
+  private
+    def current_course
+      nil
+    end
 end

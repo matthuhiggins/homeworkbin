@@ -3,7 +3,6 @@ ActionController::Routing::Routes.draw do |map|
   
   map.resources :lost_passwords
   map.resource :session
-  map.resource :person, :as => 'settings'
 
   map.resources :enrollments, :controller => 'studying/enrollments'
 
@@ -15,12 +14,16 @@ ActionController::Routing::Routes.draw do |map|
   
   map.resources :registrations, :controller => 'teaching/registrations', :collection => {'thanks' => :get}
 
-  map.resources :teachings, :controller => 'teaching/courses', :as => 'teaching' do |teaching|
-    teaching.resources :assignments, :controller => 'teaching/assignments'
-    teaching.resources :enrollments, :controller => 'teaching/enrollments'
-    teaching.resources :studiers, :controller => 'teaching/studiers'
+  map.resources :teachings, :controller => 'teaching/courses', :as => 'teaching', :requirements => {:id => /\d+/} do |teachings|
+    teachings.resources :assignments,  :controller => 'teaching/assignments'
+    teachings.resources :enrollments,  :controller => 'teaching/enrollments'
+    teachings.resources :studiers,     :controller => 'teaching/studiers',   :as => 'students'
   end
-  
+
+  map.namespace :teaching do |teaching|
+    teaching.resource  :person, :as => 'settings'
+  end
+    
   map.login   'login',    :controller => 'sessions',      :action => 'new', :conditions => { :method => :get }
   map.connect 'login',    :controller => 'sessions',      :action => 'create', :conditions => { :method => :post }
   map.logout  'logout',   :controller => 'sessions',      :action => 'destroy'

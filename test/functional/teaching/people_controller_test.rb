@@ -1,6 +1,6 @@
 require 'action_controller_test'
 
-class PeopleControllerTest < ActionController::PersonTestCase
+class Teaching::PeopleControllerTest < ActionController::PersonTestCase
   def text_show
     person_get :show
   end
