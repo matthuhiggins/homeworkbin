@@ -7,13 +7,9 @@ class Course < ActiveRecord::Base
 
   validates_presence_of :name
 
-  validates_each :start_date, :end_date do |course, attribute, value|
-    begin
-      !value.is_a?(Date) && Date.strptime(value, '%m/%d/%Y')
-    rescue
-      course.errors.add(attribute, 'must be mm/dd/yyyy')
-    end
-  end
+  extend ActiveRecord::DateValidation
+  validates_date_format :start_date, :end_date
+
 
   after_create do |course|
     course.teacher.decrement! :courses_available
