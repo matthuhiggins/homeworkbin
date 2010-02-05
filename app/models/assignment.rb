@@ -7,4 +7,7 @@ class Assignment < ActiveRecord::Base
   delegate :teacher, :to => :course
 
   validates_presence_of :name
+
+  extend ActiveRecord::DateValidation
+  validates_date_format :due_date
 end
