@@ -19,7 +19,7 @@ class Assignment::DueTest < ActiveSupport::TestCase
   end
   
   def test_due_at_writer
-    assignment = Assignment.new :due_at => Time.mktime(2004, 10, 22, 10, 5)
+    assignment = Factory.build :assignment, :due_at => Time.mktime(2004, 10, 22, 10, 5)
     
     assert_equal Date.new(2004, 10, 22), assignment.due_date
     assert_equal 605, assignment.due_minutes
