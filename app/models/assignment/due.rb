@@ -22,16 +22,5 @@ class Assignment
         due_minutes % 60
       )
     end
-    
-    private
-      # def store_due_at
-      #   self.due_at = Time.mktime(
-      #     converted_due_date.year,
-      #     converted_due_date.month,
-      #     converted_due_date.day,
-      #     due_minutes / 60,
-      #     due_minutes % 60
-      #   )
-      # end
   end
 end
