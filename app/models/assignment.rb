@@ -1,5 +1,6 @@
 class Assignment < ActiveRecord::Base
   include Assignment::Handout
+  include Assignment::Due
 
   has_many :compositions
   belongs_to :course
@@ -7,7 +8,4 @@ class Assignment < ActiveRecord::Base
   delegate :teacher, :to => :course
 
   validates_presence_of :name
-
-  extend ActiveRecord::DateValidation
-  validates_date_format :due_date
 end

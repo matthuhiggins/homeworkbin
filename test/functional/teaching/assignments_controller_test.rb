@@ -15,7 +15,8 @@ class Teaching::AssignmentsControllerTest < ActionController::TeachingTestCase
     teaching_post :create, :assignment => {
       :name         => 'CSE 142',
       :description  => 'Easy for some, difficult for others',
-      :due_date     => '2004/12/1'
+      :due_date     => '12/1/2004',
+      :due_minutes  => 100
     }
     
     assert !assigns(:assignment).new_record?

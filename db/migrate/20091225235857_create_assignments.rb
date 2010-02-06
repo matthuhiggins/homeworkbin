@@ -4,7 +4,7 @@ class CreateAssignments < ActiveRecord::Migration
       t.string    :name,          :null => false
       t.text      :description,   :null => false
       t.date      :due_date,      :null => false
-      t.integer   :due_hour,      :null => true
+      t.integer   :due_minutes,   :null => true
       t.integer   :course_id,     :null => false
       t.integer   :handout_count, :null => false, :default => 0
       t.timestamps

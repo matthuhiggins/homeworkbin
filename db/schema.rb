@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(:version => 20091226234927) do
     t.string   "name",                         :null => false
     t.text     "description",                  :null => false
     t.date     "due_date",                     :null => false
-    t.integer  "due_hour"
+    t.integer  "due_minutes"
     t.integer  "course_id",                    :null => false
     t.integer  "handout_count", :default => 0, :null => false
     t.datetime "created_at"

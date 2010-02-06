@@ -18,7 +18,7 @@ module ActiveSupport
       end
     
       def guess_klass_name
-        name.sub(/Test$/, '')
+        name.sub(/(::.*)|Test$/, '')
       end
     end
   end
