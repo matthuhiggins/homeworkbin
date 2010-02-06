@@ -14,12 +14,12 @@ class Assignment::DueTest < ActiveSupport::TestCase
   def test_due_at_reader
     assert_equal(
       Factory.build(:assignment, :due_date => '05/22/2004', :due_minutes => 122).due_at,
-      Time.mktime(2004, 5, 22, 2, 2)
+      Time.zone.local(2004, 5, 22, 2, 2)
     )
   end
   
   def test_due_at_writer
-    assignment = Factory.build :assignment, :due_at => Time.mktime(2004, 10, 22, 10, 5)
+    assignment = Factory.build :assignment, :due_at => Time.utc(2004, 10, 22, 10, 5)
     
     assert_equal Date.new(2004, 10, 22), assignment.due_date
     assert_equal 605, assignment.due_minutes

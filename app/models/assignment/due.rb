@@ -10,7 +10,7 @@ class Assignment
     end
 
     def due_at
-      Time.mktime(
+      Time.zone.local(
         due_date.year,
         due_date.month,
         due_date.day,
