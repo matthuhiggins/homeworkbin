@@ -6,8 +6,8 @@ Rails::Initializer.run do |config|
   config.time_zone = 'UTC'
 
   config.gem 'matthuhiggins-foreigner', :version => '0.4.1',    :lib => 'foreigner'
-  config.gem 'will_paginate',           :version => '2.3.11'
-  config.gem 'json',                    :version => '1.2.0'
+  # config.gem 'will_paginate',           :version => '2.3.11'
+  # config.gem 'json',                    :version => '1.2.0'
 
   config.action_mailer.default_url_options = {
     :host => 'homeworkbin.com',
