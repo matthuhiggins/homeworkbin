@@ -18,5 +18,10 @@ class Assignment
         due_minutes % 60
       )
     end
+    
+    def due_at=(time)
+      self.due_date = time.to_date
+      self.due_minutes = time.hour * 60 + time.min
+    end
   end
 end
