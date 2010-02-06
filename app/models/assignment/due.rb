@@ -9,10 +9,6 @@ class Assignment
       end
     end
 
-    def late?
-      
-    end
-
     def due_at
       Time.mktime(
         due_date.year,

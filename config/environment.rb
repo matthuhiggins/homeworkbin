@@ -14,7 +14,7 @@ Rails::Initializer.run do |config|
     :only_path => false
   }
 
-  config.after_initialize do
-    ActiveSupport::JSON.backend = 'JSONGem'
-  end
+  # config.after_initialize do
+  #   ActiveSupport::JSON.backend = 'JSONGem'
+  # end
 end

@@ -13,5 +13,13 @@ class Composition
     def handed_in?
       handed_in_at.present?
     end
+    
+    def late_hand_in?
+      if handed_in?
+        handed_in_at > assignment.due_at
+      else
+        Time.current > assignment.due_at
+      end
+    end
   end
 end

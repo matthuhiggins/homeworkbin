@@ -23,4 +23,16 @@ class Composition::HandInTest < ActiveSupport::TestCase
     assert !composition.handed_in?
     assert_nil composition.handed_in_at
   end
+
+  def test_late_before_hand_in
+    # assignment = Factory :assignment, :due_date => Date.new(2005, 5, 10), :due_minutes => 180
+    
+  end
+
+  def test_late_after_handed_in
+    assignment = Factory :assignment, :due_date => Date.new(2005, 5, 10), :due_minutes => 180
+    assert !Factory.build(:composition, :assignment => assignment, :handed_in_at => Time.mktime(2005, 5, 10, 2)).late?
+    assert !Factory.build(:composition, :assignment => assignment, :handed_in_at => Time.mktime(2005, 5, 10, 3)).late?
+    assert Factory.build(:composition, :assignment => assignment, :handed_in_at => Time.mktime(2005, 5, 10, 4)).late?
+  end
 end
