@@ -18,6 +18,15 @@ class Assignment::DueTest < ActiveSupport::TestCase
     )
   end
   
+  def test_due_at_sets_time_zone
+    with_time_zone 'Kuwait' do
+      due_at = Factory.build(:assignment, :due_date => '01/22/2004', :due_minutes => 122).due_at
+      assert_equal Time.zone.utc_offset, due_at.utc_offset
+      assert_equal 'AST', due_at.zone
+      assert_equal 2, due_at.hour
+    end
+  end
+  
   def test_due_at_writer
     assignment = Factory.build :assignment, :due_at => Time.utc(2004, 10, 22, 10, 5)
     
