@@ -18,7 +18,7 @@ class Composition
       if handed_in?
         handed_in_at > assignment.due_at
       else
-        Time.current > assignment.due_at
+        Time.current.change(:sec => 0) > assignment.due_at
       end
     end
   end

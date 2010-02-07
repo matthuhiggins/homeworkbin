@@ -9,7 +9,7 @@ class Studying::CompositionsControllerTest < ActionController::StudyingTestCase
   def test_create
     studying_post :create, {
       :assignment_id => assignment.to_param,
-      :composition => {:paper => "The quick brown fox jumped over the lazy dog"}
+      :composition => {:text => "The quick brown fox jumped over the lazy dog"}
     }
     
     assert !assigns(:composition).new_record?

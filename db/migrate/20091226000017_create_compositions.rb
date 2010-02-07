@@ -5,7 +5,7 @@ class CreateCompositions < ActiveRecord::Migration
       t.integer   :student_id,      :null => false
       t.integer   :assignment_id,   :null => false
       t.integer   :course_id,       :null => false
-      t.text      :paper,           :null => false
+      t.text      :text,            :null => false
       t.datetime  :handed_in_at,    :null => true
       t.timestamps
     end
