@@ -1,0 +1,2 @@
+module Teaching::CourseHelper
+end
