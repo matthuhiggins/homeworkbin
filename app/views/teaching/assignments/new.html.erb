@@ -4,15 +4,19 @@
     <p><%= f.text_field :name %></p>
   </div>
   <div>
-    <p><%= f.label :description %></p>
-    <p><%= f.text_field :description %></p>
-  </div>
-  <div>
     <p><%= f.label :due_date, 'Due date' %></p>
     <p><%= f.text_field :due_date %></p>
   </div>
   <div>
-    <%= f.submit %>
+    <p><%= f.label :due_minutes %></p>
+    <p><%= f.time_select :due_minutes %></p>
+  </div>
+  <div>
+    <p><%= f.label :description %></p>
+    <p><%= f.text_area :description %></p>
+  </div>
+  <div>
+    <%= f.submit 'Create assignment' %>
   </div>
 <% end %>
 
