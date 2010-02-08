@@ -21,7 +21,9 @@ HW.dateSelector = (function() {
 
   return function(attribute) {
     var calendar = new YAHOO.widget.Calendar(attribute + '_calendar'),
-        field = document.getElementById('course_' + attribute); 
+        field = document.getElementById('course_' + attribute);
+
+    fieldToCalendar(field, calendar);
 
     function handleCalendarSelect() {
       calendarToField(calendar, field);
@@ -54,6 +56,5 @@ HW.dateSelector = (function() {
 
     calendars.push(calendar);
     calendar.render();    
-    handleFieldChange();
   };
 })();
