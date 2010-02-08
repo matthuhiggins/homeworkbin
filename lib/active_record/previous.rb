@@ -1,7 +1,7 @@
 module ActiveRecord
   module Previous
     def previous
-      scoped(:order => 'id desc').first
+      last(:conditions => 'id is not null')
     end
   end
 end

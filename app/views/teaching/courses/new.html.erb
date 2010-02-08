@@ -48,7 +48,7 @@
   <div class="fields">
     <div id="start_date" class="yui-skin-sam">
       <p><%= f.label :start_date, 'from' %></p>
-      <p><%= f.text_field :start_date, :autocomplete => 'off' %></p>
+      <p><%= f.text_field :start_date, :autocomplete => 'off', :value => course_start_date(@course) %></p>
       <div class="calendar-wrap yui-skin-sam">
         <div class="calendar" id="start_date_calendar"></div> 
       </div>
@@ -56,7 +56,7 @@
     </div>
     <div id="end_date" class="yui-skin-sam">
       <p><%= f.label :end_date, 'to' %></p>
-      <p><%= f.text_field :end_date, :autocomplete => 'off' %></p>
+      <p><%= f.text_field :end_date, :autocomplete => 'off', :value => course_end_date(@course) %></p>
       <div class="calendar-wrap yui-skin-sam">
         <div class="calendar" id="end_date_calendar"></div> 
       </div>
