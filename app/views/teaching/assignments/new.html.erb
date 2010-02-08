@@ -2,18 +2,16 @@
   <div>
     <p><%= f.label :name %></p>
     <p><%= f.text_field :name %></p>
+    <p><%= f.error_message_on :name, :prepend_text => 'Name ' %></p>
   </div>
   <div>
     <p><%= f.label :due_date, 'Due date' %></p>
     <p><%= f.text_field :due_date %></p>
+    <p><%= f.error_message_on :due_date, :prepend_text => 'Due date ' %></p>
   </div>
   <div>
     <p><%= f.label :due_minutes %></p>
-    <p><%= f.time_select :due_minutes %></p>
-  </div>
-  <div>
-    <p><%= f.label :description %></p>
-    <p><%= f.text_area :description %></p>
+    <p><%= f.select :due_minutes, hour_options %></p>
   </div>
   <div>
     <%= f.submit 'Create assignment' %>

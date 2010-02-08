@@ -14,7 +14,6 @@ class Teaching::AssignmentsControllerTest < ActionController::TeachingTestCase
   def test_create
     teaching_post :create, :assignment => {
       :name         => 'CSE 142',
-      :description  => 'Easy for some, difficult for others',
       :due_date     => '12/1/2004',
       :due_minutes  => 100
     }

@@ -2,7 +2,7 @@ class CreateAssignments < ActiveRecord::Migration
   def self.up
     create_table :assignments do |t|
       t.string    :name,          :null => false
-      t.text      :description,   :null => false
+      t.text      :description,   :null => true
       t.date      :due_date,      :null => false
       t.integer   :due_minutes,   :null => true
       t.integer   :course_id,     :null => false

@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(:version => 20100207082333) do
 
   create_table "assignments", :force => true do |t|
     t.string   "name",                         :null => false
-    t.text     "description",                  :null => false
+    t.text     "description"
     t.date     "due_date",                     :null => false
     t.integer  "due_minutes"
     t.integer  "course_id",                    :null => false
