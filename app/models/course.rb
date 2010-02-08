@@ -1,5 +1,5 @@
 class Course < ActiveRecord::Base
-  extend ActiveRecord::Prior
+  extend ActiveRecord::Previous
   
   belongs_to :teacher
   has_many :studiers

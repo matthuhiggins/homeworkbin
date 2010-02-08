@@ -1,6 +1,6 @@
 module ActiveRecord
-  module Prior
-    def prior
+  module Previous
+    def previous
       scoped(:order => 'id desc').first
     end
   end

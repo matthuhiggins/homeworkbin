@@ -4404,7 +4404,7 @@ Calendar.prototype = {
     
     /**
     * The private method used for adding cell renderers to the local render stack.
-    * This method is called by other methods that set the renderer type prior to the method call.
+    * This method is called by other methods that set the renderer type previous to the method call.
     * @method _addRenderer
     * @private
     * @param {String} type  The type string that indicates the type of date renderer being added.
