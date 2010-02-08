@@ -1,4 +1,6 @@
 class Course < ActiveRecord::Base
+  extend ActiveRecord::Prior
+  
   belongs_to :teacher
   has_many :studiers
   has_many :students, :through => :studiers
