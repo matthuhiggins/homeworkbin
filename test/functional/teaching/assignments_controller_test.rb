@@ -14,7 +14,7 @@ class Teaching::AssignmentsControllerTest < ActionController::TeachingTestCase
   def test_create
     teaching_post :create, :assignment => {
       :name         => 'CSE 142',
-      :due_date     => '12/1/2004',
+      :due_date     => (current_course.start_date + 5).strftime('%m/%d/%Y'),
       :due_minutes  => 100
     }
     

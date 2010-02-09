@@ -25,12 +25,17 @@ class Composition::HandInTest < ActiveSupport::TestCase
   end
 
   def test_late_before_hand_in
-    assert !Factory.build(:composition, :assignment => Factory(:assignment_without_due, :due_at => Time.current + 65)).late_hand_in?
-    assert Factory.build(:composition, :assignment => Factory(:assignment_without_due, :due_at => Time.current - 65)).late_hand_in?
+    course = Factory :course, :start_date => Date.current - 10, :end_date => Date.current + 10
+    past_assignment = Factory :assignment_without_due, :course => course, :due_at => Time.current - 65
+    current_assignment = Factory :assignment_without_due, :course => course, :due_at => Time.current + 65
+    
+    assert Factory.build(:composition, :assignment => past_assignment).late_hand_in?
+    assert !Factory.build(:composition, :assignment => current_assignment).late_hand_in?
   end
 
   def test_late_after_handed_in
-    assignment = Factory :assignment, :due_date => Date.new(2005, 5, 10), :due_minutes => 180
+    course = Factory :course, :start_date => Date.new(2005, 4, 10), :end_date => Date.new(2005, 6, 10)
+    assignment = Factory :assignment, :course => course, :due_date => Date.new(2005, 5, 10), :due_minutes => 180
 
     assert !Factory.build(:composition, :assignment => assignment, :handed_in_at => Time.zone.local(2005, 5, 10, 2)).late_hand_in?
     assert !Factory.build(:composition, :assignment => assignment, :handed_in_at => Time.zone.local(2005, 5, 10, 3)).late_hand_in?

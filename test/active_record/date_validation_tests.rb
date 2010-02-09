@@ -16,13 +16,15 @@ module ActiveRecord
     end
     
     private
+      ERROR_MESSAGE = 'must be mm/dd/yyyy'
+
       def check_invalid_date_formats(attribute)
         record = Factory.build self.class.factory_name
 
         ['', nil, '12/40/2004', '12/25', '10-2004'].each do |value|
           record[attribute] = value
           assert record.invalid?
-          assert_equal 'must be mm/dd/yyyy', record.errors.on(attribute)
+          assert_equal ERROR_MESSAGE, record.errors.on(attribute)
         end
       end
 
@@ -31,7 +33,8 @@ module ActiveRecord
 
         ['jun 5 2003', '12/20/2004', '2/2/2003'].each do |value|
           record[attribute] = value
-          assert record.valid?
+          record.valid?
+          assert record.errors.on(attribute).nil? || !record.errors.on(attribute).include?(ERROR_MESSAGE)
         end
       end
   end

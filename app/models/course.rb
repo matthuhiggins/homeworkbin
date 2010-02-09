@@ -11,12 +11,16 @@ class Course < ActiveRecord::Base
   validates_presence_of :name
 
   validates_date_format :start_date, :end_date
-
+  
   after_create do |course|
     course.teacher.decrement! :courses_available
   end
 
   def last
     @last ||= teacher.teaching.last
+  end
+
+  def date_range
+    start_date..end_date
   end
 end
