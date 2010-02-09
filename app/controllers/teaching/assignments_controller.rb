@@ -4,7 +4,7 @@ class Teaching::AssignmentsController < Teaching::BaseController
   end
   
   def new
-    @assignment = current_course.assignments.build
+    @assignment = current_course.assignments.new
   end
   
   def create

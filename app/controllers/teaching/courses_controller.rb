@@ -4,7 +4,7 @@ class Teaching::CoursesController < Teaching::BaseController
   end
   
   def new
-    @course = current_teacher.teaching.build
+    @course = current_teacher.teaching.new
   end
   
   def create
