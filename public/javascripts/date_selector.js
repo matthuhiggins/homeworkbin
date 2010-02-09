@@ -19,9 +19,10 @@ HW.dateSelector = (function() {
     field.value = (date.getMonth() + 1) + "/" + date.getDate() + "/" + date.getFullYear();     
   }
 
-  return function(attribute) {
-    var calendar = new YAHOO.widget.Calendar(attribute + '_calendar'),
-        field = document.getElementById('course_' + attribute);
+  return function(containerId) {
+    var field = document.getElementById(containerId).getElementsByTagName('input')[0],
+        calendarEl = YAHOO.util.Dom.getElementsByClassName('calendar', 'div', containerId)[0],
+        calendar = new YAHOO.widget.Calendar(calendarEl);
 
     fieldToCalendar(field, calendar);
 
@@ -32,11 +33,11 @@ HW.dateSelector = (function() {
       field.focus();
       YAHOO.util.Event.addListener(field, "focus", handleFieldFocus);
     }
-  
+
     function handleFieldChange() {
       fieldToCalendar(field, calendar);
     }
-  
+
     function handleFieldFocus() {
       for (var i = 0; i < calendars.length; i++) {
         calendars[i].hide();
@@ -48,8 +49,7 @@ HW.dateSelector = (function() {
     YAHOO.util.Event.addListener(field, "change", handleFieldChange);
     YAHOO.util.Event.addListener(field, "focus", handleFieldFocus);
     YAHOO.util.Event.addListener(field, "click", handleFieldFocus);
-
-    YAHOO.util.Event.addListener(attribute, "click", function(e) {
+    YAHOO.util.Event.addListener(containerId, "click", function(e) {
       YAHOO.util.Event. stopEvent(e);
     });
     YAHOO.util.Event.addListener(document, "click", calendar.hide, calendar, true);
