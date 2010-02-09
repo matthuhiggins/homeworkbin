@@ -13,6 +13,12 @@
     <p><%= f.error_message_on :due_date, :prepend_text => 'Due date ' %></p>
   </div>
   <div>
+    <p>
+      <%= f.check_box :handout %>
+      <%= f.label :handout, 'Notify all students about this new assignment' %>
+    </p>
+  </div>
+  <div>
     <%= f.submit 'Create assignment' %>
   </div>
 <% end %>
