@@ -14,7 +14,7 @@
   </div>
   <div>
     <p>
-      <%= f.check_box :handout %>
+      <%= f.check_box :handout, :checked => assignment_handout(@assignment) %>
       <%= f.label :handout, 'Email students about this new assignment' %>
     </p>
   </div>

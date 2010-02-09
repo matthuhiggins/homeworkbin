@@ -1,8 +1,9 @@
-Factory.define :assignment do |f|
+Factory.define :assignment_without_due, :class => Assignment do |f|
   f.association :course
   f.name        'Make an online posting'
-  f.after_build do |a|
-    a.due_date = Date.new(2004, 2, 15) if a.due_date.blank?
-    a.due_minutes = 720 if a.due_minutes.blank?
-  end
+end
+
+Factory.define :assignment, :parent => :assignment_without_due do |f|
+  f.due_date      Date.new(2004, 2, 15) 
+  f.due_minutes   720
 end

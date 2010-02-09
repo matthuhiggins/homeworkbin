@@ -16,4 +16,12 @@ module Teaching::AssignmentHelper
       12 * 60
     end
   end
+  
+  def assignment_handout(assignment)
+    if assignment.handout.present?
+      assignment.handout == "1"
+    else
+      true
+    end
+  end
 end
