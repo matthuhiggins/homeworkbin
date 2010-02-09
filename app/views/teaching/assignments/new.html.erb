@@ -7,7 +7,7 @@
   <div>
     <p><%= f.label :due_date, 'Due date' %></p>
     <p>
-      <%= f.text_field :due_date %>
+      <%= f.text_field :due_date, :value => assignment_due_date(@assignment) %>
       <%= f.select :due_minutes, hour_options, :selected => assignment_due_minutes(@assignment) %>
     </p>
     <p><%= f.error_message_on :due_date, :prepend_text => 'Due date ' %></p>
@@ -15,7 +15,7 @@
   <div>
     <p>
       <%= f.check_box :handout %>
-      <%= f.label :handout, 'Notify all students about this new assignment' %>
+      <%= f.label :handout, 'Email students about this new assignment' %>
     </p>
   </div>
   <div>
