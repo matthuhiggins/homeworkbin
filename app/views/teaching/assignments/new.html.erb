@@ -6,12 +6,11 @@
   </div>
   <div>
     <p><%= f.label :due_date, 'Due date' %></p>
-    <p><%= f.text_field :due_date %></p>
+    <p>
+      <%= f.text_field :due_date %>
+      <%= f.select :due_minutes, hour_options, :selected => assignment_due_minutes(@assignment) %>
+    </p>
     <p><%= f.error_message_on :due_date, :prepend_text => 'Due date ' %></p>
-  </div>
-  <div>
-    <p><%= f.label :due_minutes %></p>
-    <p><%= f.select :due_minutes, hour_options, :value => assignment_due_minutes(@assignment) %></p>
   </div>
   <div>
     <%= f.submit 'Create assignment' %>

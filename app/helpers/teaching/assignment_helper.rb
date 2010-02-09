@@ -5,7 +5,7 @@ module Teaching::AssignmentHelper
     elsif assignment.last.present?
       assignment.last.due_minutes
     else
-      0
+      12 * 60
     end
   end
 end

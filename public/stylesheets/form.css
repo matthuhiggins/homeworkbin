@@ -13,6 +13,10 @@ form input[type="password"] {
   width: 300px;
 }
 
+form select {
+  padding: 3px;
+}
+
 form input[type="checkbox"] {
   margin-top: 2px;
   vertical-align: top;

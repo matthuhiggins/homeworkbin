@@ -18,7 +18,7 @@ class Teaching::CourseHelperTest < ActionView::TestCase
   def test_date_defaults_to_last
     teacher = Factory :teacher
     Factory :course, :start_date => '05/22/2004', :end_date => '07/24/2004', :teacher => teacher
-    
+
     course = teacher.teaching.new
 
     assert_equal '05/22/2004', course_start_date(course)
