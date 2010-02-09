@@ -1,5 +1,6 @@
 class Course < ActiveRecord::Base
-  extend ActiveRecord::Previous
+  extend ActiveRecord::DateValidation
+  extend ActiveSupport::Memoizable
   
   belongs_to :teacher
   has_many :studiers
@@ -9,11 +10,13 @@ class Course < ActiveRecord::Base
 
   validates_presence_of :name
 
-  extend ActiveRecord::DateValidation
   validates_date_format :start_date, :end_date
-
 
   after_create do |course|
     course.teacher.decrement! :courses_available
+  end
+
+  def previous
+    @previous ||= teacher.teaching.last
   end
 end

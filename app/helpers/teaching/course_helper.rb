@@ -10,8 +10,8 @@ module Teaching::CourseHelper
   def course_date(course, attribute)
     if course.send(attribute).present?
       course.send attribute
-    elsif current_teacher.teaching.previous.present?
-      current_teacher.teaching.previous.send attribute
+    elsif course.previous.present?
+      course.previous.send attribute
     else
       Date.current + (attribute == :end_date ? 90 : 0)
     end
