@@ -16,7 +16,7 @@ class Course < ActiveRecord::Base
     course.teacher.decrement! :courses_available
   end
 
-  def previous
-    @previous ||= teacher.teaching.last
+  def last
+    @last ||= teacher.teaching.last
   end
 end

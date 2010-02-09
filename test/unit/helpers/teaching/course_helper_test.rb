@@ -8,14 +8,14 @@ class Teaching::CourseHelperTest < ActionView::TestCase
     assert_equal '07/24/2004', course_end_date(course)
   end
   
-  def test_date_defaults_without_previous
+  def test_date_defaults_without_last
     course = Factory.build :course, :start_date => nil, :end_date => nil
 
     assert_equal Date.current.strftime('%m/%d/%Y'), course_start_date(course)
     assert_equal (Date.current + 90).strftime('%m/%d/%Y'), course_end_date(course)
   end
   
-  def test_date_defaults_to_previous
+  def test_date_defaults_to_last
     teacher = Factory :teacher
     Factory :course, :start_date => '05/22/2004', :end_date => '07/24/2004', :teacher => teacher
     

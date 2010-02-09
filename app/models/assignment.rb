@@ -9,7 +9,7 @@ class Assignment < ActiveRecord::Base
 
   validates_presence_of :name
 
-  def previous
-    @previous ||= course.assignments.last
+  def last
+    @last ||= course.assignments.last
   end
 end

@@ -12,4 +12,13 @@ class CourseTest < ActiveSupport::TestCase
     
     assert_equal 0, teacher.courses_available
   end
+
+  def test_last
+    teacher = Factory :teacher
+    first_course = Factory :course, :teacher => teacher
+    second_course = Factory :course, :teacher => teacher
+    new_course = Factory.build :course, :teacher => teacher
+    
+    assert_equal second_course, new_course.last
+  end
 end
