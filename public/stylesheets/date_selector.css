@@ -1,0 +1,12 @@
+form .calendar-wrap {
+  margin-top: 4px;
+  position: relative;
+  width: 300px;
+}
+
+form .calendar {
+  display: none;
+  left: 0;  
+  position: absolute;
+  top: 0;
+}

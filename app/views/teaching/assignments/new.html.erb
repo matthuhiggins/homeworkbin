@@ -1,3 +1,7 @@
+<%= yui_javascript 'yahoo-dom-event/yahoo-dom-event', 'calendar/calendar' %>
+<%= yui_stylesheet 'calendar/assets/skins/sam/calendar' %>
+<%= javascript_include_tag 'date_selector' %>
+
 <% form_for @assignment, :url => teaching_assignments_path(current_course) do |f| %>
   <div>
     <p><%= f.label :name %></p>
