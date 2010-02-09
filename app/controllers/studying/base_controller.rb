@@ -1,5 +1,5 @@
 class Studying::BaseController < ApplicationController
-  layout 'desk'
+  layout 'studying'
   require_login
   
   private

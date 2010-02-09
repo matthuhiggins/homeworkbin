@@ -1,7 +1,7 @@
 class Teaching::PeopleController < Teaching::BaseController
   require_login
 
-  layout 'chalkboard'
+  layout 'teaching'
   
   def show
   end
