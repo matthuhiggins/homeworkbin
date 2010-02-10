@@ -12,8 +12,8 @@
 ActiveRecord::Schema.define(:version => 20100207082333) do
 
   create_table "annotations", :force => true do |t|
-    t.integer  "compositions_id", :null => false
-    t.text     "text",            :null => false
+    t.integer  "composition_id", :null => false
+    t.text     "text",           :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
