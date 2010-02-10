@@ -15,16 +15,16 @@ module ActionController
       @current_student
     end
     
-    def current_studier
+    def studier
       build_studier!
-      @current_studier
+      @studier
     end
     
     private
       def build_studier!
         @current_course ||= Factory(:course)
         @current_student ||= current_person.becomes(Student)
-        @current_studier ||= Factory(:studier, :course => @current_course, :student => @current_student)
+        @studier ||= Factory(:studier, :course => @current_course, :student => @current_student)
       end
   end
 end

@@ -10,9 +10,11 @@ class CreateCompositions < ActiveRecord::Migration
       t.timestamps
     end
     
-    add_foreign_key :compositions, :people,      :dependent => :delete, :column => 'student_id'
-    add_foreign_key :compositions, :studiers,    :dependent => :delete
-    add_foreign_key :compositions, :assignments, :dependent => :delete
+    add_index :compositions, [:assignment_id, :studier_id], :unique => true
+    add_foreign_key :compositions, :people,       :dependent => :delete, :column => 'student_id'
+    add_foreign_key :compositions, :studiers,     :dependent => :delete
+    add_foreign_key :compositions, :courses,      :dependent => :delete
+    add_foreign_key :compositions, :assignments,  :dependent => :delete
   end
 
   def self.down

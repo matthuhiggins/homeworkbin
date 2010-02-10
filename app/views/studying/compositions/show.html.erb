@@ -1,1 +1,28 @@
-<%= debug @composition %>
+<%= yui_stylesheet 'assets/skins/sam/skin' %>
+
+<%= yui_javascript 'yahoo-dom-event/yahoo-dom-event',
+                   'element/element-min',
+                   'container/container_core-min',
+                   'editor/simpleeditor-min' %>
+
+<% form_for composition, :url => studying_composition_path(current_course, assignment),
+                          :html => {:method => :put} do |f| %>
+  <div class="yui-skin-sam">
+    <%= f.text_area :text %>
+  </div>
+  <div>
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<script>
+var editorConfig = {
+  height: '300px', 
+  width: '600px', 
+  dompath: true, 
+  focusAtStart: true
+};
+
+var myEditor = new YAHOO.widget.SimpleEditor('composition_text', editorConfig);
+myEditor.render();
+</script>

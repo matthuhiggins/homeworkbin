@@ -4,6 +4,6 @@
 
 <ul>
   <% @course.assignments.each do |assignment| %>
-    <li><%= @assignment.name %></li>
+    <li><%= link_to assignment.name, studying_composition_path(@course, assignment) %></li>
   <% end %>
 </ul>

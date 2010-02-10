@@ -8,7 +8,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :studyings, :controller => 'studying/courses', :as => 'studying' do |studying|
     studying.resources :assignments do |assignment|
-      assignment.resource :composition, :name_prefix => 'studying_'
+      assignment.resource :composition, :name_prefix => 'studying_', :controller => 'studying/compositions'
     end
   end
   
