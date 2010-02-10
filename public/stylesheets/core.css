@@ -17,6 +17,12 @@ a:hover {
   text-decoration: underline;
 }
 
+br {
+  clear: both;
+  height: 0;
+  width: 0;
+}
+
 body > .header {
   background-color: #FAFAFA;
   border-bottom: 5px solid #F6F6F6;

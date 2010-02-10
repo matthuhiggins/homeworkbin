@@ -11,12 +11,12 @@
 
 #course-form .fields > div {
   float: left;
-  height: 300px;
+/*  height: 300px;*/
   margin-right: 9px;
   width: 145px;
 }
 
-#course-form .fields > div input[type="text"] {
+#course-form .fields input[type="text"] {
   width: 100%;
 }
 
@@ -32,18 +32,18 @@
     <p><%= f.error_message_on :name, :prepend_text => 'Course name ' %></p>
   </div>
   <div class="fields">
-    <div id="start_date" class="yui-skin-sam">
+    <div id="start-date">
       <p><%= f.label :start_date, 'from' %></p>
       <p><%= f.text_field :start_date, :autocomplete => 'off', :value => course_start_date(@course) %></p>
-      <div class="calendar-wrap yui-skin-sam">
+      <div class="calendar-wrap">
         <div class="calendar"></div> 
       </div>
       <p><%= f.error_message_on :start_date %></p>
     </div>
-    <div id="end_date" class="yui-skin-sam">
+    <div id="end-date">
       <p><%= f.label :end_date, 'to' %></p>
       <p><%= f.text_field :end_date, :autocomplete => 'off', :value => course_end_date(@course) %></p>
-      <div class="calendar-wrap yui-skin-sam">
+      <div class="calendar-wrap">
         <div class="calendar"></div> 
       </div>
       <p><%= f.error_message_on :end_date %></p>
@@ -58,7 +58,7 @@
 
 <script> 
 YAHOO.util.Event.onDOMReady(function() {
-  HW.dateSelector('start_date');
-  HW.dateSelector('end_date');
+  HW.dateSelector('start-date');
+  HW.dateSelector('end-date');
 });
 </script>

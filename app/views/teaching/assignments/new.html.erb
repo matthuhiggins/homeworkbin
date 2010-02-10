@@ -1,20 +1,52 @@
-<%= yui_javascript 'yahoo-dom-event/yahoo-dom-event', 'calendar/calendar' %>
 <%= yui_stylesheet 'calendar/assets/skins/sam/calendar' %>
+<%= stylesheet_link_tag 'date_selector' %>
+
+<%= yui_javascript 'yahoo-dom-event/yahoo-dom-event', 'calendar/calendar' %>
 <%= javascript_include_tag 'date_selector' %>
 
-<% form_for @assignment, :url => teaching_assignments_path(current_course) do |f| %>
+<style>
+#assignment-form .fields {
+/*  overflow: hidden;*/
+}
+
+#assignment-form .fields > div {
+  float: left;
+/*  height: 300px;*/
+  margin-right: 9px;
+  width: 145px;
+}
+
+#assignment-form .fields input[type="text"],
+#assignment-form .fields select {
+  width: 100%;
+}
+</style>
+
+<% form_for @assignment, :url => teaching_assignments_path(current_course),
+                         :html => {:id => 'assignment-form'} do |f| %>
   <div>
     <p><%= f.label :name %></p>
     <p><%= f.text_field :name %></p>
     <p><%= f.error_message_on :name, :prepend_text => 'Name ' %></p>
   </div>
-  <div>
-    <p><%= f.label :due_date, 'Due date' %></p>
-    <p>
-      <%= f.text_field :due_date, :value => assignment_due_date(@assignment) %>
-      <%= f.select :due_minutes, hour_options, :selected => assignment_due_minutes(@assignment) %>
-    </p>
-    <p><%= f.error_message_on :due_date, :prepend_text => 'Due date ' %></p>
+  <div class="fields">
+    <div id="due-date">
+      <p><%= f.label :due_date, 'Due date' %></p>
+      <p>
+        <%= f.text_field :due_date, :value => assignment_due_date(@assignment) %>
+      </p>
+      <div class="calendar-wrap">
+        <div class="calendar"></div> 
+      </div>
+      <p><%= f.error_message_on :due_date, :prepend_text => 'Due date ' %></p>
+    </div>
+    <div>
+      <p><%= f.label :due_minutes, 'time' %></p>
+      <p>
+        <%= f.select :due_minutes, hour_options, :selected => assignment_due_minutes(@assignment) %>
+      </p>
+    </div>
+    <br />
   </div>
   <div>
     <p>
@@ -28,3 +60,9 @@
 <% end %>
 
 <%= focus 'assignment_name' %>
+
+<script>
+YAHOO.util.Event.onDOMReady(function() {
+  HW.dateSelector('due-date');
+});
+</script>
