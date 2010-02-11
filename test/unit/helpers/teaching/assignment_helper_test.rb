@@ -20,6 +20,12 @@ class Teaching::AssignmentHelperTest < ActionView::TestCase
     assert_equal Date.current.strftime('%m/%d/%Y'), assignment_due_date(Factory.build :assignment_without_due)
   end
   
+  def test_assignment_due_at
+    assignment = Factory.build :assignment
+
+    assert_equal assignment.due_date.strftime('%A, %B %d'), assignment_due_at(assignment)
+  end
+  
   def test_handout
     assert assignment_handout(Factory :assignment, :handout => '1')
     assert assignment_handout(Factory :assignment, :handout => nil)

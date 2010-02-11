@@ -16,4 +16,8 @@ module Teaching::CourseHelper
       Date.current + (attribute == :end_date ? 90 : 0)
     end
   end
+  
+  def course_date_range(course)
+    "#{course.start_date.strftime '%b %d'} - #{course.end_date.strftime '%b %d'}"
+  end
 end

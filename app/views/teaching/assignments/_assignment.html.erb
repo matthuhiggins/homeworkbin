@@ -1,1 +1,5 @@
 <%= link_to assignment.name, teaching_assignment_path(current_course, assignment) %>
+
+<span class="due-at">
+  Due <%= assignment_due_at assignment %>
+</span>

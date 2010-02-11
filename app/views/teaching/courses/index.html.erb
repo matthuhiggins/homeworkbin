@@ -1,7 +1,9 @@
-<%= link_to 'Start a new course', new_teaching_path %>
-
-<ul>
-  <% @courses.each do |course| %>
-    <li><%= render course %></li>
-  <% end %>
-</ul>
+<div class="courses">
+  <ul>
+    <% @courses.each do |course| %>
+      <li class="course"><%= render course %></li>
+    <% end %>
+  </ul>
+  
+  <%= link_to 'Start a new course', new_teaching_path %>
+</div>

@@ -17,6 +17,11 @@ module Teaching::AssignmentHelper
     end
   end
   
+  def assignment_due_at(assignment)
+    assignment.due_at.strftime '%a, %b %d'
+    # strftime('%I:%M %p').downcase.gsub(/^0/, '')
+  end
+  
   def assignment_handout(assignment)
     if assignment.handout.present?
       assignment.handout == "1"

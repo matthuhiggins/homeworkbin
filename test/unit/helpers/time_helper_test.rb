@@ -1,12 +1,6 @@
 require 'action_view_test'
 
 class TimeHelperTest < ActionView::TestCase
-  def test_assignment_due_at
-    assignment = Factory.build :assignment
-
-    assert_equal assignment.due_date.strftime('%A, %B %d'), assignment_due_at(assignment)
-  end
-  
   def test_hour_options
     options = hour_options
     

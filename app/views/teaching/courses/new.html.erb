@@ -4,27 +4,6 @@
 <%= yui_javascript 'yahoo-dom-event/yahoo-dom-event', 'calendar/calendar' %>
 <%= javascript_include_tag 'date_selector' %>
 
-<style>
-#course-form .fields {
-  overflow: hidden;
-}
-
-#course-form .fields > div {
-  float: left;
-/*  height: 300px;*/
-  margin-right: 9px;
-  width: 145px;
-}
-
-#course-form .fields input[type="text"] {
-  width: 100%;
-}
-
-#course-form .fields > div.submit {
-  margin-top: 20px;
-}
-</style>
-
 <% form_for @course, :url => teachings_path, :html => {:id => 'course-form'} do |f| %>
   <div class="course-name">
     <p><%= f.label :name, 'Course name' %></p>

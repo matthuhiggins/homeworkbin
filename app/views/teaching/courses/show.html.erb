@@ -1,5 +1,9 @@
-<%= @course.students.count %> students,
-<%= @course.assignments.count %> assignments
-
-<%= link_to 'New assignment', new_teaching_assignment_path(@course) %>
+<div>
+<%= link_to pluralize(@course.studiers.count, 'student'), teaching_studiers_path(@course) %>
 <%= link_to 'Enroll students', teaching_enrollments_path(@course) %>
+</div>
+
+<div>
+  <%= link_to pluralize(@course.assignments.count, 'assignment'), teaching_assignments_path(@course) %>
+  <%= link_to 'New assignment', new_teaching_assignment_path(@course) %>
+</div>

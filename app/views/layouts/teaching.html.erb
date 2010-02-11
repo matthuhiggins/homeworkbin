@@ -1,7 +1,8 @@
 <html>
 <head>
   <%= yui_stylesheet 'cssreset/reset-min' %>
-  <%= stylesheet_link_tag 'core', 'form', 'teaching' %>
+  <%= stylesheet_link_tag 'core', 'form' %>
+  <%= stylesheet_link_tag 'teaching/layout', 'teaching/courses', 'teaching/assignments' %>
   <title>
     Homework Bin<%= yield :title %>
   </title>
@@ -22,10 +23,9 @@
     </div>
     <% if current_course.present? %>
       <div class="course menu">
-        <div class="course-name">
-          <%= current_course.name %>
-          »
-        </div>
+        <%= link_to "#{current_course.name} »",
+                    teaching_path(current_course),
+                    :class => 'course-name' %>
         <ul class="course-operations">
           <li>
             <%= link_to 'Assignments', teaching_assignments_path(current_course) %>
