@@ -1,3 +1,15 @@
+.courses h2 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.courses .course .date-range {
+  color: #555;
+  padding-left: 18px;
+  font-size: 90%;
+}
+
 #course-form .fields {
   overflow: hidden;
 }
@@ -15,10 +27,4 @@
 
 #course-form .fields > div.submit {
   margin-top: 20px;
-}
-
-.courses .course .date-range {
-  color: #555;
-  padding-left: 18px;
-  font-size: 90%;
 }

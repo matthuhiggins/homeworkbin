@@ -8,14 +8,14 @@
                          :html => {:id => 'assignment-form'} do |f| %>
   <div>
     <p><%= f.label :name %></p>
-    <p><%= f.text_field :name %></p>
+    <p><%= f.text_field :name, :tabindex => 1 %></p>
     <p><%= f.error_message_on :name, :prepend_text => 'Name ' %></p>
   </div>
   <div class="fields">
     <div id="due-date">
       <p><%= f.label :due_date, 'Due date' %></p>
       <p>
-        <%= f.text_field :due_date, :value => assignment_due_date(@assignment) %>
+        <%= f.text_field :due_date, :value => assignment_due_date(@assignment), :tabindex => 2, :autocomplete => 'off' %>
       </p>
       <div class="calendar-wrap">
         <div class="calendar"></div> 
@@ -25,14 +25,14 @@
     <div>
       <p><%= f.label :due_minutes, 'time' %></p>
       <p>
-        <%= f.select :due_minutes, hour_options, :selected => assignment_due_minutes(@assignment) %>
+        <%= f.select :due_minutes, hour_options, {:selected => assignment_due_minutes(@assignment)}, {:tabindex => 3} %>
       </p>
     </div>
     <br />
   </div>
   <div>
     <p>
-      <%= f.check_box :handout, :checked => assignment_handout(@assignment) %>
+      <%= f.check_box :handout, :checked => assignment_handout(@assignment), :tabindex => 4 %>
       <%= f.label :handout, 'Email students about this new assignment' %>
     </p>
   </div>

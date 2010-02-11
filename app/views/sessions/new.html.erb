@@ -3,7 +3,7 @@
 <% form_tag(login_path, :class => 'login_form') do %>
   <div>
     <p><%= label_tag :email %></p>
-    <p><%= text_field_tag :email, email_login_value %></p>
+    <p><%= text_field_tag :email, email_login_value, :tabindex => 1 %></p>
   </div>
   <div>
     <p>
@@ -12,10 +12,10 @@
         (<%= link_to 'Lose your password?', new_lost_password_path %>)
       <% end %>
     </p>
-    <p><%= password_field_tag :password %></p>
+    <p><%= password_field_tag :password, {}, :tabindex => 2 %></p>
   </div>
   <div>
-    <%= check_box_tag :remember_me, '1', params[:remember_me].present? %>
+    <%= check_box_tag :remember_me, '1', params[:remember_me].present?, :tabindex => 3 %>
     <%= label_tag :remember_me %>
   </div>
   <div>
