@@ -1,0 +1,23 @@
+.assignments li.assignment a {
+  font-size: 110%;
+}
+
+.assignments li.assignment .due-at {
+  color: #555;
+  padding-left: 18px;
+  font-size: 90%;
+}
+
+#assignment-form .fields {
+}
+
+#assignment-form .fields > div {
+  float: left;
+  margin-right: 9px;
+  width: 145px;
+}
+
+#assignment-form .fields input[type="text"],
+#assignment-form .fields select {
+  width: 100%;
+}

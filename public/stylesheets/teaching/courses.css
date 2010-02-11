@@ -1,0 +1,24 @@
+#course-form .fields {
+  overflow: hidden;
+}
+
+#course-form .fields > div {
+  float: left;
+  height: 300px;
+  margin-right: 9px;
+  width: 145px;
+}
+
+#course-form .fields input[type="text"] {
+  width: 100%;
+}
+
+#course-form .fields > div.submit {
+  margin-top: 20px;
+}
+
+.courses .course .date-range {
+  color: #555;
+  padding-left: 18px;
+  font-size: 90%;
+}
