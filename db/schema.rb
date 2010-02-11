@@ -40,6 +40,8 @@ ActiveRecord::Schema.define(:version => 20100207082333) do
     t.datetime "updated_at"
   end
 
+  add_index "compositions", ["assignment_id", "studier_id"], :name => "index_compositions_on_assignment_id_and_studier_id", :unique => true
+
   create_table "courses", :force => true do |t|
     t.string   "name",       :null => false
     t.date     "start_date", :null => false
@@ -74,6 +76,7 @@ ActiveRecord::Schema.define(:version => 20100207082333) do
     t.string   "salt",                  :limit => 128,                    :null => false
     t.string   "remember_token",        :limit => 128
     t.integer  "courses_available",                    :default => 0,     :null => false
+    t.integer  "courses_created",                      :default => 0,     :null => false
     t.boolean  "registered_as_teacher",                :default => false, :null => false
     t.boolean  "automatically_enroll",                 :default => false, :null => false
     t.datetime "created_at"

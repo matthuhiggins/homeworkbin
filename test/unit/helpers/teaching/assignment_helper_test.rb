@@ -23,7 +23,7 @@ class Teaching::AssignmentHelperTest < ActionView::TestCase
   def test_assignment_due_at
     assignment = Factory.build :assignment
 
-    assert_equal assignment.due_date.strftime('%A, %B %d'), assignment_due_at(assignment)
+    assert_equal assignment.due_date.strftime('%a, %b %d'), assignment_due_at(assignment)
   end
   
   def test_handout

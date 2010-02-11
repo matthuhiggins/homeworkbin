@@ -14,6 +14,7 @@ class Course < ActiveRecord::Base
   
   after_create do |course|
     course.teacher.decrement! :courses_available
+    course.teacher.increment! :courses_created
   end
 
   def last
