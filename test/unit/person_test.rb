@@ -1,6 +1,6 @@
 require 'active_record_test'
 
-class PersonTest < ActiveSupport::TestCase
+class PersonTest < ActiveRecord::TestCase
   include ActiveRecord::EmailValidationTests
   include ActiveRecord::AuthenticatedTests
   

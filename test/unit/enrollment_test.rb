@@ -1,6 +1,6 @@
 require 'active_record_test'
 
-class EnrollmentTest < ActiveSupport::TestCase
+class EnrollmentTest < ActiveRecord::TestCase
   include ActiveRecord::TokenizedTests
   include ActiveRecord::EmailValidationTests
   

@@ -1,6 +1,6 @@
 require 'active_record_test'
 
-class Enrollment::MatriculationTest < ActiveSupport::TestCase
+class Enrollment::MatriculationTest < ActiveRecord::TestCase
   def test_matriculate_emails
     course = Factory :course
     

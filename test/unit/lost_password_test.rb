@@ -1,6 +1,6 @@
 require 'active_record_test'
 
-class LostPasswordTest < ActiveSupport::TestCase
+class LostPasswordTest < ActiveRecord::TestCase
   include ActiveRecord::TokenizedTests
 
   def test_unknown_email

@@ -1,4 +1,4 @@
 require 'active_record_test'
 
-class CompositionTest < ActiveSupport::TestCase
+class CompositionTest < ActiveRecord::TestCase
 end

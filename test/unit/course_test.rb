@@ -1,6 +1,6 @@
 require 'active_record_test'
 
-class CourseTest < ActiveSupport::TestCase
+class CourseTest < ActiveRecord::TestCase
   include ActiveRecord::DateValidationTests
   test_date_format_validation :start_date, :end_date
 

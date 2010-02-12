@@ -1,6 +1,6 @@
 require 'active_record_test'
 
-class Assignment::HandoutTest < ActiveSupport::TestCase
+class Assignment::HandoutTest < ActiveRecord::TestCase
   def test_handout_on_create
     course = Factory :course
     Factory :studier, :course => course

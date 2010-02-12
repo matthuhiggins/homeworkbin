@@ -1,6 +1,6 @@
 require 'active_record_test'
 
-class Person::RememberedTest < ActiveSupport::TestCase
+class Person::RememberedTest < ActiveRecord::TestCase
   def test_remember_me
     person = Factory :person
     assert_nil person.remember_token

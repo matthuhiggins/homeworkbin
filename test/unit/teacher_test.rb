@@ -1,6 +1,6 @@
 require 'active_record_test'
 
-class TeacherTest < ActiveSupport::TestCase
+class TeacherTest < ActiveRecord::TestCase
   def test_courses_available_default
     assert_equal 1, Factory(:teacher).courses_available
   end

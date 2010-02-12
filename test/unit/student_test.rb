@@ -1,4 +1,4 @@
 require 'active_record_test'
 
-class StudentTest < ActiveSupport::TestCase
+class StudentTest < ActiveRecord::TestCase
 end

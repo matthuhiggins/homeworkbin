@@ -1,6 +1,6 @@
 require 'active_record_test'
 
-class Assignment::DueTest < ActiveSupport::TestCase
+class Assignment::DueTest < ActiveRecord::TestCase
   include ActiveRecord::DateValidationTests
   test_date_format_validation :due_date
   

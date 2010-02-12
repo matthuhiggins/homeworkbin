@@ -1,6 +1,6 @@
 require 'active_record_test'
 
-class Composition::HandInTest < ActiveSupport::TestCase
+class Composition::HandInTest < ActiveRecord::TestCase
   def test_hand_in_on_create
     composition = Factory :composition, :hand_in => true
 
