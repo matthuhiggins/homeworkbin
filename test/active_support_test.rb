@@ -29,5 +29,17 @@ module ActiveSupport
     ensure
       Time.zone = original_time_zone
     end
+    
+    def assert_destroyed(record)
+      assert_raise ActiveRecord::RecordNotFound do
+        record.class.find record
+      end
+    end
+
+    def assert_not_destroyed(record)
+      assert_nothing_raised do
+        record.class.find record
+      end
+    end
   end
 end

@@ -19,8 +19,6 @@ class Teaching::StudiersControllerTest < ActionController::TeachingTestCase
 
     teaching_delete :destroy, :id => studier.to_param
 
-    assert_raise ActiveRecord::RecordNotFound do
-      studier.reload
-    end
+    assert_destroyed studier
   end
 end

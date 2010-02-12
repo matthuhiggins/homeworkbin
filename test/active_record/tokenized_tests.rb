@@ -15,8 +15,8 @@ module ActiveRecord
       
       self.class.target_klass.prune
       
-      assert_raise(ActiveRecord::RecordNotFound) { old_record.reload }
-      assert_nothing_raised { recent_record.reload }
+      assert_destroyed old_record
+      assert_not_destroyed recent_record
     end
     
     def test_included_in_models

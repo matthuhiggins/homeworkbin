@@ -48,8 +48,8 @@ class RegistrationTest < ActiveRecord::TestCase
     
     primary_registration.create_teacher!
     
-    assert_raise(ActiveRecord::RecordNotFound) { primary_registration.reload }
-    assert_raise(ActiveRecord::RecordNotFound) { duplicate_registration.reload }
-    assert_nothing_raised { other_registration.reload }
+    assert_destroyed primary_registration
+    assert_destroyed duplicate_registration
+    assert_not_destroyed other_registration
   end
 end

@@ -40,7 +40,7 @@ class Teaching::RegistrationsControllerTest < ActionController::TestCase
     get :show, :id => registration.token
 
     assert_equal registration, assigns(:registration)
-    assert_raise(ActiveRecord::RecordNotFound) { registration.reload }
+    assert_destroyed registration
     assert !assigns(:teacher).new_record?
     assert_logged_in_as assigns(:teacher)
   end

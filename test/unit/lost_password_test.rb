@@ -51,7 +51,7 @@ class LostPasswordTest < ActiveRecord::TestCase
 
     lost_password.update_attribute :new_password, 'sshh'
     
-    assert_raises(ActiveRecord::RecordNotFound) { lost_password.reload }
+    assert_destroyed lost_password
     assert lost_password.person.authenticate('sshh')
   end
 end

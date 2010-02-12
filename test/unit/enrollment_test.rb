@@ -55,9 +55,7 @@ class EnrollmentTest < ActiveRecord::TestCase
     
     assert_kind_of Studier, studier
     assert enrollment.course.students.include?(student)
-    assert_raises ActiveRecord::RecordNotFound do
-      enrollment.reload
-    end
+    assert_destroyed enrollment
   end
   
   def test_enabled_automatic_enrollment

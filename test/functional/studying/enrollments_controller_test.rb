@@ -57,8 +57,6 @@ class Studying::EnrollmentsControllerTest < ActionController::TestCase
     delete :destroy, :id => enrollment.to_param
     
     assert_redirected_to root_path
-    assert_raise ActiveRecord::RecordNotFound do
-      enrollment.reload
-    end
+    assert_destroyed enrollment
   end
 end
