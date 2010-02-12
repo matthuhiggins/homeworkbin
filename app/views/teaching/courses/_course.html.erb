@@ -1,5 +1,16 @@
-<%= link_to course.name, teaching_path(course) %>
+<div class="name">
+  <%= link_to course.name, teaching_path(course) %>
+</div>
 
-<span class="date-range">
+<div>
+  <%= pluralize(course.studiers.count, 'student') %>
+</div>
+
+<div>
+  <%= pluralize(course.assignments.count, 'assignments') %>
+</div>
+
+<div class="date-range">
   <%= course_date_range course %>
-</span>
+  (Ends in <%= time_ago_in_words course.end_date %>)
+</div>

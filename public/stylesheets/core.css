@@ -4,12 +4,13 @@ html {
 }
 
 body {
-  font-family: Arial, "MS Trebuchet", sans-serif;
+/*  font-family: Arial, "MS Trebuchet", sans-serif;*/
+  font-family: "Lucida Sans Unicode","Lucida Grande",sans-serif;
   font-size: 14px;
 }
 
 a, a:visited {
-  color: #55c;
+  color: #4183C4;
   text-decoration: none;
 }
 
@@ -21,6 +22,10 @@ br {
   clear: both;
   height: 0;
   width: 0;
+}
+
+strong {
+  font-weight: bold;
 }
 
 body > .header {

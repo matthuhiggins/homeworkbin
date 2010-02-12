@@ -1,13 +1,45 @@
-.courses h2 {
+#course-index h2 {
   font-size: 18px;
   font-weight: bold;
   margin-bottom: 8px;
+  position: relative;
 }
 
-.courses .course .date-range {
-  color: #555;
-  padding-left: 18px;
+#course-index h2 a {
   font-size: 90%;
+  position: absolute;
+  right: 0;
+}
+
+#course-index .courses {
+/*  float: left;*/
+}
+
+#course-index .course {
+  background-color: #F5F5F5;
+  border: 1px solid #DDDDDD;
+  margin: 0 0 5px 0;
+}
+
+#course-index .course > div {
+  padding: 5px 13px;
+}
+
+#course-index .course .date-range {
+  background-color: #FAFAFA;
+  border-top: 1px solid #DDDDDD;
+  color: #555;
+  font-size: 90%;
+}
+
+#course-index .welcome {
+  background-color: #E8F0F9;
+  color: #666666;
+  padding: 20px;
+}
+
+#course-index .welcome p + p{
+  margin-top: 10px;
 }
 
 #course-form .fields {

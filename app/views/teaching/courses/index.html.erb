@@ -1,16 +1,18 @@
-<div class="courses">
-  <% if @courses.any? %>
-    <h2>Your courses</h2>
-    <ul>
+<div id="course-index">
+  <% if current_teacher.courses_created > 0 %>
+    <h2>
+      Your courses
+      <%= link_to 'Start a new course »', new_teaching_path %>
+    </h2>
+    
+    <ul class="courses">
       <% @courses.each do |course| %>
         <li class="course"><%= render course %></li>
       <% end %>
     </ul>
-    <%= link_to 'Start a new course', new_teaching_path %>
   <% else %>
-    <p>
-      Hello, welcome to Homework Bin.
-    </p>
-    <%= link_to 'Start your first course', new_teaching_path %>
+    <div class="welcome">
+      <%= render 'welcome' %>
+    </div>
   <% end %>
 </div>
