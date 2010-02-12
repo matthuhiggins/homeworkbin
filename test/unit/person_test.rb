@@ -15,7 +15,7 @@ class PersonTest < ActiveRecord::TestCase
     assert !student.studying?
     
     student.studying << Factory(:course)
-    # student.reload
+
     assert student.studying?
   end
   

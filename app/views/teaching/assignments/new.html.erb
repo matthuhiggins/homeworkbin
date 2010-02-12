@@ -1,9 +1,3 @@
-<%= yui_stylesheet 'calendar/assets/skins/sam/calendar' %>
-<%= stylesheet_link_tag 'date_selector' %>
-
-<%= yui_javascript 'yahoo-dom-event/yahoo-dom-event', 'calendar/calendar' %>
-<%= javascript_include_tag 'date_selector' %>
-
 <% form_for @assignment, :url => teaching_assignments_path(current_course),
                          :html => {:id => 'assignment-form'} do |f| %>
   <div>
@@ -42,6 +36,12 @@
 <% end %>
 
 <%= focus 'assignment_name' %>
+
+<%= yui_stylesheet 'calendar/assets/skins/sam/calendar' %>
+<%= stylesheet_link_tag 'date_selector' %>
+
+<%= yui_javascript 'yahoo-dom-event/yahoo-dom-event', 'calendar/calendar-min' %>
+<%= javascript_include_tag 'date_selector' %>
 
 <script>
 YAHOO.util.Event.onDOMReady(function() {
