@@ -7,6 +7,8 @@ class Assignment
         extend ActiveRecord::DateValidation
         validates_date_format :due_date
         validate :validate_course_period_includes_due_date, :if => lambda { |assignment| assignment.due_date.present? }
+        
+        delegate :past?, :today?, :future?, :to => :due_date
       end
     end
     
@@ -33,14 +35,6 @@ class Assignment
       time = time.utc
       self.due_date = time.to_date
       self.due_minutes = time.hour * 60 + time.min
-    end
-    
-    def open?
-      Time.current < due_at
-    end
-
-    def closed?
-      !open?
     end
 
     private

@@ -47,13 +47,19 @@ class Assignment::DueTest < ActiveRecord::TestCase
     assert_equal 605, assignment.due_minutes
   end
   
-  def test_open?
-    assert Factory.build(:assignment_without_due, :due_at => Time.current + 65).open?
-    assert !Factory.build(:assignment_without_due, :due_at => Time.current - 65).open?
+  def test_past?
+    assert !Factory.build(:assignment, :due_date => Date.current).past?
+    assert Factory.build(:assignment, :due_date => Date.current - 1).past?
   end
-
-  def test_closed?
-    assert !Factory.build(:assignment_without_due, :due_at => Time.current + 65).closed?
-    assert Factory.build(:assignment_without_due, :due_at => Time.current - 65).closed?
+  
+  def test_today?
+    assert Factory.build(:assignment, :due_date => Date.current).today?
+    assert !Factory.build(:assignment, :due_date => Date.current - 1).today?
+    assert !Factory.build(:assignment, :due_date => Date.current - 1).today?
+  end
+  
+  def test_future?
+    assert !Factory.build(:assignment, :due_date => Date.current).future?
+    assert Factory.build(:assignment, :due_date => Date.current + 1).future?
   end
 end
