@@ -3,7 +3,7 @@ require 'active_record_test'
 class CourseTest < ActiveRecord::TestCase
   include ActiveRecord::DateValidationTests
   test_date_format_validation :start_date, :end_date
-
+  
   def test_create_decrements_courses_available
     teacher = Factory :teacher
     assert_equal 1, teacher.courses_available

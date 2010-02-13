@@ -4,11 +4,24 @@ class Assignment::DueTest < ActiveRecord::TestCase
   include ActiveRecord::DateValidationTests
   test_date_format_validation :due_date
   
-  def test_minutes_validation
+  def test_validate_minutes_inclusion
     assert Factory.build(:assignment, :due_minutes => -1).invalid?
     assert Factory.build(:assignment, :due_minutes => 1441).invalid?
     assert Factory.build(:assignment, :due_minutes => 0).valid?
     assert Factory.build(:assignment, :due_minutes => 1440).valid?
+  end
+
+  def test_validate_due_date_within_course
+    course = Factory :course
+
+    assert (assignment = Factory.build(:assignment, :due_date => course.start_date - 1)).invalid?
+    assert_equal 'is before this course', assignment.errors.on(:due_date)
+
+    assert (assignment = Factory.build(:assignment, :due_date => course.end_date + 1)).invalid?
+    assert_equal 'is after this course', assignment.errors.on(:due_date)
+    
+    assert (assignment = Factory.build(:assignment, :due_date => course.start_date)).valid?
+    assert (assignment = Factory.build(:assignment, :due_date => course.end_date)).valid?
   end
   
   def test_due_at_reader
