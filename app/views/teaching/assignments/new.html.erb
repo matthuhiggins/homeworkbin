@@ -1,7 +1,7 @@
 <% form_for @assignment, :url => teaching_assignments_path(current_course),
                          :html => {:id => 'assignment-form'} do |f| %>
   <div>
-    <p><%= f.label :name %></p>
+    <p><%= f.label :name, 'Assignment name' %></p>
     <p><%= f.text_field :name, :tabindex => 1 %></p>
     <p><%= f.error_message_on :name, :prepend_text => 'Name ' %></p>
   </div>
@@ -14,7 +14,7 @@
       <div class="calendar-wrap">
         <div class="calendar"></div> 
       </div>
-      <p><%= f.error_message_on :due_date, :prepend_text => 'Due date ' %></p>
+      <%= date_format_div @assignment, :due_date %>
     </div>
     <div id="due-time">
       <p><%= f.label :due_minutes, 'time' %></p>
@@ -22,16 +22,9 @@
         <%= f.select :due_minutes, hour_options, {:selected => assignment_due_minutes(@assignment)}, {:tabindex => 3} %>
       </p>
     </div>
-    <br />
-  </div>
-  <div>
-    <p>
-      <%= f.check_box :handout, :checked => assignment_handout(@assignment), :tabindex => 4 %>
-      <%= f.label :handout, 'Email students about this new assignment' %>
-    </p>
-  </div>
-  <div>
-    <%= f.submit 'Create assignment' %>
+    <div class="submit">
+      <%= f.submit 'Create assignment »' %>
+    </div>
   </div>
 <% end %>
 

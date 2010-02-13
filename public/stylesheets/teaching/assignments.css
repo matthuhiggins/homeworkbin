@@ -13,6 +13,7 @@
 
 #assignment-form .fields > div {
   float: left;
+  height: 300px;
   margin-right: 9px;
   width: 145px;
 }
@@ -20,4 +21,8 @@
 #assignment-form .fields input[type="text"],
 #assignment-form .fields select {
   width: 100%;
+}
+
+#assignment-form .fields > div.submit {
+  margin-top: 20px;
 }

@@ -1,6 +1,9 @@
+<%= course_date_range @course %>
+(Ends in <%= time_ago_in_words @course.end_date %>)
+
 <div>
-<%= link_to pluralize(@course.studiers.count, 'student'), teaching_studiers_path(@course) %>
-<%= link_to 'Enroll students', teaching_enrollments_path(@course) %>
+  <%= link_to pluralize(@course.studiers.count, 'student'), teaching_studiers_path(@course) %>
+  <%= link_to 'Enroll students', teaching_enrollments_path(@course) %>
 </div>
 
 <div>
