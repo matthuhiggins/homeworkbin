@@ -30,12 +30,13 @@ ActiveRecord::Schema.define(:version => 20100207082333) do
   end
 
   create_table "compositions", :force => true do |t|
-    t.integer  "studier_id",    :null => false
-    t.integer  "student_id",    :null => false
-    t.integer  "assignment_id", :null => false
-    t.integer  "course_id",     :null => false
-    t.text     "text",          :null => false
+    t.integer  "studier_id",                       :null => false
+    t.integer  "student_id",                       :null => false
+    t.integer  "assignment_id",                    :null => false
+    t.integer  "course_id",                        :null => false
+    t.text     "text",                             :null => false
     t.datetime "handed_in_at"
+    t.boolean  "graded",        :default => false, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

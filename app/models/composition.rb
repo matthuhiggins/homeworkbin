@@ -4,4 +4,6 @@ class Composition < ActiveRecord::Base
 
   belongs_to :studier, :denormalize => :student
   belongs_to :assignment, :denormalize => :course
+  
+  named_scope :ungraded, :conditions => {:graded => false}
 end

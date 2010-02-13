@@ -7,6 +7,7 @@ class CreateCompositions < ActiveRecord::Migration
       t.integer   :course_id,       :null => false
       t.text      :text,            :null => false
       t.datetime  :handed_in_at,    :null => true
+      t.boolean   :graded,          :null => false, :default => false
       t.timestamps
     end
     
