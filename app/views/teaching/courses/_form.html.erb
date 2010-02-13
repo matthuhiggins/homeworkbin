@@ -1,0 +1,43 @@
+<% course_form @course do |f| %>
+  <div class="course-name">
+    <p><%= f.label :name, 'Course name' %></p>
+    <p><%= f.text_field :name, :tabindex => 1 %></p>
+    <p><%= f.error_message_on :name, :prepend_text => 'Course name ' %></p>
+  </div>
+  <div class="fields">
+    <div id="start-date">
+      <p><%= f.label :start_date, 'from' %></p>
+      <p><%= f.text_field :start_date, :value => course_start_date(@course), :tabindex => 2, :autocomplete => 'off' %></p>
+      <div class="calendar-wrap">
+        <div class="calendar"></div> 
+      </div>
+      <p><%= f.error_message_on :start_date %></p>
+    </div>
+    <div id="end-date">
+      <p><%= f.label :end_date, 'to' %></p>
+      <p><%= f.text_field :end_date, :value => course_end_date(@course), :tabindex => 3, :autocomplete => 'off' %></p>
+      <div class="calendar-wrap">
+        <div class="calendar"></div> 
+      </div>
+      <p><%= f.error_message_on :end_date %></p>
+    </div>
+    <div class="submit">
+      <%= f.submit save_course_text(@course) %>
+    </div>
+  </div>
+<% end %>
+
+<%= focus 'course_name' %>
+
+<%= yui_stylesheet 'calendar/assets/skins/sam/calendar' %>
+<%= stylesheet_link_tag 'date_selector' %>
+
+<%= yui_javascript 'yahoo-dom-event/yahoo-dom-event', 'calendar/calendar-min' %>
+<%= javascript_include_tag 'date_selector' %>
+
+<script> 
+YAHOO.util.Event.onDOMReady(function() {
+  HW.dateSelector('start-date');
+  HW.dateSelector('end-date');
+});
+</script>

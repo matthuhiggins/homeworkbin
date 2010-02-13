@@ -17,6 +17,20 @@ module Teaching::CourseHelper
     end
   end
   
+  def save_course_text(course)
+    course.new_record? ? 'Create course »' : 'Save changes'
+  end
+  
+  def course_form(course, &block)
+    if course.new_record?
+      options = {:url => teachings_path, :html => {:id => 'course-form'}}
+    else
+      options = {:url => teaching_path(course), :html => {:method => :put, :id => 'course-form'}}
+    end
+
+    form_for course, options, &block
+  end
+  
   def course_date_range(course)
     "#{course.start_date.strftime '%b %d'} - #{course.end_date.strftime '%b %d'}"
   end

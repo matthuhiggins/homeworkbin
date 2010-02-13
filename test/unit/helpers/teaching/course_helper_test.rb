@@ -24,7 +24,16 @@ class Teaching::CourseHelperTest < ActionView::TestCase
     assert_equal '05/22/2004', course_start_date(course)
     assert_equal '07/24/2004', course_end_date(course)
   end
+
+  def test_save_course_text
+    assert_equal 'Create course »', save_course_text(Factory.build :course)
+    assert_equal 'Save changes', save_course_text(Factory :course)
+  end
   
+  def test_course_form_with_new_course
+    
+  end
+
   # private
     def assert_previous_used(attribute)
       

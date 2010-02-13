@@ -35,14 +35,20 @@ HW.dateSelector = (function() {
     function handleFieldChange() {
       fieldToCalendar(field, calendar);
     }
+    
+    function ignoreInsideClick(e) {
+      YAHOO.util.Event.stopEvent(e);
+    }
 
     function showCalendar() {
       YAHOO.util.Event.addListener(allFields, 'focus', hideCalendar);
+      YAHOO.util.Event.addListener(containerId, 'click', ignoreInsideClick);
       calendar.show();
     }
     
     function hideCalendar() {
       YAHOO.util.Event.removeListener(allFields, 'focus', hideCalendar);
+      YAHOO.util.Event.removeListener(containerId, 'click', ignoreInsideClick);
       calendar.hide();
     }
 
@@ -50,11 +56,8 @@ HW.dateSelector = (function() {
     YAHOO.util.Event.addListener(field, 'change', handleFieldChange);
     YAHOO.util.Event.addListener(field, 'focus', showCalendar);
     YAHOO.util.Event.addListener(field, 'click', showCalendar);
-    YAHOO.util.Event.addListener(containerId, 'click', function(e) {
-      YAHOO.util.Event. stopEvent(e);
-    });
-    YAHOO.util.Event.addListener(document, 'click', hideCalendar, calendar, true);
-
+    YAHOO.util.Event.addListener(document, 'click', hideCalendar);
+    
     calendars.push(calendar);
     calendar.render();    
   };
