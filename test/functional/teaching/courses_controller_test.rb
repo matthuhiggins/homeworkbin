@@ -8,7 +8,7 @@ class Teaching::CoursesControllerTest < ActionController::TeachingTestCase
   end
 
   def test_show
-    teaching_get :show, :id => current_course.id
+    teaching_get :show, :id => current_course.to_param
     
     assert_kind_of Course, assigns(:course)
   end
@@ -37,5 +37,21 @@ class Teaching::CoursesControllerTest < ActionController::TeachingTestCase
     }
     
     assert_template 'new'
+  end
+  
+  def test_edit
+    teaching_get :edit, :id => current_course.to_param
+    
+    assert_equal current_course, assigns(:course)
+  end
+
+  def test_update
+    teaching_put :update, {
+      :id => current_course.to_param,
+      :course => {:name => 'foo bar'}
+    }
+    
+    current_course.reload
+    assert_equal 'foo bar', current_course.name
   end
 end
