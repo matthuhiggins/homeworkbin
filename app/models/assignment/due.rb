@@ -9,7 +9,16 @@ class Assignment
         validate :validate_course_period_includes_due_date, :if => lambda { |assignment| assignment.due_date.present? }
       end
     end
-
+    
+    module ClassMethods
+      def due
+        scoped(
+          :conditions => '',
+          :order => 'due_date desc, due_minutes desc'
+        )
+      end
+    end
+    
     def due_at
       Time.zone.local(
         due_date.year,
@@ -21,10 +30,19 @@ class Assignment
     end
     
     def due_at=(time)
+      time = time.utc
       self.due_date = time.to_date
       self.due_minutes = time.hour * 60 + time.min
     end
     
+    def open?
+      Time.current < due_at
+    end
+
+    def closed?
+      !open?
+    end
+
     private
       def validate_course_period_includes_due_date
         if course.start_date > due_date
