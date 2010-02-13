@@ -21,6 +21,7 @@ HW.dateSelector = (function() {
 
   return function(containerId) {
     var field = document.getElementById(containerId).getElementsByTagName('input')[0],
+        allFields = document.getElementsByTagName('input'),
         calendarEl = YAHOO.util.Dom.getElementsByClassName('calendar', 'div', containerId)[0],
         calendar = new YAHOO.widget.Calendar(calendarEl);
 
@@ -28,31 +29,31 @@ HW.dateSelector = (function() {
 
     function handleCalendarSelect() {
       calendarToField(calendar, field);
-      calendar.hide();
-      YAHOO.util.Event.removeListener(field, "focus", handleFieldFocus);
       field.focus();
-      YAHOO.util.Event.addListener(field, "focus", handleFieldFocus);
     }
 
     function handleFieldChange() {
       fieldToCalendar(field, calendar);
     }
 
-    function handleFieldFocus() {
-      for (var i = 0; i < calendars.length; i++) {
-        calendars[i].hide();
-      }
+    function showCalendar() {
+      YAHOO.util.Event.addListener(allFields, 'focus', hideCalendar);
       calendar.show();
+    }
+    
+    function hideCalendar() {
+      YAHOO.util.Event.removeListener(allFields, 'focus', hideCalendar);
+      calendar.hide();
     }
 
     calendar.selectEvent.subscribe(handleCalendarSelect);
-    YAHOO.util.Event.addListener(field, "change", handleFieldChange);
-    YAHOO.util.Event.addListener(field, "focus", handleFieldFocus);
-    YAHOO.util.Event.addListener(field, "click", handleFieldFocus);
-    YAHOO.util.Event.addListener(containerId, "click", function(e) {
+    YAHOO.util.Event.addListener(field, 'change', handleFieldChange);
+    YAHOO.util.Event.addListener(field, 'focus', showCalendar);
+    YAHOO.util.Event.addListener(field, 'click', showCalendar);
+    YAHOO.util.Event.addListener(containerId, 'click', function(e) {
       YAHOO.util.Event. stopEvent(e);
     });
-    YAHOO.util.Event.addListener(document, "click", calendar.hide, calendar, true);
+    YAHOO.util.Event.addListener(document, 'click', hideCalendar, calendar, true);
 
     calendars.push(calendar);
     calendar.render();    
