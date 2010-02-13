@@ -1,10 +1,10 @@
 HW = {};
 
 HW.dateSelector = (function() {
-  var calendars = [];
+  var VALID_DATE = /^\s*\d{1,2}\/\d{1,2}\/\d{4}\s*$/;
 
   function fieldToCalendar(field, calendar) {
-    if (field.value != "") { 
+    if (VALID_DATE.test(field.value)) {
       calendar.select(field.value); 
       var date = calendar.getSelectedDates()[0]; 
       if (date != null) {
@@ -35,7 +35,7 @@ HW.dateSelector = (function() {
     function handleFieldChange() {
       fieldToCalendar(field, calendar);
     }
-    
+
     function ignoreInsideClick(e) {
       YAHOO.util.Event.stopEvent(e);
     }
@@ -45,7 +45,7 @@ HW.dateSelector = (function() {
       YAHOO.util.Event.addListener(containerId, 'click', ignoreInsideClick);
       calendar.show();
     }
-    
+
     function hideCalendar() {
       YAHOO.util.Event.removeListener(allFields, 'focus', hideCalendar);
       YAHOO.util.Event.removeListener(containerId, 'click', ignoreInsideClick);

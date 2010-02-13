@@ -8,4 +8,8 @@ class TimeHelperTest < ActionView::TestCase
     assert options.include?(['11:00am', 660])
     assert options.include?(['2:30pm', 870])
   end
+
+  def test_date_format_div
+    
+  end
 end

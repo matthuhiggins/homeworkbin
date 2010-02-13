@@ -11,7 +11,7 @@
       <div class="calendar-wrap">
         <div class="calendar"></div> 
       </div>
-      <p><%= f.error_message_on :start_date %></p>
+      <%= date_format_div(@course, :start_date) %>
     </div>
     <div id="end-date">
       <p><%= f.label :end_date, 'to' %></p>
@@ -19,7 +19,7 @@
       <div class="calendar-wrap">
         <div class="calendar"></div> 
       </div>
-      <p><%= f.error_message_on :end_date %></p>
+      <%= date_format_div(@course, :end_date) %>
     </div>
     <div class="submit">
       <%= f.submit save_course_text(@course) %>

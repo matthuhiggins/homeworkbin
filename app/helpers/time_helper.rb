@@ -13,4 +13,12 @@ module TimeHelper
 
     options
   end
+  
+  def date_format_div(record, method)
+    if record.errors.on(method).present?
+      error_message_on record, method
+    else
+      content_tag :div, 'mm/dd/yyyy', :class => 'tip'
+    end
+  end
 end
