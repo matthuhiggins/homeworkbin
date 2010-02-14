@@ -27,6 +27,10 @@ form input[type="checkbox"] {
   vertical-align: top;
 }
 
+form .checkbox label {
+  display: inline;
+}
+
 form input[type="submit"] {
   margin-top: 11px;
 }
