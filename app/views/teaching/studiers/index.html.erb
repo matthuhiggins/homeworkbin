@@ -1,7 +1,14 @@
-<ul>
-  <% @studiers.each do |studier| %>
-    <li><%= render studier %></li>
-  <% end %>
-</ul>
+<h2>
+  Students
+  <%= link_to 'Enroll students »', teaching_enrollments_path(current_course) %>
+</h2>
 
-<%= link_to 'Enroll students', teaching_enrollments_path(current_course) %>
+<% if @studiers.any? %>
+  <ul>
+    <% @studiers.each do |studier| %>
+      <li><%= render studier %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <%= render 'welcome' %>
+<% end %>

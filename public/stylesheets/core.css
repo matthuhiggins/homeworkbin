@@ -32,6 +32,19 @@ strong {
   font-weight: bold;
 }
 
+h2 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 8px;
+  position: relative;
+}
+
+h2 a {
+  font-size: 90%;
+  position: absolute;
+  right: 0;
+}
+
 body > .header {
   background-color: #FAFAFA;
   border-bottom: 5px solid #F6F6F6;

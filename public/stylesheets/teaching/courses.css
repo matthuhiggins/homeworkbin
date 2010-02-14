@@ -1,16 +1,3 @@
-#course-index h2 {
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 8px;
-  position: relative;
-}
-
-#course-index h2 a {
-  font-size: 90%;
-  position: absolute;
-  right: 0;
-}
-
 #course-index .courses {
 /*  float: left;*/
 }
