@@ -52,15 +52,8 @@
 
 #course-form .fields > div {
   float: left;
-  height: 300px;
-  margin-right: 9px;
-  width: 145px;
-}
-
-#course-form .fields input[type="text"] {
-  width: 100%;
 }
 
 #course-form .fields > div.submit {
-  margin-top: 30px;
+  margin-top: 20px;
 }

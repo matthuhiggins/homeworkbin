@@ -5,7 +5,7 @@
     <div><%= f.error_message_on :name, :prepend_text => 'Course name ' %></div>
   </div>
   <div class="fields">
-    <div id="start-date">
+    <div class="date-selector">
       <div><%= f.label :start_date, 'from' %></div>
       <div><%= f.text_field :start_date, :value => course_start_date(@course), :tabindex => 2, :autocomplete => 'off' %></div>
       <div class="calendar-wrap">
@@ -13,7 +13,7 @@
       </div>
       <%= date_format_div(@course, :start_date) %>
     </div>
-    <div id="end-date">
+    <div class="date-selector">
       <div><%= f.label :end_date, 'to' %></div>
       <div><%= f.text_field :end_date, :value => course_end_date(@course), :tabindex => 3, :autocomplete => 'off' %></div>
       <div class="calendar-wrap">
@@ -23,6 +23,7 @@
     </div>
     <div class="submit">
       <%= f.submit save_course_text(@course) %>
+      <%= cancel %>
     </div>
   </div>
 <% end %>
@@ -37,7 +38,6 @@
 
 <script> 
 YAHOO.util.Event.onDOMReady(function() {
-  HW.dateSelector('start-date');
-  HW.dateSelector('end-date');
+  HW.dateSelector('course-form');
 });
 </script>

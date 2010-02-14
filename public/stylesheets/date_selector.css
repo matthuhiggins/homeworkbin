@@ -1,3 +1,15 @@
+form .date-selector,
+form .time-selector {
+  height: 300px;
+  margin-right: 9px;
+  width: 145px;
+}
+
+form .date-selector input[type="text"],
+form .time-selector select {
+  width: 100%;
+}
+
 form .calendar-wrap {
   margin-top: 4px;
   position: relative;

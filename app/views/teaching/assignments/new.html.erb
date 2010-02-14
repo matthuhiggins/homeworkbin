@@ -6,7 +6,7 @@
     <div><%= f.error_message_on :name, :prepend_text => 'Name ' %></div>
   </div>
   <div class="fields">
-    <div id="due-date">
+    <div id="due-date" class="date-selector">
       <div><%= f.label :due_date, 'Due date' %></div>
       <div>
         <%= f.text_field :due_date, :value => assignment_due_date(@assignment), :tabindex => 2, :autocomplete => 'off' %>
@@ -16,7 +16,7 @@
       </div>
       <%= date_format_div @assignment, :due_date %>
     </div>
-    <div id="due-time">
+    <div id="due-time" class="time-selector">
       <div><%= f.label :due_minutes, 'time' %></div>
       <div>
         <%= f.select :due_minutes, hour_options, {:selected => assignment_due_minutes(@assignment)}, {:tabindex => 3} %>
@@ -24,6 +24,7 @@
     </div>
     <div class="submit">
       <%= f.submit 'Create assignment »' %>
+      <%= cancel %>
     </div>
   </div>
 <% end %>
@@ -38,6 +39,6 @@
 
 <script>
 YAHOO.util.Event.onDOMReady(function() {
-  HW.dateSelector('due-date');
+  HW.dateSelector('assignment-form');
 });
 </script>

@@ -31,6 +31,10 @@ form input[type="submit"] {
   margin-top: 11px;
 }
 
+form .cancel {
+  margin-left: 8px;
+}
+
 form .formError {
   color: #AA0000;
   font-size: 90%;
