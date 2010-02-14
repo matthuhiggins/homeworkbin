@@ -58,7 +58,6 @@ HW.dateSelector = (function() {
     YAHOO.util.Event.addListener(field, 'click', showCalendar);
     YAHOO.util.Event.addListener(document, 'click', hideCalendar);
     
-    calendars.push(calendar);
     calendar.render();    
   };
 })();
