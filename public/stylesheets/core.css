@@ -3,8 +3,8 @@ html {
   min-height: 100%;
 }
 
-body {
-/*  font-family: Arial, "MS Trebuchet", sans-serif;*/
+body, input, select {
+  color: #333;
   font-family: "Lucida Sans Unicode","Lucida Grande",sans-serif;
   font-size: 14px;
 }
@@ -59,12 +59,14 @@ body > .header .main.menu ul.links {
 
 body > .header .main.menu ul.links li {
   float: left;
-  margin-left: 8px;
+  font-weight: bold;
+  margin-left: 6px;
   padding: 1px 2px;
 }
 
 body > .content {
   margin: 0 auto;
+  overflow: hidden;
   padding: 20px;
   width: 650px;
 }

@@ -2,7 +2,7 @@
 <head>
   <%= yui_stylesheet 'cssreset/reset-min' %>
   <%= stylesheet_link_tag 'core', 'form' %>
-  <%= stylesheet_link_tag 'teaching/layout', 'teaching/courses', 'teaching/assignments' %>
+  <%= stylesheet_link_tag 'teaching/layout', 'teaching/courses', 'teaching/assignments', 'teaching/person' %>
   <title>
     Homework Bin<%= yield :title %>
   </title>
@@ -14,11 +14,11 @@
         Homework Bin
       <% end %>
       <ul class="links">
-        <li><%= link_to 'Your Courses', teachings_path %></li>
+        <li><%= link_to 'Courses', teachings_path %></li>
         <li>|</li>
         <li><%= link_to 'Settings', teaching_person_path %></li>
         <li>|</li>
-        <li><%= link_to 'Sign out', logout_path %></li>
+        <li><%= link_to 'Logout', logout_path %></li>
       </ul>
     </div>
     <% if current_course.present? %>
