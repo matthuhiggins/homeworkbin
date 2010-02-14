@@ -17,15 +17,16 @@
       <%= date_format_div @assignment, :due_date %>
     </div>
     <div id="due-time" class="time-selector">
-      <div><%= f.label :due_minutes, 'time' %></div>
+      <div><%= f.label :due_minutes, 'Due time' %></div>
       <div>
         <%= f.select :due_minutes, hour_options, {:selected => assignment_due_minutes(@assignment)}, {:tabindex => 3} %>
       </div>
     </div>
-    <div class="submit">
-      <%= f.submit 'Create assignment »' %>
-      <%= cancel %>
-    </div>
+    <br />
+  </div>
+  <div>
+    <%= f.submit 'Create assignment »' %>
+    <%= cancel %>
   </div>
 <% end %>
 

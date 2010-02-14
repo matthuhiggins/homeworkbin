@@ -1,6 +1,5 @@
 form .date-selector,
 form .time-selector {
-  height: 300px;
   margin-right: 9px;
   width: 145px;
 }
@@ -11,7 +10,7 @@ form .time-selector select {
 }
 
 form .calendar-wrap {
-  margin-top: 4px;
+/*  margin-top: 4px;*/
   position: relative;
   width: 300px;
 }
@@ -20,5 +19,5 @@ form .calendar {
   display: none;
   left: 0;  
   position: absolute;
-  top: 0;
+  top: 4px;
 }

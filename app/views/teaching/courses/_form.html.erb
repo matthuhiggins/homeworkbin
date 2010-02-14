@@ -21,10 +21,11 @@
       </div>
       <%= date_format_div(@course, :end_date) %>
     </div>
-    <div class="submit">
-      <%= f.submit save_course_text(@course) %>
-      <%= cancel %>
-    </div>
+    <br />
+  </div>
+  <div>
+    <%= f.submit save_course_text(@course) %>
+    <%= cancel %>
   </div>
 <% end %>
 

@@ -47,13 +47,9 @@
 }
 
 #course-form .fields {
-  overflow: hidden;
+/*  overflow: hidden;*/
 }
 
 #course-form .fields > div {
   float: left;
-}
-
-#course-form .fields > div.submit {
-  margin-top: 20px;
 }
