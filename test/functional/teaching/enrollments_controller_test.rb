@@ -10,6 +10,6 @@ class Teaching::EnrollmentsControllerTest < ActionController::TeachingTestCase
     teaching_post :create, :emails => 'sam@u.washington.edu, joe@yahoo.com'
     
     assert_equal 2, current_course.enrollments.size
-    assert_redirected_to teaching_enrollments_path(current_course)
+    assert_redirected_to teaching_studiers_path(current_course)
   end
 end
