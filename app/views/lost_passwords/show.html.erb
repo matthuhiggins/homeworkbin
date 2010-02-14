@@ -2,9 +2,9 @@
 
 <% form_for @lost_password do |f| %>
   <div>
-    <p><%= f.label :new_password, 'New password' %></p>
-    <p><%= f.password_field :new_password %></p>
-    <p><%= f.error_message_on :new_password, :prepend_text => 'Password ' %></p>
+    <div><%= f.label :new_password, 'New password' %></div>
+    <div><%= f.password_field :new_password %></div>
+    <div><%= f.error_message_on :new_password, :prepend_text => 'Password ' %></div>
   </div>
   <div>
     <%= f.submit 'Save password' %>

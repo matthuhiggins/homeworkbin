@@ -1,21 +1,21 @@
 <% course_form @course do |f| %>
   <div class="course-name">
-    <p><%= f.label :name, 'Course name' %></p>
-    <p><%= f.text_field :name, :tabindex => 1 %></p>
-    <p><%= f.error_message_on :name, :prepend_text => 'Course name ' %></p>
+    <div><%= f.label :name, 'Course name' %></div>
+    <div><%= f.text_field :name, :tabindex => 1 %></div>
+    <div><%= f.error_message_on :name, :prepend_text => 'Course name ' %></div>
   </div>
   <div class="fields">
     <div id="start-date">
-      <p><%= f.label :start_date, 'from' %></p>
-      <p><%= f.text_field :start_date, :value => course_start_date(@course), :tabindex => 2, :autocomplete => 'off' %></p>
+      <div><%= f.label :start_date, 'from' %></div>
+      <div><%= f.text_field :start_date, :value => course_start_date(@course), :tabindex => 2, :autocomplete => 'off' %></div>
       <div class="calendar-wrap">
         <div class="calendar"></div> 
       </div>
       <%= date_format_div(@course, :start_date) %>
     </div>
     <div id="end-date">
-      <p><%= f.label :end_date, 'to' %></p>
-      <p><%= f.text_field :end_date, :value => course_end_date(@course), :tabindex => 3, :autocomplete => 'off' %></p>
+      <div><%= f.label :end_date, 'to' %></div>
+      <div><%= f.text_field :end_date, :value => course_end_date(@course), :tabindex => 3, :autocomplete => 'off' %></div>
       <div class="calendar-wrap">
         <div class="calendar"></div> 
       </div>

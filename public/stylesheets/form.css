@@ -1,10 +1,10 @@
 form > div {
-  margin-bottom: 11px;
   padding: 2px;
 }
 
-form p + p {
-  padding-top: 1px;
+form label {
+  display: block;
+  margin: 11px 0 1px 0;
 }
 
 form input[type="text"],
@@ -18,13 +18,13 @@ form select {
   padding: 3px;
 }
 
+form .checkbox {
+  margin-bottom: 11px;
+}
+
 form input[type="checkbox"] {
   margin-top: 2px;
   vertical-align: top;
-}
-
-form .fieldWithErrors input {
-/*  background-color: red;*/
 }
 
 form .formError {
