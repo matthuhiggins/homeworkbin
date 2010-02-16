@@ -14,7 +14,3 @@
 #assignment-form .fields > div {
   float: left;
 }
-
-#assignment-form .fields > div.submit {
-  margin-top: 20px;
-}

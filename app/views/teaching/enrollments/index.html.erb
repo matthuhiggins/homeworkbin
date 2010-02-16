@@ -5,9 +5,9 @@
 <% form_tag({}, {:id => 'enrollment-form'}) do %>
   <label for="enrollment-emails">Paste in a list of e-mails</label>
   <div><%= text_area_tag :emails, nil, :id => 'enrollment-emails', :rows => 12 %></div>
-  <div>
-    <%= submit_tag 'Enroll students' %>
+  <div class="submit-cancel">
     <%= cancel %>
+    <%= submit_tag 'Enroll students' %>
   </div>
 <% end %>
 

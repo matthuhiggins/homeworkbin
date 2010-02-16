@@ -1,12 +1,10 @@
 <% title 'Lost password' %>
 
 <% form_for @lost_password do |f| %>
-  <div>
-    <div><%= f.label :email, 'Your email' %></div>
-    <div><%= f.text_field :email %></div>
-    <div><%= f.error_message_on :email, :prepend_text => 'Email ' %></div>
-  </div>  
-  <div>
+  <div><%= f.label :email, 'Your email' %></div>
+  <div><%= f.text_field :email %></div>
+  <div><%= f.error_message_on :email, :prepend_text => 'Email ' %></div>
+  <div class="submit">
     <%= f.submit 'Reset password' %>
   </div>
 <% end %>

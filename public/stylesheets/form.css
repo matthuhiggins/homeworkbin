@@ -1,3 +1,16 @@
+form {
+  border: 1px solid #dadbdb;
+  background-color: #F9F6EF;
+  display: table;
+  padding: 5px 15px 20px 15px;
+  position: relative;
+  text-align: center;
+}
+
+form > * {
+  text-align: left;
+}
+
 form > div {
   padding: 2px;
 }
@@ -31,12 +44,22 @@ form .checkbox label {
   display: inline;
 }
 
-form input[type="submit"] {
+form .submit {
   margin-top: 11px;
 }
 
-form .cancel {
-  margin-left: 8px;
+form .submit-cancel {
+  border-top: 1px solid #DADBDB;
+  margin: 11px -15px 0 -15px;
+  padding: 20px 15px 0 10px;
+  text-align: right;
+}
+
+form input[type="submit"] {
+}
+
+form a.cancel {
+  margin-right: 8px;
 }
 
 form .formError {
