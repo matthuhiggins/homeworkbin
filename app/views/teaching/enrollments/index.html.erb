@@ -8,13 +8,15 @@
   <div><%= submit_tag 'Enroll students' %></div>
 <% end %>
 
-<div id="pending-enrollments">
-  Waiting for the following students:
-  <ul>
-    <% @enrollments.each do |enrollment| %>
-      <li><%= render enrollment %></li>
-    <% end %>
-  </ul>
-</div>
+<% if @enrollments.any? %>
+  <div id="pending-enrollments">
+    Waiting for the following students:
+    <ul>
+      <% @enrollments.each do |enrollment| %>
+        <li><%= render enrollment %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
 
 <%= focus 'enrollment-emails' %>

@@ -12,4 +12,13 @@ class Teaching::EnrollmentsControllerTest < ActionController::TeachingTestCase
     assert_equal 2, current_course.enrollments.size
     assert_redirected_to teaching_studiers_path(current_course)
   end
+  
+  def test_destroy
+    enrollment = Factory :enrollment, :course => current_course
+    
+    teaching_delete :destroy, :id => enrollment.to_param
+    
+    assert_destroyed enrollment
+    assert_redirected_to teaching_enrollments_path(current_course)
+  end
 end

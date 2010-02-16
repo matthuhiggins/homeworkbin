@@ -1,2 +1,2 @@
 <%= enrollment.email %>
-<%= link_to 'Delete' %>
+<%= link_to 'Delete', teaching_enrollment_path(current_course, enrollment), :method => :delete %>

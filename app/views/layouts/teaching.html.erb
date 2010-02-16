@@ -2,12 +2,8 @@
 <head>
   <%= yui_stylesheet 'cssreset/reset-min' %>
   <%= stylesheet_link_tag 'core', 'form' %>
-  <%= stylesheet_link_tag 'teaching/layout',
-                          'teaching/classes',
-                          'teaching/courses',
-                          'teaching/assignments',
-                          'teaching/enrollments',
-                          'teaching/person' %>
+  <%= stylesheet_link_tag 'teaching/layout', 'teaching/classes' %>
+  <%= stylesheet_link_tag "teaching/#{controller_name}" %>
   <title>
     Homework Bin<%= yield :title %>
   </title>
