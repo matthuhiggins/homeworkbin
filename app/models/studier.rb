@@ -4,4 +4,5 @@ class Studier < ActiveRecord::Base
   has_many :compositions
   
   delegate :teacher, :to => :course
+  delegate :full_name, :email, :to => :student
 end

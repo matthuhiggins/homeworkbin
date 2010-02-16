@@ -1,1 +1,2 @@
-<%= link_to studier.student.full_name, teaching_studier_path(current_course, studier) %>
+<%= link_to studier.full_name, teaching_studier_path(current_course, studier) %>
+(<%= studier.email %>)
