@@ -1,6 +1,7 @@
 class Teaching::StudiersController < Teaching::BaseController
   def index
-    @studiers = current_course.studiers
+    @studiers = current_course.studiers.all
+    @enrollments = current_course.enrollments.all
   end
   
   def show

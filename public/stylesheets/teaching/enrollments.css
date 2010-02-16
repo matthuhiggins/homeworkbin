@@ -1,0 +1,25 @@
+#enrollment-form {
+  float: left;
+  width: 45%;
+}
+
+#pending-enrollments {
+  float: right;
+  width: 45%;
+}
+
+#pending-enrollments li {
+  list-style-position: inside;
+  list-style-type: disc;
+/*  overflow: hidden;*/
+  padding-top: 2px;
+}
+
+#pending-enrollments li a {
+  display: none;
+  float: right;
+}
+
+#pending-enrollments li:hover a {
+  display: block;
+}

@@ -1,8 +1,8 @@
-.assignments li.assignment a {
+#assignment-index li.assignment a {
   font-size: 110%;
 }
 
-.assignments li.assignment .due-at {
+#assignment-index li.assignment .due-at {
   color: #555;
   padding-left: 18px;
   font-size: 90%;

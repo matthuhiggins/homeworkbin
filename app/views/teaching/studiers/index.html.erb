@@ -9,6 +9,17 @@
       <li><%= render studier %></li>
     <% end %>
   </ul>
+<% elsif @enrollments.any? %>
+  <div>
+    Waiting for <%= link_to pluralize(@enrollments.size, 'student'), teaching_enrollments_path(current_course) %> to enroll.
+  </div>
 <% else %>
-  <%= render 'welcome' %>
+  <div class="welcome">
+    <p>
+      This course has no students. The first thing you need to do is add students to the course.
+    </p>
+    <p>
+      <%= link_to 'Enroll students', teaching_enrollments_path %>
+    </p>
+  </div>
 <% end %>

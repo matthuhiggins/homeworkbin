@@ -23,20 +23,14 @@
   font-size: 90%;
 }
 
-#course-index .welcome {
-  background-color: #E8F0F9;
-  color: #666666;
-  padding: 20px;
-}
-
-#course-index .welcome p + p{
-  margin-top: 10px;
-}
-
 #course-form .fields {
 /*  overflow: hidden;*/
 }
 
 #course-form .fields > div {
   float: left;
+}
+
+#course-show {
+  
 }

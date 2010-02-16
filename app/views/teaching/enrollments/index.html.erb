@@ -2,17 +2,19 @@
 
 <h2>Enroll students</h2>
 
-<% form_tag do %>
-  <div>
-    <label for="enrollment-emails">Paste in a list of e-mails</label>
+<% form_tag({}, {:id => 'enrollment-form'}) do %>
+  <label for="enrollment-emails">Paste in a list of e-mails</label>
   <div><%= text_area_tag :emails, nil, :id => 'enrollment-emails', :rows => 12 %></div>
   <div><%= submit_tag 'Enroll students' %></div>
 <% end %>
 
-<ul>
-  <% @enrollments.each do |enrollment| %>
-    <li><%= render enrollment %></li>
-  <% end %>
-</ul>
+<div id="pending-enrollments">
+  Waiting for the following students:
+  <ul>
+    <% @enrollments.each do |enrollment| %>
+      <li><%= render enrollment %></li>
+    <% end %>
+  </ul>
+</div>
 
 <%= focus 'enrollment-emails' %>

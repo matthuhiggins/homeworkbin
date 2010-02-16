@@ -2,10 +2,21 @@
   Assignments
   <%= link_to 'New assignment »', new_teaching_assignment_path(current_course) %>  
 </h2>
-<div class="assignments">
-  <ul>
-    <% @assignments.each do |assignment| %>
-      <li class="assignment"><%= render assignment %></li>
-    <% end %>
-  </ul>
-</div>
+
+<% if @assignments.any? %>
+  <div id="assignment-index">
+    <ul>
+      <% @assignments.each do |assignment| %>
+        <li class="assignment"><%= render assignment %></li>
+      <% end %>
+    </ul>
+  </div>
+<% else %>
+  <div class="welcome">
+    <p>
+      This course has no homework assignments.
+    </p>
+    <p>
+      <%= link_to 'Assign new homework', new_teaching_assignment_path(current_course) %>
+  </div>
+<% end %>
