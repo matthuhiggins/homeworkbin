@@ -34,4 +34,18 @@ module Teaching::CourseHelper
   def course_date_range(course)
     "#{course.start_date.strftime '%b %d'} - #{course.end_date.strftime '%b %d'}"
   end
+  
+  def distance_of_course_in_words(course, date = Date.current)
+    if date < course.start_date
+      "Starts in #{time_ago_in_words course.start_date}"
+    elsif date == course.start_date
+      'Starts today'
+    elsif date > course.start_date && date < course.end_date
+      "Ends in #{time_ago_in_words course.end_date}"
+    elsif date == course.end_date
+      'Ends today'
+    elsif date > course.end_date
+      "Ended #{time_ago_in_words course.end_date} ago"
+    end
+  end
 end

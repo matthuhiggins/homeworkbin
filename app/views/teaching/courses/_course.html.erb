@@ -12,5 +12,5 @@
 
 <div class="date-range">
   <%= course_date_range course %>
-  (Ends in <%= time_ago_in_words course.end_date %>)
+  (<%= distance_of_course_in_words course %>)
 </div>
