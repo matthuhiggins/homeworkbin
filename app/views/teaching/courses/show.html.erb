@@ -1,5 +1,3 @@
-<h2><%= @course.name %></h2>
-
 <% if @course.studiers.empty? && @course.assignments.empty? %>
   <%= render 'empty_course' %>
 <% else %>
