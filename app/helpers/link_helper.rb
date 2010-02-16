@@ -6,4 +6,8 @@ module LinkHelper
       ''
     end
   end
+  
+  def logout
+    link_to 'Logout', logout_path, :method => :delete
+  end
 end

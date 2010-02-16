@@ -15,9 +15,9 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :registrations, :controller => 'teaching/registrations', :collection => {'thanks' => :get}
 
   map.resources :teachings, :controller => 'teaching/courses', :as => 'teaching', :requirements => {:id => /\d+/} do |teachings|
-    teachings.resources :assignments,  :controller => 'teaching/assignments'
+    teachings.resources :assignments,  :controller => 'teaching/assignments', :as => 'homework'
     teachings.resources :enrollments,  :controller => 'teaching/enrollments'
-    teachings.resources :studiers,     :controller => 'teaching/studiers',   :as => 'students'
+    teachings.resources :studiers,     :controller => 'teaching/studiers',    :as => 'students'
   end
 
   map.namespace :teaching do |teaching|
@@ -26,7 +26,7 @@ ActionController::Routing::Routes.draw do |map|
     
   map.login   'login',    :controller => 'sessions',      :action => 'new', :conditions => { :method => :get }
   map.connect 'login',    :controller => 'sessions',      :action => 'create', :conditions => { :method => :post }
-  map.logout  'logout',   :controller => 'sessions',      :action => 'destroy'
+  map.logout  'logout',   :controller => 'sessions',      :action => 'destroy', :conditions => { :method => :delete }
   map.signup  'signup',   :controller => 'teaching/registrations', :action => 'new'
 
   map.connect ':controller/:action/:id'
