@@ -1,5 +1,5 @@
 <h2>
-  Get your course up and running
+  Setup <%= @course.name %>
 </h2>
 
 <div class="welcome">
@@ -7,7 +7,7 @@
     Now that you've created a course, there are two next steps to take:
   </p>
   <ul>
-    <li><%= link_to 'Enroll students in this course', teaching_enrollments_path(current_course) %></li>
-    <li><%= link_to 'Assign homework', new_teaching_assignment_path(current_course) %></li>
+    <li><%= link_to 'Enroll students in this course', teaching_enrollments_path(@course) %></li>
+    <li><%= link_to 'Assign homework', new_teaching_assignment_path(@course) %></li>
   </ul>
 </div>
