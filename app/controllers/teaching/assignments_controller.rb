@@ -1,4 +1,6 @@
 class Teaching::AssignmentsController < Teaching::BaseController
+  topic 'homework'
+
   def index
     @assignments = current_course.assignments
   end

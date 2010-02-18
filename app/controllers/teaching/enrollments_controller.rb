@@ -1,4 +1,6 @@
 class Teaching::EnrollmentsController < Teaching::BaseController
+  topic 'students'
+
   def index
     @enrollments = current_course.enrollments
   end
