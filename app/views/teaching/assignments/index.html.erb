@@ -6,7 +6,7 @@
 <% if @assignments.any? %>
   <div id="assignment-index">
     <ul>
-      <% @assignments.each do |assignment| %>
+      <% @assignments.due.each do |assignment| %>
         <li class="assignment"><%= render assignment %></li>
       <% end %>
     </ul>

@@ -9,15 +9,17 @@ class Assignment
         validate :validate_course_period_includes_due_date, :if => lambda { |assignment| assignment.due_date.present? }
         
         delegate :past?, :today?, :future?, :to => :due_date
-      end
-    end
-    
-    module ClassMethods
-      def due
-        scoped(
-          :conditions => '',
-          :order => 'due_date desc, due_minutes desc'
-        )
+        
+        # TODO
+        named_scope(:due, :order => 'due_date desc, due_minutes desc') do
+          def past
+            scoped :conditions => ['due_date < ?', Date.current]
+          end
+
+          def next
+            first :conditions => ['due_date >= ?', Date.current]
+          end
+        end
       end
     end
     

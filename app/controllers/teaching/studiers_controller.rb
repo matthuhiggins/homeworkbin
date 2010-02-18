@@ -2,7 +2,7 @@ class Teaching::StudiersController < Teaching::BaseController
   topic 'students'
 
   def index
-    @studiers = current_course.studiers.all
+    @studiers = current_course.studiers.all :include => :student
     @enrollments = current_course.enrollments.all
   end
   

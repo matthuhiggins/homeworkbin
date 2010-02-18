@@ -43,23 +43,17 @@ class Classroom
   ]
 
   def enroll_students
-    FULL_NAMES.map do |full_name| enroll_student(full_name)
+    FULL_NAMES.map do |full_name|
       student = Factory :student, :full_name => full_name
       Factory :studier, :student => student, :course => course
       student
     end
   end
 
-  ASSIGNMENT_NAMES = [
-    'Memorize Pi',
-    'Analyze a Poem',
-    'Write a poem',
-    'Critique The Old Man and the Sea'
-  ]
-
   def assign_homework
-    ASSIGNMENT_NAMES.map do |assignment_name|
-      Factory :assignment, :course => course
-    end
+    Factory :assignment, :name => 'Memorize Pi', :due_date => 1.week.ago.to_date, :course => course
+    Factory :assignment, :name => 'Analyze a Poem', :due_date => 2.days.ago.to_date, :course => course
+    Factory :assignment, :name => 'Write a poem', :due_date => Date.current, :course => course
+    Factory :assignment, :name => 'Critique The Old Man and the Sea', :due_date => 3.days.from_now.to_date, :course => course
   end
 end

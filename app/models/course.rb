@@ -4,7 +4,7 @@ class Course < ActiveRecord::Base
   
   belongs_to :teacher
   has_many :studiers
-  has_many :students, :through => :studiers
+  has_many :students, :through => :studiers, :order => 'full_name'
   has_many :assignments
   has_many :enrollments, :extend => Enrollment::Matriculation
 
