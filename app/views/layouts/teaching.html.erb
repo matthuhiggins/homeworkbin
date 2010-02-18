@@ -28,12 +28,12 @@
                     teaching_path(current_course),
                     :class => 'course-name' %>
         <ul class="course-operations">
-          <li>
+          <% topic_tag :li, 'homework' do %>
             <%= link_to 'Homework', teaching_assignments_path(current_course) %>
-          </li>
-          <li>
+          <% end %>
+          <% topic_tag :li, 'students' do %>
             <%= link_to 'Students', teaching_studiers_path(current_course) %>
-          </li>
+          <% end %>
         </ul>
       </div>
     <% end %>

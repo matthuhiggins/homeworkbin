@@ -11,4 +11,18 @@ class LinkHelperTest < ActionView::TestCase
       logout
     )
   end
+
+  def test_topic_tag
+    controller.class_eval { def topic; 'foo'; end }
+
+    assert_dom_equal(
+      "<span class='current topic'>hello world</span>",
+      topic_tag(:span, 'foo') { 'hello world' }
+    )
+
+    assert_dom_equal(
+      "<span class='topic'>hello world</span>",
+      topic_tag(:span, 'bar') { 'hello world' }
+    )
+  end
 end
