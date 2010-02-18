@@ -1,8 +1,18 @@
 require 'action_view_test'
 
 class LinkHelperTest < ActionView::TestCase
-  def test_cancel
-    
+  def test_cancel_with_referral
+    controller.request.env['HTTP_REFERER'] = 'foo'
+
+    assert_dom_equal(
+      link_to('Cancel', 'javascript:history.back()', :class => 'cancel'),
+      cancel
+    )
+  end
+  
+  def test_activation_cancel_link_without_referral
+    controller.request.env['HTTP_REFERER'] = nil
+    assert_equal '', cancel
   end
   
   def test_logout
