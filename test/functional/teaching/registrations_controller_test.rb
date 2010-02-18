@@ -19,7 +19,7 @@ class Teaching::RegistrationsControllerTest < ActionController::TestCase
       )
     end
 
-    assert_redirected_to :action => 'thanks'
+    assert_template 'thanks'
   end
   
   def test_create_using_blanks

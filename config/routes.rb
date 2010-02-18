@@ -12,7 +12,7 @@ ActionController::Routing::Routes.draw do |map|
     end
   end
   
-  map.resources :registrations, :controller => 'teaching/registrations', :collection => {'thanks' => :get}
+  map.resources :registrations, :controller => 'teaching/registrations'
 
   map.resources :teachings, :controller => 'teaching/courses', :as => 'teaching', :requirements => {:id => /\d+/} do |teachings|
     teachings.resources :assignments,  :controller => 'teaching/assignments', :as => 'homework'

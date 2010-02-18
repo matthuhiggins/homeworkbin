@@ -4,7 +4,7 @@ class Teaching::RegistrationsController < ApplicationController
   def create
     @registration = Registration.new params[:registration]
     if @registration.save
-      redirect_to :action => 'thanks'
+      render 'thanks'
     else
       render 'new'
     end
