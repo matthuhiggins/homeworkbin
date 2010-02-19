@@ -1,3 +1,4 @@
+<%= yui_stylesheet 'calendar/assets/skins/sam/calendar' %>
 <%= stylesheet_link_tag 'date_selector' %>
 
 <% course_form @course do |f| %>
@@ -32,8 +33,6 @@
 <% end %>
 
 <%= focus 'course_name' %>
-
-<%= yui_stylesheet 'calendar/assets/skins/sam/calendar' %>
 
 <%= yui_javascript 'yahoo-dom-event/yahoo-dom-event', 'calendar/calendar-min' %>
 <%= javascript_include_tag 'date_selector' %>

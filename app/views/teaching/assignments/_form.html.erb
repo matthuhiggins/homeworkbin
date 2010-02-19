@@ -1,0 +1,44 @@
+<%= yui_stylesheet 'calendar/assets/skins/sam/calendar' %>
+<%= stylesheet_link_tag 'date_selector' %>
+
+<% assignment_form @assignment do |f| %>
+  <div>
+    <div><%= f.label :name, 'Assignment name' %></div>
+    <div><%= f.text_field :name %></div>
+    <div><%= f.error_message_on :name, :prepend_text => 'Name ' %></div>
+  </div>
+  <div class="fields">
+    <div id="due-date" class="date-selector">
+      <div><%= f.label :due_date, 'Due date' %></div>
+      <div>
+        <%= f.text_field :due_date, :value => assignment_due_date(@assignment), :autocomplete => 'off' %>
+      </div>
+      <div class="calendar-wrap">
+        <div class="calendar"></div> 
+      </div>
+      <%= date_format_div @assignment, :due_date %>
+    </div>
+    <div id="due-time" class="time-selector">
+      <div><%= f.label :due_minutes, 'Due time' %></div>
+      <div>
+        <%= f.select :due_minutes, hour_options, {:selected => assignment_due_minutes(@assignment)} %>
+      </div>
+    </div>
+    <br />
+  </div>
+  <div class="submit-cancel">
+    <%= cancel %>
+    <%= f.submit 'Assign homework »' %>
+  </div>
+<% end %>
+
+<%= focus 'assignment_name' %>
+
+<%= yui_javascript 'yahoo-dom-event/yahoo-dom-event', 'calendar/calendar-min' %>
+<%= javascript_include_tag 'date_selector' %>
+
+<script>
+YAHOO.util.Event.onDOMReady(function() {
+  HW.dateSelector('assignment-form');
+});
+</script>
