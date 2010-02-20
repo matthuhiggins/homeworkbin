@@ -31,4 +31,18 @@ class Teaching::AssignmentHelperTest < ActionView::TestCase
     assert assignment_handout(Factory :assignment, :handout => nil)
     assert !assignment_handout(Factory :assignment, :handout => '0')
   end
+  
+  def test_next_assignment
+    assignment = Factory :assignment
+    
+    next_assignment Assignment.scoped({}) do |a|
+      assert_equal assignment, a
+    end
+  end
+  
+  def test_next_assignment_when_nil
+    next_assignment Assignment.scoped({}) do |a|
+      assert false, 'Should not enter block'
+    end
+  end
 end

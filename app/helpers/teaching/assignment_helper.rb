@@ -1,4 +1,5 @@
 module Teaching::AssignmentHelper
+  # TODO test
   def assignment_form(assignment, &block)
     if assignment.new_record?
       options = {

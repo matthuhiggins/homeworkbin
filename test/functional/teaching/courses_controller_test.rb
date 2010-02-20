@@ -9,8 +9,8 @@ class Teaching::CoursesControllerTest < ActionController::TeachingTestCase
 
   def test_show
     teaching_get :show, :id => current_course.to_param
-    
-    assert_kind_of Course, assigns(:course)
+
+    assert_response :ok
   end
   
   def test_new
