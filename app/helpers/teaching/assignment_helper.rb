@@ -45,4 +45,11 @@ module Teaching::AssignmentHelper
       true
     end
   end
+  
+  # TODO test
+  def next_assignment(assignments)
+    if assignment = assignments.next
+      yield(assignment)
+    end
+  end
 end

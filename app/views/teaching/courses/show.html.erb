@@ -4,11 +4,11 @@
   <h2>Course Summary</h2>
   <div id="course-show">
     <div class="summary">
-      <% current_course.assignments.next.tap do |next_assignment| %>
+      <% next_assignment(current_course.assignments) do |assignment| %>
         Next homework
-        <%= link_to h(next_assignment.name), teaching_assignment_path(current_course, next_assignment) %>
+        <%= link_to h(assignment.name), teaching_assignment_path(current_course, assignment) %>
         is due
-        <%= assignment_due_date(next_assignment) %>
+        <%= assignment_due_date(assignment) %>
       <% end %>
       <ul>
       </ul>
