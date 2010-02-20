@@ -17,7 +17,8 @@ class Teaching::CoursesController < Teaching::BaseController
   end
   
   def show
-    @course = current_teacher.teaching.find params[:id]
+    @studiers_count = current_course.studiers.count
+    @assignments_count = current_course.assignments.count
   end
   
   def edit

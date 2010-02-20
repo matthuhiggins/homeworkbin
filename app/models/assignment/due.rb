@@ -9,17 +9,21 @@ class Assignment
         validate :validate_course_period_includes_due_date, :if => lambda { |assignment| assignment.due_date.present? }
         
         delegate :past?, :today?, :future?, :to => :due_date
+        extend FinderMethods
+      end
+    end
+    
+    module FinderMethods
+      def past
+        scoped :conditions => ['due_date < ?', Date.current], :order => 'due_date desc, due_minutes desc'
+      end
+      
+      def whatevs
         
-        # TODO
-        named_scope(:due, :order => 'due_date desc, due_minutes desc') do
-          def past
-            scoped :conditions => ['due_date < ?', Date.current]
-          end
+      end
 
-          def next
-            first :conditions => ['due_date >= ?', Date.current]
-          end
-        end
+      def next
+        first :conditions => ['due_date >= ?', Date.current], :order => 'due_date asc, due_minutes asc'
       end
     end
     

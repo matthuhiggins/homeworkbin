@@ -31,6 +31,7 @@ class Teaching::AssignmentsController < Teaching::BaseController
     @assignment = current_course.assignments.find params[:id]
     if @assignment.update_attributes params[:assignment]
       flash[:notice] = "Assignment saved"
+      redirect_to teaching_assignment_path(current_course, @assignment)
     else
       render 'edit'
     end

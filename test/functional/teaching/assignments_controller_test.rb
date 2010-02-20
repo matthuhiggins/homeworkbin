@@ -21,4 +21,25 @@ class Teaching::AssignmentsControllerTest < ActionController::TeachingTestCase
     assert !assigns(:assignment).new_record?
     assert_redirected_to teaching_assignment_path(current_course, assigns(:assignment))
   end
+  
+  def test_edit
+    assignment = Factory :assignment, :course => current_course 
+
+    teaching_get :edit, :id => assignment.to_param
+
+    assert_equal assignment, assigns(:assignment)
+  end
+  
+  def test_update
+    assignment = Factory :assignment, :course => current_course 
+    
+    teaching_put :update, {
+      :id         => assignment.to_param,
+      :assignment => {:name => 'foo!'}
+    }
+    
+    assignment.reload
+    assert_equal 'foo!', assignment.name
+    assert_redirected_to teaching_assignment_path(current_course, assignment)
+  end
 end

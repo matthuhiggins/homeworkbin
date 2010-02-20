@@ -1,6 +1,9 @@
 .course.menu {
+  background-color: #F0F0F0;
+  border-left: 1px solid #E1E1E1;
+  border-right: 1px solid #E1E1E1;
   border-top: 1px solid #E1E1E1;
-  padding: 6px 20px;
+  height: 34px;
 }
 
 .course.menu .course-name {
@@ -8,8 +11,10 @@
   float: left;
   font-size: 20px;
   font-weight: bold;
+  height: 30px;
+  margin-right: 20px;
   text-decoration: none;
-  margin-right: 18px;
+  padding: 4px 0 0 6px;
 }
 
 .course.menu .course-operations {
@@ -19,5 +24,16 @@
 
 .course.menu .course-operations li {
   float: left;
-  margin: 5px 10px 0 5px;
+}
+
+.course.menu .course-operations li.current {
+  background-color: #E7E7E7;
+}
+
+.course.menu .course-operations li a {
+  display: inline-block;
+  height: 26px;
+  padding: 8px 10px 0 10px;
+  text-align: center;
+/*  text-decoration: none;*/
 }

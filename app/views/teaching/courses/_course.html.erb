@@ -3,11 +3,11 @@
 </div>
 
 <div>
-  <%= pluralize(course.studiers.count, 'student') %>
+  <%= link_to pluralize(course.studiers.count, 'student'), teaching_studiers_path(course) %>
 </div>
 
 <div>
-  <%= pluralize(course.assignments.count, 'assignments') %>
+  <%= link_to pluralize(course.assignments.count, 'assignments'), teaching_assignments_path(course) %>
 </div>
 
 <div class="date-range">
