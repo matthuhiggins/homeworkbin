@@ -1,3 +1,15 @@
-<%= debug @assignment %>
+<h2>
+  <%= @assignment.name %>
+  <%= link_to 'Edit settings', edit_teaching_assignment_path(current_course, @assignment) %>
+</h2>
 
-<%= link_to 'Edit', edit_teaching_assignment_path(current_course, @assignment) %>
+<div id="assignment-show">
+  <ul>
+    <li>
+      Description
+      <%= @assignment.description %>
+    </li>
+  </ul>
+  
+  <strong>Student Submissions</strong>
+</div>

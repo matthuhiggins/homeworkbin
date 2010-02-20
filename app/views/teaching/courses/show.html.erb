@@ -6,7 +6,7 @@
     <div class="summary">
       <% current_course.assignments.next.tap do |next_assignment| %>
         Next homework
-        <%= next_assignment.name %>
+        <%= link_to h(next_assignment.name), teaching_assignment_path(current_course, next_assignment) %>
         is due
         <%= assignment_due_date(next_assignment) %>
       <% end %>
