@@ -8,6 +8,13 @@ class ApplicationHelperTest < ActionView::TestCase
   
   def test_focus
     script = focus 'foo'
-    assert_dom_equal "<script>document.getElementById('foo').focus();", script
+
+    assert_dom_equal %{
+      <script>
+      YAHOO.util.Event.onDOMReady(function() {
+        document.getElementById('foo').focus();
+      });
+      </script>
+      }, script
   end
 end

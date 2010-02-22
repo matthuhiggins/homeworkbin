@@ -4,6 +4,10 @@ module ApplicationHelper
   end
   
   def focus(dom_id)
-    content_tag :script, "document.getElementById('#{dom_id}').focus();"
+    content_tag :script, <<-eval
+      YAHOO.util.Event.onDOMReady(function() {
+        document.getElementById('#{dom_id}').focus();
+      });
+    eval
   end
 end
