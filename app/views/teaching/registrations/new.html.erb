@@ -1,5 +1,7 @@
 <% title 'Start a free course' %>
 
+<h2>Start your free course</h2>
+
 <% form_for @registration do |f| %>
   <div>
     <div><%= f.label :full_name, 'Your name' %></div>
@@ -17,7 +19,7 @@
     <div><%= f.error_message_on :password, :prepend_text => 'Password ' %></div>
   </div>
   <div class="submit">
-    <%= f.submit 'Start your free course' %>
+    <%= f.submit 'Create teacher account' %>
   </div>
 <% end %>
 
