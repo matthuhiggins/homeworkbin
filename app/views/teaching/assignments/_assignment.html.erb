@@ -1,5 +1,9 @@
-<%= link_to assignment.name, teaching_assignment_path(current_course, assignment) %>
+<div class="name">
+  <%= link_to assignment.name, teaching_assignment_path(current_course, assignment) %>
+</div>
 
-<div class="due-at">
-  Due <%= assignment_due_at assignment %>
+<div class="options">
+  <%= link_to 'Edit', edit_teaching_assignment_path(current_course, assignment) %>
+  |
+  <%= link_to 'Delete', teaching_assignment_path(current_course, assignment), :method => :delete %>
 </div>

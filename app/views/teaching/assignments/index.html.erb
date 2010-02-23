@@ -9,7 +9,7 @@
   <div id="assignment-index">
     <% @grouped_assignments.each do |date, assignments| %>
       <div class="date">
-        <%= relative_assignment_due_date(date) %>
+        Due <%= relative_assignment_due_date(date) %>
       </div>
       <ul>
         <% assignments.each do |assignment| %>

@@ -30,11 +30,18 @@ class Teaching::AssignmentsController < Teaching::BaseController
   def update
     @assignment = current_course.assignments.find params[:id]
     if @assignment.update_attributes params[:assignment]
-      flash[:notice] = "Assignment saved"
+      flash[:notice] = 'Assignment saved'
       redirect_to teaching_assignment_path(current_course, @assignment)
     else
       render 'edit'
     end
+  end
+  
+  def destroy
+    @assignment = current_course.assignments.find params[:id]
+    @assignment.destroy
+    flash[:notice] = 'Assignment deleted'
+    redirect_to teaching_assignments_path(current_course)
   end
   
   private

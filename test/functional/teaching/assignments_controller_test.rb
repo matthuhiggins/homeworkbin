@@ -42,4 +42,13 @@ class Teaching::AssignmentsControllerTest < ActionController::TeachingTestCase
     assert_equal 'foo!', assignment.name
     assert_redirected_to teaching_assignment_path(current_course, assignment)
   end
+  
+  def test_destroy
+    assignment = Factory :assignment, :course => current_course 
+    
+    teaching_delete :destroy, :id => assignment.to_param
+    
+    assert_destroyed assignment
+    assert_redirected_to teaching_assignments_path(current_course)
+  end
 end

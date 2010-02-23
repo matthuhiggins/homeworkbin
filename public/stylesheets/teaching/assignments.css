@@ -1,15 +1,24 @@
-#assignment-index li.assignment {
-  margin-bottom: 6px;
+#assignment-index .assignment {
+  border-bottom: 1px solid #eee;
+  border-top: 1px solid #eee;
+  padding: 6px 0;
+  overflow: hidden;
+  width: 60%;
 }
 
-#assignment-index li.assignment a {
-/*  font-size: 110%;*/
+#assignment-index .assignment + .assignment {
+  border-top-color: transparent;
 }
 
-#assignment-index li.assignment .due-at {
-  color: #555;
-/*  padding-left: 18px;*/
+#assignment-index .assignment .name {
+  float: left;
+  font-size: 110%;
+}
+
+#assignment-index .assignment .options {
+  float: right;
   font-size: 90%;
+  padding-top: 1px;
 }
 
 #assignment-index .date {
