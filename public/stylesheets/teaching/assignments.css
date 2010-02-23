@@ -12,12 +12,12 @@
 
 #assignment-index .assignment .name {
   float: left;
-  font-size: 110%;
+/*  font-size: 110%;*/
 }
 
 #assignment-index .assignment .options {
   float: right;
-  font-size: 90%;
+  font-size: 85%;
   padding-top: 1px;
 }
 
