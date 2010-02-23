@@ -4,7 +4,7 @@ class Classroom
   def initialize
     self.teacher = Factory :teacher, :email => 'bob@wa.edu'
     self.course = Factory :course, :teacher => teacher, :start_date => 1.month.ago.to_date, :end_date => 1.month.from_now.to_date
-    self.students = enroll_students
+    self.students << enroll_students
     self.assignments = assign_homework
   end
 
