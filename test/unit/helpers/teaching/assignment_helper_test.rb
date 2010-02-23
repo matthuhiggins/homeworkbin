@@ -16,6 +16,23 @@ class Teaching::AssignmentHelperTest < ActionView::TeachingTestCase
     )
   end
   
+  def test_edit_assignment_form
+    assignment = create_assignment
+    
+    assignment_form assignment do |f|
+    end
+    
+    assert_equal(
+      content_tag(:form, '', {
+        :class  => 'new_assignment',
+        :action => teaching_assignment_path(current_course, assignment),
+        :id     => 'assignment-form',
+        :method => 'put'
+      }),
+      output_buffer
+    )
+  end
+  
   def test_due_minutes_without_last
     assert 120, assignment_due_minutes(build_assignment :due_minutes => 120)
     assert_equal 12 * 60, assignment_due_minutes(build_assignment :due_minutes => nil)
