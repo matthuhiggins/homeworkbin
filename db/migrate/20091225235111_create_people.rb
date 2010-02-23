@@ -3,6 +3,7 @@ class CreatePeople < ActiveRecord::Migration
     create_table :people do |t|
       t.string   :email,                  :null => false
       t.string   :full_name,              :null => false
+      t.string   :time_zone,              :null => false
       t.string   :encrypted_password,     :null => false, :limit => 128
       t.string   :salt,                   :null => false, :limit => 128
       t.string   :remember_token,         :null => true,  :limit => 128

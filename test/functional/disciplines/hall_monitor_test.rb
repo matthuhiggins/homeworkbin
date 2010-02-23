@@ -1,9 +1,9 @@
 require 'action_controller_test'
 
-class HallMonitorTest < ActionController::TestCase
+class Disciplines::HallMonitorTest < ActionController::TestCase
   class TestController < ActionController::Base
     attr_accessor :person
-    include HallMonitor
+    include Disciplines::HallMonitor
     
     require_login :only => [:action_requiring_login]
     
@@ -54,6 +54,6 @@ class HallMonitorTest < ActionController::TestCase
     get :action_requiring_login
     
     assert_redirected_to login_path
-    assert_equal '/hall_monitor_test/test/action_requiring_login', @controller.session[:original_uri]
+    assert_equal '/disciplines/hall_monitor_test/test/action_requiring_login', @controller.session[:original_uri]
   end
 end

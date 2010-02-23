@@ -1,12 +1,12 @@
 require 'action_controller_test'
 
-class HallMonitorTest < ActionController::TestCase
+class Disciplines::HallMonitorTest < ActionController::TestCase
   class DefaultTopicController < ActionController::Base
-    include Topic
+    include Disciplines::Topic
   end
   
   class DefinedTopicController < ActionController::Base
-    include Topic
+    include Disciplines::Topic
     topic 'foo'
   end
 

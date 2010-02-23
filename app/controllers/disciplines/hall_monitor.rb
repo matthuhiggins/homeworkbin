@@ -1,19 +1,18 @@
-module HallMonitor
-  def self.included(controller)
-    controller.class_eval do
-      extend ClassMethods
-      include InstanceMethods
-      helper_method :authenticated?, :current_person
+module Disciplines
+  module HallMonitor
+    def self.included(controller)
+      controller.class_eval do
+        extend ClassMethods
+        helper_method :authenticated?, :current_person
+      end
     end
-  end
-  
-  module ClassMethods
-    def require_login(options = {})
-      before_filter :check_authentication, options
+
+    module ClassMethods
+      def require_login(options = {})
+        before_filter :check_authentication, options
+      end
     end
-  end
   
-  module InstanceMethods
     protected
       def authenticated?
         !current_person.nil?
