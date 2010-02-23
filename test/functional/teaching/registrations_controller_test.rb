@@ -1,8 +1,8 @@
 require 'action_controller_test'
 
 class Teaching::RegistrationsControllerTest < ActionController::TestCase
-  def test_new
-    get :new
+  def test_index
+    get :index
 
     assert assigns(:registration).is_a?(Registration)
   end
@@ -32,7 +32,7 @@ class Teaching::RegistrationsControllerTest < ActionController::TestCase
       }
     )
 
-    assert_template 'new'
+    assert_template 'index'
   end
   
   def test_show

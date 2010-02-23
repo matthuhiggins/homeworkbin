@@ -13,7 +13,6 @@ class Assignment
       end
     end
 
-    # TODO test
     module FinderMethods
       def past
         scoped :conditions => ['due_date < ?', Date.current], :order => 'due_date desc, due_minutes desc'

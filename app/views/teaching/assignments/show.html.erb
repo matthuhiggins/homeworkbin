@@ -6,9 +6,14 @@
 <div id="assignment-show">
   <ul>
     <li>
-      Description
+      Description:
       <%= @assignment.description %>
     </li>
+    <li>
+      Due date
+      <%= assignment_due_at @assignment %>
+    </li>
+    
   </ul>
   
   <strong>Student Submissions</strong>

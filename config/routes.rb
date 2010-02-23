@@ -4,7 +4,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :lost_passwords
   map.resource :session
 
-  map.resources :enrollments, :controller => 'studying/enrollments'
+  map.resources :enrollments, :controller => 'studying/enrollments', :as => 'enroll'
 
   map.resources :studyings, :controller => 'studying/courses', :as => 'studying' do |studying|
     studying.resources :assignments do |assignment|
@@ -12,11 +12,11 @@ ActionController::Routing::Routes.draw do |map|
     end
   end
   
-  map.resources :registrations, :controller => 'teaching/registrations'
+  map.resources :registrations, :controller => 'teaching/registrations', :as => 'signup'
 
   map.resources :teachings, :controller => 'teaching/courses', :as => 'teaching', :requirements => {:id => /\d+/} do |teachings|
     teachings.resources :assignments,  :controller => 'teaching/assignments', :as => 'homework'
-    teachings.resources :enrollments,  :controller => 'teaching/enrollments'
+    teachings.resources :enrollments,  :controller => 'teaching/enrollments', :as => 'enroll'
     teachings.resources :studiers,     :controller => 'teaching/studiers',    :as => 'students'
   end
 
@@ -27,7 +27,6 @@ ActionController::Routing::Routes.draw do |map|
   map.login   'login',    :controller => 'sessions',      :action => 'new', :conditions => { :method => :get }
   map.connect 'login',    :controller => 'sessions',      :action => 'create', :conditions => { :method => :post }
   map.logout  'logout',   :controller => 'sessions',      :action => 'destroy', :conditions => { :method => :delete }
-  map.signup  'signup',   :controller => 'teaching/registrations', :action => 'new'
 
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'

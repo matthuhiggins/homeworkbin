@@ -6,11 +6,11 @@ class Teaching::RegistrationsController < ApplicationController
     if @registration.save
       render 'thanks'
     else
-      render 'new'
+      render 'index'
     end
   end
-  
-  def new
+
+  def index
     @registration = Registration.new
   end
 
