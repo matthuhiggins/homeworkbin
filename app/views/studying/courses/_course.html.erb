@@ -1,1 +1,6 @@
-<%= link_to course.name, studying_path(course) %>
+<div class="course">
+  <%= link_to course.name, studying_path(course) %>
+  <span class="due">
+    <%= debug course.assignments.next %>
+  </span>
+</div>

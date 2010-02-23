@@ -94,3 +94,22 @@ body > .content {
   padding: 20px;
   width: 650px;
 }
+
+.welcome {
+  background-color: #E8F0F9;
+  color: #666666;
+  padding: 20px;
+}
+
+.welcome p + p {
+  margin-top: 10px;
+}
+
+.welcome ul {
+  margin-top: 10px;
+}
+
+.welcome li {
+  list-style-type: disc;
+  list-style-position: inside;
+}

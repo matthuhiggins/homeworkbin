@@ -55,5 +55,6 @@ class Classroom
     Factory :assignment, :name => 'Analyze a Poem', :due_date => 2.days.ago.to_date, :course => course
     Factory :assignment, :name => 'Write a poem', :due_date => Date.current, :course => course
     Factory :assignment, :name => 'Critique The Old Man and the Sea', :due_date => 3.days.from_now.to_date, :course => course
+    Factory :assignment, :name => 'Final Essay', :due_date => 2.weeks.from_now.to_date, :course => course
   end
 end
