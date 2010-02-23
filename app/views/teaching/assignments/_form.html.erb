@@ -11,7 +11,7 @@
     <div id="due-date" class="date-selector">
       <div><%= f.label :due_date, 'Due date' %></div>
       <div>
-        <%= f.text_field :due_date, :value => assignment_due_date(@assignment), :autocomplete => 'off' %>
+        <%= f.text_field :due_date, :value => default_assignment_due_date(@assignment), :autocomplete => 'off' %>
       </div>
       <div class="calendar-wrap">
         <div class="calendar"></div> 
@@ -21,7 +21,7 @@
     <div id="due-time" class="time-selector">
       <div><%= f.label :due_minutes, 'Due time' %></div>
       <div>
-        <%= f.select :due_minutes, hour_options, {:selected => assignment_due_minutes(@assignment)} %>
+        <%= f.select :due_minutes, hour_options, {:selected => default_assignment_due_minutes(@assignment)} %>
       </div>
     </div>
     <br />

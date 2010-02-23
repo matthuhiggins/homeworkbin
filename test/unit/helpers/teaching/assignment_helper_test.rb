@@ -35,22 +35,28 @@ class Teaching::AssignmentHelperTest < ActionView::TeachingTestCase
     )
   end
   
-  def test_due_minutes_without_last
-    assert 120, assignment_due_minutes(build_assignment :due_minutes => 120)
-    assert_equal 12 * 60, assignment_due_minutes(build_assignment :due_minutes => nil)
+  def test_default_due_date
+    assert_equal '12/25/2005', default_assignment_due_date(build_assignment :due_date => '12/25/2005')
+    assert_equal Date.current.strftime('%m/%d/%Y'), default_assignment_due_date(current_course.assignments.new)
+  end
+  
+  def test_default_due_minutes_without_last
+    assert 120, default_assignment_due_minutes(build_assignment :due_minutes => 120)
+    assert_equal 12 * 60, default_assignment_due_minutes(build_assignment :due_minutes => nil)
   end
 
-  def test_due_minutes_defaults_to_last
+  def test_default_due_minutes_defaults_to_last
     create_assignment :due_minutes => 120
     
     assignment = current_course.assignments.new
     
-    assert_equal 120, assignment_due_minutes(assignment)
+    assert_equal 120, default_assignment_due_minutes(assignment)
   end
   
-  def test_due_date
-    assert_equal '12/25/2005', assignment_due_date(build_assignment :due_date => '12/25/2005')
-    assert_equal Date.current.strftime('%m/%d/%Y'), assignment_due_date(current_course.assignments.new)
+  def test_default_handout
+    assert default_assignment_handout(build_assignment :handout => '1')
+    assert default_assignment_handout(build_assignment :handout => nil)
+    assert !default_assignment_handout(build_assignment :handout => '0')
   end
   
   def test_assignment_due_at
@@ -59,10 +65,10 @@ class Teaching::AssignmentHelperTest < ActionView::TeachingTestCase
     assert_equal assignment.due_date.strftime('%a, %b %d'), assignment_due_at(assignment)
   end
   
-  def test_handout
-    assert assignment_handout(build_assignment :handout => '1')
-    assert assignment_handout(build_assignment :handout => nil)
-    assert !assignment_handout(build_assignment :handout => '0')
+  def test_relative_due_date
+    assert_equal 'Today', relative_assignment_due_date(Date.today)
+    assert_equal 'Tomorrow', relative_assignment_due_date(Date.tomorrow)
+    assert_equal 'Thu, Dec 25', relative_assignment_due_date(Date.new(2003, 12, 25))
   end
   
   def test_next_assignment

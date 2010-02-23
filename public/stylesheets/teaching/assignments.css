@@ -1,11 +1,24 @@
+#assignment-index li.assignment {
+  margin-bottom: 6px;
+}
+
 #assignment-index li.assignment a {
-  font-size: 110%;
+/*  font-size: 110%;*/
 }
 
 #assignment-index li.assignment .due-at {
   color: #555;
-  padding-left: 18px;
+/*  padding-left: 18px;*/
   font-size: 90%;
+}
+
+#assignment-index .date {
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+#assignment-index ul + .date {
+  margin-top: 20px;
 }
 
 #assignment-form .fields {

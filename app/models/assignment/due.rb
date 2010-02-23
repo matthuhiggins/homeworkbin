@@ -25,6 +25,10 @@ class Assignment
       def next
         upcoming.first
       end
+      
+      def grouped_by_date
+        scoped(:order => 'due_date asc, due_minutes asc').group_by(&:due_date)
+      end
     end
     
     def due_at

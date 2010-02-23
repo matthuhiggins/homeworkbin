@@ -15,7 +15,7 @@ module Teaching::AssignmentHelper
     form_for assignment, options, &block
   end
   
-  def assignment_due_date(assignment)
+  def default_assignment_due_date(assignment)
     if assignment.due_date.present?
       assignment.due_date.strftime '%m/%d/%Y'
     else
@@ -23,7 +23,7 @@ module Teaching::AssignmentHelper
     end
   end
   
-  def assignment_due_minutes(assignment)
+  def default_assignment_due_minutes(assignment)
     if assignment.due_minutes.present?
       assignment.due_minutes
     elsif assignment.last.present?
@@ -33,16 +33,26 @@ module Teaching::AssignmentHelper
     end
   end
   
+  def default_assignment_handout(assignment)
+    if assignment.handout.present?
+      assignment.handout == '1'
+    else
+      true
+    end
+  end
+  
   def assignment_due_at(assignment)
     assignment.due_at.strftime '%a, %b %d'
     # strftime('%I:%M %p').downcase.gsub(/^0/, '')
   end
   
-  def assignment_handout(assignment)
-    if assignment.handout.present?
-      assignment.handout == '1'
+  def relative_assignment_due_date(due_date)
+    if due_date.today?
+      'Today'
+    elsif due_date == Date.tomorrow
+      'Tomorrow'
     else
-      true
+      due_date.strftime('%a, %b %d')
     end
   end
   

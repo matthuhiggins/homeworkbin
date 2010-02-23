@@ -5,10 +5,10 @@
   <div id="course-show">
     <div class="summary">
       <% next_assignment(current_course.assignments) do |assignment| %>
-        Next homework
-        <%= link_to h(assignment.name), teaching_assignment_path(current_course, assignment) %>
+        Next homework,
+        <%= link_to h(assignment.name), teaching_assignment_path(current_course, assignment) %>,
         is due
-        <%= assignment_due_date(assignment) %>
+        <%= relative_assignment_due_date(assignment) %>.
       <% end %>
       <ul>
       </ul>

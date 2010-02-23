@@ -3,7 +3,7 @@ require 'action_controller_test'
 class Teaching::AssignmentsControllerTest < ActionController::TeachingTestCase
   def test_index
     teaching_get :index
-    assert_equal current_course.assignments, assigns(:assignments)
+    assert_equal({}, assigns(:grouped_assignments))
   end
 
   def test_new

@@ -1,22 +1,21 @@
 <h2>
-  Homework
+  Upcoming Homework
   <%= link_to 'Assign homework »', new_teaching_assignment_path(current_course) %>  
 </h2>
 
-<% if @assignments.any? %>
-  <div id="assignment-index">
-    <ul>
-      <% @assignments.each do |assignment| %>
-        <li class="assignment"><%= render assignment %></li>
-      <% end %>
-    </ul>
-  </div>
+<% if @grouped_assignments.empty? %>
+  <%= render 'welcome' %>
 <% else %>
-  <div class="welcome">
-    <p>
-      This course has no homework assignments.
-    </p>
-    <p>
-      <%= link_to 'Assign new homework', new_teaching_assignment_path(current_course) %>
+  <div id="assignment-index">
+    <% @grouped_assignments.each do |date, assignments| %>
+      <div class="date">
+        <%= relative_assignment_due_date(date) %>
+      </div>
+      <ul>
+        <% assignments.each do |assignment| %>
+          <li class="assignment"><%= render assignment %></li>
+        <% end %>
+      </ul>
+    <% end %>
   </div>
 <% end %>
