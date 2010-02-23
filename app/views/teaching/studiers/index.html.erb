@@ -4,22 +4,21 @@
 </h2>
 
 <% if @studiers.any? %>
-  <ul>
-    <% @studiers.each do |studier| %>
-      <li><%= render studier %></li>
-    <% end %>
-  </ul>
+  <div id="studier-index">
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th></th>
+      </tr>
+      <% @studiers.each do |studier| %>
+        <%= render studier %>
+      <% end %>
+    </table>
 <% elsif @enrollments.any? %>
   <div>
     Waiting for <%= link_to pluralize(@enrollments.size, 'student'), teaching_enrollments_path(current_course) %> to enroll.
   </div>
 <% else %>
-  <div class="welcome">
-    <p>
-      This course has no students. You can <strong>enroll up to 50 students</strong> via email.
-    </p>
-    <p>
-      <%= link_to 'Enroll students', teaching_enrollments_path %>
-    </p>
-  </div>
+  <%= render 'welcome' %>
 <% end %>

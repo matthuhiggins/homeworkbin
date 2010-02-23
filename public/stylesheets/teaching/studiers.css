@@ -1,0 +1,25 @@
+#studier-index td,
+#studier-index th {
+  border: 1px solid #ccc;
+  font-size: 14px;
+  padding: 4px 7px;
+}
+
+#studier-index th {
+  font-weight: bold;
+}
+
+#studier-index td.name {
+  width: 190px;
+}
+
+#studier-index td.email {
+  color: #555;
+  width: 170px;
+}
+
+#studier-index td.links {
+  font-size: 12px;
+  text-align: right;
+  width: 220px;
+}

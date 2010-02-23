@@ -1,2 +1,5 @@
-<%= link_to studier.full_name, teaching_studier_path(current_course, studier) %>
-(<%= studier.email %>)
+<tr>
+  <td class="name"><%= link_to studier.full_name, teaching_studier_path(current_course, studier) %></td>
+  <td class="email"><%= studier.email %></td>
+  <td class="links"><%= link_to 'View homework', teaching_studier_path(current_course, studier) %></td>
+</tr>
