@@ -1,8 +1,9 @@
 require 'active_record_test'
 
 class PersonTest < ActiveRecord::TestCase
-  include ActiveRecord::EmailValidationTests
   include ActiveRecord::AuthenticatedTests
+  include ActiveRecord::EmailValidationTests
+  include ActiveRecord::TimeZoneInfoTests
   
   def test_teaching?
     assert !Factory(:person).teaching?
