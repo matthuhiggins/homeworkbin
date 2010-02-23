@@ -10,4 +10,6 @@ module ActionView
       @params = {}
     end
   end
+
+  autoload :TeachingTestCase, 'action_view/teaching_test_case'
 end
