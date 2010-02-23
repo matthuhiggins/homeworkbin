@@ -3,6 +3,8 @@ class Course < ActiveRecord::Base
   extend ActiveSupport::Memoizable
   
   belongs_to :teacher
+  delegate :time_zone, :to => :teacher
+
   has_many :studiers
   has_many :students, :through => :studiers, :order => 'full_name'
   has_many :assignments

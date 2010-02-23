@@ -21,8 +21,8 @@ class Studying::CompositionsController < Studying::BaseController
     
     def composition
       @composition ||= begin
-        studier.compositions.find_by_assignment_id(assignment) ||
-        studier.compositions.new(:assignment => assignment)
+        current_studier.compositions.find_by_assignment_id(assignment) ||
+        current_studier.compositions.new(:assignment => assignment)
       end
     end
     helper_method :composition
