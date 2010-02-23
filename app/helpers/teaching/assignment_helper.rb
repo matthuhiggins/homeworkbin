@@ -1,5 +1,4 @@
 module Teaching::AssignmentHelper
-  # TODO test
   def assignment_form(assignment, &block)
     if assignment.new_record?
       options = {
@@ -47,7 +46,6 @@ module Teaching::AssignmentHelper
     end
   end
   
-  # TODO test
   def next_assignment(assignments)
     if assignment = assignments.next
       yield(assignment)

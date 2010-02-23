@@ -23,12 +23,14 @@ class Teaching::AssignmentHelperTest < ActionView::TeachingTestCase
     end
     
     assert_equal(
-      content_tag(:form, '', {
-        :class  => 'new_assignment',
+      content_tag(
+        :form,
+        '<div style="margin:0;padding:0;display:inline"><input name="_method" type="hidden" value="put" /></div>',
+        :class  => 'edit_assignment',
         :action => teaching_assignment_path(current_course, assignment),
         :id     => 'assignment-form',
-        :method => 'put'
-      }),
+        :method => 'post'
+      ),
       output_buffer
     )
   end

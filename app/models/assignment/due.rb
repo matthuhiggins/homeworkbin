@@ -19,12 +19,12 @@ class Assignment
         scoped :conditions => ['due_date < ?', Date.current], :order => 'due_date desc, due_minutes desc'
       end
       
-      def whatevs
-        
+      def upcoming
+        scoped :conditions => ['due_date >= ?', Date.current], :order => 'due_date asc, due_minutes asc'
       end
 
       def next
-        first :conditions => ['due_date >= ?', Date.current], :order => 'due_date asc, due_minutes asc'
+        upcoming.first
       end
     end
     

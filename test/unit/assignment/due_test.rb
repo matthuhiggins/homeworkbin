@@ -1,6 +1,39 @@
 require 'active_record_test'
 
 class Assignment::DueTest < ActiveRecord::TestCase
+  module FinderTests
+    def test_past
+      course = Factory :course, :start_date => 1.month.ago.to_date, :end_date => 1.month.from_now.to_date
+      due_last_week = Factory :assignment, :course => course, :due_date => 2.days.ago.to_date
+      due_yesterday = Factory :assignment, :course => course, :due_date => 1.day.ago.to_date
+      due_today = Factory :assignment, :course => course, :due_date => Date.current
+      due_tomorrow = Factory :assignment, :course => course, :due_date => 1.day.from_now.to_date
+      
+      assert_equal [due_yesterday, due_last_week], course.assignments.past
+    end
+    
+    def test_upcoming
+      course = Factory :course, :start_date => 1.month.ago.to_date, :end_date => 1.month.from_now.to_date
+      due_yesterday = Factory :assignment, :course => course, :due_date => 1.day.ago.to_date
+      due_tomorrow = Factory :assignment, :course => course, :due_date => 1.day.from_now.to_date
+      due_today = Factory :assignment, :course => course, :due_date => Date.current
+      due_next_week = Factory :assignment, :course => course, :due_date => 1.week.from_now.to_date
+
+      assert_equal [due_today, due_tomorrow, due_next_week], course.assignments.upcoming
+    end
+    
+    def test_next
+      course = Factory :course, :start_date => 1.month.ago.to_date, :end_date => 1.month.from_now.to_date
+      due_yesterday = Factory :assignment, :course => course, :due_date => 1.day.ago.to_date
+      due_tomorrow = Factory :assignment, :course => course, :due_date => 1.day.from_now.to_date
+      due_next_week = Factory :assignment, :course => course, :due_date => 1.week.from_now.to_date
+      
+      assert_equal due_tomorrow, course.assignments.next
+    end
+  end
+
+  include FinderTests
+
   include ActiveRecord::DateValidationTests
   test_date_format_validation :due_date
   
