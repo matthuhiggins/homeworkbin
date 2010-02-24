@@ -3,7 +3,6 @@ class Course < ActiveRecord::Base
   extend ActiveSupport::Memoizable
   
   belongs_to :teacher
-  delegate :time_zone, :to => :teacher
   include ActiveRecord::TimeZoneInfo
 
   has_many :studiers
@@ -18,6 +17,14 @@ class Course < ActiveRecord::Base
   after_create do |course|
     course.teacher.decrement! :courses_available
     course.teacher.increment! :courses_created
+  end
+
+  before_create(:unless => :time_zone) do |person|
+    person.time_zone = 'Pacific Time (US & Canada)'
+  end
+
+  def time_zone
+    self[:time_zone] ||= 'Pacific Time (US & Canada)'
   end
 
   def last

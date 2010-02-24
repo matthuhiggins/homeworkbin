@@ -1,6 +1,7 @@
 class Studying::BaseController < ApplicationController
   layout 'studying'
   require_login
+  include Disciplines::TimeZone
   
   private
     def current_student

@@ -8,8 +8,8 @@ class Disciplines::TimeZoneTest < ActionController::TestCase
       render :text => Time.zone.name
     end
 
-    def current_person
-      @current_person ||= Factory(:person, :time_zone => 'Quito')
+    def current_course
+      @current_course ||= Factory(:course, :time_zone => 'Quito')
     end
   end
   

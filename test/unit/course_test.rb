@@ -5,12 +5,6 @@ class CourseTest < ActiveRecord::TestCase
   include ActiveRecord::DateValidationTests
   test_date_format_validation :start_date, :end_date
   
-  def test_time_zone_delegation
-    course = Factory :course
-
-    assert_equal course.teacher.time_zone, course.time_zone
-  end
-  
   def test_create_decrements_courses_available
     teacher = Factory :teacher
     assert_equal 1, teacher.courses_available
