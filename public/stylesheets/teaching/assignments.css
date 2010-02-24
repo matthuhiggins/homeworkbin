@@ -1,33 +1,62 @@
-#assignment-index .assignment {
-  border-bottom: 1px solid #eee;
-  border-top: 1px solid #eee;
-  padding: 6px 0;
-  overflow: hidden;
-  width: 60%;
+#upcoming-assignments {
+  float: left;
+  width: 48%;  
 }
 
-#assignment-index .assignment + .assignment {
+#upcoming-assignments .assignment {
+  border-bottom: 1px solid #eee;
+  border-top: 1px solid #eee;
+  overflow: hidden;
+  padding: 6px 0;
+}
+
+#upcoming-assignments .assignment + .assignment {
   border-top-color: transparent;
 }
 
-#assignment-index .assignment .name {
+#upcoming-assignments .assignment .name {
   float: left;
 /*  font-size: 110%;*/
 }
 
-#assignment-index .assignment .options {
+#upcoming-assignments .assignment .options {
   float: right;
   font-size: 85%;
   padding-top: 1px;
 }
 
-#assignment-index .date {
+#upcoming-assignments .date {
   font-weight: bold;
   margin-bottom: 8px;
+  margin-top: 10px;
 }
 
-#assignment-index ul + .date {
+#upcoming-assignments ul + .date {
   margin-top: 20px;
+}
+
+#past-assignments {
+  border: 1px solid #E5E5E5;
+  float: right;
+  width: 40%;
+}
+
+#past-assignments .header {
+  font-weight: bold;
+  padding: 10px 0 0 10px;
+}
+
+#past-assignments ul {
+  padding: 10px 0;
+}
+
+#past-assignments .assignment {
+  padding: 4px 10px;
+}
+
+#past-assignments .assignment .due-date {
+  color: #666;
+  font-size: 90%;
 }
 
 #assignment-form .fields {

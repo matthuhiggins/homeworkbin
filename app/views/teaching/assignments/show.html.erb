@@ -1,20 +1,10 @@
 <h2>
   <%= @assignment.name %>
+  <%= @assignment.past? ? 'was due' : 'is due' %>
+  <%= relative_assignment_due_date @assignment.due_date %>
   <%= link_to 'Edit settings', edit_teaching_assignment_path(current_course, @assignment) %>
 </h2>
 
 <div id="assignment-show">
-  <ul>
-    <li>
-      Description:
-      <%= @assignment.description %>
-    </li>
-    <li>
-      Due date
-      <%= assignment_due_at @assignment %>
-    </li>
-    
-  </ul>
-  
-  <strong>Student Submissions</strong>
+  <strong>Submissions</strong>
 </div>

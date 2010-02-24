@@ -1,5 +1,5 @@
 <div class="name">
-  <%= link_to assignment.name, teaching_assignment_path(current_course, assignment) %>
+  <%= link_to truncate(assignment.name, :length => 35), teaching_assignment_path(current_course, assignment) %>
 </div>
 
 <div class="options">

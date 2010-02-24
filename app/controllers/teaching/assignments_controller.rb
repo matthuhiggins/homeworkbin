@@ -3,6 +3,7 @@ class Teaching::AssignmentsController < Teaching::BaseController
 
   def index
     @grouped_assignments = current_course.assignments.upcoming.grouped_by_date
+    @past_assignments = current_course.assignments.past
   end
   
   def new
