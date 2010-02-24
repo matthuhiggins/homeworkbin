@@ -1,4 +1,6 @@
 class Teaching::CoursesController < Teaching::BaseController
+  topic 'course'
+  
   def index
     @courses = current_teacher.teaching
   end

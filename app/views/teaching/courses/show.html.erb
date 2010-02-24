@@ -1,7 +1,10 @@
 <% if @studiers_count == 0 && @assignments_count == 0 %>
   <%= render 'empty_course' %>
 <% else %>
-  <h2>Course Summary</h2>
+  <h2>
+    Course Summary
+    <%= link_to 'Edit course settings', edit_teaching_path(current_course) %>
+  </h2>
   <div id="course-show">
     <div class="summary">
       <% next_assignment(current_course.assignments) do |assignment| %>

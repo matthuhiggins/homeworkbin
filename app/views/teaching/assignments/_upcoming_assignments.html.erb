@@ -1,0 +1,18 @@
+<div id="upcoming-assignments">
+  <% if @upcoming_assignments.empty? %>
+    <div class="welcome">
+      There are currently no upcoming assignments.
+    </div>
+  <% else %>
+    <% @upcoming_assignments.each do |date, assignments| %>
+      <div class="date">
+        Due <%= relative_assignment_due_date(date) %>
+      </div>
+      <ul>
+        <% assignments.each do |assignment| %>
+          <li class="assignment"><%= render assignment %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  <% end %>
+</div>

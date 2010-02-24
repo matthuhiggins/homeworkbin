@@ -3,34 +3,9 @@
   <%= link_to 'Add homework »', new_teaching_assignment_path(current_course) %>  
 </h2>
 
-<% if @grouped_assignments.empty? %>
+<% if @past_assignments.empty? && @upcoming_assignments.empty? %>
   <%= render 'welcome' %>
 <% else %>
-  <div id="upcoming-assignments">
-    <% @grouped_assignments.each do |date, assignments| %>
-      <div class="date">
-        Due <%= relative_assignment_due_date(date) %>
-      </div>
-      <ul>
-        <% assignments.each do |assignment| %>
-          <li class="assignment"><%= render assignment %></li>
-        <% end %>
-      </ul>
-    <% end %>
-  </div>
-  <div id="past-assignments">
-    <% if @past_assignments.any? %>
-      <div class="header">Past assignments</div>
-      <ul>
-        <% @past_assignments.each do |assignment| %>
-          <li class="assignment">
-            <%= link_to h(assignment.name), teaching_assignment_path(current_course, assignment) %>
-            <span class="due-date">
-              due <%= relative_assignment_due_date(assignment.due_date) %>
-            </span>
-          </li>
-        <% end %>
-      </ul>
-    <% end %>
-  </div>
+  <%= render 'upcoming_assignments' %>
+  <%= render 'past_assignments' %>
 <% end %>
