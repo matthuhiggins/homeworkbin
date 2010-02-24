@@ -11,7 +11,7 @@
         Next homework,
         <%= link_to h(assignment.name), teaching_assignment_path(current_course, assignment) %>,
         is due
-        <%= relative_assignment_due_date(assignment) %>.
+        <%= relative_assignment_due_date(assignment.due_date) %>.
       <% end %>
       <ul>
       </ul>
