@@ -49,7 +49,7 @@ module Teaching::AssignmentHelper
   def relative_assignment_due_date(due_date)
     if due_date.today?
       'Today'
-    elsif due_date == Date.tomorrow
+    elsif due_date == Date.current.tomorrow
       'Tomorrow'
     else
       due_date.strftime('%a, %b %d')

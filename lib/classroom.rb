@@ -1,11 +1,12 @@
 class Classroom
-  attr_accessor :teacher, :course, :assignments, :students
+  attr_accessor :teacher, :course, :assignments, :studiers
 
   def initialize
     self.teacher = Factory :teacher, :email => 'bob@wa.edu'
     self.course = Factory :course, :teacher => teacher, :start_date => 1.month.ago.to_date, :end_date => 1.month.from_now.to_date
-    self.students = enroll_students
+    self.studiers = enroll_students
     self.assignments = assign_homework
+    submit_homework
   end
 
   FULL_NAMES = [
@@ -46,15 +47,24 @@ class Classroom
     FULL_NAMES.map do |full_name|
       student = Factory :student, :full_name => full_name
       Factory :studier, :student => student, :course => course
-      student
     end
   end
 
   def assign_homework
-    Factory :assignment, :name => 'Memorize Pi', :due_date => 1.week.ago.to_date, :course => course
-    Factory :assignment, :name => 'Analyze a Poem', :due_date => 2.days.ago.to_date, :course => course
-    Factory :assignment, :name => 'Write a poem', :due_date => Date.current, :course => course
-    Factory :assignment, :name => 'Critique The Old Man and the Sea', :due_date => 3.days.from_now.to_date, :course => course
-    Factory :assignment, :name => 'Final Essay', :due_date => 2.weeks.from_now.to_date, :course => course
+    [
+      Factory(:assignment, :name => 'Memorize Pi', :due_date => 1.week.ago.to_date, :course => course),
+      Factory(:assignment, :name => 'Analyze a Poem', :due_date => 2.days.ago.to_date, :course => course),
+      Factory(:assignment, :name => 'Write a poem', :due_date => Date.current, :course => course),
+      Factory(:assignment, :name => 'Critique The Old Man and the Sea', :due_date => 3.days.from_now.to_date, :course => course),
+      Factory(:assignment, :name => 'Final Essay', :due_date => 2.weeks.from_now.to_date, :course => course)
+    ]
+  end
+  
+  def submit_homework
+    studiers.each do |studier|
+      assignments.each do |assignment|
+        Factory :composition, :studier => studier, :assignment => assignment, :hand_in => true
+      end
+    end
   end
 end

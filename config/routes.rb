@@ -15,9 +15,10 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :registrations, :controller => 'teaching/registrations', :as => 'signup'
 
   map.resources :teachings, :controller => 'teaching/courses', :as => 'teaching', :requirements => {:id => /\d+/} do |teachings|
-    teachings.resources :assignments,  :controller => 'teaching/assignments', :as => 'homework'
-    teachings.resources :enrollments,  :controller => 'teaching/enrollments', :as => 'enroll'
-    teachings.resources :studiers,     :controller => 'teaching/studiers',    :as => 'students'
+    teachings.resources :assignments,  :controller => 'teaching/assignments',   :as => 'homework'
+    teachings.resources :enrollments,  :controller => 'teaching/enrollments',   :as => 'enroll'
+    teachings.resources :studiers,     :controller => 'teaching/studiers',      :as => 'students'
+    teachings.resources :submissions,  :controller => 'teaching/submissions'
   end
 
   map.namespace :teaching do |teaching|

@@ -69,3 +69,17 @@
 #assignment-show {
   
 }
+
+#assignment-show .composition {
+  padding: 8px 0;
+}
+
+#assignment-show .composition .preview {
+  padding-left: 7px;
+}
+
+#assignment-show .composition .handed-in-at {
+  color: #555;
+  font-size: 12px;
+  padding-top: 4px;
+}

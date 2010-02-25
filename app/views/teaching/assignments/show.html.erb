@@ -7,4 +7,17 @@
 
 <div id="assignment-show">
   <strong>Submissions</strong>
+  <ul>
+    <% @assignment.submissions.each do |submission| %>
+      <li class="composition">
+        <%= link_to submission.studier.full_name, teaching_submission_path(current_course, submission) %>
+        <span class="preview">
+          <%= truncate submission.text, :length => 200 %>
+        </span>
+        <div class="handed-in-at">
+          Submitted <%= submission_handed_in_at(submission) %>
+        </div>
+      </li>
+    <% end %>
+  </ul>
 </div>
