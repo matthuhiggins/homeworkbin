@@ -1,27 +1,37 @@
+<h2><%= current_assignment.name %></h2>
+
 <%= yui_stylesheet 'assets/skins/sam/skin' %>
+
+<% form_for current_composition, :url => studying_composition_path(current_course, current_assignment),
+                                 :html => {
+                                   :method  => :put,
+                                   :style   => 'display:none',
+                                   :id      => 'composition-form' } do |f| %>
+  <div class="yui-skin-sam">
+    <%= f.text_area :text %>
+  </div>
+  <div class="submit-cancel">
+    <%= cancel %>
+    <%= f.submit 'Save draft' %>
+    <%= f.submit 'Turn this in' %>
+  </div>
+<% end %>
 
 <%= yui_javascript 'element/element-min',
                    'container/container_core-min',
                    'editor/simpleeditor-min' %>
 
-<% form_for composition, :url => studying_composition_path(current_course, assignment),
-                          :html => {:method => :put} do |f| %>
-  <div class="yui-skin-sam">
-    <%= f.text_area :text %>
-  </div>
-  <div>
-    <%= f.submit %>
-  </div>
-<% end %>
-
 <script>
-var editorConfig = {
-  height: '300px', 
-  width: '600px', 
-  dompath: true, 
-  focusAtStart: true
-};
-
-var myEditor = new YAHOO.widget.SimpleEditor('composition_text', editorConfig);
-myEditor.render();
+YAHOO.util.Event.onDOMReady(function() {
+  var myEditor = new YAHOO.widget.SimpleEditor('composition_text', {
+    height: '300px', 
+    width: '600px', 
+    dompath: true, 
+    focusAtStart: true
+  });
+  myEditor.render();
+  myEditor.on('editorContentLoaded', function() {
+    document.getElementById('composition-form').style.display = 'block';
+  });
+});
 </script>

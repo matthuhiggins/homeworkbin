@@ -16,7 +16,7 @@
         Homework Bin
       <% end %>
       <ul class="links">
-        <li><%= link_to 'Courses', studyings_path %></li>
+        <li><%= link_to 'Homework', studyings_path %></li>
         <li>|</li>
         <li><%= link_to 'Settings', teaching_person_path %></li>
         <li>|</li>
@@ -24,14 +24,13 @@
       </ul>
     </div>
     <% if current_course.present? %>
-      <div class="course menu">
-        <div class="course-name">
-          <%= current_course.name %>
-          »
-        </div>
-        <ul class="course-operations">
+      <div class="sub menu">
+        <%= link_to current_course.name,
+                    studying_path(current_course),
+                    :class => 'title' %>
+        <ul class="topics">
           <li>
-            <%= link_to 'Assignments', teaching_assignments_path(current_course) %>
+            <%= link_to 'Past Assignments', studying_path(current_course) %>
           </li>
         </ul>
       </div>

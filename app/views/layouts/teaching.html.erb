@@ -24,11 +24,11 @@
       </ul>
     </div>
     <% if current_course.present? %>
-      <div class="course menu">
+      <div class="sub menu">
         <%= link_to current_course.name,
                     teaching_path(current_course),
-                    :class => 'course-name' %>
-        <ul class="course-operations">
+                    :class => 'title' %>
+        <ul class="topics">
           <% topic_tag :li, 'homework' do %>
             <%= link_to 'Homework', teaching_assignments_path(current_course) %>
           <% end %>

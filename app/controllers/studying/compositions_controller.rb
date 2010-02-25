@@ -1,10 +1,10 @@
 class Studying::CompositionsController < Studying::BaseController
   def update
-    composition.attributes = params[:composition]
+    current_composition.attributes = params[:composition]
 
-    if @composition.save
+    if current_composition.save
       flash[:notice] = "Composition saved"
-      redirect_to studying_composition_path(current_course, assignment)
+      redirect_to studying_composition_path(current_course, current_assignment)
     else
       render 'new'
     end
@@ -14,16 +14,16 @@ class Studying::CompositionsController < Studying::BaseController
   end
   
   private
-    def assignment
-      current_course.assignments.find params[:assignment_id]
+    def current_assignment
+      @current_assignment ||= current_course.assignments.find(params[:assignment_id])
     end
-    helper_method :assignment
+    helper_method :current_assignment
     
-    def composition
-      @composition ||= begin
-        current_studier.compositions.find_by_assignment_id(assignment) ||
-        current_studier.compositions.new(:assignment => assignment)
+    def current_composition
+      @current_composition ||= begin
+        current_studier.compositions.find_by_assignment_id(current_assignment) ||
+        current_studier.compositions.new(:assignment => current_assignment)
       end
     end
-    helper_method :composition
+    helper_method :current_composition
 end

@@ -4,9 +4,9 @@ class Studying::CompositionsControllerTest < ActionController::StudyingTestCase
   def test_new_compostion
     studying_get :show, :assignment_id => assignment
 
-    assert_kind_of Composition, assigns(:composition)
-    assert_equal assignment, assigns(:composition).assignment
-    assert_equal studier, assigns(:composition).studier
+    assert_kind_of Composition, assigns(:current_composition)
+    assert_equal assignment, assigns(:current_composition).assignment
+    assert_equal studier, assigns(:current_composition).studier
   end
   
   def test_edit_compostion
@@ -14,7 +14,7 @@ class Studying::CompositionsControllerTest < ActionController::StudyingTestCase
     
     studying_get :show, :assignment_id => assignment
     
-    assert_equal composition, assigns(:composition)
+    assert_equal composition, assigns(:current_composition)
   end
 
   def test_update_before_composition_exists
@@ -23,7 +23,7 @@ class Studying::CompositionsControllerTest < ActionController::StudyingTestCase
       :composition => {:text => "The quick brown fox jumped over the lazy dog"}
     }
     
-    assert !assigns(:composition).new_record?
+    assert !assigns(:current_composition).new_record?
   end
 
   private

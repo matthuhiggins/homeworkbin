@@ -1,9 +1,9 @@
-<% title @course.name %>
+<% title current_course.name %>
 
-<h2><%= @course.name %></h2>
+<h2>Homework for <%= current_course.name %></h2>
 
 <ul>
-  <% @course.assignments.each do |assignment| %>
-    <li><%= link_to assignment.name, studying_composition_path(@course, assignment) %></li>
+  <% current_course.assignments.each do |assignment| %>
+    <li><%= link_to assignment.name, studying_composition_path(current_course, assignment) %></li>
   <% end %>
 </ul>

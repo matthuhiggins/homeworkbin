@@ -9,7 +9,7 @@ class Studying::CoursesControllerTest < ActionController::StudyingTestCase
 
   def show
     studying_get :show, :id => current_course.to_param
-    
-    assert_equal current_course, assigns(:course)
+
+    assert_response :ok
   end
 end

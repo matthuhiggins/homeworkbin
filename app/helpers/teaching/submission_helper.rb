@@ -1,5 +1,5 @@
 module Teaching::SubmissionHelper
-  # TODO test
+  # TODO
   def submission_handed_in_at(composition)
     if composition.handed_in_at.today?
       'today at ' + '12:00pm'
