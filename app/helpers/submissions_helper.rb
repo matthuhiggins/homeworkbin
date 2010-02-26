@@ -1,4 +1,4 @@
-module Teaching::SubmissionHelper
+module SubmissionsHelper
   include TimeHelper
 
   def submission_handed_in_at(composition)

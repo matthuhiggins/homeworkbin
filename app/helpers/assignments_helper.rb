@@ -1,4 +1,4 @@
-module Teaching::AssignmentHelper
+module AssignmentsHelper
   def assignment_form(assignment, &block)
     if assignment.new_record?
       options = {
@@ -23,6 +23,21 @@ module Teaching::AssignmentHelper
     end
   end
   
+  def assignment_due_minute_options
+    options = []
+
+    (0..23).each do |hour|
+      meridian = hour < 12 ? 'am' : 'pm'
+      display_hour = hour % 12
+      display_hour = 12 if display_hour == 0
+      [0, 30].each do |minutes|
+        options << ["#{display_hour}:#{minutes.to_s.rjust 2, '0'}#{meridian}", hour * 60 + minutes]
+      end
+    end
+
+    options
+  end
+  
   def default_assignment_due_minutes(assignment)
     if assignment.due_minutes.present?
       assignment.due_minutes
@@ -43,7 +58,6 @@ module Teaching::AssignmentHelper
   
   def assignment_due_at(assignment)
     assignment.due_at.strftime '%a, %b %d'
-    # strftime('%I:%M %p').downcase.gsub(/^0/, '')
   end
   
   def relative_assignment_due_date(assignment)

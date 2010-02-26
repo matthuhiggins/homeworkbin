@@ -15,13 +15,6 @@ class LinkHelperTest < ActionView::TestCase
     assert_equal '', cancel
   end
   
-  def test_logout
-    assert_dom_equal(
-      link_to('Logout', logout_path, :method => :delete),
-      logout
-    )
-  end
-
   def test_topic_tag
     controller.class_eval { def topic; 'foo'; end }
 

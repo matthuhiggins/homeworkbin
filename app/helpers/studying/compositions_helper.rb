@@ -1,2 +1,0 @@
-module Studying::CompositionsHelper
-end

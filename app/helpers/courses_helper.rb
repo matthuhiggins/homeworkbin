@@ -1,4 +1,4 @@
-module Teaching::CourseHelper
+module CoursesHelper
   def course_start_date(course)
     course_date(course, :start_date).strftime '%m/%d/%Y'
   end

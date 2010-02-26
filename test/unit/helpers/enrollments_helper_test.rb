@@ -1,6 +1,6 @@
 require 'action_view_test'
 
-class Studying::EnrollmentsHelperTest < ActionView::TestCase
+class EnrollmentsHelperTest < ActionView::TestCase
   def test_fields_partial_for_new_student
     enrollment = Factory :enrollment
     assert_equal 'new_student', enrollment_fields_partial(enrollment)

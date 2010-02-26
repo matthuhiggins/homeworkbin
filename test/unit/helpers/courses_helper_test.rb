@@ -1,6 +1,6 @@
 require 'action_view_test'
 
-class Teaching::CourseHelperTest < ActionView::TestCase
+class CoursesHelperTest < ActionView::TestCase
   def test_date_uses_existing_values
     course = Factory.build :course, :start_date => '05/22/2004', :end_date => '07/24/2004'
 

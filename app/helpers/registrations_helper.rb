@@ -1,4 +1,4 @@
-module Teaching::RegistrationHelper
+module RegistrationsHelper
   def check_your_email(email)
     url = case email
       when /@gmail\.com$/ then 'http://gmail.com'

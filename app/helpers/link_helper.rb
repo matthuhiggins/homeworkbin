@@ -7,10 +7,6 @@ module LinkHelper
     end
   end
   
-  def logout
-    link_to 'Logout', logout_path, :method => :delete
-  end
-
   def topic_tag(tag, topic, &block)
     css_class = controller.topic == topic ? 'current topic' : 'topic'
     content_tag(tag, :class => css_class, &block)
