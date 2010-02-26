@@ -6,11 +6,11 @@ class Studying::CompositionsControllerTest < ActionController::StudyingTestCase
 
     assert_kind_of Composition, assigns(:current_composition)
     assert_equal assignment, assigns(:current_composition).assignment
-    assert_equal studier, assigns(:current_composition).studier
+    assert_equal current_studier, assigns(:current_composition).studier
   end
   
   def test_edit_compostion
-    composition = Factory :composition, :assignment => assignment, :studier => studier
+    composition = Factory :composition, :assignment => assignment, :studier => current_studier
     
     studying_get :show, :assignment_id => assignment
     
@@ -20,10 +20,22 @@ class Studying::CompositionsControllerTest < ActionController::StudyingTestCase
   def test_update_before_composition_exists
     studying_put :update, {
       :assignment_id => assignment,
-      :composition => {:text => "The quick brown fox jumped over the lazy dog"}
+      :composition => {:text => 'The quick brown fox jumped over the lazy dog'}
     }
     
     assert !assigns(:current_composition).new_record?
+  end
+  
+  def test_update_existing_composition
+    composition = Factory :composition, :assignment => assignment, :studier => current_studier
+    
+    studying_put :update, {
+      :assignment_id => assignment,
+      :composition => {:text => 'poo poo'}
+    }
+    
+    composition.reload
+    assert_equal 'poo poo', composition.text
   end
 
   private
