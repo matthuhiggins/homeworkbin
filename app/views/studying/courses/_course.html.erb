@@ -3,7 +3,7 @@
   <div>
     <% next_assignment(course.assignments) do |assignment| %>
       <%= link_to assignment.name, studying_composition_path(course, assignment) %>
-      due <%= relative_assignment_due_date(assignment.due_date) %>
+      due <%= relative_assignment_due_date(assignment) %>
     <% end %>
   </div>
 </div>

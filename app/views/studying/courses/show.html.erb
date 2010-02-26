@@ -6,7 +6,7 @@
   <% current_course.assignments.each do |assignment| %>
     <li>
       <%= link_to assignment.name, studying_composition_path(current_course, assignment) %>
-      Due <%= relative_assignment_due_date(assignment.due_date) %>
+      Due <%= relative_assignment_due_date(assignment) %>
     </li>
   <% end %>
 </ul>

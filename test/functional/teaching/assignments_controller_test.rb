@@ -3,8 +3,8 @@ require 'action_controller_test'
 class Teaching::AssignmentsControllerTest < ActionController::TeachingTestCase
   def test_index
     teaching_get :index
-    assert_equal({}, assigns(:upcoming_assignments))
-    assert_equal([], assigns(:past_assignments))
+    assert_kind_of Array, assigns(:upcoming_assignments)
+    assert_kind_of Array, assigns(:past_assignments)
   end
 
   def test_new

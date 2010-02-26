@@ -6,7 +6,7 @@
         <li class="assignment">
           <%= link_to truncate(assignment.name, :length => 35), teaching_assignment_path(current_course, assignment) %>
           <span class="due-date">
-            due <%= relative_assignment_due_date(assignment.due_date) %>
+            due <%= relative_assignment_due_date(assignment) %>
           </span>
           <div class="options">
             <%= link_to 'Grade submissions', teaching_assignment_path(current_course, assignment) %>

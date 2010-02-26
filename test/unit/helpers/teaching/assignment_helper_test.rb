@@ -66,9 +66,9 @@ class Teaching::AssignmentHelperTest < ActionView::TeachingTestCase
   end
   
   def test_relative_due_date
-    assert_equal 'Today', relative_assignment_due_date(Date.current)
-    assert_equal 'Tomorrow', relative_assignment_due_date(Date.current.tomorrow)
-    assert_equal 'Thu, Dec 25', relative_assignment_due_date(Date.new(2003, 12, 25))
+    assert_equal 'Today', relative_assignment_due_date(Assignment.new :due_date => Date.current)
+    assert_equal 'Tomorrow', relative_assignment_due_date(Assignment.new :due_date => Date.current.tomorrow)
+    assert_equal 'Thu, Dec 25', relative_assignment_due_date(Assignment.new :due_date => Date.new(2003, 12, 25))
   end
   
   def test_next_assignment

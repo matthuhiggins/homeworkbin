@@ -46,13 +46,13 @@ module Teaching::AssignmentHelper
     # strftime('%I:%M %p').downcase.gsub(/^0/, '')
   end
   
-  def relative_assignment_due_date(due_date)
-    if due_date.today?
+  def relative_assignment_due_date(assignment)
+    if assignment.due_date.today?
       'Today'
-    elsif due_date == Date.current.tomorrow
+    elsif assignment.due_date == Date.current.tomorrow
       'Tomorrow'
     else
-      due_date.strftime('%a, %b %d')
+      assignment.due_date.strftime('%a, %b %d')
     end
   end
   
