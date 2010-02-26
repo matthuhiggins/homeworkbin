@@ -20,4 +20,8 @@ class TimeHelperTest < ActionView::TestCase
     assert course.valid?
     assert_dom_equal "<div class='tip'>mm/dd/yyyy</div>", date_format_div(course, :start_date)
   end
+  
+  def test_hour
+    assert_equal '1:05am', hour(Time.utc(2005, 5, 25, 1, 5))
+  end
 end

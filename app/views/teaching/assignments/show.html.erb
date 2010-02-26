@@ -18,7 +18,7 @@
         <li class="composition">
           <%= link_to submission.studier.full_name, teaching_submission_path(current_course, submission) %>
           <span class="preview">
-            <%= truncate submission.text, :length => 200 %>
+            <%= submission.preview 200 %>
           </span>
           <div class="handed-in-at">
             Submitted <%= submission_handed_in_at(submission) %>

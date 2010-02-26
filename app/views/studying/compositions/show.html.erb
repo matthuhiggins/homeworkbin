@@ -13,7 +13,7 @@
   <%= f.hidden_field :hand_in, :value => false %>
   <div class="submit-cancel">
     <%= cancel %>
-    <%= f.submit 'Save draft' %>
+    <%= f.submit 'Save draft', :id => 'save-draft' %>
     <%= f.submit 'Turn this in', :id => 'turn-in' %>
   </div>
 <% end %>
@@ -24,20 +24,24 @@
 
 <script>
 YAHOO.util.Event.onDOMReady(function() {
-  var myEditor = new YAHOO.widget.SimpleEditor('composition_text', {
+  var editor = new YAHOO.widget.SimpleEditor('composition_text', {
     height: '300px', 
     width: '600px', 
     dompath: true, 
     focusAtStart: true
   });
-  myEditor.render();
-  myEditor.on('editorContentLoaded', function() {
+  editor.render();
+  editor.on('editorContentLoaded', function() {
     document.getElementById('composition-form').style.display = 'block';
+  });
+  
+  YAHOO.util.Event.on('save-draft', 'click', function() {
+    editor.saveHTML();
   });
 
   YAHOO.util.Event.addListener('turn-in', 'click', function() {
+    editor.saveHTML();
     document.getElementById('composition_hand_in').setAttribute('value', '1');
-    alert('set');
   });
 });
 </script>

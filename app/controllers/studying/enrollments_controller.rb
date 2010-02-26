@@ -5,6 +5,7 @@ class Studying::EnrollmentsController < ApplicationController
     @enrollment = Enrollment.find_by_token! params[:id]
   end
   
+  # TODO auto enrollment checkbox is ignored
   def update
     @enrollment = Enrollment.find_by_token! params[:id]
     if @enrollment.update_attributes params[:enrollment]
