@@ -1,6 +1,9 @@
 <div class="course">
   <%= link_to course.name, studying_path(course) %>
-  <span class="due">
-    <%= debug course.assignments.next %>
-  </span>
+  <div>
+    <% next_assignment(course.assignments) do |assignment| %>
+      <%= link_to assignment.name, studying_composition_path(course, assignment) %>
+      due <%= relative_assignment_due_date(assignment.due_date) %>
+    <% end %>
+  </div>
 </div>
