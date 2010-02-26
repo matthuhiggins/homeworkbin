@@ -1,18 +1,23 @@
-<div id="upcoming-assignments">
+<div class="upcoming">
   <% if @upcoming_assignments.empty? %>
     <div class="welcome">
       There are currently no upcoming assignments.
     </div>
   <% else %>
-    <% @upcoming_assignments.each do |date, assignments| %>
-      <div class="date">
-        Due <%= relative_assignment_due_date(date) %>
-      </div>
-      <ul>
-        <% assignments.each do |assignment| %>
-          <li class="assignment"><%= render assignment %></li>
-        <% end %>
-      </ul>
-    <% end %>
+    <ul>
+      <% @upcoming_assignments.each do |assignment| %>
+        <li class="assignment">
+          <%= link_to truncate(assignment.name, :length => 35), teaching_assignment_path(current_course, assignment), :class => 'name' %>
+          <span class="due-date">
+            due <%= relative_assignment_due_date(assignment.due_date) %>
+          </span>
+          <div class="options">
+            <%= link_to 'Edit', edit_teaching_assignment_path(current_course, assignment) %>
+            |
+            <%= link_to 'Delete', teaching_assignment_path(current_course, assignment), :method => :delete %>
+          </div>
+        </li>
+      <% end %>
+    </ul>
   <% end %>
 </div>

@@ -1,60 +1,42 @@
-#upcoming-assignments {
+#assignment-index {
+  
+}
+
+#assignment-index .upcoming {
   float: left;
   width: 48%;  
 }
 
-#upcoming-assignments .assignment {
-  border-bottom: 1px solid #eee;
-  border-top: 1px solid #eee;
-  overflow: hidden;
-  padding: 6px 0;
-}
-
-#upcoming-assignments .assignment + .assignment {
-  border-top-color: transparent;
-}
-
-#upcoming-assignments .assignment .name {
-  float: left;
-/*  font-size: 110%;*/
-}
-
-#upcoming-assignments .assignment .options {
-  float: right;
-  font-size: 85%;
-  padding-top: 1px;
-}
-
-#upcoming-assignments .date {
-  font-weight: bold;
-  margin-bottom: 8px;
-  margin-top: 10px;
-}
-
-#upcoming-assignments ul + .date {
-  margin-top: 20px;
-}
-
-#past-assignments {
+#assignment-index .past {
   border: 1px solid #E5E5E5;
   float: right;
+  padding: 10px;
   width: 40%;
 }
 
-#past-assignments .header {
+#assignment-index .past .header {
   font-weight: bold;
-  padding: 10px 0 0 10px;
+  padding-bottom: 10px;
 }
 
-#past-assignments ul {
-  padding: 10px 0;
+#assignment-index .assignment {
+/*  border-bottom: 1px solid #eee;*/
+  border-top: 1px solid #eee;
+  overflow: hidden;
+  padding: 7px 0;
 }
 
-#past-assignments .assignment {
-  padding: 4px 10px;
+#assignment-index .assignment + .assignment {
+  border-top: 1px solid #eee;
+/*  border-top-color: transparent;*/
 }
 
-#past-assignments .assignment .due-date {
+#assignment-index .assignment .options {
+  font-size: 85%;
+  padding-top: 3px;
+}
+
+#assignment-index .assignment .due-date {
   color: #666;
   font-size: 90%;
 }
@@ -68,6 +50,10 @@
 
 #assignment-show {
   
+}
+
+#assignment-show .due-date {
+  padding-bottom: 10px;
 }
 
 #assignment-show .composition {

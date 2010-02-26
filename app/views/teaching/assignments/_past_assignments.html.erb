@@ -1,13 +1,18 @@
 <% if @past_assignments.any? %>
-  <div id="past-assignments">
+  <div class="past">
     <div class="header">Past assignments</div>
     <ul>
       <% @past_assignments.each do |assignment| %>
         <li class="assignment">
-          <%= link_to h(assignment.name), teaching_assignment_path(current_course, assignment) %>
+          <%= link_to truncate(assignment.name, :length => 35), teaching_assignment_path(current_course, assignment) %>
           <span class="due-date">
             due <%= relative_assignment_due_date(assignment.due_date) %>
           </span>
+          <div class="options">
+            <%= link_to 'Grade submissions', teaching_assignment_path(current_course, assignment) %>
+            |
+            <%= link_to 'Edit', edit_teaching_assignment_path(current_course, assignment) %>
+          </div>
         </li>
       <% end %>
     </ul>
