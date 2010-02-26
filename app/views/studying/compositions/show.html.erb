@@ -7,13 +7,14 @@
                                    :method  => :put,
                                    :style   => 'display:none',
                                    :id      => 'composition-form' } do |f| %>
-  <div class="yui-skin-sam">
+  <div>
     <%= f.text_area :text %>
   </div>
+  <%= f.hidden_field :hand_in, :value => false %>
   <div class="submit-cancel">
     <%= cancel %>
     <%= f.submit 'Save draft' %>
-    <%= f.submit 'Turn this in' %>
+    <%= f.submit 'Turn this in', :id => 'turn-in' %>
   </div>
 <% end %>
 
@@ -32,6 +33,11 @@ YAHOO.util.Event.onDOMReady(function() {
   myEditor.render();
   myEditor.on('editorContentLoaded', function() {
     document.getElementById('composition-form').style.display = 'block';
+  });
+
+  YAHOO.util.Event.addListener('turn-in', 'click', function() {
+    document.getElementById('composition_hand_in').setAttribute('value', '1');
+    alert('set');
   });
 });
 </script>
