@@ -67,6 +67,12 @@ class AssignmentsHelperTest < ActionView::TestCase
     assert !default_assignment_handout(build_assignment :handout => '0')
   end
   
+  def test_save_assignment_text
+    assert_equal 'Assign homework »', save_assignment_text(Factory.build :course)
+    assert_equal 'Update homework', save_assignment_text(Factory :course)
+    
+  end
+  
   def test_assignment_due_at
     assignment = build_assignment
 

@@ -1,3 +1,5 @@
+<% title 'Settings' %>
+
 <h2>Settings</h2>
 
 <% form_for current_person, :url => teaching_person_path, :html => {:method => :put, :id => 'person-form'} do |f| %>
@@ -17,5 +19,42 @@
 <% end %>
 
 <div id="extra-settings">
-  <%= link_to 'Change password' %>
+  <ul>
+    <li>
+      <%= link_to 'Change password', nil, :id => 'change-password'  %>
+      <% form_for current_person, {
+        :url => teaching_person_path,
+        :html => {
+          :method => :put,
+          :id     => 'password-form',
+          :style  => 'display: none;' } } do |pw| %>
+        <div>
+          <div><%= pw.label :password, 'New password' %></div>
+          <div><%= pw.password_field :password %></div>
+        </div>
+        <div class="submit">
+          <%= pw.submit 'Change password' %>
+        </div>
+      <% end %>
+    </li>
+  </ul>
 </div>
+
+<%= focus 'person_full_name' %>
+
+<script>
+YAHOO.util.Event.onDOMReady(function() {
+  var passwordForm = document.getElementById('password-form');
+  
+  YAHOO.util.Event.on('change-password', 'click', function(e) {
+    YAHOO.util.Event.stopEvent(e);
+    if (passwordForm.style.display == 'none') {
+      passwordForm.style.display = '';
+      document.getElementById('person_password').focus();
+    } else {
+      passwordForm.style.display = 'none';
+    }
+  });
+  
+});
+</script>

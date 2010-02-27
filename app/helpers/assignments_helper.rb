@@ -56,6 +56,10 @@ module AssignmentsHelper
     end
   end
   
+  def save_assignment_text(assignment)
+    assignment.new_record? ? 'Assign homework »' : 'Update homework'
+  end
+  
   def assignment_due_at(assignment)
     assignment.due_at.strftime '%a, %b %d'
   end

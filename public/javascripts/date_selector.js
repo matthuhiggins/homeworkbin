@@ -41,8 +41,8 @@ HW.dateSelector = (function() {
     }
 
     function showCalendar() {
-      YAHOO.util.Event.addListener(allFields, 'focus', hideCalendar);
-      YAHOO.util.Event.addListener(container, 'click', ignoreInsideClick);
+      YAHOO.util.Event.on(allFields, 'focus', hideCalendar);
+      YAHOO.util.Event.on(container, 'click', ignoreInsideClick);
       calendar.show();
     }
 
@@ -53,10 +53,10 @@ HW.dateSelector = (function() {
     }
 
     calendar.selectEvent.subscribe(handleCalendarSelect);
-    YAHOO.util.Event.addListener(field, 'change', handleFieldChange);
-    YAHOO.util.Event.addListener(field, 'focus', showCalendar);
-    YAHOO.util.Event.addListener(field, 'click', showCalendar);
-    YAHOO.util.Event.addListener(document, 'click', hideCalendar);
+    YAHOO.util.Event.on(field, 'change', handleFieldChange);
+    YAHOO.util.Event.on(field, 'focus', showCalendar);
+    YAHOO.util.Event.on(field, 'click', showCalendar);
+    YAHOO.util.Event.on(document, 'click', hideCalendar);
     
     calendar.render();    
   };
