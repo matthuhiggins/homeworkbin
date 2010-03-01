@@ -7,8 +7,4 @@ class SubmissionTest < ActiveRecord::TestCase
     
     assert_equal [turned_in.becomes(Submission)], Submission.all
   end
-  
-  def test_preview
-    # assert_equal 'hello world'
-  end
 end

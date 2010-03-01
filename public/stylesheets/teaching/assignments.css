@@ -56,15 +56,20 @@
   padding-bottom: 10px;
 }
 
-#assignment-show .composition {
+#assignment-show .submission {
   padding: 8px 0;
 }
 
-#assignment-show .composition .preview {
+#assignment-show .submission .preview {
+  color: #555;
   padding-left: 7px;
 }
 
-#assignment-show .composition .handed-in-at {
+#assignment-show .submission .preview:hover {
+  color: black;
+}
+
+#assignment-show .submission .handed-in-at {
   color: #555;
   font-size: 12px;
   padding-top: 4px;

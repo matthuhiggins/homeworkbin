@@ -22,7 +22,7 @@ class Teaching::AssignmentsController < Teaching::BaseController
   
   def show
     @assignment = current_course.assignments.find params[:id]
-    @submissions = @assignment.submissions.all
+    @submissions = @assignment.submissions.all(:include => {:studier => :student})
   end
   
   def edit

@@ -17,4 +17,11 @@ class SubmissionsHelperTest < ActionView::TestCase
       submission_handed_in_at(Factory :composition, :handed_in_at => Time.utc(2005, 12, 25, 13, 15))
     )
   end
+  
+  def test_preview
+    assert_equal(
+      'hello worldL',
+      submission_preview(Factory.build(:submission, :text => 'hello<br>world<span>Lol</span>'), 12)
+    )
+  end
 end

@@ -1,17 +1,22 @@
 module SubmissionsHelper
   include TimeHelper
 
-  def submission_handed_in_at(composition)
+  def submission_handed_in_at(submission)
     date = begin
-      if composition.handed_in_at.today?
+      if submission.handed_in_at.today?
         'today'
-      elsif composition.handed_in_at.to_date == Date.current.yesterday
+      elsif submission.handed_in_at.to_date == Date.current.yesterday
         'yesterday'
       else
-        composition.handed_in_at.strftime('%a, %b %d')
+        submission.handed_in_at.strftime('%a, %b %d')
       end
     end
     
-    date + ' at ' + hour(composition.handed_in_at)
+    date + ' at ' + hour(submission.handed_in_at)
+  end
+  
+  HTML_REGEX = /<\/?[^>]*>/
+  def submission_preview(submission, length)
+    submission.text.gsub('<br>', ' ').gsub(HTML_REGEX, '')[0, length]
   end
 end

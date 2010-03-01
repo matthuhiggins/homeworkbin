@@ -15,11 +15,9 @@
     <strong>Submissions</strong>
     <ul>
       <% @submissions.each do |submission| %>
-        <li class="composition">
+        <li class="submission">
           <%= link_to submission.studier.full_name, teaching_submission_path(current_course, submission) %>
-          <span class="preview">
-            <%= submission.preview 200 %>
-          </span>
+          <%= link_to submission_preview(submission, 200), teaching_submission_path(current_course, submission), :class => 'preview' %>
           <div class="handed-in-at">
             Submitted <%= submission_handed_in_at(submission) %>
           </div>
