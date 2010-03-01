@@ -1,0 +1,23 @@
+<% title 'Grading' %>
+
+<h2>
+  <%= current_submission.student.full_name %>'s
+  Homework
+</h2>
+
+<div id="submission-show">
+  <div class="text">
+    <%= current_submission.text %>
+  </div>
+</div>
+
+<script>
+YAHOO.util.Event.onDOMReady(function() {
+  YAHOO.util.Event.on('submission-show', 'mouseup', function() {
+    var selection = window.getSelection(),
+        range = selection.getRangeAt(0);
+    
+    console.debug(range.cloneContents().textContent);
+  });
+});
+</script>

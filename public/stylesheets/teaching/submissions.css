@@ -1,0 +1,10 @@
+#submission-show {
+  
+}
+
+#submission-show .text {
+  border-right: 1px solid #ccc;
+  min-height: 400px;
+  padding-right: 10px;
+  width: 75%;
+}

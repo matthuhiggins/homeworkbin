@@ -39,7 +39,7 @@ YAHOO.util.Event.onDOMReady(function() {
     editor.saveHTML();
   });
 
-  YAHOO.util.Event.addListener('turn-in', 'click', function() {
+  YAHOO.util.Event.on('turn-in', 'click', function() {
     editor.saveHTML();
     document.getElementById('composition_hand_in').setAttribute('value', '1');
   });
