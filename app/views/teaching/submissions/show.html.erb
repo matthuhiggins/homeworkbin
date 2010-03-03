@@ -13,11 +13,34 @@
 
 <script>
 YAHOO.util.Event.onDOMReady(function() {
+  function buildHtml(node) {
+    if (!node) return '';
+
+    html = '';
+    while(node) {
+      if (node.nodeType === 1) {
+        html += '<' + node.nodeName.toLowerCase() + '>' + buildHtml(node.firstChild) + '</' + node.nodeName.toLowerCase() + '>';
+      } else if (node.nodeType === 3) {
+        html += node.textContent;
+      }
+      node = node.nextSibling;
+    }
+    return html;
+  }
+  
   YAHOO.util.Event.on('submission-show', 'mouseup', function() {
     var selection = window.getSelection(),
-        range = selection.getRangeAt(0);
+        range = selection.getRangeAt(0),
+        contents = range.cloneContents();
     
-    console.debug(range.cloneContents().textContent);
+    // Try appending to the document instead?
+    console.debug(buildHtml(contents.firstChild));
+
+
+    // console.debug(range.cloneContents().textContent);
+    // IE
+    // document.body.createTextRange()
+    // document.selection.createRange().htmlText
   });
 });
 </script>
