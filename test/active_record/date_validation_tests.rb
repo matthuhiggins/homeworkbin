@@ -1,8 +1,6 @@
 module ActiveRecord
   module DateValidationTests
-    def self.included(test)
-      test.extend ClassMethods
-    end
+    extend ActiveSupport::Concern
     
     module ClassMethods
       def test_date_format_validation *attributes
