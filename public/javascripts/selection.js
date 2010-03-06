@@ -5,7 +5,7 @@ HW.selection = (function() {
     switch(node.nodeType) {
       case 3:
       case 4: return node.textContent;
-      case 1: return '<' + node.nodeName.toLowerCase() + '>' + buildHtml(node.childNodes) + '</' + node.nodeName.toLowerCase() + '>';
+      case 1: return '<' + node.nodeName.toLowerCase() + '>' + nodesToHtml(node.childNodes) + '</' + node.nodeName.toLowerCase() + '>';
       default: return '';
     }
   }
@@ -20,7 +20,24 @@ HW.selection = (function() {
   
   return {
     range: function() {
-      var selection = window.getSelection();
+      var selection = window.getSelection(),
+          range = selection.getRangeAt(0);
+          
+      // for (var k in selection) if (selection.hasOwnProperty(k)) {
+      //   console.debug("selection has " + k)
+      // }
+      
+      // console.debug(range.createContextualFragment());
+      // for (var k in range)
+        // console.debug("range has " + k)
+      
+      console.debug('commonAncestorContainer' + ' = ' + range['commonAncestorContainer'].className);
+      console.debug('startContainer' + ' = ' + range['startContainer']);
+      console.debug('startOffset' + ' = ' + range['startOffset']);
+      console.debug('startContainer' + ' = ' + range['startContainer']);
+      console.debug('endContainer' + ' = ' + range['endContainer']);
+      console.debug('endOffset' + ' = ' + range['endOffset']);
+
       return selection.getRangeAt(0);
     },
     dom: function() {

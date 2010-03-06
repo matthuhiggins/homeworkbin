@@ -18,12 +18,18 @@ YAHOO.util.Event.onDOMReady(function() {
 
   
   YAHOO.util.Event.on('submission-show', 'mouseup', function() {
-    console.debug(HW.selection.html());
+    // console.debug(HW.selection.html());
+    
+    var range = HW.selection.range();
+    var span = document.createElement("span");
+    span.style.color = "red";
+    range.surroundContents(span);
+    
+    // range.deleteContents();
   });
-    // console.debug(range.cloneContents().textContent);
+
     // IE
     // document.body.createTextRange()
     // document.selection.createRange().htmlText
-  });
 });
 </script>
