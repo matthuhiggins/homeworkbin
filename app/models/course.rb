@@ -20,8 +20,8 @@ class Course < ActiveRecord::Base
     course.teacher.increment! :courses_created
   end
 
-  before_create(:unless => :time_zone) do |person|
-    person.time_zone = 'Pacific Time (US & Canada)'
+  before_create(:unless => :time_zone) do |course|
+    course.time_zone = 'Pacific Time (US & Canada)'
   end
 
   def time_zone
