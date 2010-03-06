@@ -1,9 +1,12 @@
 class Course < ActiveRecord::Base
-  extend ActiveRecord::DateValidation
-  extend ActiveSupport::Memoizable
-  
-  belongs_to :teacher
   include ActiveRecord::TimeZoneInfo
+
+  validates_presence_of :name
+  
+  extend ActiveRecord::DateValidation
+  validates_date_format :start_date, :end_date
+
+  belongs_to :teacher
 
   has_many :studiers
   has_many :students, :through => :studiers, :order => 'full_name'
@@ -11,10 +14,7 @@ class Course < ActiveRecord::Base
   has_many :submissions
   has_many :enrollments, :extend => Enrollment::Matriculation
 
-  validates_presence_of :name
 
-  validates_date_format :start_date, :end_date
-  
   after_create do |course|
     course.teacher.decrement! :courses_available
     course.teacher.increment! :courses_created

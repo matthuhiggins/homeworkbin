@@ -1,4 +1,4 @@
 class Annotation < ActiveRecord::Base
-  belongs_to :composition
   validates_presence_of :text
+  belongs_to :composition
 end

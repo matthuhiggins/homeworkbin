@@ -1,10 +1,10 @@
 class Assignment
   module Handout
-    def self.included base
-      base.class_eval do
-        attr_accessor :handout
-        base.after_save :handout_assignment, :if => :handout
-      end
+    extend ActiveSupport::Concern
+
+    included do
+      attr_accessor :handout
+      after_save :handout_assignment, :if => :handout
     end
     
     private

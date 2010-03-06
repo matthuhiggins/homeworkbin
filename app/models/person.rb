@@ -1,10 +1,10 @@
 class Person < ActiveRecord::Base
-  validates_presence_of :password, :if => :password_given?
-  validates_presence_of :full_name
-
   include Person::Remembered
   include ActiveRecord::Authenticated
   include ActiveRecord::EmailValidation
+
+  validates_presence_of :password, :if => :password_given?
+  validates_presence_of :full_name
 
   has_many :lost_passwords
 
