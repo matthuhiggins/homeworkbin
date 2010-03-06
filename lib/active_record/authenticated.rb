@@ -2,15 +2,13 @@ require 'digest/sha1'
 
 module ActiveRecord
   module Authenticated
-    def self.included(model)
-      model.class_eval do
-        before_save :encrypt_password, :if => :password_given?
+    extend ActiveSupport::Concern
 
-        attr_accessor :password
-        attr_protected :encrypted_password, :salt
+    included do
+      before_save :encrypt_password, :if => :password_given?
 
-        extend ClassMethods
-      end
+      attr_accessor :password
+      attr_protected :encrypted_password, :salt
     end
 
     module ClassMethods

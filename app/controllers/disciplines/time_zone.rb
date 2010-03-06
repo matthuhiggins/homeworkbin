@@ -1,7 +1,9 @@
 module Disciplines
   module TimeZone
-    def self.included(controller)
-      controller.before_filter :set_time_zone, :if => :current_course
+    extend ActiveSupport::Concern
+
+    included do
+      before_filter :set_time_zone, :if => :current_course
     end
 
     private

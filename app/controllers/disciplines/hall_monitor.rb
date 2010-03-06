@@ -1,10 +1,9 @@
 module Disciplines
   module HallMonitor
-    def self.included(controller)
-      controller.class_eval do
-        extend ClassMethods
-        helper_method :authenticated?, :current_person
-      end
+    extend ActiveSupport::Concern
+    
+    included do
+      helper_method :authenticated?, :current_person
     end
 
     module ClassMethods

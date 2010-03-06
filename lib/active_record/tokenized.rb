@@ -1,17 +1,15 @@
 module ActiveRecord
   module Tokenized
+    extend ActiveSupport::Concern
+    
     mattr_accessor :models
     self.models = []
     
-    def self.included model
-      models << model
-      
-      model.class_eval do
-        before_create do |record|
-          record.token = ActiveSupport::SecureRandom.hex(16)
-        end
-      
-        extend ClassMethods
+    included do
+     Tokenized.models << self
+
+      before_create do |record|
+        record.token = ActiveSupport::SecureRandom.hex(16)
       end
     end
 

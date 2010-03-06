@@ -1,7 +1,9 @@
 module ActiveRecord
   module TimeZoneInfo
-    def self.included(model)
-      model.delegate :utc_offset, :to => :time_zone_info
+    extend ActiveSupport::Concern
+
+    included do
+      delegate :utc_offset, :to => :time_zone_info
     end
 
     def to_local(utc_time)
