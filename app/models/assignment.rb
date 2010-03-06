@@ -2,7 +2,7 @@ class Assignment < ActiveRecord::Base
   include Assignment::Handout
   include Assignment::Due
 
-  extend ActiveSupport::Concern
+  validates_presence_of :name
 
   has_many :submissions
   belongs_to :course
