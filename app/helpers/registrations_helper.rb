@@ -5,6 +5,6 @@ module RegistrationsHelper
       when /@yahoo\.com$/ then 'http://mail.yahoo.com'
     end
     
-    link_to_if url.present?, 'Check your email', url
+    link_to_if url.present?, "Check #{email}", url
   end
 end
