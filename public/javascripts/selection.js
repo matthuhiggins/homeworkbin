@@ -49,21 +49,21 @@ HW.selection = (function() {
       return this.range().cloneContents();
     },
     html: function() {
-      return fragmentsToHtml(this.dom().childNodes)
+      return fragmentsToHtml(this.dom().childNodes);
     },
     text: function() {
       return this.dom().textContent();
     },
     wrap: function() {
       var range = HW.selection.range();
-      var fragments = range.cloneContents();
+      var fragments = range.extractContents();
       
       var wrap = document.createElement("span");
       console.debug('before = ' + fragmentsToHtml(fragments.childNodes));
       wrapFragments(fragments.childNodes, wrap);
       console.debug('after = ' + fragmentsToHtml(fragments.childNodes));
       
-      // range.insertNode(fragments);
+      range.insertNode(fragments);
     }
   }
 })();
