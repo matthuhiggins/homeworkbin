@@ -1,19 +1,20 @@
 HW = {};
 
 HW.selection = (function() {
-  function wrapFragments(fragments) {
-    var wrapFragment = function(fragment) {
-      if (fragment.nodeType === 3 && fragment.textContent.replace(/\s+/, '') !== '') {
-        var wrapClone = document.createElement('span'),
-            parent = fragment.parentNode;
-        parent.replaceChild(wrapClone, fragment);
-        wrapClone.appendChild(fragment);
-      } else if (fragment.nodeType === 1) {
-        wrapFragments(fragment.childNodes);
-      }
+  
+  function wrapFragment(fragment) {
+    if (fragment.nodeType === 3 && fragment.textContent.replace(/\s+/, '') !== '') {
+      var wrapClone = document.createElement('span'),
+          parent = fragment.parentNode;
+      parent.replaceChild(wrapClone, fragment);
+      wrapClone.appendChild(fragment);
+    } else if (fragment.nodeType === 1) {
+      wrapFragments(fragment.childNodes);
     }
-    
-    for (var i = 0; fragments[i]; i++) {
+  }
+  
+  function wrapFragments(fragments) {
+    for (var i = 0; i < fragments.length; i++) {
       wrapFragment(fragments[i]);
     }
   }
@@ -55,15 +56,36 @@ HW.selection = (function() {
       return this.dom().textContent();
     },
     wrap: function() {
-      var range = HW.selection.range();
-      var fragments = range.extractContents();
+      var originalRange = HW.selection.range(),
+          clonedContents = originalRange.cloneContents();
       
-      var wrap = document.createElement("span");
+      if (clonedContents.childNodes.length > 1 && clonedContents.childNodes[0].nodeType === 1) {
+        var startRange = document.createRange(), 
+            startNode = originalRange.startContainer;
+      
+        startRange.selectNodeContents(startNode);
+        while (startRange.compareBoundaryPoints(Range.START_TO_START, originalRange) < 0) {
+          startRange.setStart(startNode, startRange.startOffset + 1);
+        }
+        originalRange.setStart(startNode.parentNode.nextSibling, 0);
+      }
+      
+      if (clonedContents.childNodes.length > 1 && clonedContents.childNodes[clonedContents.childNodes.length - 1].nodeType === 1) {
+        var endRange = document.createRange(),
+            endNode = originalRange.endContainer;
+        
+        endRange.selectNodeContents(endNode);
+        while (endRange.compareBoundaryPoints(Range.END_TO_END), originalRange > 0) {
+          endRange.sendEnd(endNode, endRange.endOffset - 1);
+        }
+      }
+
+      var fragments = originalRange.extractContents();
       console.debug('before = ' + fragmentsToHtml(fragments.childNodes));
-      wrapFragments(fragments.childNodes, wrap);
+      wrapFragments(fragments.childNodes);
       console.debug('after = ' + fragmentsToHtml(fragments.childNodes));
-      
-      range.insertNode(fragments);
+
+      originalRange.insertNode(fragments);
     }
   }
 })();
