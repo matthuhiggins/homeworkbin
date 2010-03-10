@@ -4,7 +4,6 @@ HW.selection = (function() {
   function wrapFragments(fragments) {
     var wrapFragment = function(fragment) {
       if (fragment.nodeType === 3 && fragment.textContent.replace(/\s+/, '') !== '') {
-        console.debug('type = ' + fragment.nodeType + ', name = ' + fragment.nodeName + ', text = *' + fragment.textContent + '*');
         var wrapClone = document.createElement('span'),
             parent = fragment.parentNode;
         parent.replaceChild(wrapClone, fragment);
@@ -57,15 +56,14 @@ HW.selection = (function() {
     },
     wrap: function() {
       var range = HW.selection.range();
-      var fragments = range.extractContents();
+      var fragments = range.cloneContents();
       
       var wrap = document.createElement("span");
+      console.debug('before = ' + fragmentsToHtml(fragments.childNodes));
       wrapFragments(fragments.childNodes, wrap);
+      console.debug('after = ' + fragmentsToHtml(fragments.childNodes));
       
-      console.debug('first frag = ' + fragments.childNodes[0]);
-      console.debug('frags = ' + fragmentsToHtml(fragments.childNodes));
-      
-      range.insertNode(fragments);
+      // range.insertNode(fragments);
     }
   }
 })();
