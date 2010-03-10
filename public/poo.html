@@ -1,0 +1,29 @@
+<html>
+<head>
+  <script src="/yui2/yahoo-dom-event/yahoo-dom-event.js"></script>
+  <script src="/javascripts/selection.js"></script>
+  <style>
+    span {
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  text - hello world
+  <font color="blue">p - hello world</font>
+  <p>
+    There was once a gray cat. It ate:
+    <ul>
+      <li>Birds</li>
+      <li>Milk</li>
+    </ul>
+  </p>
+    
+
+  <script>
+    YAHOO.util.Event.on(document, 'mouseup', function() {
+      HW.selection.wrap();
+    });
+  </script>
+</body>
+</html>

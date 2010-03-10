@@ -1,19 +1,40 @@
 HW = {};
 
 HW.selection = (function() {
-  function nodeToHtml(node) {
-    switch(node.nodeType) {
+  function wrapFragments(fragments) {
+    var wrapFragment = function(fragment) {
+      if (fragment.nodeType === 3 && fragment.textContent.replace(/\s+/, '') !== '') {
+        console.debug('type = ' + fragment.nodeType + ', name = ' + fragment.nodeName + ', text = *' + fragment.textContent + '*');
+        var wrapClone = document.createElement('span'),
+            parent = fragment.parentNode;
+        parent.replaceChild(wrapClone, fragment);
+        wrapClone.appendChild(fragment);
+      } else if (fragment.nodeType === 1) {
+        wrapFragments(fragment.childNodes);
+      }
+    }
+    
+    for (var i = 0; fragments[i]; i++) {
+      wrapFragment(fragments[i]);
+    }
+  }
+  
+  
+  function fragmentToHtml(fragment) {
+    switch(fragment.nodeType) {
       case 3:
-      case 4: return node.textContent;
-      case 1: return '<' + node.nodeName.toLowerCase() + '>' + nodesToHtml(node.childNodes) + '</' + node.nodeName.toLowerCase() + '>';
+      case 4: return fragment.textContent;
+      case 1: return '<' + fragment.nodeName.toLowerCase() + '>' +
+                    fragmentsToHtml(fragment.childNodes) +
+                    '</' + fragment.nodeName.toLowerCase() + '>';
       default: return '';
     }
   }
 
-  function nodesToHtml(nodes) {
+  function fragmentsToHtml(fragments) {
     var html = '';
-    for (var i = 0; nodes[i]; i++) {
-      html += nodeToHtml(nodes[i]);
+    for (var i = 0; fragments[i]; i++) {
+      html += fragmentToHtml(fragments[i]);
     }
     return html;
   }
@@ -22,21 +43,6 @@ HW.selection = (function() {
     range: function() {
       var selection = window.getSelection(),
           range = selection.getRangeAt(0);
-          
-      // for (var k in selection) if (selection.hasOwnProperty(k)) {
-      //   console.debug("selection has " + k)
-      // }
-      
-      // console.debug(range.createContextualFragment());
-      // for (var k in range)
-        // console.debug("range has " + k)
-      
-      console.debug('commonAncestorContainer' + ' = ' + range['commonAncestorContainer'].className);
-      console.debug('startContainer' + ' = ' + range['startContainer']);
-      console.debug('startOffset' + ' = ' + range['startOffset']);
-      console.debug('startContainer' + ' = ' + range['startContainer']);
-      console.debug('endContainer' + ' = ' + range['endContainer']);
-      console.debug('endOffset' + ' = ' + range['endOffset']);
 
       return selection.getRangeAt(0);
     },
@@ -44,10 +50,22 @@ HW.selection = (function() {
       return this.range().cloneContents();
     },
     html: function() {
-      return nodesToHtml(this.dom().childNodes)
+      return fragmentsToHtml(this.dom().childNodes)
     },
     text: function() {
       return this.dom().textContent();
+    },
+    wrap: function() {
+      var range = HW.selection.range();
+      var fragments = range.extractContents();
+      
+      var wrap = document.createElement("span");
+      wrapFragments(fragments.childNodes, wrap);
+      
+      console.debug('first frag = ' + fragments.childNodes[0]);
+      console.debug('frags = ' + fragmentsToHtml(fragments.childNodes));
+      
+      range.insertNode(fragments);
     }
   }
 })();
