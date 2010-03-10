@@ -1,6 +1,10 @@
 HW = {};
 
 HW.selection = (function() {
+  function is_ignorable( nod ) {
+    return ( nod.nodeType == 8) || // A comment node
+           ( (nod.nodeType == 3) && is_all_ws(nod) ); // a text node, all ws
+  }
   
   function wrapFragment(fragment) {
     if (fragment.nodeType === 3 && fragment.textContent.replace(/\s+/, '') !== '') {
@@ -16,6 +20,49 @@ HW.selection = (function() {
   function wrapFragments(fragments) {
     for (var i = 0; i < fragments.length; i++) {
       wrapFragment(fragments[i]);
+    }
+  }
+  
+  function wrapRangeStart(originalRange) {
+    var startRange = document.createRange(), 
+        startNode = originalRange.startContainer;
+  
+    startRange.selectNodeContents(startNode);
+    startRange.setStart(startNode, originalRange.startOffset);
+
+    if (startNode.nextSibling) {
+      originalRange.setStart(startNode.nextSibling, 0);
+    } else {
+      originalRange.setStart(startNode.parentNode.nextSibling, 0);
+    }
+    return startRange;
+  }
+  
+  function wrapRangeEnd(originalRange) {
+    var endRange = document.createRange(),
+        endNode = originalRange.endContainer;
+    
+    endRange.selectNodeContents(endNode);
+    endRange.setEnd(endNode, originalRange.endOffset);
+    originalRange.setEndBefore(endNode);
+    return endRange;
+  }
+  
+  function wrapRange(originalRange) {
+    var clonedContents = originalRange.cloneContents();
+
+    if (clonedContents.childNodes.length > 1 && clonedContents.childNodes[0].nodeType === 1) {
+      var newStartRange = wrapRangeStart(originalRange);
+      wrapRange(newStartRange);
+      wrapRange(originalRange);
+    } else if (clonedContents.childNodes.length > 1 && clonedContents.childNodes[clonedContents.childNodes.length - 1].nodeType === 1) {
+      var newEndRange = wrapRangeEnd(originalRange);
+      wrapRange(originalRange);
+      wrapRange(newEndRange);
+    } else {
+      var fragments = originalRange.extractContents();
+      wrapFragments(fragments.childNodes);
+      originalRange.insertNode(fragments);
     }
   }
   
@@ -56,36 +103,7 @@ HW.selection = (function() {
       return this.dom().textContent();
     },
     wrap: function() {
-      var originalRange = HW.selection.range(),
-          clonedContents = originalRange.cloneContents();
-      
-      if (clonedContents.childNodes.length > 1 && clonedContents.childNodes[0].nodeType === 1) {
-        var startRange = document.createRange(), 
-            startNode = originalRange.startContainer;
-      
-        startRange.selectNodeContents(startNode);
-        while (startRange.compareBoundaryPoints(Range.START_TO_START, originalRange) < 0) {
-          startRange.setStart(startNode, startRange.startOffset + 1);
-        }
-        originalRange.setStart(startNode.parentNode.nextSibling, 0);
-      }
-      
-      if (clonedContents.childNodes.length > 1 && clonedContents.childNodes[clonedContents.childNodes.length - 1].nodeType === 1) {
-        var endRange = document.createRange(),
-            endNode = originalRange.endContainer;
-        
-        endRange.selectNodeContents(endNode);
-        while (endRange.compareBoundaryPoints(Range.END_TO_END), originalRange > 0) {
-          endRange.sendEnd(endNode, endRange.endOffset - 1);
-        }
-      }
-
-      var fragments = originalRange.extractContents();
-      console.debug('before = ' + fragmentsToHtml(fragments.childNodes));
-      wrapFragments(fragments.childNodes);
-      console.debug('after = ' + fragmentsToHtml(fragments.childNodes));
-
-      originalRange.insertNode(fragments);
+      wrapRange(HW.selection.range());
     }
   }
 })();
