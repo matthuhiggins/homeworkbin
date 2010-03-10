@@ -25,7 +25,13 @@ HW.selection = (function() {
     startRange.selectNodeContents(startNode);
     startRange.setStart(startNode, originalRange.startOffset);
 
-    var nextSibling = startNode.nextSibling || startNode.parentNode.nextSibling;
+    var ancestorWithNext = startNode;
+    while (!ancestorWithNext.nextSibling) {
+      ancestorWithNext = ancestorWithNext.parentNode;
+    }
+    console.debug('ancestorWithNext = ' + ancestorWithNext);
+    var nextSibling = ancestorWithNext.nextSibling; 
+
     originalRange.setStart(nextSibling, 0);
 
     return startRange;
@@ -38,7 +44,11 @@ HW.selection = (function() {
     endRange.selectNodeContents(endNode);
     endRange.setEnd(endNode, originalRange.endOffset);
     
-    var previousSibling = endNode.previousSibling || endNode.parentNode.previousSibling;
+    var ancestorWithPrevious = endNode;
+    while (!ancestorWithPrevious.previousSibling) {
+      ancestorWithPrevious = ancestorWithPrevious.parentNode;
+    }
+    var previousSibling = ancestorWithPrevious.previousSibling;
 
     if (previousSibling.nodeType === 1) {
       originalRange.setEnd(previousSibling, previousSibling.childNodes.length);
@@ -49,21 +59,28 @@ HW.selection = (function() {
     return endRange;
   }
   
-  function wrapRange(originalRange) {
+  function wrapRange(originalRange, stackLevel) {
+    if (stackLevel > 100) {
+      console.debug('stack too deep');
+      return;
+    } else {
+    }
+
     var clonedContents = originalRange.cloneContents();
 
     if (clonedContents.childNodes.length > 1 && clonedContents.childNodes[0].nodeType === 1) {
       var newStartRange = wrapRangeStart(originalRange);
-      wrapRange(newStartRange);
-      wrapRange(originalRange);
+      wrapRange(newStartRange, stackLevel + 1);
+      wrapRange(originalRange, stackLevel + 1);
     } else if (clonedContents.childNodes.length > 1 && clonedContents.childNodes[clonedContents.childNodes.length - 1].nodeType === 1) {
       var newEndRange = wrapRangeEnd(originalRange);
-      wrapRange(originalRange);
-      wrapRange(newEndRange);
+      wrapRange(originalRange, stackLevel + 1);
+      wrapRange(newEndRange, stackLevel + 1);
     } else {
       var fragments = originalRange.extractContents();
       wrapFragments(fragments.childNodes);
       originalRange.insertNode(fragments);
+      // originalRange.detach();
     }
   }
   
@@ -103,7 +120,7 @@ HW.selection = (function() {
       return this.dom().textContent();
     },
     wrap: function() {
-      wrapRange(HW.selection.range());
+      wrapRange(HW.selection.range(), 0);
     }
   }
 })();
