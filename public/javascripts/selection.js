@@ -1,11 +1,6 @@
 HW = {};
 
 HW.selection = (function() {
-  function is_ignorable( nod ) {
-    return ( nod.nodeType == 8) || // A comment node
-           ( (nod.nodeType == 3) && is_all_ws(nod) ); // a text node, all ws
-  }
-  
   function wrapFragment(fragment) {
     if (fragment.nodeType === 3 && fragment.textContent.replace(/\s+/, '') !== '') {
       var wrapClone = document.createElement('span'),
@@ -30,11 +25,9 @@ HW.selection = (function() {
     startRange.selectNodeContents(startNode);
     startRange.setStart(startNode, originalRange.startOffset);
 
-    if (startNode.nextSibling) {
-      originalRange.setStart(startNode.nextSibling, 0);
-    } else {
-      originalRange.setStart(startNode.parentNode.nextSibling, 0);
-    }
+    var nextSibling = startNode.nextSibling || startNode.parentNode.nextSibling;
+    originalRange.setStart(nextSibling, 0);
+
     return startRange;
   }
   
@@ -44,7 +37,15 @@ HW.selection = (function() {
     
     endRange.selectNodeContents(endNode);
     endRange.setEnd(endNode, originalRange.endOffset);
-    originalRange.setEndBefore(endNode);
+    
+    var previousSibling = endNode.previousSibling || endNode.parentNode.previousSibling;
+
+    if (previousSibling.nodeType === 1) {
+      originalRange.setEnd(previousSibling, previousSibling.childNodes.length);
+    } else {
+      originalRange.setEnd(previousSibling, previousSibling.textContent.length);
+    }
+
     return endRange;
   }
   
@@ -65,7 +66,6 @@ HW.selection = (function() {
       originalRange.insertNode(fragments);
     }
   }
-  
   
   function fragmentToHtml(fragment) {
     switch(fragment.nodeType) {
