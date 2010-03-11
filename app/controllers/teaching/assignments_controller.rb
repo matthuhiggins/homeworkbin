@@ -45,9 +45,4 @@ class Teaching::AssignmentsController < Teaching::BaseController
     flash[:notice] = 'Assignment deleted'
     redirect_to teaching_assignments_path(current_course)
   end
-  
-  private
-    def current_course
-      @current_course ||= current_teacher.teaching.find params[:teaching_id]
-    end
 end

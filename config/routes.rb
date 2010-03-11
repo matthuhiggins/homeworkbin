@@ -18,7 +18,9 @@ ActionController::Routing::Routes.draw do |map|
     teachings.resources :assignments,  :controller => 'teaching/assignments',   :as => 'homework'
     teachings.resources :enrollments,  :controller => 'teaching/enrollments',   :as => 'enroll'
     teachings.resources :studiers,     :controller => 'teaching/studiers',      :as => 'students'
-    teachings.resources :submissions,  :controller => 'teaching/submissions'
+    teachings.resources :submissions,  :controller => 'teaching/submissions' do |submissions|
+      submissions.resources :annotations, :name_prefix => 'teaching_', :controller => 'teaching/annotations'
+    end
   end
 
   map.namespace :teaching do |teaching|

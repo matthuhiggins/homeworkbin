@@ -7,4 +7,14 @@ class SubmissionTest < ActiveRecord::TestCase
     
     assert_equal [turned_in.becomes(Submission)], Submission.all
   end
+  
+  def test_annotate
+    submission = Factory :submission
+    
+    annotation = submission.annotate 'hello'
+    
+    assert !annotation.new_record?
+    assert_equal submission, annotation.submission
+    assert_equal 'hello', annotation.text
+  end
 end
