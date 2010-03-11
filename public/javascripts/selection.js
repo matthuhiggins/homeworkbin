@@ -11,17 +11,17 @@ HW.selection = (function() {
       wrapFragments(fragment.childNodes);
     }
   }
-  
+
   function wrapFragments(fragments) {
     for (var i = 0; i < fragments.length; i++) {
       wrapFragment(fragments[i]);
     }
   }
-  
+
   function wrapRangeStart(originalRange) {
-    var startRange = document.createRange(), 
+    var startRange = document.createRange(),
         startNode = originalRange.startContainer;
-  
+
     startRange.selectNodeContents(startNode);
     startRange.setStart(startNode, originalRange.startOffset);
 
@@ -29,8 +29,7 @@ HW.selection = (function() {
     while (!ancestorWithNext.nextSibling) {
       ancestorWithNext = ancestorWithNext.parentNode;
     }
-    console.debug('ancestorWithNext = ' + ancestorWithNext);
-    var nextSibling = ancestorWithNext.nextSibling; 
+    var nextSibling = ancestorWithNext.nextSibling;
 
     originalRange.setStart(nextSibling, 0);
 
@@ -42,6 +41,7 @@ HW.selection = (function() {
         endNode = originalRange.endContainer;
     
     endRange.selectNodeContents(endNode);
+    
     endRange.setEnd(endNode, originalRange.endOffset);
     
     var ancestorWithPrevious = endNode;
@@ -60,34 +60,60 @@ HW.selection = (function() {
   }
   
   function wrapRange(originalRange, stackLevel) {
-    if (stackLevel > 100) {
-      console.debug('stack too deep');
+    var normalizedChildNodes = function() {
+      var fragment = originalRange.cloneContents();
+      fragment.normalize();
+      return fragment.childNodes;
+    }
+    
+    var childNodes = normalizedChildNodes();
+    
+    // childNodes = originalRange.cloneContents().childNodes;
+
+    if (stackLevel > 30) {
+      console.debug('stack too deep with ' + fragmentsToHtml(childNodes));
       return;
-    } else {
     }
 
-    var clonedContents = originalRange.cloneContents();
+    var repeats = 0;
 
-    if (clonedContents.childNodes.length > 1 && clonedContents.childNodes[0].nodeType === 1) {
-      var newStartRange = wrapRangeStart(originalRange);
-      wrapRange(newStartRange, stackLevel + 1);
-      wrapRange(originalRange, stackLevel + 1);
-    } else if (clonedContents.childNodes.length > 1 && clonedContents.childNodes[clonedContents.childNodes.length - 1].nodeType === 1) {
-      var newEndRange = wrapRangeEnd(originalRange);
-      wrapRange(originalRange, stackLevel + 1);
-      wrapRange(newEndRange, stackLevel + 1);
-    } else {
-      var fragments = originalRange.extractContents();
-      wrapFragments(fragments.childNodes);
-      originalRange.insertNode(fragments);
-      // originalRange.detach();
+    while (childNodes.length > 0) {
+      if (repeats > 30) {
+        console.debug('bailing out with ' + fragmentsToHtml(childNodes));
+        break;
+      }
+      repeats++;
+
+      if (childNodes.length > 1 && childNodes[0].nodeType === 1) {
+        var newStartRange = wrapRangeStart(originalRange);
+        console.debug(stackLevel + ' - going down with ' + fragmentsToHtml(newStartRange.cloneContents().childNodes))
+        console.debug(stackLevel + ' - leaving behind ' + fragmentsToHtml(childNodes))
+        wrapRange(newStartRange, stackLevel + 1);
+        childNodes = normalizedChildNodes();
+      } else if (childNodes.length > 1 && childNodes[childNodes.length - 1].nodeType === 1) {
+        var newEndRange = wrapRangeEnd(originalRange);
+        console.debug(stackLevel + ' - going down with ' + fragmentsToHtml(newEndRange.cloneContents().childNodes))
+        console.debug(stackLevel + ' - leaving behind ' + fragmentsToHtml(childNodes))
+        wrapRange(newEndRange, stackLevel + 1);
+        childNodes = normalizedChildNodes();
+      } else {
+        console.debug(stackLevel + ' - inserting ' + fragmentsToHtml(childNodes))
+        console.debug(originalRange.startContainer)
+        console.debug(originalRange.endContainer)
+        console.debug(originalRange.commonAncestorContainer)
+        var fragments = originalRange.extractContents();
+        wrapFragments(fragments.childNodes);
+        fragments.normalize();
+        originalRange.insertNode(fragments);
+        break;
+      }
     }
   }
   
   function fragmentToHtml(fragment) {
     switch(fragment.nodeType) {
       case 3:
-      case 4: return fragment.textContent;
+      case 4: return '<text>' + fragment.textContent + '</text>';
       case 1: return '<' + fragment.nodeName.toLowerCase() + '>' +
                     fragmentsToHtml(fragment.childNodes) +
                     '</' + fragment.nodeName.toLowerCase() + '>';
