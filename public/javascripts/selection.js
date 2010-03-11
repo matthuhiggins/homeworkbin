@@ -68,10 +68,7 @@ HW.selection = (function() {
     
     var childNodes = normalizedChildNodes();
     
-    // childNodes = originalRange.cloneContents().childNodes;
-
     if (stackLevel > 30) {
-      console.debug('stack too deep with ' + fragmentsToHtml(childNodes));
       return;
     }
 
@@ -79,28 +76,19 @@ HW.selection = (function() {
 
     while (childNodes.length > 0) {
       if (repeats > 30) {
-        console.debug('bailing out with ' + fragmentsToHtml(childNodes));
         break;
       }
       repeats++;
 
       if (childNodes.length > 1 && childNodes[0].nodeType === 1) {
         var newStartRange = wrapRangeStart(originalRange);
-        console.debug(stackLevel + ' - going down with ' + fragmentsToHtml(newStartRange.cloneContents().childNodes))
-        console.debug(stackLevel + ' - leaving behind ' + fragmentsToHtml(childNodes))
         wrapRange(newStartRange, stackLevel + 1);
         childNodes = normalizedChildNodes();
       } else if (childNodes.length > 1 && childNodes[childNodes.length - 1].nodeType === 1) {
         var newEndRange = wrapRangeEnd(originalRange);
-        console.debug(stackLevel + ' - going down with ' + fragmentsToHtml(newEndRange.cloneContents().childNodes))
-        console.debug(stackLevel + ' - leaving behind ' + fragmentsToHtml(childNodes))
         wrapRange(newEndRange, stackLevel + 1);
         childNodes = normalizedChildNodes();
       } else {
-        console.debug(stackLevel + ' - inserting ' + fragmentsToHtml(childNodes))
-        console.debug(originalRange.startContainer)
-        console.debug(originalRange.endContainer)
-        console.debug(originalRange.commonAncestorContainer)
         var fragments = originalRange.extractContents();
         wrapFragments(fragments.childNodes);
         fragments.normalize();
