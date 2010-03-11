@@ -124,17 +124,9 @@ HW.selection = (function() {
 
       return selection.getRangeAt(0);
     },
-    dom: function() {
-      return this.range().cloneContents();
-    },
-    html: function() {
-      return fragmentsToHtml(this.dom().childNodes);
-    },
-    text: function() {
-      return this.dom().textContent();
-    },
     wrap: function() {
       wrapRange(HW.selection.range(), 0);
+      window.getSelection().removeAllRanges();
     }
   }
 })();

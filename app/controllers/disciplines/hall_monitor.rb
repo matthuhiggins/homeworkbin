@@ -70,7 +70,7 @@ module Disciplines
       end
       
       def initiate_authenticated_session(person)
-        cookies[:last_email] = {:value => person.email, :expires => 1.week.from_now}
+        cookies[:last_login] = {:value => person.email, :expires => 1.week.from_now}
         # person.update_attribute(:authenticated_at, Time.current)
         session[:person_id] = person.id
         flash[:notice] = "Hello %1$s" % person.full_name
@@ -79,7 +79,7 @@ module Disciplines
       def terminate_authenticated_session
         current_person.try(:forget_me!)
         session[:person_id] = nil 
-        cookies.delete [:last_email, :remember_token]
+        cookies.delete [:last_login, :remember_token]
       end
   end
 end

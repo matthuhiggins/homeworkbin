@@ -13,7 +13,7 @@ class SessionsControllerTest < ActionController::TestCase
 
     assert_equal "Incorrect e-mail/password", flash[:warning]
     assert_nil @controller.session[:person_id]
-    assert_nil @response.cookies['last_email']
+    assert_nil @response.cookies['last_login']
     assert_template 'new'
   end
   

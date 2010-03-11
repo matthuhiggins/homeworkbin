@@ -1,6 +1,6 @@
 module SessionsHelper
   def email_login_value
-    params[:email] || cookies[:last_email]
+    params[:email] || cookies[:last_login]
   end
   
   def logout
