@@ -6,8 +6,6 @@
 <% if @past_assignments.empty? && @upcoming_assignments.empty? %>
   <%= render 'welcome' %>
 <% else %>
-  <div id="assignment-index">
-    <%= render 'upcoming_assignments' %>
-    <%= render 'past_assignments' %>
-  </div>
+  <%= render 'upcoming_assignments' %>
+  <%= render 'past_assignments' %>
 <% end %>

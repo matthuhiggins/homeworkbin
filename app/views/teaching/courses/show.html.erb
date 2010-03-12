@@ -5,43 +5,41 @@
     Course Summary
     <%= link_to 'Edit course settings', edit_teaching_path(current_course) %>
   </h2>
-  <div id="course-show">
-    <div class="summary">
-      <% next_assignment(current_course.assignments) do |assignment| %>
-        Next homework,
-        <%= link_to h(assignment.name), teaching_assignment_path(current_course, assignment) %>,
-        is due
-        <%= relative_assignment_due_date(assignment) %>.
+  <div class="summary">
+    <% next_assignment(current_course.assignments) do |assignment| %>
+      Next homework,
+      <%= link_to h(assignment.name), teaching_assignment_path(current_course, assignment) %>,
+      is due
+      <%= relative_assignment_due_date(assignment) %>.
+    <% end %>
+    <ul>
+    </ul>
+  </div>
+  <!-- <%= course_date_range current_course %> -->
+  <!-- (Ends in <%= time_ago_in_words current_course.end_date %>) -->
+
+  <div class="stats">
+    <div class="stat">
+      <% link_to teaching_studiers_path(current_course), :class => 'count' do %>
+        <strong>
+          <%= @studiers_count %>
+        </strong>
+        <span>
+          <%= @studiers_count == 1 ? 'student' : 'students' %>
+        </span>
       <% end %>
-      <ul>
-      </ul>
+      <%= link_to 'Enroll students »', teaching_enrollments_path(current_course), :class => 'add' %>
     </div>
-    <!-- <%= course_date_range current_course %> -->
-    <!-- (Ends in <%= time_ago_in_words current_course.end_date %>) -->
-  
-    <div class="stats">
-      <div class="stat">
-        <% link_to teaching_studiers_path(current_course), :class => 'count' do %>
-          <strong>
-            <%= @studiers_count %>
-          </strong>
-          <span>
-            <%= @studiers_count == 1 ? 'student' : 'students' %>
-          </span>
-        <% end %>
-        <%= link_to 'Enroll students »', teaching_enrollments_path(current_course), :class => 'add' %>
-      </div>
-      <div class="stat">
-        <% link_to teaching_assignments_path(current_course), :class => 'count' do %>
-          <strong>
-            <%= @assignments_count %>
-          </strong>
-          <span>
-            <%= @assignments_count == 1 ? 'assignment' : 'assignments' %>
-          </span>
-        <% end %>
-        <%= link_to 'Add homework »', new_teaching_assignment_path(current_course), :class => 'add' %>
-      </div>
+    <div class="stat">
+      <% link_to teaching_assignments_path(current_course), :class => 'count' do %>
+        <strong>
+          <%= @assignments_count %>
+        </strong>
+        <span>
+          <%= @assignments_count == 1 ? 'assignment' : 'assignments' %>
+        </span>
+      <% end %>
+      <%= link_to 'Add homework »', new_teaching_assignment_path(current_course), :class => 'add' %>
     </div>
   </div>
 <% end %>

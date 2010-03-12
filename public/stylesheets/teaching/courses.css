@@ -31,53 +31,53 @@
   float: left;
 }
 
-#course-show {
+#courses-show {
   overflow: hidden;
 }
 
-#course-show .summary {
+#courses-show .summary {
   float: left;
 }
 
-#course-show .stats {
+#courses-show .stats {
   float: right;
   width: 210px;
 }
 
-#course-show .stat {
+#courses-show .stat {
   overflow: hidden;
 }
 
-#course-show .stat + .stat {
+#courses-show .stat + .stat {
   border-top: 1px solid #ccc;
   margin-top: 10px;
   padding-top: 10px;
 }
 
-#course-show a.count {
+#courses-show a.count {
   color: black;
   float: left;
   text-decoration: none;
 }
 
-#course-show a.count:hover,
-#course-show a.count:hover span {
+#courses-show a.count:hover,
+#courses-show a.count:hover span {
   color: #4183C4;
 }
 
-#course-show a.count strong {
+#courses-show a.count strong {
   display: block;
   font-size: 30px;
 }
 
-#course-show a.count span {
+#courses-show a.count span {
   color: #999;
   display: block;
   font-size: 10px;
   margin-top: -5px;
 }
 
-#course-show .stat .add {
+#courses-show .stat .add {
   margin-top: 13px;
   float: right;
 }

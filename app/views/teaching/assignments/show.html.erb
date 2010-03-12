@@ -3,26 +3,24 @@
   <%= link_to 'Edit settings', edit_teaching_assignment_path(current_course, @assignment) %>
 </h2>
 
-<div id="assignment-show">
-  <div class="due-date">
-    Due <%= relative_assignment_due_date @assignment %>
-  </div>
-  <% if @submissions.empty? %>
-    <div class="welcome">
-      No students have submitted homework for this assignment.
-    </div>
-  <% else %>
-    <strong>Submissions</strong>
-    <ul>
-      <% @submissions.each do |submission| %>
-        <li class="submission">
-          <%= link_to submission.studier.full_name, teaching_submission_path(current_course, submission) %>
-          <%= link_to submission_preview(submission, 200), teaching_submission_path(current_course, submission), :class => 'preview' %>
-          <div class="handed-in-at">
-            Submitted <%= submission_handed_in_at(submission) %>
-          </div>
-        </li>
-      <% end %>
-    </ul>
-  <% end %>
+<div class="due-date">
+  Due <%= relative_assignment_due_date @assignment %>
 </div>
+<% if @submissions.empty? %>
+  <div class="welcome">
+    No students have submitted homework for this assignment.
+  </div>
+<% else %>
+  <strong>Submissions</strong>
+  <ul>
+    <% @submissions.each do |submission| %>
+      <li class="submission">
+        <%= link_to submission.studier.full_name, teaching_submission_path(current_course, submission) %>
+        <%= link_to submission_preview(submission, 200), teaching_submission_path(current_course, submission), :class => 'preview' %>
+        <div class="handed-in-at">
+          Submitted <%= submission_handed_in_at(submission) %>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+<% end %>

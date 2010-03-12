@@ -1,42 +1,42 @@
-#assignment-index {
+#assignments-index {
   
 }
 
-#assignment-index .upcoming {
+#assignments-index .upcoming {
   float: left;
   width: 48%;  
 }
 
-#assignment-index .past {
+#assignments-index .past {
   border: 1px solid #E5E5E5;
   float: right;
   padding: 10px;
   width: 40%;
 }
 
-#assignment-index .past .header {
+#assignments-index .past .header {
   font-weight: bold;
   padding-bottom: 10px;
 }
 
-#assignment-index .assignment {
+#assignments-index .assignment {
 /*  border-bottom: 1px solid #eee;*/
   border-top: 1px solid #eee;
   overflow: hidden;
   padding: 7px 0;
 }
 
-#assignment-index .assignment + .assignment {
+#assignments-index .assignment + .assignment {
   border-top: 1px solid #eee;
 /*  border-top-color: transparent;*/
 }
 
-#assignment-index .assignment .options {
+#assignments-index .assignment .options {
   font-size: 85%;
   padding-top: 3px;
 }
 
-#assignment-index .assignment .due-date {
+#assignments-index .assignment .due-date {
   color: #666;
   font-size: 90%;
 }
@@ -48,28 +48,28 @@
   float: left;
 }
 
-#assignment-show {
+#assignments-show {
   
 }
 
-#assignment-show .due-date {
+#assignments-show .due-date {
   padding-bottom: 10px;
 }
 
-#assignment-show .submission {
+#assignments-show .submission {
   padding: 8px 0;
 }
 
-#assignment-show .submission .preview {
+#assignments-show .submission .preview {
   color: #555;
   padding-left: 7px;
 }
 
-#assignment-show .submission .preview:hover {
+#assignments-show .submission .preview:hover {
   color: black;
 }
 
-#assignment-show .submission .handed-in-at {
+#assignments-show .submission .handed-in-at {
   color: #555;
   font-size: 12px;
   padding-top: 4px;
