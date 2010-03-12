@@ -3,6 +3,7 @@
 <h2>
   <%= current_submission.student.full_name %>'s
   Homework
+  <button id="annotate">Annotate Selection</button>
 </h2>
 
 <div id="submission-show">
@@ -15,16 +16,8 @@
 
 <script>
 YAHOO.util.Event.onDOMReady(function() {
-  alert('lmao')
   YAHOO.util.Event.on(document, 'mouseup', function() {
-    alert('lol');
-    // console.debug(HW.selection.html());
     
-    // var range = HW.selection.range();
-    // var span = document.createElement("span");
-    // span.style.color = "red";
-    // range.surroundContents(span);
-    // range.deleteContents();
   });
 
     // IE

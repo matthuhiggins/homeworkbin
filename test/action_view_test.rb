@@ -13,6 +13,10 @@ module ActionView
     def current_course
       @current_course ||= Factory(:course)
     end
+    
+    delegate :controller_name, :to => :controller
+    def action_name
+      @params[:action] || 'index'
+    end
   end
-  # autoload :TeachingTestCase, 'action_view/teaching_test_case'
 end

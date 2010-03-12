@@ -1,3 +1,13 @@
+.content {
+  bottom: 5;
+  height: auto;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 100px;
+}
+
+
 #submission-show {
   
 }

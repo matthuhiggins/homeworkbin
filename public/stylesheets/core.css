@@ -14,8 +14,8 @@ body, input, select {
 }
 
 body {
-/*  background-color:;*/
   height: 100%;
+  position: relative;
 }
 
 a, a:visited {
