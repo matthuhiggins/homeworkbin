@@ -6,7 +6,7 @@
   <button id="annotate">Annotate Selection</button>
 </h2>
 
-<div id="submission-show">
+<div id="submission-text">
   <div class="text">
     <%= current_submission.text %>
   </div>
@@ -16,8 +16,8 @@
 
 <script>
 YAHOO.util.Event.onDOMReady(function() {
-  YAHOO.util.Event.on(document, 'mouseup', function() {
-    
+  YAHOO.util.Event.on('annotate', 'click', function() {
+    alert('LOL!')
   });
 
     // IE

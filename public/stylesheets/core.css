@@ -60,7 +60,7 @@ body > .header .menu {
 }
 
 body > .header .main.menu {
-  padding: 5px 12px;  
+  padding: 5px 0;  
 }
 
 body > .header .main.menu .logo {
@@ -128,7 +128,7 @@ body > .content {
   margin: 0 auto;
   min-height: 400px;
   overflow: hidden;
-  padding: 20px;
+  padding: 20px 0;
   width: 780px;
 }
 

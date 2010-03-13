@@ -1,4 +1,5 @@
 Factory.define :annotations do |f|
   f.association :composition
-  f.text        'Amazing work'
+  f.comment     'Amazing work!'
+  f.snippet     'Despite these facts, the consequences are not causal'
 end

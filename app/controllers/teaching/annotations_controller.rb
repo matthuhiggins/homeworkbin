@@ -2,7 +2,7 @@ class Teaching::AnnotationsController < Teaching::BaseController
   topic 'homework'
   
   def create
-    @annotation = current_submission.annotate params[:text]
+    @annotation = current_submission.annotations.create params[:annotation]
     render :json => { :id => @annotation.id }
   end
   

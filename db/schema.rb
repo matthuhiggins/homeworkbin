@@ -13,7 +13,8 @@ ActiveRecord::Schema.define(:version => 20100207082333) do
 
   create_table "annotations", :force => true do |t|
     t.integer  "submission_id", :null => false
-    t.text     "text",          :null => false
+    t.text     "snippet",       :null => false
+    t.text     "comment",       :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

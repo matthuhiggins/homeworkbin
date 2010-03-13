@@ -1,20 +1,26 @@
-.content {
-  bottom: 5;
+#submissions-show .content {
+  bottom: 0;
   height: auto;
   left: 0;
+  min-height: inherit;
   position: absolute;
   right: 0;
-  top: 100px;
+  top: 87px;
 }
 
-
-#submission-show {
+#submissions-show h2 button {
   
 }
 
-#submission-show .text {
+#submission-text {
+  bottom: 0;
+  position: absolute;
+  top: 45px;
+  width: 100%;
+}
+
+/*#submissions-show .text {
   border-right: 1px solid #ccc;
-  min-height: 400px;
   padding-right: 10px;
   width: 75%;
-}
+}*/
