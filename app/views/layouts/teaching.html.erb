@@ -3,7 +3,7 @@
   <%= yui_stylesheet 'cssreset/reset-min' %>
   <%= stylesheet_link_tag 'core', 'form' %>
   <%= stylesheet_link_tag "teaching/#{controller_name}" %>
-  <%= yui_javascript 'yahoo-dom-event/yahoo-dom-event' %>
+  <%= javascript_include_tag 'jquery' %>
   <title>
     Homework Bin<%= yield :title %>
   </title>

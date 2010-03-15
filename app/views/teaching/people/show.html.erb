@@ -43,16 +43,14 @@
 <%= focus 'person_full_name' %>
 
 <script>
-YAHOO.util.Event.onDOMReady(function() {
-  var passwordForm = document.getElementById('password-form');
+$(function() {
+  var jPasswordForm = $('#password-form');
   
-  YAHOO.util.Event.on('change-password', 'click', function(e) {
-    YAHOO.util.Event.stopEvent(e);
-    if (passwordForm.style.display == 'none') {
-      passwordForm.style.display = '';
-      document.getElementById('person_password').focus();
-    } else {
-      passwordForm.style.display = 'none';
+  $('#change-password').click(function(e) {
+    e.preventDefault();
+    jPasswordForm.toggle();
+    if (jPasswordForm.is(':visible')) {
+      $('#person_password').focus();
     }
   });
   

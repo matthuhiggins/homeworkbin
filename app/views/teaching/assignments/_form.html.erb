@@ -34,11 +34,12 @@
 
 <%= focus 'assignment_name' %>
 
-<%= yui_javascript 'calendar/calendar-min' %>
+<%= yui_javascript 'yahoo-dom-event/yahoo-dom-event',
+                   'calendar/calendar-min' %>
 <%= javascript_include_tag 'date_selector' %>
 
 <script>
-YAHOO.util.Event.onDOMReady(function() {
+$(function() {
   HW.dateSelector('assignment-form');
 });
 </script>
