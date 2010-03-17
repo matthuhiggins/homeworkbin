@@ -19,6 +19,15 @@ HW.selection = (function() {
   }
 
   function wrapRangeStart(originalRange) {
+    var nextRealNode = function(node) {
+      while(node.nextSibling) {
+        node = node.nextSibling;
+        if (node.nodeName != 'LI' || node.nodeType == 1) {
+          return node;
+        }
+      }
+    };
+    
     var startRange = document.createRange(),
         startNode = originalRange.startContainer;
 
@@ -26,10 +35,10 @@ HW.selection = (function() {
     startRange.setStart(startNode, originalRange.startOffset);
 
     var ancestorWithNext = startNode;
-    while (!ancestorWithNext.nextSibling) {
+    while (!nextRealNode(ancestorWithNext)) {
       ancestorWithNext = ancestorWithNext.parentNode;
     }
-    var nextSibling = ancestorWithNext.nextSibling;
+    var nextSibling = nextRealNode(ancestorWithNext);
 
     originalRange.setStart(nextSibling, 0);
 
@@ -37,6 +46,15 @@ HW.selection = (function() {
   }
   
   function wrapRangeEnd(originalRange) {
+    var previousRealNode = function(node) {
+      while(node.previousSibling) {
+        node = node.previousSibling;
+        if (node.nodeName != 'LI' || node.nodeType == 1) {
+          return node;
+        }
+      }
+    };
+    
     var endRange = document.createRange(),
         endNode = originalRange.endContainer;
     
@@ -45,10 +63,10 @@ HW.selection = (function() {
     endRange.setEnd(endNode, originalRange.endOffset);
     
     var ancestorWithPrevious = endNode;
-    while (!ancestorWithPrevious.previousSibling) {
+    while (!previousRealNode(ancestorWithPrevious)) {
       ancestorWithPrevious = ancestorWithPrevious.parentNode;
     }
-    var previousSibling = ancestorWithPrevious.previousSibling;
+    var previousSibling = previousRealNode(ancestorWithPrevious);
 
     if (previousSibling.nodeType === 1) {
       originalRange.setEnd(previousSibling, previousSibling.childNodes.length);
@@ -59,7 +77,7 @@ HW.selection = (function() {
     return endRange;
   }
   
-  function wrapRange(originalRange, stackLevel) {
+  function wrapRange(originalRange) {
     var normalizedChildNodes = function() {
       var fragment = originalRange.cloneContents();
       fragment.normalize();
@@ -67,26 +85,17 @@ HW.selection = (function() {
     }
     
     var childNodes = normalizedChildNodes();
-    
-    if (stackLevel > 30) {
-      return;
-    }
 
     var repeats = 0;
 
     while (childNodes.length > 0) {
-      if (repeats > 30) {
-        break;
-      }
-      repeats++;
-
       if (childNodes.length > 1 && childNodes[0].nodeType === 1) {
         var newStartRange = wrapRangeStart(originalRange);
-        wrapRange(newStartRange, stackLevel + 1);
+        wrapRange(newStartRange);
         childNodes = normalizedChildNodes();
       } else if (childNodes.length > 1 && childNodes[childNodes.length - 1].nodeType === 1) {
         var newEndRange = wrapRangeEnd(originalRange);
-        wrapRange(newEndRange, stackLevel + 1);
+        wrapRange(newEndRange);
         childNodes = normalizedChildNodes();
       } else {
         var fragments = originalRange.extractContents();
@@ -128,7 +137,7 @@ HW.selection = (function() {
       return this.range().cloneContents().textContent;
     },
     wrap: function() {
-      wrapRange(this.range(), 0);
+      wrapRange(this.range());
       window.getSelection().removeAllRanges();
     }
   }
