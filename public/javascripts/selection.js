@@ -1,20 +1,38 @@
-HW = {};
+HW = {
+  fragmentToHtml: function(fragment) {
+    switch(fragment.nodeType) {
+      case 3:
+      case 4: return '<text>' + fragment.textContent + '</text>';
+      case 1: return '<' + fragment.nodeName.toLowerCase() + '>' +
+                    this.fragmentsToHtml(fragment.childNodes) +
+                    '</' + fragment.nodeName.toLowerCase() + '>';
+      default: return '';
+    }
+  },
+  fragmentsToHtml: function(fragments) {
+    var html = '';
+    for (var i = 0; fragments[i]; i++) {
+      html += this.fragmentToHtml(fragments[i]);
+    }
+    return html;
+  }
+};
 
 HW.selection = (function() {
-  function wrapFragment(fragment) {
+  function wrapFragment(fragment, wrapperFn) {
     if (fragment.nodeType === 3 && fragment.textContent.replace(/\s+/, '') !== '') {
-      var wrapClone = document.createElement('span'),
+      var wrapper = wrapperFn(),
           parent = fragment.parentNode;
-      parent.replaceChild(wrapClone, fragment);
-      wrapClone.appendChild(fragment);
+      parent.replaceChild(wrapper, fragment);
+      wrapper.appendChild(fragment);
     } else if (fragment.nodeType === 1) {
-      wrapFragments(fragment.childNodes);
+      wrapFragments(fragment.childNodes, wrapperFn);
     }
   }
 
-  function wrapFragments(fragments) {
+  function wrapFragments(fragments, wrapperFn) {
     for (var i = 0; i < fragments.length; i++) {
-      wrapFragment(fragments[i]);
+      wrapFragment(fragments[i], wrapperFn);
     }
   }
 
@@ -77,7 +95,7 @@ HW.selection = (function() {
     return endRange;
   }
   
-  function wrapRange(originalRange) {
+  function wrapRange(originalRange, wrapperFn) {
     var normalizedChildNodes = function() {
       var fragment = originalRange.cloneContents();
       fragment.normalize();
@@ -91,39 +109,20 @@ HW.selection = (function() {
     while (childNodes.length > 0) {
       if (childNodes.length > 1 && childNodes[0].nodeType === 1) {
         var newStartRange = wrapRangeStart(originalRange);
-        wrapRange(newStartRange);
+        wrapRange(newStartRange, wrapperFn);
         childNodes = normalizedChildNodes();
       } else if (childNodes.length > 1 && childNodes[childNodes.length - 1].nodeType === 1) {
         var newEndRange = wrapRangeEnd(originalRange);
-        wrapRange(newEndRange);
+        wrapRange(newEndRange, wrapperFn);
         childNodes = normalizedChildNodes();
       } else {
         var fragments = originalRange.extractContents();
-        wrapFragments(fragments.childNodes);
+        wrapFragments(fragments.childNodes, wrapperFn);
         fragments.normalize();
         originalRange.insertNode(fragments);
         break;
       }
     }
-  }
-  
-  function fragmentToHtml(fragment) {
-    switch(fragment.nodeType) {
-      case 3:
-      case 4: return '<text>' + fragment.textContent + '</text>';
-      case 1: return '<' + fragment.nodeName.toLowerCase() + '>' +
-                    fragmentsToHtml(fragment.childNodes) +
-                    '</' + fragment.nodeName.toLowerCase() + '>';
-      default: return '';
-    }
-  }
-
-  function fragmentsToHtml(fragments) {
-    var html = '';
-    for (var i = 0; fragments[i]; i++) {
-      html += fragmentToHtml(fragments[i]);
-    }
-    return html;
   }
   
   return {
@@ -136,8 +135,8 @@ HW.selection = (function() {
     text: function() {
       return this.range().cloneContents().textContent;
     },
-    wrap: function() {
-      wrapRange(this.range());
+    wrap: function(wrapperFn) {
+      wrapRange(this.range(), wrapperFn);
       window.getSelection().removeAllRanges();
     }
   }

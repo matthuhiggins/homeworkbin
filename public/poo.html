@@ -27,7 +27,9 @@
 
   <script>
     YAHOO.util.Event.on('annotate', 'click', function() {
-      HW.selection.wrap();
+      HW.selection.wrap(function() {
+        return document.createElement('span');
+      });
     });
   </script>
 </body>
