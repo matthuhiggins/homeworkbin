@@ -22,8 +22,8 @@ module ActionController
     end
     
     def assert_route_match(expected_match, request)
-      raise "Invalid expected_match of #{expected_match.inspect}" unless (expected_match =~ /(.*)#(.*)/)
-      expected_options = {:controller => $1, :action => $2}
+      raise "Invalid expected_match of #{expected_match.inspect}" unless (expected_match =~ /(.*)/)
+      expected_options = {:controller => @controller.controller_name, :action => $1}
       
       raise "Invalid request of #{request.inspect}" unless (request =~ /(.*)#(.*)/)
       request_options = {:path => $1, :method => $2}
