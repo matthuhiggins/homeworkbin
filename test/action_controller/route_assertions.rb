@@ -7,25 +7,25 @@ module ActionController
     end
     
     module ClassMethods
-      def test_match(expected_match, request)
+      def matches_route(expected_match, request)
         write_inheritable_hash :expected_route_matches, expected_match => request
         define_test_matchs unless respond_to?(:test_matchs)
       end
 
-      def test_resources(path)
-        test_match 'new',     "#{path}/new#get"
-        test_match 'create',  "#{path}#post"
-        test_match 'index',   "#{path}#get"
-        test_match 'show',    "#{path}/:id#get"
-        test_match 'edit',    "#{path}/:id/edit#get"
-        test_match 'update',  "#{path}/:id#put"
+      def matches_resources(path)
+        matches_route 'new',     "#{path}/new#get"
+        matches_route 'create',  "#{path}#post"
+        matches_route 'index',   "#{path}#get"
+        matches_route 'show',    "#{path}/:id#get"
+        matches_route 'edit',    "#{path}/:id/edit#get"
+        matches_route 'update',  "#{path}/:id#put"
       end
       
-      def test_resource(path)
-        test_match 'new',     "#{path}/new#get"
-        test_match 'create',  "#{path}#post"
-        test_match 'update',  "#{path}#put"
-        test_match 'show',    "#{path}#get"
+      def matches_resource(path)
+        matches_route 'new',     "#{path}/new#get"
+        matches_route 'create',  "#{path}#post"
+        matches_route 'update',  "#{path}#put"
+        matches_route 'show',    "#{path}#get"
       end
       
       def define_test_matchs

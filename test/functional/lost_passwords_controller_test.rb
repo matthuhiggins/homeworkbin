@@ -1,7 +1,7 @@
 require 'action_controller_test'
 
 class LostPasswordsControllerTest < ActionController::TestCase
-  test_resources 'lost_passwords'
+  matches_resources 'lost_passwords'
   
   def test_new
     get :new

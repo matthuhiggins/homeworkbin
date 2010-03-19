@@ -1,7 +1,7 @@
 require 'action_controller_test'
 
 class MarketingControllerTest < ActionController::TestCase
-  test_match 'index', '#get'
+  matches_route 'index', '#get'
 
   def test_static_views
     %w(index).each do |view|

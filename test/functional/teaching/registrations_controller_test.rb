@@ -1,7 +1,7 @@
 require 'action_controller_test'
 
 class Teaching::RegistrationsControllerTest < ActionController::TestCase
-  test_resources 'signup'
+  matches_resources 'signup'
 
   def test_index
     get :index

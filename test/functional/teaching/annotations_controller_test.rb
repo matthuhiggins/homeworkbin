@@ -1,7 +1,7 @@
 require 'action_controller_test'
 
 class Teaching::AnnotationsControllerTest < ActionController::TeachingTestCase
-  test_resources 'teaching/:teaching_id/submissions/:submission_id/annotations'
+  matches_resources 'teaching/:teaching_id/submissions/:submission_id/annotations'
 
   def test_create
     teaching_post :create, {

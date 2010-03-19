@@ -1,7 +1,7 @@
 require 'action_controller_test'
 
 class Teaching::AssignmentsControllerTest < ActionController::TeachingTestCase
-  test_resources 'teaching/:teaching_id/homework'
+  matches_resources 'teaching/:teaching_id/homework'
   
   def test_index
     teaching_get :index

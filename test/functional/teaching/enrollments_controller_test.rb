@@ -1,7 +1,7 @@
 require 'action_controller_test'
 
 class Teaching::EnrollmentsControllerTest < ActionController::TeachingTestCase
-  test_resources 'teaching/:teaching_id/enroll'
+  matches_resources 'teaching/:teaching_id/enroll'
 
   def test_index
     teaching_get :index
