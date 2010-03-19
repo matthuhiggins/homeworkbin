@@ -1,6 +1,8 @@
 require 'action_controller_test'
 
 class Studying::CoursesControllerTest < ActionController::StudyingTestCase
+  test_resources 'studying'
+  
   def test_index
     studying_get :index
     

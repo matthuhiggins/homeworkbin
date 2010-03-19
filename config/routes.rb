@@ -2,12 +2,11 @@ ActionController::Routing::Routes.draw do |map|
   map.root :controller => 'marketing'
   
   map.resources :lost_passwords
-  map.resource :session
 
   map.resources :enrollments, :controller => 'studying/enrollments', :as => 'enroll'
 
   map.resources :studyings, :controller => 'studying/courses', :as => 'studying' do |studying|
-    studying.resources :assignments do |assignment|
+    studying.resources :assignments, :as => 'homework' do |assignment|
       assignment.resource :composition, :name_prefix => 'studying_', :controller => 'studying/compositions'
     end
   end

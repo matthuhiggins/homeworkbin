@@ -1,6 +1,8 @@
 require 'action_controller_test'
 
 class Teaching::EnrollmentsControllerTest < ActionController::TeachingTestCase
+  test_resources 'teaching/:teaching_id/enroll'
+
   def test_index
     teaching_get :index
     assert_not_nil assigns(:enrollments)

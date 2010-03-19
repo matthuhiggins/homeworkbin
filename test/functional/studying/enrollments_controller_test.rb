@@ -1,6 +1,8 @@
 require 'action_controller_test'
 
 class Studying::EnrollmentsControllerTest < ActionController::TestCase
+  test_resources 'enroll'
+
   def test_show
     enrollment = Factory :enrollment
 

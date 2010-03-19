@@ -1,6 +1,8 @@
 require 'action_controller_test'
 
 class Teaching::AnnotationsControllerTest < ActionController::TeachingTestCase
+  test_resources 'teaching/:teaching_id/submissions/:submission_id/annotations'
+
   def test_create
     teaching_post :create, {
       :submission_id => create_submission.to_param,

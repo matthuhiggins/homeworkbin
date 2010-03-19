@@ -1,6 +1,8 @@
 require 'action_controller_test'
 
 class Teaching::AssignmentsControllerTest < ActionController::TeachingTestCase
+  test_resources 'teaching/:teaching_id/homework'
+  
   def test_index
     teaching_get :index
     assert_kind_of Array, assigns(:upcoming_assignments)

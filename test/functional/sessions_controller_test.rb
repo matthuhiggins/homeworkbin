@@ -1,9 +1,9 @@
 require 'action_controller_test'
 
 class SessionsControllerTest < ActionController::TestCase
-  test_route 'destroy', 'logout#delete'
-  test_route 'new',     'login#get'
-  test_route 'create',  'login#post'
+  test_match 'destroy', 'logout#delete'
+  test_match 'new',     'login#get'
+  test_match 'create',  'login#post'
 
   def test_new
     get :new

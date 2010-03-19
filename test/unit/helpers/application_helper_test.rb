@@ -18,8 +18,8 @@ class ApplicationHelperTest < ActionView::TestCase
 
     assert_dom_equal %{
       <script>
-      YAHOO.util.Event.onDOMReady(function() {
-        document.getElementById('foo').focus();
+      $(function() {
+        $('#foo').focus();
       });
       </script>
       }, script
