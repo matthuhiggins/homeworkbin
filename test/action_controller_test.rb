@@ -1,10 +1,12 @@
 require 'active_support_test'
 require 'action_controller/request_methods'
 require 'action_controller/hall_monitor_assertions'
+require 'action_controller/route_assertions'
 
 module ActionController
   TestCase.class_eval do
     extend RequestMethods
+    include RouteAssertions
     include HallMonitorAssertions
   end
 
