@@ -12,52 +12,39 @@
   </div>
 </div>
 
+<div id="annotations">
+</div>
+
 <%= javascript_include_tag 'selection' %>
 
 <script>
 $(function() {
-  var annotationPath = "<%= teaching_annotations_path(current_course, current_submission) %>";
+  var annotations = <%= current_submission.annotations.to_json %>;
   
-  function annotationJson(comment, snippet) {
-    return JSON.stringify({
-      'annotation': {
-        'comment': comment,
-        'snippet': snippet
-      }
-    });
-  }
-  
-  function postAnnotation(comment, snippet, callback) {
-    $.ajax({
-      url: annotationPath,
-      type: 'post',
-      contentType: 'application/json; charset=utf-8',
-      data: annotationJson(comment, snippet),
-      dataType: 'json',
-      beforeSend: function(request) {
-        this.headers = {'X-Http-Method-Override': 'post'}
-      },
-      success: callback,
-      error: function() {
-        alert('Something went wrong...');
-      }
-    });
+  function nextAnnotationIdentifier() {
+    var max = 1;
+    for (var i = 0; i < annotations.length; i++) {
+      max = max > annotations[i].identifier ? max : annotations[i].identifier;
+    }
+    return max + 1;
   }
 
+  function createAnnotation(comment, snippet) {
+    return {
+      'identifier': nextAnnotationIdentifier(),
+      'comment': comment,
+      'snippet': snippet
+    }
+  }
+  
   $('#annotate').click(function() {
-    postAnnotation('cool dude lol', HW.selection.text(), function(annotation) {
-      HW.selection.wrap(function() {
-        var span = document.createElement('span');
-        span.className = 'annotation';
-        span.className += ' a_' + annotation.id;
-        
-        return span;
-      });
+    var annotation = createAnnotation('cool dude lol', HW.selection.text());
+    HW.selection.wrap(function() {
+      var span = document.createElement('span');
+      span.className = 'annotation';
+      span.className += ' a_' + annotation.identifier;
+      return span;
     });
   });
-
-    // IE
-    // document.body.createTextRange()
-    // document.selection.createRange().htmlText
 });
 </script>

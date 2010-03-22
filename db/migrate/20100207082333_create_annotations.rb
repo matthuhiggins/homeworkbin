@@ -2,6 +2,7 @@ class CreateAnnotations < ActiveRecord::Migration
   def self.up
     create_table :annotations do |t|
       t.references  :submission,    :null => false
+      t.integer     :identifier,    :null => false
       t.text        :snippet,       :null => false
       t.text        :comment,       :null => false 
       t.timestamps

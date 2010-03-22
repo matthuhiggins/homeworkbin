@@ -3,18 +3,18 @@ require 'action_controller_test'
 class Teaching::AnnotationsControllerTest < ActionController::TeachingTestCase
   matches_resources 'teaching/:teaching_id/submissions/:submission_id/annotations'
 
-  def test_create
-    teaching_post :create, {
-      :submission_id => create_submission.to_param,
-      :annotation => {
-        :comment => 'gold star',
-        :snippet => 'green symbolizes envy'
-      }
-    }
-
-    assert !assigns(:annotation).new_record?
-    assert_equal({:id => assigns(:annotation).id}.to_json, @response.body)
-  end
+  # def test_create
+  #   teaching_post :create, {
+  #     :submission_id => create_submission.to_param,
+  #     :annotation => {
+  #       :comment => 'gold star',
+  #       :snippet => 'green symbolizes envy'
+  #     }
+  #   }
+  # 
+  #   assert !assigns(:annotation).new_record?
+  #   assert_equal({:id => assigns(:annotation).id}.to_json, @response.body)
+  # end
   
   def test_destroy
     submission = create_submission
