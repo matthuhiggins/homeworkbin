@@ -16,30 +16,44 @@
 
 <script>
 $(function() {
-  function postAnnotation() {
-      $.ajax({
-        url: url,
-        type: 'post',
-        contentType: 'application/json; charset=utf-8',
-        data: JSON.stringify(filterParams()),
-        dataType: 'json',
-        beforeSend: function(request) {
-          this.headers = {'X-Http-Method-Override': sekretMethod}
-        },
-        success: function(data) {
-          window.location = data.redirect;
-        },
-        error: function() {
-          $('#filter-save').show();
-          $('#filter-saving').hide();
-          alert('Something went wrong...');
-        }
-      });
-    }
+  var annotationPath = "<%= teaching_annotations_path(current_course, current_submission) %>";
+  
+  function annotationJson(comment, snippet) {
+    return JSON.stringify({
+      'annotation': {
+        'comment': comment,
+        'snippet': snippet
+      }
+    });
+  }
+  
+  function postAnnotation(comment, snippet, callback) {
+    $.ajax({
+      url: annotationPath,
+      type: 'post',
+      contentType: 'application/json; charset=utf-8',
+      data: annotationJson(comment, snippet),
+      dataType: 'json',
+      beforeSend: function(request) {
+        this.headers = {'X-Http-Method-Override': 'post'}
+      },
+      success: callback,
+      error: function() {
+        alert('Something went wrong...');
+      }
+    });
   }
 
   $('#annotate').click(function() {
-    alert(HW.selection.text());
+    postAnnotation('cool dude lol', HW.selection.text(), function(annotation) {
+      HW.selection.wrap(function() {
+        var span = document.createElement('span');
+        span.className = 'annotation';
+        span.className += ' a_' + annotation.id;
+        
+        return span;
+      });
+    });
   });
 
     // IE

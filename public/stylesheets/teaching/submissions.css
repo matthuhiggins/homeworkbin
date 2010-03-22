@@ -12,11 +12,15 @@
   
 }
 
-#submission-text {
+#submissions-show #submission-text {
   bottom: 0;
   position: absolute;
   top: 45px;
   width: 100%;
+}
+
+#submissions-show .annotation {
+  font-weight: bold;
 }
 
 /*#submissions-show .text {
