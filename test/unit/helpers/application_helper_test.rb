@@ -24,4 +24,17 @@ class ApplicationHelperTest < ActionView::TestCase
       </script>
       }, script
   end
+  
+  def test_controller_stylesheet_tag
+    @controller = Class.new do
+      def self.name
+        'Acme::BabyKillerController'
+      end
+    end.new
+
+    assert_equal(
+      stylesheet_link_tag('acme/baby_killer'),
+      controller_stylesheet_tag
+    )
+  end
 end
