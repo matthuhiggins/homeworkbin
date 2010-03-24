@@ -2,14 +2,14 @@
 <html>
 <head>
   <%= yui_stylesheet 'cssreset/reset-min' %>
-  <%= stylesheet_link_tag 'core', 'form' %>
-  <%= stylesheet_link_tag "studying/#{controller_name}" %>
+  <%= stylesheet_link_tag 'layouts/whiteboard', 'shared/fonts', 'shared/form' %>
+  <%= controller_stylesheet_tag %>
   <%= javascript_include_tag 'jquery' %>
   <title>
     Homework Bin<%= yield :title %>
   </title>
 </head>
-<body class="studying yui-skin-sam">
+<% body do %>
   <div class="header">
     <div class="main menu">
       <% link_to studyings_path, :class => 'logo' do %>
@@ -39,5 +39,5 @@
   <div class="content">
     <%= yield %>
   </div>
-</body>
+<% end %>
 </html>

@@ -12,8 +12,8 @@
   </div>
 </div>
 
-<div id="annotations">
-</div>
+<!-- <div id="annotations">
+</div> -->
 
 <%= javascript_include_tag 'selection' %>
 
@@ -22,7 +22,7 @@ $(function() {
   var annotations = <%= current_submission.annotations.to_json %>;
   
   function nextAnnotationIdentifier() {
-    var max = 1;
+    var max = 0;
     for (var i = 0; i < annotations.length; i++) {
       max = max > annotations[i].identifier ? max : annotations[i].identifier;
     }
@@ -39,6 +39,7 @@ $(function() {
   
   $('#annotate').click(function() {
     var annotation = createAnnotation('cool dude lol', HW.selection.text());
+    annotations.push(annotation);
     HW.selection.wrap(function() {
       var span = document.createElement('span');
       span.className = 'annotation';

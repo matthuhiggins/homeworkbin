@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <%= yui_stylesheet 'cssreset/reset-min' %>
+  <%= stylesheet_link_tag 'layouts/paper', 'shared/fonts' %>
+  <%= controller_stylesheet_tag %>
+  <%= javascript_include_tag 'jquery' %>
+  <title>
+    Homework Bin<%= yield :title %>
+  </title>
+</head>
+<% body do %>
+  <%= yield %>
+<% end %>
+</html>

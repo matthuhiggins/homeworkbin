@@ -2,13 +2,14 @@
 <html>
 <head>
   <%= yui_stylesheet 'cssreset/reset-min' %>
-  <%= stylesheet_link_tag 'core', 'form', 'playground' %>
+  <%= stylesheet_link_tag 'layouts/whiteboard', 'shared/fonts', 'shared/form' %>
+  <%= controller_stylesheet_tag %>
   <%= javascript_include_tag 'jquery' %>
   <title>
     Homework Bin<%= yield :title %>
   </title>
 </head>
-<body class="playground">
+<% body do %>
   <div class="header">
     <div class="main menu">
       <% link_to root_path, :class => 'logo' do %>
@@ -22,10 +23,7 @@
     </div>
   </div>
   <div class="content">
-    <% if flash[:warning].present? %>
-      <%= content_tag :div, flash[:warning], :class => 'warning' %>
-    <% end %>
     <%= yield %>
   </div>
-</body>
+<% end %>
 </html>

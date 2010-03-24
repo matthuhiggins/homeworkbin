@@ -15,4 +15,8 @@ module ApplicationHelper
       });
     eval
   end
+  
+  def controller_stylesheet_tag
+    stylesheet_link_tag controller.class.name.gsub(/Controller/, '').underscore
+  end
 end

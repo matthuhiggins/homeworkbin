@@ -2,6 +2,7 @@ class Teaching::SubmissionsController < Teaching::BaseController
   topic 'homework'
   
   def show
+    render :layout => 'paper'
   end
   
   private
