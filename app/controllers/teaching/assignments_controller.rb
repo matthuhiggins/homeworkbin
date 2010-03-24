@@ -13,7 +13,7 @@ class Teaching::AssignmentsController < Teaching::BaseController
   def create
     @assignment = current_course.assignments.build params[:assignment]
     if @assignment.save
-      flash[:notice] = "New assignment!"
+      flash[:notice] = 'New assignment!'
       redirect_to teaching_assignment_path(current_course, @assignment)
     else
       render 'new'

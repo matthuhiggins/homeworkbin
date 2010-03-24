@@ -2,6 +2,13 @@
 
 <ul>
   <% current_course.assignments.each do |assignment| %>
-    <li><%= assignment.name %></li>
+    <li>
+      <%= assignment.name %>
+      <% @studier.submission_for(assignment).tap do |submission| %>
+        <%= link_to submission_preview(submission, 200),
+                    teaching_submission_path(current_course, submission),
+                    :class => 'preview' %>
+      <% end %>
+    </li>
   <% end %>
 </ul>
