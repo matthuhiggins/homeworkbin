@@ -24,7 +24,7 @@
           |
           <%= link_to 'Edit assignment', edit_teaching_assignment_path(current_course, assignment) %>
           |
-          <span class="hand-in">
+          <span class="handed-in-at">
             Turned in 
             <% if assignment.late_submission? submission %>
               <span class="late">

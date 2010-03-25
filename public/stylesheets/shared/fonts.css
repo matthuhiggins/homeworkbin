@@ -36,3 +36,7 @@ strong {
 em {
   font-style: italic;
 }
+
+select {
+  font-size: 15px;
+}

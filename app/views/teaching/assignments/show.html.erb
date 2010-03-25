@@ -1,6 +1,6 @@
 <h2>
   <%= @assignment.name %>
-  <%= link_to 'Edit settings', edit_teaching_assignment_path(current_course, @assignment) %>
+  <%= link_to 'Edit name and due date', edit_teaching_assignment_path(current_course, @assignment) %>
 </h2>
 
 <div class="due-date">
@@ -18,7 +18,14 @@
         <%= link_to submission.studier.full_name, teaching_submission_path(current_course, submission) %>
         <%= link_to submission_preview(submission, 200), teaching_submission_path(current_course, submission), :class => 'preview' %>
         <div class="handed-in-at">
-          Submitted <%= submission_handed_in_at(submission) %>
+          Turned in 
+          <% if @assignment.late_submission? submission %>
+            <span class="late">
+              <%= distance_of_time_in_words(@assignment.due_at, submission.handed_in_at) %> late
+            </span>
+          <% end %>
+          at <%= hour(submission.handed_in_at) %>,
+          <%= submission.handed_in_at.strftime('%b %d') %>
         </div>
       </li>
     <% end %>

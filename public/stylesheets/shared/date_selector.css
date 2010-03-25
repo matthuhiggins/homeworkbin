@@ -4,13 +4,16 @@ form .time-selector {
   width: 145px;
 }
 
-form .date-selector input[type="text"],
+form .date-selector input[type="text"] {
+  width: 95%;
+}
+
 form .time-selector select {
+  margin-top: 2px;
   width: 100%;
 }
 
 form .calendar-wrap {
-/*  margin-top: 4px;*/
   position: relative;
   width: 300px;
 }
