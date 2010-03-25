@@ -1,14 +1,41 @@
-<h2><%= @studier.full_name %></h2>
+<h2>
+  <%= @studier.full_name %>'s Homework
+</h2>
 
-<ul>
-  <% current_course.assignments.each do |assignment| %>
+<ul class="assignments">
+  <% @assignments.each do |assignment| %>
     <li>
-      <%= assignment.name %>
+      <span class="assignment-name">
+        <%= assignment.name %>
+      </span>
       <% @studier.submission_for(assignment).tap do |submission| %>
-        <%= link_to submission_preview(submission, 200),
-                    teaching_submission_path(current_course, submission),
-                    :class => 'preview' %>
+        <span class="preview">
+          <% if false && submission.present? %>
+            “<%= link_to submission_preview(submission, 200),
+                        teaching_submission_path(current_course, submission) %>”
+          <% else %>
+            <em>No homework submitted</em>
+          <% end %>
+        </span>
       <% end %>
+      <div class="actions">
+        <% @studier.submission_for(assignment).tap do |submission| %>
+          <%= link_to 'Grade', teaching_submission_path(current_course, submission) %>
+          |
+          <%= link_to 'Edit assignment', edit_teaching_assignment_path(current_course, assignment) %>
+          |
+          <span class="hand-in">
+            Turned in 
+            <% if assignment.late_submission? submission %>
+              <span class="late">
+                <%= distance_of_time_in_words(assignment.due_at, submission.handed_in_at) %> late
+              </span>
+            <% end %>
+            at <%= hour(submission.handed_in_at) %>,
+            <%= submission.handed_in_at.strftime('%b %d') %>
+          </span>
+        <% end %>
+      </div>
     </li>
   <% end %>
 </ul>

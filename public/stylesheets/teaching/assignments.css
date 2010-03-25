@@ -20,15 +20,9 @@
 }
 
 #assignments-index .assignment {
-/*  border-bottom: 1px solid #eee;*/
   border-top: 1px solid #eee;
   overflow: hidden;
   padding: 7px 0;
-}
-
-#assignments-index .assignment + .assignment {
-  border-top: 1px solid #eee;
-/*  border-top-color: transparent;*/
 }
 
 #assignments-index .assignment .options {

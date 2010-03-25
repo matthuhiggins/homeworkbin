@@ -95,4 +95,12 @@ class Assignment::DueTest < ActiveRecord::TestCase
     assert !Factory.build(:assignment, :due_date => Date.current).future?
     assert Factory.build(:assignment, :due_date => Date.current + 1).future?
   end
+  
+  def test_late_submission?
+    course = Factory :course, :start_date => Date.new(2005, 4, 10), :end_date => Date.new(2005, 6, 10)
+    assignment = Factory :assignment, :course => course, :due_date => Date.new(2005, 5, 10), :due_minutes => 180
+
+    assert !assignment.late_submission?(Factory.build(:submission, :assignment => assignment, :handed_in_at => Time.zone.local(2005, 5, 10, 2)))
+    assert assignment.late_submission?(Factory.build(:submission, :assignment => assignment, :handed_in_at => Time.zone.local(2005, 5, 10, 4)))
+  end
 end

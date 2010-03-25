@@ -23,6 +23,31 @@
   text-align: right;
 }
 
-#studiers-show {
-  
+#studiers-show .assignments li {
+  border-top: 1px solid #eee;
+  padding: 7px 0;
+}
+
+#studiers-show .assignment-name {
+}
+
+#studiers-show .preview {
+}
+
+#studiers-show .preview {
+  font-size: 90%;
+}
+
+#studiers-show .actions {
+  font-size: 12px;
+  margin-top: 2px;
+}
+
+#studiers-show .hand-in {
+  font-size: 11px;
+  color: #808080;
+}
+
+#studiers-show .late {
+  color: #DD3C10;
 }

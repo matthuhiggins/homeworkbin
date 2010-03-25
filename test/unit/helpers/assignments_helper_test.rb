@@ -69,7 +69,7 @@ class AssignmentsHelperTest < ActionView::TestCase
   
   def test_save_assignment_text
     assert_equal 'Assign homework »', save_assignment_text(Factory.build :course)
-    assert_equal 'Update homework', save_assignment_text(Factory :course)
+    assert_equal 'Update assignment', save_assignment_text(Factory :course)
     
   end
   

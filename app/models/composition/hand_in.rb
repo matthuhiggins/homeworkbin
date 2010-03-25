@@ -16,7 +16,7 @@ class Composition
     
     def late_hand_in?
       if handed_in?
-        handed_in_at > assignment.due_at
+        assignment.late_submission? self
       else
         Time.current.change(:sec => 0) > assignment.due_at
       end

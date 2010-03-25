@@ -42,6 +42,10 @@ class Assignment
       self.due_date = time.to_date
       self.due_minutes = time.hour * 60 + time.min
     end
+    
+    def late_submission?(submission)
+      submission.handed_in_at > due_at
+    end
 
     private
       def validate_course_period_includes_due_date

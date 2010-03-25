@@ -8,6 +8,7 @@ class Teaching::StudiersController < Teaching::BaseController
   
   def show
     @studier = current_course.studiers.find params[:id]
+    @assignments = current_course.assignments.scoped(:order => 'due_date desc, due_minutes desc')
   end
   
   def destroy

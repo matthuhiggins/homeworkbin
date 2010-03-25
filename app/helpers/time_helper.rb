@@ -13,4 +13,8 @@ module TimeHelper
       format.gsub!(/^0/, '')
     end
   end
+  
+  def month(time)
+    
+  end
 end
