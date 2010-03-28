@@ -16,11 +16,11 @@
         Homework Bin
       <% end %>
       <ul class="links">
-        <li><%= link_to 'Homework', studyings_path %></li>
+        <li><%= link_to 'Your courses', studyings_path %></li>
         <li>|</li>
-        <li><%= link_to 'Settings', teaching_person_path %></li>
+        <li><%= link_to_settings %></li>
         <li>|</li>
-        <li><%= logout %></li>
+        <li><%= link_to_logout %></li>
       </ul>
     </div>
     <% if current_course.present? %>

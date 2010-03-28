@@ -10,7 +10,7 @@
       </span>
       <% @studier.submission_for(assignment).tap do |submission| %>
         <span class="preview">
-          <% if false && submission.present? %>
+          <% if submission.present? %>
             “<%= link_to submission_preview(submission, 200),
                         teaching_submission_path(current_course, submission) %>”
           <% else %>

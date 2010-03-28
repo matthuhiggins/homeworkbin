@@ -3,7 +3,7 @@ module SessionsHelper
     params[:email] || cookies[:last_login]
   end
   
-  def logout
+  def link_to_logout
     link_to 'Logout', logout_path, :method => :delete
   end
 end

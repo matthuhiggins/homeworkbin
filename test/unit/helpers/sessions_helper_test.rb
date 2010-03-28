@@ -12,10 +12,10 @@ class SessionsHelperTest < ActionView::TestCase
     assert_equal 'bar', email_login_value
   end
   
-  def test_logout
+  def test_link_to_logout
     assert_dom_equal(
       link_to('Logout', logout_path, :method => :delete),
-      logout
+      link_to_logout
     )
   end
 end
