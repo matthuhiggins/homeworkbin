@@ -13,9 +13,7 @@ class Disciplines::TimeZoneTest < ActionController::TestCase
     end
   end
   
-  def setup
-    @controller = TestController.new
-  end
+  tests TestController
   
   def test_time_zone_set_from_person
     get :render_time_zone
