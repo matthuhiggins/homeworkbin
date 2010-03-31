@@ -1,6 +1,4 @@
 class SessionsController < ApplicationController
-  layout 'playground'
-
   def create
     if person = Person.authenticate(params[:email], params[:password])
       login person, :remember => params[:remember_me].present?

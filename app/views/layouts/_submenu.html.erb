@@ -1,0 +1,13 @@
+<div class="sub menu">
+  <%= link_to current_course.name,
+              teaching_path(current_course),
+              :class => 'title' %>
+  <ul class="topics">
+    <% topic_tag :li, 'homework' do %>
+      <%= link_to 'Homework', teaching_assignments_path(current_course) %>
+    <% end %>
+    <% topic_tag :li, 'students' do %>
+      <%= link_to 'Students', teaching_studiers_path(current_course) %>
+    <% end %>
+  </ul>
+</div>

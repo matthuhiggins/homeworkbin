@@ -44,6 +44,12 @@ class Disciplines::HallMonitorTest < ActionController::TestCase
     assert_redirected_to '/foo'
   end
   
+  def test_login_to_default_path
+    get :login_without_options
+    
+    assert_redirected_to root_path
+  end
+
   def test_login_with_original_uri
     get :login_without_options, {}, :original_uri => '/foo'
     

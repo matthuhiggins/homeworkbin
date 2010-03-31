@@ -1,8 +1,6 @@
-class Teaching::PeopleController < Teaching::BaseController
+class PeopleController < Teaching::BaseController
   require_login
 
-  layout 'teaching'
-  
   def show
   end
   
@@ -12,9 +10,4 @@ class Teaching::PeopleController < Teaching::BaseController
     end
     redirect_to :back
   end
-  
-  private
-    def current_course
-      nil
-    end
 end

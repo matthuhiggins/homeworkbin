@@ -2,7 +2,7 @@
 
 <h2>Settings</h2>
 
-<% form_for current_person, :url => teaching_person_path, :html => {:method => :put, :id => 'person-form'} do |f| %>
+<% form_for current_person, :url => person_path, :html => {:method => :put, :id => 'person-form'} do |f| %>
   <div>
     <div><%= f.label :full_name, 'Your name' %></div>
     <div><%= f.text_field :full_name %></div>
@@ -23,7 +23,7 @@
     <li>
       <%= link_to 'Change password', nil, :id => 'change-password'  %>
       <% form_for current_person, {
-        :url => teaching_person_path,
+        :url => person_path,
         :html => {
           :method => :put,
           :id     => 'password-form',

@@ -1,6 +1,4 @@
 class Teaching::RegistrationsController < ApplicationController
-  layout 'playground'
-
   def create
     @registration = Registration.new params[:registration]
     if @registration.save

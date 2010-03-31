@@ -1,6 +1,4 @@
 class LostPasswordsController < ApplicationController
-  layout 'playground'
-
   def new
     @lost_password = LostPassword.new params[:lost_password]
   end

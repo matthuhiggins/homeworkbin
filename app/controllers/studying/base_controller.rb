@@ -1,5 +1,4 @@
 class Studying::BaseController < ApplicationController
-  layout 'studying'
   require_login
   include Disciplines::TimeZone
   
@@ -17,5 +16,4 @@ class Studying::BaseController < ApplicationController
     def current_course
       current_studier.try :course
     end
-    helper_method :current_course
 end

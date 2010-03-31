@@ -1,7 +1,12 @@
 ActionController::Routing::Routes.draw do |map|
-  map.root :controller => 'marketing'
+  map.root :controller => 'home'
   
   map.resources :lost_passwords
+  map.resource :person, :as => 'settings'
+  
+  map.login   'login',    :controller => 'sessions',      :action => 'new', :conditions => { :method => :get }
+  map.connect 'login',    :controller => 'sessions',      :action => 'create', :conditions => { :method => :post }
+  map.logout  'logout',   :controller => 'sessions',      :action => 'destroy', :conditions => { :method => :delete }
 
   map.resources :enrollments, :controller => 'studying/enrollments', :as => 'enroll'
 
@@ -21,14 +26,6 @@ ActionController::Routing::Routes.draw do |map|
       submissions.resources :annotations, :name_prefix => 'teaching_', :controller => 'teaching/annotations'
     end
   end
-
-  map.namespace :teaching do |teaching|
-    teaching.resource  :person, :as => 'settings'
-  end
-    
-  map.login   'login',    :controller => 'sessions',      :action => 'new', :conditions => { :method => :get }
-  map.connect 'login',    :controller => 'sessions',      :action => 'create', :conditions => { :method => :post }
-  map.logout  'logout',   :controller => 'sessions',      :action => 'destroy', :conditions => { :method => :delete }
 
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'

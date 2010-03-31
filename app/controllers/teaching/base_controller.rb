@@ -1,5 +1,4 @@
 class Teaching::BaseController < ApplicationController
-  layout 'teaching'
   require_login
   include Disciplines::TimeZone
   
@@ -14,5 +13,4 @@ class Teaching::BaseController < ApplicationController
         @current_course ||= current_teacher.teaching.find params[:teaching_id]
       end
     end
-    helper_method :current_course
 end

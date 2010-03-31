@@ -15,10 +15,11 @@
       <% link_to root_path, :class => 'logo' do %>
         Homework Bin
       <% end %>
-      <ul class="links">
-
-      </ul>
+      <%= render 'layouts/links' %>
     </div>
+    <% if current_course.present? %>
+      <%= render 'layouts/submenu' %>
+    <% end %>
   </div>
   <div class="content">
     <%= yield %>

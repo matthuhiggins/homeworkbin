@@ -31,20 +31,12 @@ module Disciplines
       end
 
       def redirect_after_login(redirect_path = nil)
-        uri = redirect_path || session[:original_uri] || default_home
+        uri = redirect_path || session[:original_uri] || root_path
         session[:original_uri] = nil
         redirect_to(uri)
       end
 
     private
-      def default_home
-        if current_person.teaching?
-          teachings_path
-        else#if current_person.studying?
-          studyings_path
-        end
-      end
-    
       def person_from_session
         if session[:person_id]
           Person.find_by_id(session[:person_id])
