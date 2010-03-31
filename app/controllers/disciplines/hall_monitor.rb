@@ -8,7 +8,7 @@ module Disciplines
 
     module ClassMethods
       def require_login(options = {})
-        before_filter :check_authentication, options
+        prepend_before_filter :check_authentication, options
       end
     end
   

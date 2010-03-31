@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   filter_parameter_logging :password
   
   include Disciplines::HallMonitor
+  include Disciplines::TimeZone
   include Disciplines::Topic
   
   private

@@ -1,6 +1,5 @@
 class Teaching::BaseController < ApplicationController
   require_login
-  include Disciplines::TimeZone
   
   private
     def current_teacher
