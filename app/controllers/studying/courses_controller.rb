@@ -9,7 +9,7 @@ class Studying::CoursesController < Studying::BaseController
   private
     def current_course
       if params[:id].present?
-        @current_course ||= current_student.studying.find params[:id]
+        @current_studier ||= current_student.studiers.find_by_course_id! params[:id]
       end
     end
 end

@@ -9,8 +9,6 @@ class Teaching::BaseController < ApplicationController
     helper_method :current_teacher
     
     def current_course
-      if params[:teaching_id].present?
-        @current_course ||= current_teacher.teaching.find params[:teaching_id]
-      end
+      @current_course ||= current_teacher.teaching.find params[:teaching_id]
     end
 end

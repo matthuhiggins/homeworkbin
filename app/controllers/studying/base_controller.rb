@@ -8,9 +8,7 @@ class Studying::BaseController < ApplicationController
     end
     
     def current_studier
-      if params[:studying_id].present?
-        @studier ||= current_student.studiers.find_by_course_id! params[:studying_id]
-      end
+      @current_studier ||= current_student.studiers.find_by_course_id! params[:studying_id]
     end
 
     def current_course
