@@ -1,5 +1,5 @@
 class Course < ActiveRecord::Base
-  include ActiveRecord::TimeZoneInfo
+  include Course::TimeZoneInfo
 
   validates_presence_of :name
   
@@ -14,18 +14,9 @@ class Course < ActiveRecord::Base
   has_many :submissions
   has_many :enrollments, :extend => Enrollment::Matriculation
 
-
   after_create do |course|
     course.teacher.decrement! :courses_available
     course.teacher.increment! :courses_created
-  end
-
-  before_create :unless => :time_zone do |course|
-    course.time_zone = 'Pacific Time (US & Canada)'
-  end
-
-  def time_zone
-    self[:time_zone] ||= 'Pacific Time (US & Canada)'
   end
 
   def last
