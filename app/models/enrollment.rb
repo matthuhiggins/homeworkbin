@@ -5,7 +5,7 @@ class Enrollment < ActiveRecord::Base
   belongs_to :course
   delegate :teacher, :to => :course
 
-  before_validation :on => :create do
+  validate :email, :on => :create do
     if course.students.exists?(:email => email)
       errors.add :email, 'is already in this course'
     end
@@ -14,7 +14,7 @@ class Enrollment < ActiveRecord::Base
   attr_accessor :student_attributes_submitted
   attr_accessor :accept_enrollment
 
-  before_validation :on => :update, :if => :student_attributes_submitted do
+  validate :student, :on => :update, :if => :student_attributes_submitted do
     if student.invalid?
       errors.add :student, 'is invalid'
     end

@@ -10,9 +10,9 @@ class LostPassword < ActiveRecord::Base
     self.person = Person.find_by_email value
   end
   
-  validate_on_create do |lost_password|
-    if lost_password.person.blank?
-      lost_password.errors.add :email, 'does not exist'
+  validate :email, :on => :create do
+    if person.blank?
+      errors.add :email, 'does not exist'
     end
   end
 

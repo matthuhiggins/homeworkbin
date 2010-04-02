@@ -6,7 +6,7 @@ class Registration < ActiveRecord::Base
   validates_presence_of :full_name, :on => :create
   validates_presence_of :password, :on => :create
 
-  before_validation :on => :create do
+  validate :email, :on => :create do
     if Teacher.exists? :email => email
       errors.add :email, 'is already in use'
     end
