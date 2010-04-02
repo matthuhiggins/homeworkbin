@@ -11,7 +11,7 @@ class Assignment
       def handout_assignment
         increment :handout_count
         course.students.each do |student|
-          Mailer.deliver_assignment self, student
+          Mailer.assignment(self, student).deliver
         end
       end
   end

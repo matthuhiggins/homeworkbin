@@ -23,9 +23,9 @@ class Enrollment < ActiveRecord::Base
   after_create do
     if student.automatically_enroll
       studier = enroll_student!
-      Mailer.deliver_studier studier
+      Mailer.studier(studier).deliver
     else
-      Mailer.deliver_enrollment self
+      Mailer.enrollment(self).deliver
     end
   end
 

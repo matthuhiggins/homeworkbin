@@ -5,7 +5,7 @@ class Course
     included do
       delegate :utc_offset, :to => :time_zone_info
       
-      before_create :unless => :time_zone
+      before_create :unless => :time_zone do
         self.time_zone = 'Pacific Time (US & Canada)'
       end
     end

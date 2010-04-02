@@ -8,7 +8,7 @@ class Enrollment
   
     def matriculate_email(email)
       if enrollment = find_by_email(email)
-        Mailer.deliver_enrollment enrollment
+        Mailer.enrollment(enrollment).deliver
       else
         enrollment = create(:email => email)
       end

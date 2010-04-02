@@ -43,7 +43,7 @@ class MailerTest < ActionMailer::TestCase
 
   private
     def with_mail(method, *args)
-      Mailer.send "deliver_#{method}", *args
+      Mailer.send(method, *args).deliver
       yield Mailer.deliveries.first
     end
 end

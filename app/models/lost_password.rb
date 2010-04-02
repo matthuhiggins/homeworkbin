@@ -17,7 +17,7 @@ class LostPassword < ActiveRecord::Base
   end
 
   after_create do |lost_password|
-    Mailer.deliver_lost_password lost_password
+    Mailer.lost_password(lost_password).deliver
   end
   
   attr_reader :new_password

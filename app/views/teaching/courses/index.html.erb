@@ -1,16 +1,10 @@
-<% if current_teacher.courses_created > 0 %>
-  <div id="course-index">
-    <h2>
-      Your courses
-      <%= link_to 'Start a new course »', new_teaching_path %>
-    </h2>
-  
-    <ul class="courses">
-      <% @courses.each do |course| %>
-        <li class="course"><%= render course %></li>
-      <% end %>
-    </ul>
-  </div>
-<% else %>
-  <%= render 'first_course' %>
-<% end %>
+<h2>
+  Your courses
+  <%= link_to 'Start a new course »', new_teaching_path %>
+</h2>
+
+<ul class="courses">
+  <% @courses.each do |course| %>
+    <li class="course"><%= render course %></li>
+  <% end %>
+</ul>

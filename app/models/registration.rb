@@ -13,7 +13,7 @@ class Registration < ActiveRecord::Base
   end
 
   after_create do
-    Mailer.deliver_registration self
+    Mailer.registration(self).deliver
   end
 
   def create_teacher!
