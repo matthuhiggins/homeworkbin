@@ -2,7 +2,7 @@
 
 <h2>Forgot your password?</h2>
 
-<% form_for @lost_password do |f| %>
+<%= form_for @lost_password do |f| %>
   <div><%= f.label :email, 'Your email' %></div>
   <div><%= f.text_field :email %></div>
   <div><%= f.error_message_on :email, :prepend_text => 'Email ' %></div>

@@ -85,20 +85,6 @@ class AssignmentsHelperTest < ActionView::TestCase
     assert_equal 'Thu, Dec 25', relative_assignment_due_date(Assignment.new :due_date => Date.new(2003, 12, 25))
   end
   
-  def test_next_assignment
-    assignment = create_assignment
-    
-    next_assignment Assignment.scoped({}) do |a|
-      assert_equal assignment, a
-    end
-  end
-  
-  def test_next_assignment_when_nil
-    next_assignment Assignment.scoped({}) do |a|
-      assert false, 'Should not enter block'
-    end
-  end
-  
   private
     def build_assignment(attributes = {})
       Factory.build :assignment, attributes.reverse_merge!(:course => current_course)

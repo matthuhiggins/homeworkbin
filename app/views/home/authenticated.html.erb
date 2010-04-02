@@ -2,6 +2,20 @@
 
 <h2>Your courses</h2>
 
-<%= debug @studying %>
+<% if @studying.any? %>
+  <strong>Studying</strong>
+  <ul>
+    <% @studying.each do |course| %>
+      <li><%= link_to course.name, studying_path(course) %></li>
+    <% end %>
+  </ul>
+<% end %>
 
-<%= debug @teaching %>
+<% if @teaching.any? %>
+  <strong>Teaching</strong>
+  <ul>
+    <% @teaching.each do |course| %>
+      <li><%= link_to course.name, teaching_path(course) %></li>
+    <% end %>
+  </ul>
+<% end %>

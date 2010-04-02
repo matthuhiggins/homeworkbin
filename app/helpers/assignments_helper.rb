@@ -72,11 +72,5 @@ module AssignmentsHelper
     else
       assignment.due_date.strftime('%a, %b %d')
     end
-  end
-  
-  def next_assignment(assignments)
-    if assignment = assignments.next
-      yield(assignment)
-    end
-  end
+  end  
 end

@@ -1,4 +1,4 @@
-class PeopleController < Teaching::BaseController
+class PeopleController < ApplicationController
   require_login
 
   def show

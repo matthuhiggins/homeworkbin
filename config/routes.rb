@@ -1,32 +1,31 @@
-ActionController::Routing::Routes.draw do |map|
-  map.root :controller => 'home'
-  
-  map.resources :lost_passwords
-  map.resource :person, :as => 'settings'
-  
-  map.login   'login',    :controller => 'sessions',      :action => 'new', :conditions => { :method => :get }
-  map.connect 'login',    :controller => 'sessions',      :action => 'create', :conditions => { :method => :post }
-  map.logout  'logout',   :controller => 'sessions',      :action => 'destroy', :conditions => { :method => :delete }
+Homeworkbin::Application.routes.draw do |map|
+  root :to => 'home#index'
 
-  map.resources :enrollments, :controller => 'studying/enrollments', :as => 'enroll'
+  resources :lost_passwords
+  resource :person, :as => 'settings'
 
-  map.resources :studyings, :controller => 'studying/courses', :as => 'studying' do |studying|
-    studying.resources :assignments, :as => 'homework' do |assignment|
-      assignment.resource :composition, :name_prefix => 'studying_', :controller => 'studying/compositions'
-    end
+  controller :sessions do
+    get     'login',  :to => :new,      :as => 'login'
+    post    'login',  :to => :create
+    delete  'logout', :to => :destroy,  :as => 'logout'
   end
-  
-  map.resources :registrations, :controller => 'teaching/registrations', :as => 'signup'
 
-  map.resources :teachings, :controller => 'teaching/courses', :as => 'teaching', :requirements => {:id => /\d+/} do |teachings|
-    teachings.resources :assignments,  :controller => 'teaching/assignments',   :as => 'homework'
-    teachings.resources :enrollments,  :controller => 'teaching/enrollments',   :as => 'enroll'
-    teachings.resources :studiers,     :controller => 'teaching/studiers',      :as => 'students'
-    teachings.resources :submissions,  :controller => 'teaching/submissions' do |submissions|
-      submissions.resources :annotations, :name_prefix => 'teaching_', :controller => 'teaching/annotations'
+  resources :enrollments, :controller => 'studying/enrollments', :as => 'enroll'
+
+  resources :studyings, :controller => 'studying/courses', :as => 'studying' do
+    resources :assignments, :as => 'homework' do
+      resource :composition, :name_prefix => 'studying_', :controller => 'studying/compositions'
     end
   end
 
-  map.connect ':controller/:action/:id'
-  map.connect ':controller/:action/:id.:format'
+  # controller_namespace
+  resources :registrations, :controller => 'teaching/registrations', :as => 'signup'
+  resources :teachings, :controller => 'teaching/courses', :as => 'teaching' do
+    resources :assignments,  :controller => 'teaching/assignments',   :as => 'homework'
+    resources :enrollments,  :controller => 'teaching/enrollments',   :as => 'enroll'
+    resources :studiers,     :controller => 'teaching/studiers',      :as => 'students'
+    resources :submissions,  :controller => 'teaching/submissions' do
+      resources :annotations, :name_prefix => 'teaching_', :controller => 'teaching/annotations'
+    end
+  end
 end

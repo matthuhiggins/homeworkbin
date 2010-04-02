@@ -3,8 +3,9 @@
 <head>
   <%= yui_stylesheet 'cssreset/reset-min' %>
   <%= stylesheet_link_tag 'layouts/whiteboard', 'shared/fonts', 'shared/form' %>
+  <%= csrf_meta_tag %>
   <%= controller_stylesheet_tag %>
-  <%= javascript_include_tag 'jquery' %>
+  <%= javascript_include_tag 'jquery', 'rails' %>
   <title>
     Homework Bin<%= yield :title %>
   </title>
