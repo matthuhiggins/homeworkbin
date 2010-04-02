@@ -9,8 +9,8 @@ class HomeController < ApplicationController
   
   private
     def render_authenticated
-      @studying = []
-      @teaching = []
+      @studying = Course.scoped :include => :studiers, :conditions => {'studiers.student_id' => current_person}
+      @teaching = Course.scoped :conditions => {:teacher_id => current_person}
       render 'authenticated'
     end
     

@@ -1,20 +1,5 @@
-RAILS_GEM_VERSION = '2.3.5' unless defined? RAILS_GEM_VERSION
+# Load the rails application
+require File.expand_path('../application', __FILE__)
 
-require File.join(File.dirname(__FILE__), 'boot')
-
-Rails::Initializer.run do |config|
-  config.time_zone = 'UTC'
-
-  config.gem 'matthuhiggins-foreigner', :version => '0.4.1', :lib => 'foreigner'
-  # config.gem 'will_paginate',           :version => '2.3.11'
-  # config.gem 'json',                    :version => '1.2.0'
-
-  config.action_mailer.default_url_options = {
-    :host => 'homeworkbin.com',
-    :only_path => false
-  }
-
-  # config.after_initialize do
-  #   ActiveSupport::JSON.backend = 'JSONGem'
-  # end
-end
+# Initialize the rails application
+Homeworkbin::Application.initialize!

@@ -6,16 +6,16 @@
 
 <h2>Log in</h2>
 
-<% form_tag(login_path, :class => 'login_form') do %>
+<%= form_tag(login_path, :class => 'login_form') do %>
   <div>
     <%= label_tag :email %>
   </div>
   <div><%= text_field_tag :email, email_login_value %></div>
   <div>
-    <% content_tag :label, :for => :password do %>
+    <label for="password">
       Password
       (<%= link_to 'Lose your password?', new_lost_password_path %>)
-    <% end %>
+    </label>
   </div>
   <div>
     <%= password_field_tag :password, {} %>

@@ -5,22 +5,30 @@ class Enrollment < ActiveRecord::Base
   belongs_to :course
   delegate :teacher, :to => :course
 
-  validate_on_create do |enrollment|
-    if enrollment.course.students.exists?(:email => enrollment.email)
-      enrollment.errors.add :email, 'is already in this course'
+  before_validation :on => :create do
+    if course.students.exists?(:email => email)
+      errors.add :email, 'is already in this course'
     end
   end
   
   attr_accessor :student_attributes_submitted
   attr_accessor :accept_enrollment
 
-  validate_on_update :if => :student_attributes_submitted do |enrollment|
-    if enrollment.student.invalid?
-      enrollment.errors.add :student, 'is invalid'
+  validate_on_update :if => :student_attributes_submitted do
+    if student.invalid?
+      errors.add :student, 'is invalid'
     end
   end
   
-  after_create :enroll_or_query_student
+  after_create do
+    if student.automatically_enroll
+      studier = enroll_student!
+      Mailer.deliver_studier studier
+    else
+      Mailer.deliver_enrollment self
+    end
+  end
+
   after_update :enroll_student!, :if => :accept_enrollment
   
   def student
@@ -43,14 +51,4 @@ class Enrollment < ActiveRecord::Base
       studier
     end
   end
-
-  private
-    def enroll_or_query_student
-      if student.automatically_enroll
-        studier = enroll_student!
-        Mailer.deliver_studier studier
-      else
-        Mailer.deliver_enrollment self
-      end
-    end
 end

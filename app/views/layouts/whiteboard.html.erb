@@ -9,10 +9,10 @@
     Homework Bin<%= yield :title %>
   </title>
 </head>
-<% body do %>
+<%= body do %>
   <div class="header">
     <div class="main menu">
-      <% link_to root_path, :class => 'logo' do %>
+      <%= link_to root_path, :class => 'logo' do %>
         Homework Bin
       <% end %>
       <%= render 'layouts/links' %>
