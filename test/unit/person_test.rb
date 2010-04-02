@@ -4,19 +4,12 @@ class PersonTest < ActiveRecord::TestCase
   include ActiveRecord::AuthenticatedTests
   include ActiveRecord::EmailValidationTests
   
-  def test_teaching?
-    assert !Factory(:person).teaching?
-    assert !Factory(:student).teaching?
-    assert Factory(:teacher).teaching?
+  def test_teacher
+    assert_kind_of Teacher, Factory.build(:person).teacher
   end
   
-  def test_studying?
-    student = Factory :student
-    assert !student.studying?
-    
-    student.studying << Factory(:course)
-
-    assert student.studying?
+  def test_student
+    assert_kind_of Student, Factory.build(:person).student
   end
   
   def test_validate_presence_of_password

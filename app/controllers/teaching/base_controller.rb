@@ -3,7 +3,7 @@ class Teaching::BaseController < ApplicationController
   
   private
     def current_teacher
-      @current_teacher ||= current_person.becomes(Teacher)
+      current_person.teacher
     end
     helper_method :current_teacher
     

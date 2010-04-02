@@ -8,11 +8,11 @@ class Person < ActiveRecord::Base
 
   has_many :lost_passwords
 
-  def teaching?
-    registered_as_teacher
+  def teacher
+    @teacher ||= becomes(Teacher)
   end
 
-  def studying?
-    Studier.exists? :student_id => self
+  def student
+    @student ||= becomes(Student)
   end
 end

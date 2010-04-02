@@ -3,7 +3,7 @@ class Studying::BaseController < ApplicationController
   
   private
     def current_student
-      @current_student ||= current_person.becomes(Student)
+      current_person.student
     end
     
     def current_studier
