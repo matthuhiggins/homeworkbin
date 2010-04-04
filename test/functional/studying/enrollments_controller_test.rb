@@ -1,7 +1,15 @@
 require 'action_controller_test'
 
-class Studying::EnrollmentsControllerTest < ActionController::TestCase
+class Studying::EnrollmentsControllerTest < ActionController::PersonTestCase
   matches_resources 'enroll'
+
+  def test_index
+    enrollment = Factory :enrollment, :email => current_person.email
+
+    person_get :index
+    
+    assert_equal [enrollment], assigns(:enrollments)
+  end
 
   def test_show
     enrollment = Factory :enrollment

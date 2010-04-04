@@ -1,4 +1,10 @@
 class Studying::EnrollmentsController < ApplicationController
+  require_login :only => :index
+  
+  def index
+    @enrollments = current_person.student.enrollments(:include => {:course => :teacher})
+  end
+  
   def show
     @enrollment = Enrollment.find_by_token! params[:id]
   end

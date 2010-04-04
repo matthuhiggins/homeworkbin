@@ -1,0 +1,27 @@
+<% title 'Open enrollments' %>
+
+<h2>Open enrollments</h2>
+
+<ul class="enrollments">
+  <% (@enrollments + @enrollments).each do |enrollment| %>
+    <li class="enrollment">
+      <div>
+        <span class="name">
+          <%= enrollment.course.name %>
+        </span>
+        <span class="taught-by">
+          taught by
+          <%= enrollment.course.teacher.full_name %>
+          (<%= enrollment.course.teacher.email %>)
+        </span>
+      </div>
+      <div class="actions">
+        <%= link_to 'Dismiss', enrollment_path(enrollment), :method => :delete %>
+        |
+        <%= link_to 'Accept',
+                    enrollment_path(enrollment, :accept_enrollment => '1'),
+                    :method => :put %>
+      </div>
+    </li>
+  <% end %>
+</ul>

@@ -14,7 +14,10 @@ module ActionView
       @current_course ||= Factory(:course)
     end
     
-    delegate :controller_name, :to => :controller
+    def controller_name
+      @params[:controller] || 'test'
+    end
+    
     def action_name
       @params[:action] || 'index'
     end

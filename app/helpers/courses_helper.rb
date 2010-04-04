@@ -28,7 +28,7 @@ module CoursesHelper
   end
   
   def save_course_text(course)
-    course.new_record? ? 'Create course »' : 'Save changes'
+    course.new_record? ? 'Create course' : 'Save changes'
   end
   
   def course_date_range(course)

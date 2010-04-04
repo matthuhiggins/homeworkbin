@@ -57,7 +57,7 @@ module AssignmentsHelper
   end
   
   def save_assignment_text(assignment)
-    assignment.new_record? ? 'Assign homework »' : 'Update assignment'
+    assignment.new_record? ? 'Assign homework' : 'Update assignment'
   end
   
   def assignment_due_at(assignment)

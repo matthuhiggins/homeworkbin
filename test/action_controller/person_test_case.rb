@@ -7,7 +7,7 @@ module ActionController
     
     private
       def current_person
-        @person ||= Factory(:person)
+        @current_person ||= Factory :person
       end
   end
 end

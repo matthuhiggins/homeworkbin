@@ -1,5 +1,19 @@
 <% title 'Your courses' %>
 
+<% if true || @studying.any? %>
+  <h2>
+    Courses you are studying
+    <% if @enrollment_count > 0 %>
+      <%= link_to pluralize(@enrollment_count, 'pending enrollment'), enrollments_path %>
+    <% end %>
+  </h2>
+  <ul>
+    <% @studying.each do |course| %>
+      <li><%= link_to course.name, studying_path(course) %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <% if current_person.registered_as_teacher && @teaching.empty? %>
   <%= render 'first_course' %>
 <% end %>
@@ -12,15 +26,6 @@
   <ul>
     <% @teaching.each do |course| %>
       <li><%= link_to course.name, teaching_path(course) %></li>
-    <% end %>
-  </ul>
-<% end %>
-
-<% if @studying.any? %>
-  <h2>Courses you are teaching</h2>
-  <ul>
-    <% @studying.each do |course| %>
-      <li><%= link_to course.name, studying_path(course) %></li>
     <% end %>
   </ul>
 <% end %>
