@@ -1,5 +1,6 @@
 class Studying::EnrollmentsController < ApplicationController
   require_login :only => :index
+  respond_to :html, :json
   
   def index
     @enrollments = current_person.student.enrollments(:include => {:course => :teacher})
@@ -13,7 +14,9 @@ class Studying::EnrollmentsController < ApplicationController
   def update
     @enrollment = Enrollment.find_by_token! params[:id]
     if @enrollment.update_attributes params[:enrollment]
-      login @enrollment.student, :redirect => studying_path(@enrollment.course)
+      when_not_from_index do
+        login @enrollment.student, :redirect => studying_path(@enrollment.course)
+      end
     else
       render 'show'
     end
@@ -22,6 +25,18 @@ class Studying::EnrollmentsController < ApplicationController
   def destroy
     @enrollment = Enrollment.find_by_token! params[:id]
     @enrollment.destroy
-    redirect_to root_path
+    when_not_from_index do
+      redirect_to root_path
+    end
   end
+
+  private
+    # TODO test
+    def when_not_from_index
+      if request.referer == enrollments_url
+        redirect_to(current_person.student.enrollments.any? ? enrollments_path : root_path)
+      else
+        yield
+      end
+    end
 end
