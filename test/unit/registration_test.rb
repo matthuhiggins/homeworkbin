@@ -16,7 +16,7 @@ class RegistrationTest < ActiveRecord::TestCase
     
     existing_person = Factory.build :registration, :email => person.email
     assert existing_person.invalid?
-    assert_equal 'is already in use', existing_person.errors.on(:email)
+    assert_equal 'is already in use', existing_person.errors[:email]
     
     new_person = Factory.build :registration
     assert new_person.valid?
@@ -25,8 +25,8 @@ class RegistrationTest < ActiveRecord::TestCase
   def test_validate_presence
     registration = Factory.build :registration, :full_name => '', :password => ''
     assert registration.invalid?
-    assert_equal "can't be blank", registration.errors.on(:full_name)
-    assert_equal "can't be blank", registration.errors.on(:password)
+    assert_equal "can't be blank", registration.errors[:full_name]
+    assert_equal "can't be blank", registration.errors[:password]
   end
   
   def test_create_teacher_copies_attributes

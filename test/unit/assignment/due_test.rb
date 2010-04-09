@@ -48,10 +48,10 @@ class Assignment::DueTest < ActiveRecord::TestCase
     course = Factory :course
 
     assert (assignment = Factory.build(:assignment, :due_date => course.start_date - 1)).invalid?
-    assert_equal 'is before this course', assignment.errors.on(:due_date)
+    assert_equal 'is before this course', assignment.errors[:due_date]
 
     assert (assignment = Factory.build(:assignment, :due_date => course.end_date + 1)).invalid?
-    assert_equal 'is after this course', assignment.errors.on(:due_date)
+    assert_equal 'is after this course', assignment.errors[:due_date]
     
     assert (assignment = Factory.build(:assignment, :due_date => course.start_date)).valid?
     assert (assignment = Factory.build(:assignment, :due_date => course.end_date)).valid?

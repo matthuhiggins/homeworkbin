@@ -5,20 +5,20 @@ class PersonTest < ActiveRecord::TestCase
   include ActiveRecord::EmailValidationTests
   
   def test_teacher
-    assert_kind_of Teacher, Factory.build(:person).teacher
+    assert_kind_of Teacher, factory.build.teacher
   end
   
   def test_student
-    assert_kind_of Student, Factory.build(:person).student
+    assert_kind_of Student, factory.build.student
   end
   
   def test_validate_presence_of_password
-    person = Factory :person
+    person = factory.create
 
     person.update_attributes(:password => nil)
-    assert_nil person.errors.on(:password)
+    assert person.errors[:password].empty?
     
     person.update_attributes(:password => '')
-    assert_equal "can't be blank", person.errors.on(:password)
+    assert person.errors[:password].include?("can't be blank")
   end
 end

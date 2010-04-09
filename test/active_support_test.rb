@@ -13,8 +13,8 @@ module ActiveSupport
         nil
       end
 
-      def factory_name
-        guess_klass_name.underscore
+      def factory
+        Factory[guess_klass_name.underscore]
       end
 
       def guess_klass_name
@@ -28,6 +28,10 @@ module ActiveSupport
       yield
     ensure
       Time.zone = original_time_zone
+    end
+
+    def factory
+      self.class.factory
     end
     
     def assert_destroyed(record)

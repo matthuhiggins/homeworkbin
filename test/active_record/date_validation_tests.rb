@@ -22,7 +22,7 @@ module ActiveRecord
         ['', nil, '12/40/2004', '12/25', '10-2004'].each do |value|
           record[attribute] = value
           assert record.invalid?
-          assert_equal ERROR_MESSAGE, record.errors.on(attribute)
+          assert_equal record.errors[attribute].include?(ERROR_MESSAGE)
         end
       end
 
@@ -32,7 +32,7 @@ module ActiveRecord
         ['jun 5 2003', '12/20/2004', '2/2/2003'].each do |value|
           record[attribute] = value
           record.valid?
-          assert record.errors.on(attribute).nil? || !record.errors.on(attribute).include?(ERROR_MESSAGE)
+          assert !record.errors[attribute].include?(ERROR_MESSAGE)
         end
       end
   end

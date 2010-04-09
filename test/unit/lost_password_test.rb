@@ -7,7 +7,7 @@ class LostPasswordTest < ActiveRecord::TestCase
     lost_password = Factory.build :lost_password, :email => 'joe@spu.edu'
     
     assert lost_password.invalid?
-    assert_equal 'does not exist', lost_password.errors.on(:email)
+    assert_equal 'does not exist', lost_password.errors[:email]
   end
   
   def test_email_rejected_during_update
@@ -43,7 +43,7 @@ class LostPasswordTest < ActiveRecord::TestCase
     lost_password.new_password = ''
     
     assert lost_password.invalid?
-    assert_equal "can't be blank", lost_password.errors.on(:new_password)
+    assert_equal "can't be blank", lost_password.errors[:new_password]
   end
   
   def test_new_password

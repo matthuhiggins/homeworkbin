@@ -1,17 +1,17 @@
 module ActiveRecord
   module TokenizedTests
     def test_token_generated
-      assert_not_nil Factory(self.class.factory_name).token
+      assert_not_nil factory.create.token
     end
     
     def test_to_param
-      record = Factory self.class.factory_name
+      record = factory.create
       assert_equal record.token, record.to_param
     end
     
     def test_prune
-      old_record = Factory self.class.factory_name, :created_at => 2.weeks.ago
-      recent_record = Factory self.class.factory_name, :created_at => 1.day.ago
+      old_record = factory.create :created_at => 2.weeks.ago
+      recent_record = factory.create :created_at => 1.day.ago
       
       self.class.target_klass.prune
       
