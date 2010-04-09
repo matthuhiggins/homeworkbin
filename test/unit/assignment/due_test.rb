@@ -45,13 +45,13 @@ class Assignment::DueTest < ActiveRecord::TestCase
   end
 
   def test_validate_due_date_within_course
-    course = Factory :course
+    course = Factory.course.create
 
     assert (assignment = factory.build(:due_date => course.start_date - 1)).invalid?
-    assert_equal 'is before this course', assignment.errors[:due_date]
+    assert_equal ['is before this course'], assignment.errors[:due_date]
 
     assert (assignment = factory.build(:due_date => course.end_date + 1)).invalid?
-    assert_equal 'is after this course', assignment.errors[:due_date]
+    assert_equal ['is after this course'], assignment.errors[:due_date]
     
     assert (assignment = factory.build(:due_date => course.start_date)).valid?
     assert (assignment = factory.build(:due_date => course.end_date)).valid?
@@ -74,7 +74,7 @@ class Assignment::DueTest < ActiveRecord::TestCase
   end
   
   def test_due_at_writer
-    assignment = Factory.build :assignment_without_due, :due_at => Time.utc(2004, 10, 22, 10, 5)
+    assignment = Factory.assignment_without_due.build :due_at => Time.utc(2004, 10, 22, 10, 5)
     
     assert_equal Date.new(2004, 10, 22), assignment.due_date
     assert_equal 605, assignment.due_minutes
@@ -100,7 +100,7 @@ class Assignment::DueTest < ActiveRecord::TestCase
     course = Factory.course.create :start_date => Date.new(2005, 4, 10), :end_date => Date.new(2005, 6, 10)
     assignment = factory.create :course => course, :due_date => Date.new(2005, 5, 10), :due_minutes => 180
 
-    assert !assignment.late_submission?(Factory.build(:submission, :assignment => assignment, :handed_in_at => Time.zone.local(2005, 5, 10, 2)))
-    assert assignment.late_submission?(Factory.build(:submission, :assignment => assignment, :handed_in_at => Time.zone.local(2005, 5, 10, 4)))
+    assert !assignment.late_submission?(Factory.submission.build(:assignment => assignment, :handed_in_at => Time.zone.local(2005, 5, 10, 2)))
+    assert assignment.late_submission?(Factory.submission.build(:assignment => assignment, :handed_in_at => Time.zone.local(2005, 5, 10, 4)))
   end
 end

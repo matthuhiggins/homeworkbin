@@ -11,7 +11,7 @@ module ActionView
     end
     
     def current_course
-      @current_course ||= Factory(:course)
+      @current_course ||= Factory.course.create
     end
     
     def controller_name
