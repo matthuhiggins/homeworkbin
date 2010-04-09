@@ -1,13 +1,12 @@
-Factory.define :assignment_without_due, :class => Assignment do |f|
+Factory.define :assignment do |f|
   f.association :course
   f.name        'Make an online posting'
-end
-
-Factory.define :assignment, :parent => :assignment_without_due do |f|
-  f.due_minutes   720
   f.after_build do |a|
     if a.due_date.blank?
       a.due_date = a.course.start_date + 1
+    end
+    if a.due_minutes.blank?
+      a.due_minutes = 720
     end
   end
 end

@@ -26,8 +26,8 @@ class Composition::HandInTest < ActiveRecord::TestCase
 
   def test_late_before_hand_in
     course = Factory.course.create :start_date => Date.current - 10, :end_date => Date.current + 10
-    past_assignment = Factory.assignment_without_due.create :course => course, :due_at => Time.current - 65
-    current_assignment = Factory.assignment_without_due.create :course => course, :due_at => Time.current + 65
+    past_assignment = Factory.assignment.create :course => course, :due_at => Time.current - 65
+    current_assignment = Factory.assignment.create :course => course, :due_at => Time.current + 65
     
     assert factory.build(:assignment => past_assignment).late_hand_in?
     assert !factory.build(:assignment => current_assignment).late_hand_in?

@@ -74,7 +74,7 @@ class Assignment::DueTest < ActiveRecord::TestCase
   end
   
   def test_due_at_writer
-    assignment = Factory.assignment_without_due.build :due_at => Time.utc(2004, 10, 22, 10, 5)
+    assignment = factory.build :due_at => Time.utc(2004, 10, 22, 10, 5)
     
     assert_equal Date.new(2004, 10, 22), assignment.due_date
     assert_equal 605, assignment.due_minutes
