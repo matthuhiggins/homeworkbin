@@ -2,7 +2,7 @@ require 'active_record_test'
 
 class StudierTest < ActiveRecord::TestCase
   def test_delegation
-    studier = Factory :studier
+    studier = factory.create
 
     assert_equal studier.course.teacher, studier.teacher
     assert_equal studier.student.full_name, studier.full_name
@@ -10,10 +10,10 @@ class StudierTest < ActiveRecord::TestCase
   end
   
   def test_submission_for
-    studier = Factory :studier
-    due_assignment = Factory :assignment, :course => studier.course
-    submission = Factory :submission, :assignment => due_assignment, :studier => studier
-    pending_assignment = Factory :assignment, :course => studier.course
+    studier = factory.create
+    due_assignment = Factory.assignment.create :course => studier.course
+    submission = Factory.submission.create :assignment => due_assignment, :studier => studier
+    pending_assignment = Factory.assignment.create :course => studier.course
     
     assert_equal submission, studier.submission_for(due_assignment)
     assert_nil studier.submission_for(pending_assignment)

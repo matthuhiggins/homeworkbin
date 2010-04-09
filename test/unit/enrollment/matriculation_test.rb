@@ -2,7 +2,7 @@ require 'active_record_test'
 
 class Enrollment::MatriculationTest < ActiveRecord::TestCase
   def test_matriculate_emails
-    course = Factory :course
+    course = Factory.course.create
     
     enrollments = course.enrollments.matriculate_emails 'a@b.com,x@y.com f@g.com;m@n.com'
     
@@ -10,7 +10,7 @@ class Enrollment::MatriculationTest < ActiveRecord::TestCase
   end
   
   def test_matriculate_new_email
-    course = Factory :course
+    course = Factory.course.create
     
     enrollment = course.enrollments.matriculate_email 'a@b.com'
     assert !enrollment.new_record?
@@ -18,8 +18,8 @@ class Enrollment::MatriculationTest < ActiveRecord::TestCase
   end
   
   def test_matriculate_existing_email
-    course = Factory :course
-    existing_enrollment = Factory :enrollment, :course => course
+    course = Factory.course.create
+    existing_enrollment = factory :course => course
 
     assert_emails 1 do
       new_enrollment = course.enrollments.matriculate_email existing_enrollment.email
@@ -28,7 +28,7 @@ class Enrollment::MatriculationTest < ActiveRecord::TestCase
   end
   
   def test_matriculate_invalid_email
-    course = Factory :course
+    course = Factory.course.create
 
     assert_no_emails do
       enrollment = course.enrollments.matriculate_email 'x'

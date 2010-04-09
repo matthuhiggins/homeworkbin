@@ -3,6 +3,7 @@ require 'active_record_test'
 class EnrollmentTest < ActiveRecord::TestCase
   include ActiveRecord::TokenizedTests
   include ActiveRecord::EmailValidationTests
+  include ActionMailer::TestHelper
   
   def test_teaching_delegation
     enrollment = factory.create
@@ -44,7 +45,7 @@ class EnrollmentTest < ActiveRecord::TestCase
   
   def test_new_student?
     assert factory.build.new_student?
-    assert !factory.build(:email => Factory.student.build.email).new_student?
+    assert !factory.build(:email => Factory.student.create.email).new_student?
   end
   
   def test_enroll_student

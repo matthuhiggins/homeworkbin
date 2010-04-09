@@ -4,33 +4,34 @@ class RegistrationTest < ActiveRecord::TestCase
   include ActiveRecord::TokenizedTests
   include ActiveRecord::EmailValidationTests
   include ActiveRecord::AuthenticatedTests
-  
+  include ActionMailer::TestHelper
+
   def test_mail
     assert_emails 1 do
-      Factory :registration
+      factory.create
     end
   end
   
   def test_validate_existing_person
-    person = Factory :person
+    person = Factory.person.create
     
-    existing_person = Factory.build :registration, :email => person.email
+    existing_person = factory.build :email => person.email
     assert existing_person.invalid?
-    assert_equal 'is already in use', existing_person.errors[:email]
+    assert_equal ['is already in use'], existing_person.errors[:email]
     
-    new_person = Factory.build :registration
+    new_person = factory.build
     assert new_person.valid?
   end
   
   def test_validate_presence
-    registration = Factory.build :registration, :full_name => '', :password => ''
+    registration = factory.build :full_name => '', :password => ''
     assert registration.invalid?
-    assert_equal "can't be blank", registration.errors[:full_name]
-    assert_equal "can't be blank", registration.errors[:password]
+    assert_equal ["can't be blank"], registration.errors[:full_name]
+    assert_equal ["can't be blank"], registration.errors[:password]
   end
   
   def test_create_teacher_copies_attributes
-    registration = Factory :registration
+    registration = factory.create
     
     teacher = registration.create_teacher!
     
@@ -42,9 +43,9 @@ class RegistrationTest < ActiveRecord::TestCase
   end
   
   def test_create_teaching_destroys_related_registrations
-    primary_registration = Factory :registration, :email => 'a@b.com'
-    duplicate_registration = Factory :registration, :email => 'a@b.com'
-    other_registration = Factory :registration, :email => 'x@y.com'
+    primary_registration = factory.create :email => 'a@b.com'
+    duplicate_registration = factory.create :email => 'a@b.com'
+    other_registration = factory.create :email => 'x@y.com'
     
     primary_registration.create_teacher!
     
