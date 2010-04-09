@@ -2,7 +2,7 @@ require 'active_record_test'
 
 class MailerTest < ActionMailer::TestCase
   def test_registration
-    registration = Factory.registration.build
+    registration = Factory.registration.create
 
     with_mail :registration, registration do |sent|
       assert_equal 'Confirm your email address', sent.subject
@@ -12,7 +12,7 @@ class MailerTest < ActionMailer::TestCase
   end
   
   def test_enrollment
-    enrollment = Factory.enrollment.build
+    enrollment = Factory.enrollment.create
 
     with_mail :enrollment, enrollment do |sent|
       assert_equal "Confirm your enrollment in #{enrollment.course.name}", sent.subject
@@ -22,7 +22,7 @@ class MailerTest < ActionMailer::TestCase
   end
 
   def test_lost_password
-    lost_password = Factory.lost_password.build
+    lost_password = Factory.lost_password.create
 
     with_mail :lost_password, lost_password do |sent|
       assert_equal "Homework Bin password change", sent.subject
@@ -43,7 +43,6 @@ class MailerTest < ActionMailer::TestCase
 
   private
     def with_mail(method, *args)
-      Mailer.send(method, *args).deliver
-      yield Mailer.deliveries.first
+      Mailer.send(method, *args)
     end
 end
