@@ -18,7 +18,7 @@ class Teaching::AnnotationsControllerTest < ActionController::TeachingTestCase
   
   def test_destroy
     submission = create_submission
-    annotation = Factory :annotation, :submission => submission
+    annotation = Factory.annotation.create :submission => submission
 
     teaching_delete :destroy, {
       :submission_id  => submission.to_param,
@@ -31,8 +31,8 @@ class Teaching::AnnotationsControllerTest < ActionController::TeachingTestCase
 
   private
     def create_submission
-      assignment = Factory :assignment, :course => current_course
-      studier = Factory :studier, :course => current_course
-      Factory(:submission, :assignment => assignment, :studier => studier)
+      assignment = Factory.assignment.create :course => current_course
+      studier = Factory.studier.create :course => current_course
+      Factory.submission.create :assignment => assignment, :studier => studier
     end
 end

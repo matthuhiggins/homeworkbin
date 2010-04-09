@@ -5,8 +5,8 @@
 <%= form_for @enrollment do |f| %>
   <%= f.hidden_field :accept_enrollment, 'value' => '1' %>
 
-  <% f.fields_for @enrollment.student do |s| %>
-    <%= render enrollment_fields_partial(@enrollment), :object => s %>
+  <%= f.fields_for @enrollment.student do |s| %>
+    <%= render enrollment_fields_partial(@enrollment), :fields => s %>
   <% end %>
 
   <div class="submit">

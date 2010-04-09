@@ -6,7 +6,7 @@ class PeopleController < ApplicationController
   
   def update
     if current_person.update_attributes params[:person]
-      flash[:notice] = "Settings saved"
+      flash[:notice] = 'Settings saved'
     end
     redirect_to :back
   end

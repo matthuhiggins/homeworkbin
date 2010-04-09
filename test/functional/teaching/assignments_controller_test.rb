@@ -26,7 +26,7 @@ class Teaching::AssignmentsControllerTest < ActionController::TeachingTestCase
   end
   
   def test_edit
-    assignment = Factory :assignment, :course => current_course 
+    assignment = Factory.assignment.create :course => current_course 
 
     teaching_get :edit, :id => assignment.to_param
 
@@ -34,7 +34,7 @@ class Teaching::AssignmentsControllerTest < ActionController::TeachingTestCase
   end
   
   def test_update
-    assignment = Factory :assignment, :course => current_course 
+    assignment = Factory.assignment.create :course => current_course 
     
     teaching_put :update, {
       :id         => assignment.to_param,
@@ -47,7 +47,7 @@ class Teaching::AssignmentsControllerTest < ActionController::TeachingTestCase
   end
   
   def test_destroy
-    assignment = Factory :assignment, :course => current_course 
+    assignment = Factory.assignment.create :course => current_course 
     
     teaching_delete :destroy, :id => assignment.to_param
     

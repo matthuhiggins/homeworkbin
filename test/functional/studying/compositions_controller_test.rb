@@ -12,7 +12,7 @@ class Studying::CompositionsControllerTest < ActionController::StudyingTestCase
   end
   
   def test_edit_compostion
-    composition = Factory :composition, :assignment => assignment, :studier => current_studier
+    composition = Factory.composition.create :assignment => assignment, :studier => current_studier
     
     studying_get :show, :assignment_id => assignment
     
@@ -29,7 +29,7 @@ class Studying::CompositionsControllerTest < ActionController::StudyingTestCase
   end
   
   def test_update_existing_composition
-    composition = Factory :composition, :assignment => assignment, :studier => current_studier
+    composition = Factory.composition.create :assignment => assignment, :studier => current_studier
     
     studying_put :update, {
       :assignment_id => assignment,
@@ -42,6 +42,6 @@ class Studying::CompositionsControllerTest < ActionController::StudyingTestCase
 
   private
     def assignment
-      @assignment ||= Factory(:assignment, :course => current_course)
+      @assignment ||= Factory.assignment.create :course => current_course
     end
 end

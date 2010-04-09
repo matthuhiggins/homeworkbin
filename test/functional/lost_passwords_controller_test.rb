@@ -10,7 +10,7 @@ class LostPasswordsControllerTest < ActionController::TestCase
   end
   
   def test_create_success
-    person = Factory :person
+    person = Factory.person.create
 
     post :create, :lost_password => {
       :email => person.email
@@ -28,7 +28,7 @@ class LostPasswordsControllerTest < ActionController::TestCase
   end
   
   def test_show
-    lost_password = Factory :lost_password
+    lost_password = Factory.lost_password.create
 
     get :show, :id => lost_password.token
     
@@ -37,7 +37,7 @@ class LostPasswordsControllerTest < ActionController::TestCase
   end
   
   def test_update_success
-    lost_password = Factory :lost_password
+    lost_password = Factory.lost_password.create
     
     put :update, :id => lost_password.token, :lost_password => {:new_password => 'snoopy'}
     
@@ -45,7 +45,7 @@ class LostPasswordsControllerTest < ActionController::TestCase
   end
   
   def test_update_failure
-    lost_password = Factory :lost_password
+    lost_password = Factory.lost_password.create
     
     put :update, :id => lost_password.token, :lost_password => {:new_password => ''}
     

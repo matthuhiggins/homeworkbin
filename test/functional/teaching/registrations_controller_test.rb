@@ -1,6 +1,8 @@
 require 'action_controller_test'
 
 class Teaching::RegistrationsControllerTest < ActionController::TestCase
+  include ActionMailer::TestHelper
+
   matches_resources 'signup'
 
   def test_index
@@ -38,7 +40,7 @@ class Teaching::RegistrationsControllerTest < ActionController::TestCase
   end
   
   def test_show
-    registration = Factory :registration
+    registration = Factory.registration.create
     get :show, :id => registration.token
 
     assert_equal registration, assigns(:registration)

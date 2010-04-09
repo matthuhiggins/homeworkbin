@@ -22,9 +22,9 @@ module ActionController
     
     private
       def build_studier!
-        @current_course ||= Factory(:course)
-        @current_student ||= current_person.becomes(Student)
-        @current_studier ||= Factory(:studier, :course => @current_course, :student => @current_student)
+        @current_course ||= Factory.course.create
+        @current_student ||= current_person.student
+        @current_studier ||= Factory.studier.create :course => @current_course, :student => @current_student
       end
   end
 end

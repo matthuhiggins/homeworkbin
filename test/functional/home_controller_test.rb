@@ -10,7 +10,7 @@ class HomeControllerTest < ActionController::TestCase
   end
   
   def test_index_when_authenticated
-    person = Factory :person
+    person = Factory.person.create
 
     get :index, {}, {:person_id => person.to_param}
 

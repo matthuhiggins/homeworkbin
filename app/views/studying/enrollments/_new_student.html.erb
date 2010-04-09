@@ -1,17 +1,17 @@
 <div>
-  <div><%= new_student.label :full_name, 'Your name' %></div>
-  <div><%= new_student.text_field :full_name %></div>
-  <div><%= new_student.error_message_on :full_name, :prepend_text => 'Your name ' %></div>
+  <div><%= fields.label :full_name, 'Your name' %></div>
+  <div><%= fields.text_field :full_name %></div>
+  <div><%= fields.error_message_on :full_name, :prepend_text => 'Your name ' %></div>
 </div>
 <div>
-  <div><%= new_student.label :email %></div>
-  <div><%= new_student.text_field :email %></div>
-  <div><%= new_student.error_message_on :email, :prepend_text => 'Email ' %></div>
+  <div><%= fields.label :email %></div>
+  <div><%= fields.text_field :email %></div>
+  <div><%= fields.error_message_on :email, :prepend_text => 'Email ' %></div>
 </div>
 <div>
-  <div><%= new_student.label :password %></div>
-  <div><%= new_student.password_field :password %></div>
-  <div><%= new_student.error_message_on :password, :prepend_text => 'Password ' %></div>
+  <div><%= fields.label :password %></div>
+  <div><%= fields.password_field :password %></div>
+  <div><%= fields.error_message_on :password, :prepend_text => 'Password ' %></div>
 </div>
 
 <%= focus 'enrollment_student_full_name' %>

@@ -27,7 +27,7 @@ class Disciplines::HallMonitorTest < ActionController::TestCase
   tests TestController
   
   def setup
-    @person = Factory :person
+    @person = Factory.person.create
     @controller.person = @person
   end
   

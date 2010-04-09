@@ -7,7 +7,7 @@ module ActionController
     
     private
       def current_person
-        @current_person ||= Factory :person
+        @current_person ||= Factory.person.create
       end
   end
 end

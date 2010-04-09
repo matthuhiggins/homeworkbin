@@ -11,18 +11,18 @@ class SessionsControllerTest < ActionController::TestCase
   end
   
   def test_invalid_credentials
-    person = Factory :person
+    person = Factory.person.create
 
     post :create, :email => person.email, :password => 'wrong_sekret'
 
-    assert_equal "Incorrect e-mail/password", flash[:warning]
+    assert_equal 'Incorrect e-mail/password', flash[:warning]
     assert_nil @controller.session[:person_id]
     assert_nil @response.cookies['last_login']
     assert_template 'new'
   end
   
   def test_login
-    person = Factory :person
+    person = Factory.person.create
     
     post :create, valid_credentials(person)
     
@@ -30,7 +30,7 @@ class SessionsControllerTest < ActionController::TestCase
   end
   
   def test_login_with_remember_me
-    person = Factory :person
+    person = Factory.person.create
 
     post :create, valid_credentials(person).update(:remember_me => '1')
     
@@ -40,6 +40,6 @@ class SessionsControllerTest < ActionController::TestCase
   
   private
     def valid_credentials(person)
-      {:email => person.email, :password => Factory.attributes_for(:person)[:password]}
+      {:email => person.email, :password => Factory.person.attributes[:password]}
     end
 end

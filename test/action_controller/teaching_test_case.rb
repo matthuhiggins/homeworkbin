@@ -6,11 +6,11 @@ module ActionController
     request_methods :teaching
     
     def current_course
-      @current_course ||= Factory(:course, :teacher => current_teacher)
+      @current_course ||= Factory.course.create :teacher => current_teacher
     end
   
     def current_teacher
-      @current_teacher ||= current_person.becomes(Teacher)
+      current_person.teacher
     end
   end
 end

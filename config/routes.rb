@@ -28,4 +28,6 @@ Homeworkbin::Application.routes.draw do |map|
       resources :annotations, :name_prefix => 'teaching_', :controller => 'teaching/annotations'
     end
   end
+
+  match ':controller(/:action(/:id(.:format)))'
 end

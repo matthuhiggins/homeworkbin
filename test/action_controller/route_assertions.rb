@@ -3,13 +3,17 @@ module ActionController
     extend ActiveSupport::Concern
     
     included do
-      class_inheritable_array :expected_route_matches
+      class_attribute :expected_route_matches
     end
     
     module ClassMethods
       def matches_route(expected_match, request)
-        write_inheritable_hash :expected_route_matches, expected_match => request
-        define_test_matchs unless respond_to?(:test_matchs)
+        unless respond_to?(:test_matches)
+          self.expected_route_matches = {}
+          define_test_matches
+        end
+
+        expected_route_matches[expected_match] = request
       end
 
       def matches_resources(path)
@@ -28,9 +32,9 @@ module ActionController
         matches_route 'show',    "#{path}#get"
       end
       
-      def define_test_matchs
+      def define_test_matches
         define_method :test_matches do
-          self.class.read_inheritable_attribute(:expected_route_matches).each do |expected_match, request|
+          self.class.expected_route_matches.each do |expected_match, request|
             assert_route_match expected_match, request
           end
         end

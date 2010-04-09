@@ -9,7 +9,7 @@ class Teaching::StudiersControllerTest < ActionController::TeachingTestCase
   end
   
   def test_show
-    studier = Factory :studier, :course => current_course
+    studier = Factory.studier.create :course => current_course
     
     teaching_get :show, :id => studier.to_param
     
@@ -17,7 +17,7 @@ class Teaching::StudiersControllerTest < ActionController::TeachingTestCase
   end
   
   def test_destroy
-    studier = Factory :studier, :course => current_course
+    studier = Factory.studier.create :course => current_course
 
     teaching_delete :destroy, :id => studier.to_param
 

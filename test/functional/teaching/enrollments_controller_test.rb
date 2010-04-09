@@ -16,7 +16,7 @@ class Teaching::EnrollmentsControllerTest < ActionController::TeachingTestCase
   end
   
   def test_destroy
-    enrollment = Factory :enrollment, :course => current_course
+    enrollment = Factory.enrollment.create :course => current_course
     
     teaching_delete :destroy, :id => enrollment.to_param
     

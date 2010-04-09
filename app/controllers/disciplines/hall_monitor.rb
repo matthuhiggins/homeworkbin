@@ -57,7 +57,7 @@ module Disciplines
       def check_authentication
         unless authenticated?
           session[:original_uri] = request.request_uri
-          redirect_to(login_path)
+          redirect_to login_path
         end
       end
       
@@ -65,7 +65,7 @@ module Disciplines
         cookies[:last_login] = {:value => person.email, :expires => 1.week.from_now}
         # person.update_attribute(:authenticated_at, Time.current)
         session[:person_id] = person.id
-        flash[:notice] = "Hello %1$s" % person.full_name
+        flash[:notice] = "Hello #{person.full_name}"
       end
       
       def terminate_authenticated_session

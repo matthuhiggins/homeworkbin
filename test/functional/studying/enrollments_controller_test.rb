@@ -4,7 +4,7 @@ class Studying::EnrollmentsControllerTest < ActionController::PersonTestCase
   matches_resources 'enroll'
 
   def test_index
-    enrollment = Factory :enrollment, :email => current_person.email
+    enrollment = Factory.enrollment.create :email => current_person.email
 
     person_get :index
     
@@ -12,7 +12,7 @@ class Studying::EnrollmentsControllerTest < ActionController::PersonTestCase
   end
 
   def test_show
-    enrollment = Factory :enrollment
+    enrollment = Factory.enrollment.create
 
     get :show, :id => enrollment.to_param
     
@@ -20,12 +20,12 @@ class Studying::EnrollmentsControllerTest < ActionController::PersonTestCase
   end
   
   def test_update_new_student
-    enrollment = Factory :enrollment
+    enrollment = Factory.enrollment.create
     
     put :update,
       :id         => enrollment.to_param, 
       :enrollment => {
-        :student            => Factory.attributes_for(:student),
+        :student            => Factory.student.attributes,
         :accept_enrollment  => '1'
       }
     
@@ -34,7 +34,7 @@ class Studying::EnrollmentsControllerTest < ActionController::PersonTestCase
   end
   
   def test_update_new_invalid_student
-    enrollment = Factory :enrollment
+    enrollment = Factory.enrollment.create
     
     put :update,
       :id         => enrollment.to_param,
@@ -47,8 +47,8 @@ class Studying::EnrollmentsControllerTest < ActionController::PersonTestCase
   end
   
   def test_update_existing_student
-    student = Factory :student
-    enrollment = Factory :enrollment, :email => student.email
+    student = Factory.student.create
+    enrollment = Factory.enrollment.create :email => student.email
     
     put :update,
       :id         => enrollment.to_param,
@@ -62,7 +62,7 @@ class Studying::EnrollmentsControllerTest < ActionController::PersonTestCase
   end
   
   def test_destroy
-    enrollment = Factory :enrollment
+    enrollment = Factory.enrollment.create
     
     delete :destroy, :id => enrollment.to_param
     
