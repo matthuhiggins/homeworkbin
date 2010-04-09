@@ -67,11 +67,15 @@ class Factory
   end
 
   def create(overrides = {})
-    model.create! attributes.merge(overrides.symbolize_keys!)
+    record = build(overrides)
+    record.save!
+    record
   end
 
   def build(overrides = {})
-    model.new attributes.merge(overrides.symbolize_keys!)
+    record = model.new attributes.merge(overrides.symbolize_keys!)
+    run_after_builds(record)
+    record
   end
 
   def attributes

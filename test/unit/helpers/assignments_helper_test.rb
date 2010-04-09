@@ -68,8 +68,8 @@ class AssignmentsHelperTest < ActionView::TestCase
   end
   
   def test_save_assignment_text
-    assert_equal 'Assign homework »', save_assignment_text(Factory.build :course)
-    assert_equal 'Update assignment', save_assignment_text(Factory :course)
+    assert_equal 'Assign homework', save_assignment_text(Factory.course.build)
+    assert_equal 'Update assignment', save_assignment_text(Factory.course.create)
     
   end
   
@@ -87,10 +87,10 @@ class AssignmentsHelperTest < ActionView::TestCase
   
   private
     def build_assignment(attributes = {})
-      Factory.build :assignment, attributes.reverse_merge!(:course => current_course)
+      Factory.assignment.build attributes.reverse_merge!(:course => current_course)
     end
     
     def create_assignment(attributes = {})
-      Factory :assignment, attributes.reverse_merge!(:course => current_course)      
+      Factory.assignment.create attributes.reverse_merge!(:course => current_course)      
     end
 end
