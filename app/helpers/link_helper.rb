@@ -1,6 +1,6 @@
 module LinkHelper
   def cancel
-    if controller.request.referer.present?
+    if controller.request.env['HTTP_REFERER'].present?
       link_to 'Cancel', 'javascript:history.back()', :class => 'cancel'
     else
       ''

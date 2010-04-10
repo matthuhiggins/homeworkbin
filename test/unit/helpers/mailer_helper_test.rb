@@ -8,7 +8,7 @@ class MailerHelperTest < ActionView::TestCase
     )
     assert_equal(
       'mailer/enrollment/existing_student',
-      determine_enrollment_partial(Factory.enrollment.build :email => Factory.person.build.email)
+      determine_enrollment_partial(Factory.enrollment.build :email => Factory.person.create.email)
     )
   end
 end

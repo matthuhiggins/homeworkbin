@@ -2,7 +2,7 @@
 
 <%= yui_stylesheet 'assets/skins/sam/skin' %>
 
-<%= form_for current_composition, :url => studying_composition_path(current_course, current_assignment),
+<%= form_for current_composition, :url => studying_assignment_composition_path(current_course, current_assignment),
                                  :html => {
                                    :method  => :put,
                                    :style   => 'display:none',

@@ -2,8 +2,9 @@ require 'action_view_test'
 
 class ApplicationHelperTest < ActionView::TestCase
   def test_title
-    title "hello world"
-    assert_equal " - hello world", @content_for_title
+    @_content_for = Hash.new { |h,k| h[k] = ActiveSupport::SafeBuffer.new }
+    title 'hello world'
+    assert_equal " - hello world", @_content_for[:title]
   end
   
   def test_body
@@ -15,25 +16,28 @@ class ApplicationHelperTest < ActionView::TestCase
   
   def test_focus
     script = focus 'foo'
-
-    assert_dom_equal %{
+    expected = %{
       <script>
       $(function() {
         $('#foo').focus();
       });
       </script>
-      }, script
+    }
+
+    assert_dom_equal expected.squish, script.squish!
   end
   
+  module Foo
+    class BarController < ActionView::TestCase::TestController
+      def self.name; 'Foo::BarController'; end
+    end
+  end
+
   def test_controller_stylesheet_tag
-    @controller = Class.new do
-      def self.name
-        'Acme::BabyKillerController'
-      end
-    end.new
+    @controller = Foo::BarController.new
 
     assert_equal(
-      stylesheet_link_tag('acme/baby_killer'),
+      stylesheet_link_tag('foo/bar'),
       controller_stylesheet_tag
     )
   end

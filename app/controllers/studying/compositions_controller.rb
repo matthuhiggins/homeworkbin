@@ -4,7 +4,7 @@ class Studying::CompositionsController < Studying::BaseController
 
     if current_composition.save
       flash[:notice] = "Composition saved"
-      redirect_to studying_composition_path(current_course, current_assignment)
+      redirect_to studying_assignment_composition_path(current_course, current_assignment)
     else
       render 'new'
     end

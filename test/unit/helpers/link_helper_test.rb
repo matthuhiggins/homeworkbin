@@ -10,7 +10,7 @@ class LinkHelperTest < ActionView::TestCase
     )
   end
   
-  def test_activation_cancel_link_without_referral
+  def test_cancel_link_without_referral
     controller.request.env['HTTP_REFERER'] = nil
     assert_equal '', cancel
   end

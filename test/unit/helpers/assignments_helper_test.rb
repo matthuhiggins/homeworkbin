@@ -2,37 +2,27 @@ require 'action_view_test'
 
 class AssignmentsHelperTest < ActionView::TestCase
   def test_new_assignment_form
-    assignment_form build_assignment do |f|
-    end
-    
-    assert_equal(
-      content_tag(:form, '', {
-        :class  => 'new_assignment',
-        :action => teaching_assignments_path(current_course),
-        :id     => 'assignment-form',
-        :method => 'post'
-      }),
-      output_buffer
-    )
+    assignment = build_assignment
+    form_options = {
+      :url => teaching_assignments_path(current_course),
+      :html => {:id => 'assignment-form'}
+    }
+    output = assignment_form(assignment) { |f| }
+    expected = form_for(assignment, form_options) { |f| }
+
+    assert_equal expected, output
   end
   
   def test_edit_assignment_form
     assignment = create_assignment
+    form_options = {
+      :url  => teaching_assignment_path(current_course, assignment),
+      :html => {:method => :put, :id => 'assignment-form'}
+    }
+    output = assignment_form(assignment) { |f| }
+    expected = form_for(assignment, form_options) { |f| }
     
-    assignment_form assignment do |f|
-    end
-    
-    assert_equal(
-      content_tag(
-        :form,
-        '<div style="margin:0;padding:0;display:inline"><input name="_method" type="hidden" value="put" /></div>',
-        :class  => 'edit_assignment',
-        :action => teaching_assignment_path(current_course, assignment),
-        :id     => 'assignment-form',
-        :method => 'post'
-      ),
-      output_buffer
-    )
+    assert_equal expected, output
   end
   
   def test_default_due_date

@@ -2,7 +2,7 @@ Homeworkbin::Application.routes.draw do |map|
   root :to => 'home#index'
 
   resources :lost_passwords
-  resource :person, :as => 'settings'
+  resource :person, :path => 'settings'
 
   controller :sessions do
     get     'login',  :to => :new,      :as => 'login'
@@ -10,20 +10,19 @@ Homeworkbin::Application.routes.draw do |map|
     delete  'logout', :to => :destroy,  :as => 'logout'
   end
 
-  resources :enrollments, :controller => 'studying/enrollments', :as => 'enroll'
-
-  resources :studyings, :controller => 'studying/courses', :as => 'studying' do
-    resources :assignments, :as => 'homework' do
-      resource :composition, :name_prefix => 'studying_', :controller => 'studying/compositions'
+  resources :enrollments, :controller => 'studying/enrollments', :path => 'enroll'
+  resources :studyings, :controller => 'studying/courses', :path => 'studying' do
+    resources :assignments, :controller => 'studying/assignments', :path => 'homework' do
+      resource :composition, :controller => 'studying/compositions'
     end
   end
 
   # controller_namespace
-  resources :registrations, :controller => 'teaching/registrations', :as => 'signup'
-  resources :teachings, :controller => 'teaching/courses', :as => 'teaching' do
-    resources :assignments,  :controller => 'teaching/assignments',   :as => 'homework'
-    resources :enrollments,  :controller => 'teaching/enrollments',   :as => 'enroll'
-    resources :studiers,     :controller => 'teaching/studiers',      :as => 'students'
+  resources :registrations, :controller => 'teaching/registrations', :path => 'signup'
+  resources :teachings, :controller => 'teaching/courses', :path => 'teaching' do
+    resources :assignments,  :controller => 'teaching/assignments',   :path => 'homework'
+    resources :enrollments,  :controller => 'teaching/enrollments',   :path => 'enroll'
+    resources :studiers,     :controller => 'teaching/studiers',      :path => 'students'
     resources :submissions,  :controller => 'teaching/submissions' do
       resources :annotations, :name_prefix => 'teaching_', :controller => 'teaching/annotations'
     end
