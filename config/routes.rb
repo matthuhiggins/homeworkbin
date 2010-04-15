@@ -10,21 +10,24 @@ Homeworkbin::Application.routes.draw do |map|
     delete  'logout', :to => :destroy,  :as => 'logout'
   end
 
-  resources :enrollments, :controller => 'studying/enrollments', :path => 'enroll'
-  resources :studyings, :controller => 'studying/courses', :path => 'studying' do
-    resources :assignments, :controller => 'studying/assignments', :path => 'homework' do
-      resource :composition, :controller => 'studying/compositions'
+  scope :module => 'studying' do
+    resources :enrollments, :path => 'enroll'
+    resources :studyings, :controller => 'courses', :path => 'studying' do
+      resources :assignments, :path => 'homework' do
+        resource :composition
+      end
     end
   end
 
-  # controller_namespace
-  resources :registrations, :controller => 'teaching/registrations', :path => 'signup'
-  resources :teachings, :controller => 'teaching/courses', :path => 'teaching' do
-    resources :assignments,  :controller => 'teaching/assignments',   :path => 'homework'
-    resources :enrollments,  :controller => 'teaching/enrollments',   :path => 'enroll'
-    resources :studiers,     :controller => 'teaching/studiers',      :path => 'students'
-    resources :submissions,  :controller => 'teaching/submissions' do
-      resources :annotations, :name_prefix => 'teaching_', :controller => 'teaching/annotations'
+  scope :module => 'teaching' do
+    resources :registrations, :path => 'signup'
+    resources :teachings, :controller => 'courses', :path => 'teaching' do
+      resources :assignments,   :path => 'homework'
+      resources :enrollments,   :path => 'enroll'
+      resources :studiers,      :path => 'students'
+      resources :submissions do
+        resources :annotations, :name_prefix => 'teaching_'
+      end
     end
   end
 

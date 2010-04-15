@@ -4,7 +4,7 @@
   <div>
     <div><%= f.label :new_password, 'New password' %></div>
     <div><%= f.password_field :new_password %></div>
-    <div><%= f.error_message_on :new_password, :prepend_text => 'Password ' %></div>
+    <div><%= f.error_message_on :new_password, :prepend => 'Password ' %></div>
   </div>
   <div>
     <%= f.submit 'Save password' %>

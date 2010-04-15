@@ -58,7 +58,7 @@ form a.cancel {
   margin-right: 8px;
 }
 
-form .formError {
+form .error {
   color: #AA0000;
   font-size: 90%;
   font-style: italic;

@@ -6,12 +6,12 @@
   <div>
     <div><%= f.label :full_name, 'Your name' %></div>
     <div><%= f.text_field :full_name %></div>
-    <div><%= f.error_message_on :full_name, :prepend_text => 'Your name ' %></div>
+    <div><%= f.error_message_on :full_name, :prepend => 'Your name ' %></div>
   </div>
   <div>
     <div><%= f.label :email %></div>
     <div><%= f.text_field :email %></div>
-    <div><%= f.error_message_on :email, :prepend_text => 'Email ' %></div>
+    <div><%= f.error_message_on :email, :prepend => 'Email ' %></div>
   </div>
   <div class="submit">
     <%= f.submit 'Update information' %>
