@@ -1,29 +1,29 @@
 require 'action_controller_test'
 
-class Disciplines::HallMonitorTest < ActionController::TestCase
-  class TestController < ActionController::Base
-    attr_accessor :person
-    include Disciplines::HallMonitor
-    
-    require_login :only => [:action_requiring_login]
-    
-    def login_without_options
-      login person
-    end
-    
-    def login_with_remember_me
-      login person, :remember => true
-    end
-    
-    def login_with_redirect
-      login person, :redirect => '/foo'
-    end
-    
-    def action_requiring_login
-      render :text => 'foo'
-    end
+class TestController < ActionController::Base
+  attr_accessor :person
+  include Disciplines::HallMonitor
+  
+  require_login :only => [:action_requiring_login]
+  
+  def login_without_options
+    login person
   end
   
+  def login_with_remember_me
+    login person, :remember => true
+  end
+  
+  def login_with_redirect
+    login person, :redirect => '/foo'
+  end
+  
+  def action_requiring_login
+    render :text => 'foo'
+  end
+end
+
+class Disciplines::HallMonitorTest < ActionController::TestCase
   tests TestController
   
   def setup
@@ -61,6 +61,6 @@ class Disciplines::HallMonitorTest < ActionController::TestCase
     get :action_requiring_login
     
     assert_redirected_to login_path
-    assert_equal '/disciplines/hall_monitor_test/test/action_requiring_login', @controller.session[:original_uri]
+    assert_equal '/test/action_requiring_login', @controller.session[:original_uri]
   end
 end

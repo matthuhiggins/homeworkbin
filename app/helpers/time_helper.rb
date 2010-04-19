@@ -1,4 +1,6 @@
 module TimeHelper
+  include ErrorsHelper
+
   def date_format_div(record, method)
     if record.errors[method].present?
       error_message_on record, method

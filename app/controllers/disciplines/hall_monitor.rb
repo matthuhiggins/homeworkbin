@@ -56,7 +56,7 @@ module Disciplines
       
       def check_authentication
         unless authenticated?
-          session[:original_uri] = request.request_uri
+          session[:original_uri] = request.fullpath
           redirect_to login_path
         end
       end
