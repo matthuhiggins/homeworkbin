@@ -1,13 +1,13 @@
 class Mailer < ActionMailer::Base
   helper ActionController::Base.send(:all_application_helpers)
-  default :from => 'no-reply@homeworkbin.com'
+  default from: 'no-reply@homeworkbin.com'
   
   def registration registration
     @registration = registration  
     
     mail(
-      :to       => registration.email,
-      :subject  => 'Confirm your email address'
+      to:     registration.email,
+      subject 'Confirm your email address'
     )
   end
   
@@ -15,8 +15,8 @@ class Mailer < ActionMailer::Base
     @enrollment = enrollment
 
     mail(
-      :to       => enrollment.email,
-      :subject  => "Confirm your enrollment in #{enrollment.course.name}"
+      to:       enrollment.email,
+      subject:  "Confirm your enrollment in #{enrollment.course.name}"
     )
   end
   

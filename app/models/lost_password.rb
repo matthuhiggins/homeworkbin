@@ -10,7 +10,7 @@ class LostPassword < ActiveRecord::Base
     self.person = Person.find_by_email value
   end
   
-  validate :email, :on => :create do
+  validate :email, on: :create do
     if person.blank?
       errors.add :email, 'does not exist'
     end
@@ -26,7 +26,7 @@ class LostPassword < ActiveRecord::Base
     @new_password = password
   end
   
-  validates_presence_of :new_password, :on => :update
+  validates_presence_of :new_password, on: :update
   after_update do |lost_password|
     lost_password.person.update_attribute :password, lost_password.new_password
     lost_password.destroy
