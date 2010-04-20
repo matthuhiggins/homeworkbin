@@ -4,6 +4,6 @@ module SessionsHelper
   end
   
   def link_to_logout
-    link_to 'Logout', logout_path, :method => :delete
+    link_to 'Logout', logout_path, method: :delete
   end
 end

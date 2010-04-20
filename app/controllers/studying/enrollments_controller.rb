@@ -1,9 +1,9 @@
 class Studying::EnrollmentsController < ApplicationController
-  require_login :only => :index
+  require_login only: :index
   respond_to :html, :json
   
   def index
-    @enrollments = current_person.student.enrollments(:include => {:course => :teacher})
+    @enrollments = current_person.student.enrollments.includes course: :teacher
   end
   
   def show
@@ -15,7 +15,7 @@ class Studying::EnrollmentsController < ApplicationController
     @enrollment = Enrollment.find_by_token! params[:id]
     if @enrollment.update_attributes params[:enrollment]
       when_not_from_index do
-        login @enrollment.student, :redirect => studying_path(@enrollment.course)
+        login @enrollment.student, redirect: studying_path(@enrollment.course)
       end
     else
       render 'show'

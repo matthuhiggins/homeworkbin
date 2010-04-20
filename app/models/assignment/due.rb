@@ -2,24 +2,24 @@ class Assignment
   module Due
     def self.included base
       base.class_eval do
-        validates_inclusion_of :due_minutes, :in => 0..1440
+        validates_inclusion_of :due_minutes, in: 0..1440
         
         extend ActiveRecord::DateValidation
         validates_date_format :due_date
-        validate :validate_course_period_includes_due_date, :if => lambda { |assignment| assignment.due_date.present? }
+        validate :validate_course_period_includes_due_date, if: lambda { |assignment| assignment.due_date.present? }
         
-        delegate :past?, :today?, :future?, :to => :due_date
+        delegate :past?, :today?, :future?, to: :due_date
         extend FinderMethods
       end
     end
 
     module FinderMethods
       def past
-        scoped :conditions => ['due_date < ?', Date.current], :order => 'due_date desc, due_minutes desc'
+        where(['due_date < ?', Date.current]).order('due_date desc, due_minutes desc')
       end
       
       def upcoming
-        scoped :conditions => ['due_date >= ?', Date.current], :order => 'due_date asc, due_minutes asc'
+        where(['due_date >= ?', Date.current]).order('due_date asc, due_minutes asc')
       end
 
       def next

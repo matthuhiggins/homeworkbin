@@ -7,7 +7,7 @@ class Assignment < ActiveRecord::Base
   has_many :submissions
   belongs_to :course
 
-  delegate :teacher, :to => :course
+  delegate :teacher, to: :course
 
   def last
     @last ||= course.assignments.last

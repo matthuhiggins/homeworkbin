@@ -4,7 +4,7 @@ module ApplicationHelper
   end
   
   def body(&block)
-    html_options = {:class => 'yui-skin-sam', :id => "#{controller_name}-#{action_name}"}
+    html_options = {class: 'yui-skin-sam', id: "#{controller_name}-#{action_name}"}
     content_tag(:body, html_options, &block)
   end
   

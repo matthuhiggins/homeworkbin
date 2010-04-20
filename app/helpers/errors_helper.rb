@@ -1,11 +1,11 @@
 module ErrorsHelper
   def error_message_on(object, method, options = {})
-    options.reverse_merge!(:prepend => '', :append => '')
+    options.reverse_merge!(prepend: '', append: '')
 
     if (errors = object.errors[method]).presence
       content_tag(:div,
         (options[:prepend].html_safe << errors.first).safe_concat(options[:append]),
-        :class => 'error'
+        class: 'error'
       )
     else
       ''

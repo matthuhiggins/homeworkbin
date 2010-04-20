@@ -4,7 +4,7 @@ class Assignment
 
     included do
       attr_accessor :handout
-      after_save :handout_assignment, :if => :handout
+      after_save :handout_assignment, if: :handout
     end
     
     private

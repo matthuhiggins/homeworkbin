@@ -9,10 +9,10 @@ class Course < ActiveRecord::Base
   belongs_to :teacher
 
   has_many :studiers
-  has_many :students, :through => :studiers, :order => 'full_name'
+  has_many :students, through: :studiers, order: 'full_name'
   has_many :assignments
   has_many :submissions
-  has_many :enrollments, :extend => Enrollment::Matriculation
+  has_many :enrollments, extend: Enrollment::Matriculation
 
   after_create do |course|
     course.teacher.decrement! :courses_available

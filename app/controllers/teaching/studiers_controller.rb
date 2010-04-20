@@ -2,7 +2,7 @@ class Teaching::StudiersController < Teaching::BaseController
   topic 'students'
 
   def index
-    @studiers = current_course.studiers.all :include => :student, :order => 'people.full_name'
+    @studiers = current_course.studiers.includes(:student).order('people.full_name').all
     @enrollments = current_course.enrollments.all
   end
   

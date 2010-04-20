@@ -22,7 +22,7 @@ module Disciplines
       end
       
       # Options:
-      #   :remember - Use :remember => true to save the user's login in a cookie
+      #   :remember - Use remember: true to save the user's login in a cookie
       #   :redirect - Define the url to redirect to
       def login(person, options = {})
         initiate_authenticated_session(person)
@@ -51,7 +51,7 @@ module Disciplines
       
       def remember_person(person)
         person.remember_me!
-        cookies[:remember_token] = {:value => person.remember_token, :expires => 2.weeks.from_now}
+        cookies[:remember_token] = {value: person.remember_token, expires: 2.weeks.from_now}
       end
       
       def check_authentication
@@ -62,7 +62,7 @@ module Disciplines
       end
       
       def initiate_authenticated_session(person)
-        cookies[:last_login] = {:value => person.email, :expires => 1.week.from_now}
+        cookies[:last_login] = {value: person.email, expires: 1.week.from_now}
         # person.update_attribute(:authenticated_at, Time.current)
         session[:person_id] = person.id
         flash[:notice] = "Hello #{person.full_name}"

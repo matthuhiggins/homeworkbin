@@ -2,11 +2,11 @@ class Studying::AssignmentsController < Studying::BaseController
   topic 'homework'
   
   def index
-    render :text => 'wtf'
+    render text: 'wtf'
   end
   
   def upcoming
-    render :text => 'poop'
+    render text: 'poop'
   end
 
   def update
@@ -32,7 +32,7 @@ class Studying::AssignmentsController < Studying::BaseController
     def current_composition
       @current_composition ||= begin
         current_studier.compositions.find_by_assignment_id(current_assignment) ||
-        current_studier.compositions.new(:assignment => current_assignment)
+        current_studier.compositions.new(assignment: current_assignment)
       end
     end
     helper_method :current_composition

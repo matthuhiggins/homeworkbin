@@ -3,7 +3,7 @@ class Teaching::AnnotationsController < Teaching::BaseController
   
   def create
     @annotation = current_submission.annotations.create params[:annotation]
-    render :json => { :id => @annotation.id }
+    render json: { id: @annotation.id }
   end
   
   def destroy

@@ -3,7 +3,7 @@ module Disciplines
     extend ActiveSupport::Concern
 
     included do
-      before_filter :set_time_zone, :if => :current_course
+      before_filter :set_time_zone, if: :current_course
     end
 
     private

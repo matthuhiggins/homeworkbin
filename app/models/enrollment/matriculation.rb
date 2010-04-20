@@ -10,7 +10,7 @@ class Enrollment
       if enrollment = find_by_email(email)
         Mailer.enrollment(enrollment).deliver
       else
-        enrollment = create(:email => email)
+        enrollment = create(email: email)
       end
 
       enrollment

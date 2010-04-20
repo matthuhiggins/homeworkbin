@@ -29,10 +29,10 @@ class Enrollment < ActiveRecord::Base
     end
   end
 
-  after_update :enroll_student!, :if => :accept_enrollment
+  after_update :enroll_student!, if: :accept_enrollment
   
   def student
-    @student ||= (Student.find_by_email(email) || Student.new(:email => email))
+    @student ||= (Student.find_by_email(email) || Student.new(email: email))
   end
   
   def student=(attributes)
@@ -46,7 +46,7 @@ class Enrollment < ActiveRecord::Base
   
   def enroll_student!
     if student.valid?
-      studier = course.studiers.create :student => student
+      studier = course.studiers.create student: student
       destroy
       studier
     end
