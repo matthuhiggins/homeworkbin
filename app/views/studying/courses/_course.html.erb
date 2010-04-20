@@ -3,7 +3,7 @@
   <div>
     <% course.assignments.next.tap do |assignment| %>
       <% if assignment.present? %>
-        <%= link_to assignment.name, studying_assignment_composition_path(course, assignment) %>
+        <%= link_to assignment.name, studying_assignment_path(course, assignment) %>
         due <%= relative_assignment_due_date(assignment) %>
       <% end %>
     <% end %>

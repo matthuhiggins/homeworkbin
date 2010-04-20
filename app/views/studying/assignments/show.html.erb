@@ -1,8 +1,14 @@
-<h2><%= current_assignment.name %></h2>
+<% title current_assignment.name %>
+
+<h2>
+  <%= current_assignment.name %>
+  <%= link_to 'Import from Google Docs' %>
+  <%= link_to 'Import Word Document' %>
+</h2>
 
 <%= yui_stylesheet 'assets/skins/sam/skin' %>
 
-<%= form_for current_composition, :url => studying_assignment_composition_path(current_course, current_assignment),
+<%= form_for current_composition, :url => studying_assignment_path(current_course, current_assignment),
                                  :html => {
                                    :method  => :put,
                                    :style   => 'display:none',
@@ -27,7 +33,7 @@
 YAHOO.util.Event.onDOMReady(function() {
   var editor = new YAHOO.widget.SimpleEditor('composition_text', {
     height: '300px', 
-    width: '600px', 
+    width: '100%', 
     dompath: true, 
     focusAtStart: true
   });
