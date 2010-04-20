@@ -19,4 +19,12 @@ module ApplicationHelper
   def controller_stylesheet_tag
     stylesheet_link_tag controller.class.name.gsub(/Controller/, '').underscore
   end
+
+  def sub_menu_partial
+    if teaching?
+      'layouts/teaching_menu'
+    elsif studying?
+      'layouts/studying_menu'
+    end
+  end
 end

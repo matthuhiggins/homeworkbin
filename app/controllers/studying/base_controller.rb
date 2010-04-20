@@ -13,4 +13,8 @@ class Studying::BaseController < ApplicationController
     def current_course
       current_studier.try :course
     end
+
+    def studying?
+      true
+    end
 end

@@ -1,4 +1,6 @@
 class Studying::CompositionsController < Studying::BaseController
+  topic 'homework'
+
   def update
     current_composition.attributes = params[:composition]
 

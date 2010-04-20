@@ -20,20 +20,22 @@
       <% end %>
       <div class="actions">
         <% @studier.submission_for(assignment).tap do |submission| %>
-          <%= link_to 'Grade', teaching_submission_path(current_course, submission) %>
-          |
-          <%= link_to 'Edit assignment', edit_teaching_assignment_path(current_course, assignment) %>
-          |
-          <span class="handed-in-at">
-            Turned in 
-            <% if assignment.late_submission? submission %>
-              <span class="late">
-                <%= distance_of_time_in_words(assignment.due_at, submission.handed_in_at) %> late
-              </span>
-            <% end %>
-            at <%= hour(submission.handed_in_at) %>,
-            <%= submission.handed_in_at.strftime('%b %d') %>
-          </span>
+          <% if submission.present? %>
+            <%= link_to 'Grade', teaching_submission_path(current_course, submission) %>
+            |
+            <%= link_to 'Edit assignment', edit_teaching_assignment_path(current_course, assignment) %>
+            |
+            <span class="handed-in-at">
+              Turned in 
+              <% if assignment.late_submission? submission %>
+                <span class="late">
+                  <%= distance_of_time_in_words(assignment.due_at, submission.handed_in_at) %> late
+                </span>
+              <% end %>
+              at <%= hour(submission.handed_in_at) %>,
+              <%= submission.handed_in_at.strftime('%b %d') %>
+            </span>
+          <% end %>
         <% end %>
       </div>
     </li>

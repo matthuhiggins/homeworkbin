@@ -1,4 +1,4 @@
-Homeworkbin::Application.routes.draw do |map|
+Homeworkbin::Application.routes.draw do
   root :to => 'home#index'
 
   resources :lost_passwords
@@ -29,7 +29,5 @@ Homeworkbin::Application.routes.draw do |map|
         resources :annotations, :name_prefix => 'teaching_'
       end
     end
-  end
-
-  match ':controller(/:action(/:id(.:format)))'
+  end 
 end

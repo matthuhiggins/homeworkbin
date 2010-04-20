@@ -4,10 +4,21 @@ require 'action_controller/hall_monitor_assertions'
 require 'action_controller/route_assertions'
 
 module ActionController
+  # Homeworkbin::Application.routes.draw { |map| map.connect ':controller/:action/:id' }
+  
   TestCase.class_eval do
     extend RequestMethods
     include RouteAssertions
     include HallMonitorAssertions
+
+    def with_generic_routes
+      with_routing do |set|
+        set.draw do |map|
+          map.connect ':controller/:action/:id'
+        end
+        yield
+      end
+    end
   end
 
   autoload :PersonTestCase, 'action_controller/person_test_case'

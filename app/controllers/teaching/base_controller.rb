@@ -10,4 +10,8 @@ class Teaching::BaseController < ApplicationController
     def current_course
       @current_course ||= current_teacher.teaching.find params[:teaching_id]
     end
+
+    def teaching?
+      true
+    end
 end

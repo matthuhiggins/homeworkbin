@@ -16,10 +16,10 @@
       <%= link_to root_path, :class => 'logo' do %>
         Homework Bin
       <% end %>
-      <%= render 'layouts/links' %>
+      <%= render 'layouts/global_links' %>
     </div>
     <% if current_course.present? %>
-      <%= render 'layouts/submenu' %>
+      <%= render sub_menu_partial %>
     <% end %>
   </div>
   <div class="content">

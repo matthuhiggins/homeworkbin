@@ -5,7 +5,7 @@ class Studying::CoursesControllerTest < ActionController::StudyingTestCase
   
   def test_index
     studying_get :index
-    
+
     assert_not_nil assigns(:courses)
   end
 
