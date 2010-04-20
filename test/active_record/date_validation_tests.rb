@@ -29,7 +29,7 @@ module ActiveRecord
       def check_valid_date_formats(attribute)
         record = factory.build
 
-        ['jun 5 2003', '12/20/2004', '2/2/2003'].each do |value|
+        ['12/20/2004', '2/2/2003'].each do |value|
           record[attribute] = value
           record.valid?
           assert !record.errors[attribute].include?(ERROR_MESSAGE)
