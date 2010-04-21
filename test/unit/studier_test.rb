@@ -11,9 +11,9 @@ class StudierTest < ActiveRecord::TestCase
   
   def test_submission_for
     studier = factory.create
-    due_assignment = Factory.assignment.create :course => studier.course
-    submission = Factory.submission.create :assignment => due_assignment, :studier => studier
-    pending_assignment = Factory.assignment.create :course => studier.course
+    due_assignment = Factory.assignment.create course: studier.course
+    submission = Factory.submission.create assignment: due_assignment, studier: studier
+    pending_assignment = Factory.assignment.create course: studier.course
     
     assert_equal submission, studier.submission_for(due_assignment)
     assert_nil studier.submission_for(pending_assignment)

@@ -12,7 +12,7 @@ class PeopleControllerTest < ActionController::PersonTestCase
   def test_update
     @request.env['HTTP_REFERER'] = 'foo'
 
-    person_put :update, :person => {:full_name => 'Joe'}
+    person_put :update, person: {full_name: 'Joe'}
 
     current_person.reload
     assert_equal 'Joe', current_person.full_name

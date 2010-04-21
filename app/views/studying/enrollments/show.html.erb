@@ -6,10 +6,10 @@
   <%= f.hidden_field :accept_enrollment, 'value' => '1' %>
 
   <%= f.fields_for @enrollment.student do |s| %>
-    <%= render enrollment_fields_partial(@enrollment), :fields => s %>
+    <%= render enrollment_fields_partial(@enrollment), fields: s %>
   <% end %>
 
   <div class="submit">
-    <%= f.submit "Enroll for #{h truncate(@enrollment.course.name, :length => 15)}" %>
+    <%= f.submit "Enroll for #{h truncate(@enrollment.course.name, length: 15)}" %>
   </div>
 <% end %>

@@ -4,7 +4,7 @@ class Studying::EnrollmentsControllerTest < ActionController::PersonTestCase
   matches_resources 'enroll'
 
   def test_index
-    enrollment = Factory.enrollment.create :email => current_person.email
+    enrollment = Factory.enrollment.create email: current_person.email
 
     person_get :index
     
@@ -14,7 +14,7 @@ class Studying::EnrollmentsControllerTest < ActionController::PersonTestCase
   def test_show
     enrollment = Factory.enrollment.create
 
-    get :show, :id => enrollment.to_param
+    get :show, id: enrollment.to_param
     
     assert_equal enrollment, assigns(:enrollment)
   end
@@ -24,7 +24,7 @@ class Studying::EnrollmentsControllerTest < ActionController::PersonTestCase
     
     put :update,
       :id         => enrollment.to_param, 
-      :enrollment => {
+      enrollment: {
         :student            => Factory.student.attributes,
         :accept_enrollment  => '1'
       }
@@ -38,8 +38,8 @@ class Studying::EnrollmentsControllerTest < ActionController::PersonTestCase
     
     put :update,
       :id         => enrollment.to_param,
-      :enrollment => {
-        :student            => {:email => 'foo'},
+      enrollment: {
+        :student            => {email: 'foo'},
         :accept_enrollment  => '1'
       }
     
@@ -48,13 +48,13 @@ class Studying::EnrollmentsControllerTest < ActionController::PersonTestCase
   
   def test_update_existing_student
     student = Factory.student.create
-    enrollment = Factory.enrollment.create :email => student.email
+    enrollment = Factory.enrollment.create email: student.email
     
     put :update,
       :id         => enrollment.to_param,
-      :enrollment => {
+      enrollment: {
         :accept_enrollment  => '1',
-        :student            => {:automatically_enroll => '1'}
+        :student            => {automatically_enroll: '1'}
       }
     
     assert_logged_in_as student
@@ -64,7 +64,7 @@ class Studying::EnrollmentsControllerTest < ActionController::PersonTestCase
   def test_destroy
     enrollment = Factory.enrollment.create
     
-    delete :destroy, :id => enrollment.to_param
+    delete :destroy, id: enrollment.to_param
     
     assert_redirected_to root_path
     assert_destroyed enrollment

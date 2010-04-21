@@ -52,13 +52,13 @@ module ActionController
           value
         end
 
-        request_options = {:path => path, :method => method}
+        request_options = {path: path, method: method}
       else
         raise "Invalid request of #{request.inspect}" 
       end
 
       params.merge!(
-        :controller => @controller.class.name.underscore.gsub(/_controller/, ''),
+        controller: @controller.class.name.underscore.gsub(/_controller/, ''),
         :action     => expected_action
       )
       

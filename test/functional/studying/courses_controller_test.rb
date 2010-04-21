@@ -10,7 +10,7 @@ class Studying::CoursesControllerTest < ActionController::StudyingTestCase
   end
 
   def show
-    studying_get :show, :id => current_course.to_param
+    studying_get :show, id: current_course.to_param
 
     assert_response :ok
   end

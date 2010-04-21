@@ -3,11 +3,11 @@ class Registration < ActiveRecord::Base
   include ActiveRecord::EmailValidation
   include ActiveRecord::Authenticated
 
-  validates_presence_of :full_name, :on => :create
-  validates_presence_of :password, :on => :create
+  validates_presence_of :full_name, on: :create
+  validates_presence_of :password, on: :create
 
-  validate :email, :on => :create do
-    if Teacher.exists? :email => email
+  validate :email, on: :create do
+    if Teacher.exists? email: email
       errors.add :email, 'is already in use'
     end
   end
@@ -17,7 +17,7 @@ class Registration < ActiveRecord::Base
   end
 
   def create_teacher!
-    Registration.delete_all :email => email
+    Registration.delete_all email: email
 
     Teacher.create do |teacher|
       teacher.email               = email

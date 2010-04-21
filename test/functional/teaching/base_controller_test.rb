@@ -3,7 +3,7 @@ require 'action_controller_test'
 class Teaching::BaseControllerTest < ActionController::TeachingTestCase
   class TestController < Teaching::BaseController
     def index
-      render :text => 'foo'
+      render text: 'foo'
     end
   end
 

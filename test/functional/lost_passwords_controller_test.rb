@@ -12,16 +12,16 @@ class LostPasswordsControllerTest < ActionController::TestCase
   def test_create_success
     person = Factory.person.create
 
-    post :create, :lost_password => {
-      :email => person.email
+    post :create, lost_password: {
+      email: person.email
     }
     
     assert_template 'confirm'
   end
   
   def test_create_failure
-    post :create, :lost_password => {
-      :email => 'invalid'
+    post :create, lost_password: {
+      email: 'invalid'
     }
     
     assert_template 'new'
@@ -30,7 +30,7 @@ class LostPasswordsControllerTest < ActionController::TestCase
   def test_show
     lost_password = Factory.lost_password.create
 
-    get :show, :id => lost_password.token
+    get :show, id: lost_password.token
     
     assert_equal lost_password, assigns(:lost_password)
     assert_equal lost_password.person, assigns(:person)
@@ -39,7 +39,7 @@ class LostPasswordsControllerTest < ActionController::TestCase
   def test_update_success
     lost_password = Factory.lost_password.create
     
-    put :update, :id => lost_password.token, :lost_password => {:new_password => 'snoopy'}
+    put :update, id: lost_password.token, lost_password: {new_password: 'snoopy'}
     
     assert_logged_in_as lost_password.person
   end
@@ -47,7 +47,7 @@ class LostPasswordsControllerTest < ActionController::TestCase
   def test_update_failure
     lost_password = Factory.lost_password.create
     
-    put :update, :id => lost_password.token, :lost_password => {:new_password => ''}
+    put :update, id: lost_password.token, lost_password: {new_password: ''}
     
     assert_template 'show'
   end

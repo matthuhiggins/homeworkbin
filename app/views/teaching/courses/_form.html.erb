@@ -5,12 +5,12 @@
   <div class="course-name">
     <div><%= f.label :name, 'Course name' %></div>
     <div><%= f.text_field :name %></div>
-    <div><%= f.error_message_on :name, :prepend => 'Course name ' %></div>
+    <div><%= f.error_message_on :name, prepend: 'Course name ' %></div>
   </div>
   <div class="fields">
     <div class="date-selector">
       <div><%= f.label :start_date, 'from' %></div>
-      <div><%= f.text_field :start_date, :value => course_start_date(@course), :autocomplete => 'off' %></div>
+      <div><%= f.text_field :start_date, value: course_start_date(@course), autocomplete: 'off' %></div>
       <div class="calendar-wrap">
         <div class="calendar"></div> 
       </div>
@@ -18,7 +18,7 @@
     </div>
     <div class="date-selector">
       <div><%= f.label :end_date, 'to' %></div>
-      <div><%= f.text_field :end_date, :value => course_end_date(@course), :autocomplete => 'off' %></div>
+      <div><%= f.text_field :end_date, value: course_end_date(@course), autocomplete: 'off' %></div>
       <div class="calendar-wrap">
         <div class="calendar"></div> 
       </div>

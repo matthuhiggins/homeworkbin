@@ -5,7 +5,7 @@ class LostPasswordTest < ActiveRecord::TestCase
   include ActionMailer::TestHelper
 
   def test_unknown_email
-    lost_password = Factory.lost_password.build :email => 'joe@spu.edu'
+    lost_password = Factory.lost_password.build email: 'joe@spu.edu'
     
     assert lost_password.invalid?
     assert_equal ['does not exist'], lost_password.errors[:email]
@@ -18,17 +18,17 @@ class LostPasswordTest < ActiveRecord::TestCase
   end
   
   def test_person
-    person = Factory.person.create :email => 'joe@spu.edu'
-    lost_password = Factory.lost_password.build :email => person.email
+    person = Factory.person.create email: 'joe@spu.edu'
+    lost_password = Factory.lost_password.build email: person.email
     
     assert_equal person, lost_password.person
   end
   
   def test_email
-    person = Factory.person.create :email => 'joe@spu.edu'
+    person = Factory.person.create email: 'joe@spu.edu'
   
     assert_emails 1 do
-      Factory.lost_password.create :email => person.email
+      Factory.lost_password.create email: person.email
     end
   end
   

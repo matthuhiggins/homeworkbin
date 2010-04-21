@@ -4,8 +4,8 @@ class Studier < ActiveRecord::Base
   has_many :compositions
   has_many :submissions
   
-  delegate :teacher, :to => :course
-  delegate :full_name, :email, :to => :student
+  delegate :teacher, to: :course
+  delegate :full_name, :email, to: :student
   
   def submission_for(assignment)
     submissions_by_assignment_id[assignment.id]

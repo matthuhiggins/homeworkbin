@@ -15,7 +15,7 @@ class RegistrationTest < ActiveRecord::TestCase
   def test_validate_existing_person
     person = Factory.person.create
     
-    existing_person = factory.build :email => person.email
+    existing_person = factory.build email: person.email
     assert existing_person.invalid?
     assert_equal ['is already in use'], existing_person.errors[:email]
     
@@ -24,7 +24,7 @@ class RegistrationTest < ActiveRecord::TestCase
   end
   
   def test_validate_presence
-    registration = factory.build :full_name => '', :password => ''
+    registration = factory.build full_name: '', password: ''
     assert registration.invalid?
     assert_equal ["can't be blank"], registration.errors[:full_name]
     assert_equal ["can't be blank"], registration.errors[:password]
@@ -43,9 +43,9 @@ class RegistrationTest < ActiveRecord::TestCase
   end
   
   def test_create_teaching_destroys_related_registrations
-    primary_registration = factory.create :email => 'a@b.com'
-    duplicate_registration = factory.create :email => 'a@b.com'
-    other_registration = factory.create :email => 'x@y.com'
+    primary_registration = factory.create email: 'a@b.com'
+    duplicate_registration = factory.create email: 'a@b.com'
+    other_registration = factory.create email: 'x@y.com'
     
     primary_registration.create_teacher!
     

@@ -15,9 +15,9 @@ class Teaching::RegistrationsControllerTest < ActionController::TestCase
     assert_emails 1 do
       post(
         :create, 
-        :registration => {
+        registration: {
           :email     => 'foo@bar.com', 
-          :full_name => 'matty',
+          full_name: 'matty',
           :password  => 'sekret'
         }
       )
@@ -29,7 +29,7 @@ class Teaching::RegistrationsControllerTest < ActionController::TestCase
   def test_create_using_blanks
     post(
       :create, 
-      :registration => {
+      registration: {
         :email      => 'foo@bar.com',
         :full_name  => '',
         :password   => ''
@@ -41,7 +41,7 @@ class Teaching::RegistrationsControllerTest < ActionController::TestCase
   
   def test_show
     registration = Factory.registration.create
-    get :show, :id => registration.token
+    get :show, id: registration.token
 
     assert_equal registration, assigns(:registration)
     assert_destroyed registration
@@ -51,7 +51,7 @@ class Teaching::RegistrationsControllerTest < ActionController::TestCase
   
   def test_show_with_bad_token
     assert_raise ActiveRecord::RecordNotFound do
-      get :show, :id => 'poopy'
+      get :show, id: 'poopy'
     end
   end
 end

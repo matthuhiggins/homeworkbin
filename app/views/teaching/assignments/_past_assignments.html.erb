@@ -4,7 +4,7 @@
     <ul>
       <% @past_assignments.each do |assignment| %>
         <li class="assignment">
-          <%= link_to truncate(assignment.name, :length => 35), teaching_assignment_path(current_course, assignment) %>
+          <%= link_to truncate(assignment.name, length: 35), teaching_assignment_path(current_course, assignment) %>
           <span class="due-date">
             due <%= relative_assignment_due_date(assignment) %>
           </span>

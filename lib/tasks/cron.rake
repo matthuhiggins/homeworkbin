@@ -1,3 +1,3 @@
-task :cron => :environment do
+task cron: :environment do
   ActiveRecord::Tokenized.models.each(&:prune)
 end

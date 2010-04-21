@@ -7,7 +7,7 @@ class Mailer < ActionMailer::Base
     
     mail(
       to:     registration.email,
-      subject 'Confirm your email address'
+      subject: 'Confirm your email address'
     )
   end
   
@@ -23,8 +23,10 @@ class Mailer < ActionMailer::Base
   def lost_password lost_password
     @lost_password = lost_password
 
-    recipients  lost_password.person.email
-    subject     "Homework Bin password change"
+    mail(
+      recipients:  lost_password.person.email,
+      subject:     "Homework Bin password change"
+    )
   end
   
   def assignment assignment, student

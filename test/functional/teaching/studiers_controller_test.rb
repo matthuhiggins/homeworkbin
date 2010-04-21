@@ -9,17 +9,17 @@ class Teaching::StudiersControllerTest < ActionController::TeachingTestCase
   end
   
   def test_show
-    studier = Factory.studier.create :course => current_course
+    studier = Factory.studier.create course: current_course
     
-    teaching_get :show, :id => studier.to_param
+    teaching_get :show, id: studier.to_param
     
     assert_equal studier, assigns(:studier)
   end
   
   def test_destroy
-    studier = Factory.studier.create :course => current_course
+    studier = Factory.studier.create course: current_course
 
-    teaching_delete :destroy, :id => studier.to_param
+    teaching_delete :destroy, id: studier.to_param
 
     assert_destroyed studier
   end

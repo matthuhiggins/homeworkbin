@@ -1,12 +1,12 @@
 <% title 'Login' %>
 
 <% if flash[:warning].present? %>
-  <%= content_tag :div, flash[:warning], :class => 'warning' %>
+  <%= content_tag :div, flash[:warning], class: 'warning' %>
 <% end %>
 
 <h2>Log in</h2>
 
-<%= form_tag(login_path, :class => 'login_form') do %>
+<%= form_tag(login_path, class: 'login_form') do %>
   <div>
     <%= label_tag :email %>
   </div>

@@ -10,8 +10,8 @@ module ActiveRecord
     end
     
     def test_prune
-      old_record = factory.create :created_at => 2.weeks.ago
-      recent_record = factory.create :created_at => 1.day.ago
+      old_record = factory.create created_at: 2.weeks.ago
+      recent_record = factory.create created_at: 1.day.ago
       
       self.class.target_klass.prune
       

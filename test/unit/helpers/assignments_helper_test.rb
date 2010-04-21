@@ -4,8 +4,8 @@ class AssignmentsHelperTest < ActionView::TestCase
   def test_new_assignment_form
     assignment = build_assignment
     form_options = {
-      :url => teaching_assignments_path(current_course),
-      :html => {:id => 'assignment-form'}
+      url: teaching_assignments_path(current_course),
+      html: {id: 'assignment-form'}
     }
     output = assignment_form(assignment) { |f| }
     expected = form_for(assignment, form_options) { |f| }
@@ -17,7 +17,7 @@ class AssignmentsHelperTest < ActionView::TestCase
     assignment = create_assignment
     form_options = {
       :url  => teaching_assignment_path(current_course, assignment),
-      :html => {:method => :put, :id => 'assignment-form'}
+      html: {method: :put, id: 'assignment-form'}
     }
     output = assignment_form(assignment) { |f| }
     expected = form_for(assignment, form_options) { |f| }
@@ -26,7 +26,7 @@ class AssignmentsHelperTest < ActionView::TestCase
   end
   
   def test_default_due_date
-    assert_equal '12/25/2005', default_assignment_due_date(build_assignment :due_date => '12/25/2005')
+    assert_equal '12/25/2005', default_assignment_due_date(build_assignment due_date: '12/25/2005')
     assert_equal Date.current.strftime('%m/%d/%Y'), default_assignment_due_date(current_course.assignments.new)
   end
   
@@ -39,12 +39,12 @@ class AssignmentsHelperTest < ActionView::TestCase
   end
   
   def test_default_due_minutes_without_last
-    assert 120, default_assignment_due_minutes(build_assignment :due_minutes => 120)
-    assert_equal 12 * 60, default_assignment_due_minutes(build_assignment :due_minutes => nil)
+    assert 120, default_assignment_due_minutes(build_assignment due_minutes: 120)
+    assert_equal 12 * 60, default_assignment_due_minutes(build_assignment due_minutes: nil)
   end
 
   def test_default_due_minutes_defaults_to_last
-    create_assignment :due_minutes => 120
+    create_assignment due_minutes: 120
     
     assignment = current_course.assignments.new
     
@@ -52,9 +52,9 @@ class AssignmentsHelperTest < ActionView::TestCase
   end
   
   def test_default_handout
-    assert default_assignment_handout(build_assignment :handout => '1')
-    assert default_assignment_handout(build_assignment :handout => nil)
-    assert !default_assignment_handout(build_assignment :handout => '0')
+    assert default_assignment_handout(build_assignment handout: '1')
+    assert default_assignment_handout(build_assignment handout: nil)
+    assert !default_assignment_handout(build_assignment handout: '0')
   end
   
   def test_save_assignment_text
@@ -70,17 +70,17 @@ class AssignmentsHelperTest < ActionView::TestCase
   end
   
   def test_relative_due_date
-    assert_equal 'Today', relative_assignment_due_date(Assignment.new :due_date => Date.current)
-    assert_equal 'Tomorrow', relative_assignment_due_date(Assignment.new :due_date => Date.current.tomorrow)
-    assert_equal 'Thu, Dec 25', relative_assignment_due_date(Assignment.new :due_date => Date.new(2003, 12, 25))
+    assert_equal 'Today', relative_assignment_due_date(Assignment.new due_date: Date.current)
+    assert_equal 'Tomorrow', relative_assignment_due_date(Assignment.new due_date: Date.current.tomorrow)
+    assert_equal 'Thu, Dec 25', relative_assignment_due_date(Assignment.new due_date: Date.new(2003, 12, 25))
   end
   
   private
     def build_assignment(attributes = {})
-      Factory.assignment.build attributes.reverse_merge!(:course => current_course)
+      Factory.assignment.build attributes.reverse_merge!(course: current_course)
     end
     
     def create_assignment(attributes = {})
-      Factory.assignment.create attributes.reverse_merge!(:course => current_course)      
+      Factory.assignment.create attributes.reverse_merge!(course: current_course)      
     end
 end

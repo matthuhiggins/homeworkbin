@@ -21,7 +21,7 @@ class Enrollment::MatriculationTest < ActiveRecord::TestCase
   
   def test_matriculate_existing_email
     course = Factory.course.create
-    existing_enrollment = factory.create :course => course
+    existing_enrollment = factory.create course: course
 
     assert_emails 1 do
       new_enrollment = course.enrollments.matriculate_email existing_enrollment.email

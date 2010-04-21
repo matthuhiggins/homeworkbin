@@ -1,7 +1,7 @@
 module ActiveRecord
   module Denormalization
     # class Comment < ActiveRecord::Base
-    #   belongs_to :post, :denormalize => :user
+    #   belongs_to :post, denormalize: :user
     # end
     def belongs_to(intermediate_association, options = {})
       if (denormalized_association = options.delete(:denormalize))

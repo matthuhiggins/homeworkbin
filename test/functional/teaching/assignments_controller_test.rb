@@ -15,7 +15,7 @@ class Teaching::AssignmentsControllerTest < ActionController::TeachingTestCase
   end
   
   def test_create
-    teaching_post :create, :assignment => {
+    teaching_post :create, assignment: {
       :name         => 'CSE 142',
       :due_date     => (current_course.start_date + 5).strftime('%m/%d/%Y'),
       :due_minutes  => 100
@@ -26,19 +26,19 @@ class Teaching::AssignmentsControllerTest < ActionController::TeachingTestCase
   end
   
   def test_edit
-    assignment = Factory.assignment.create :course => current_course 
+    assignment = Factory.assignment.create course: current_course 
 
-    teaching_get :edit, :id => assignment.to_param
+    teaching_get :edit, id: assignment.to_param
 
     assert_equal assignment, assigns(:assignment)
   end
   
   def test_update
-    assignment = Factory.assignment.create :course => current_course 
+    assignment = Factory.assignment.create course: current_course 
     
     teaching_put :update, {
       :id         => assignment.to_param,
-      :assignment => {:name => 'foo!'}
+      assignment: {name: 'foo!'}
     }
     
     assignment.reload
@@ -47,9 +47,9 @@ class Teaching::AssignmentsControllerTest < ActionController::TeachingTestCase
   end
   
   def test_destroy
-    assignment = Factory.assignment.create :course => current_course 
+    assignment = Factory.assignment.create course: current_course 
     
-    teaching_delete :destroy, :id => assignment.to_param
+    teaching_delete :destroy, id: assignment.to_param
     
     assert_destroyed assignment
     assert_redirected_to teaching_assignments_path(current_course)

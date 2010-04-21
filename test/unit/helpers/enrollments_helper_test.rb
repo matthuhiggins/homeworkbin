@@ -7,7 +7,7 @@ class EnrollmentsHelperTest < ActionView::TestCase
   end
   
   def test_fields_partial_for_existing_student
-    enrollment = Factory.enrollment.create :email => Factory.person.create.email
+    enrollment = Factory.enrollment.create email: Factory.person.create.email
     assert_equal 'existing_student', enrollment_fields_partial(enrollment)    
   end
 end

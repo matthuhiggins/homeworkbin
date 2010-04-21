@@ -1,7 +1,7 @@
 module ActionController
   class StudyingTestCase < PersonTestCase
     def studying_request(http_method, action, params = {})
-      person_request(http_method, action, params.reverse_merge(:studying_id => current_course.id))
+      person_request(http_method, action, params.reverse_merge(studying_id: current_course.id))
     end
     request_methods :studying
 
@@ -24,7 +24,7 @@ module ActionController
       def build_studier!
         @current_course ||= Factory.course.create
         @current_student ||= current_person.student
-        @current_studier ||= Factory.studier.create :course => @current_course, :student => @current_student
+        @current_studier ||= Factory.studier.create course: @current_course, student: @current_student
       end
   end
 end

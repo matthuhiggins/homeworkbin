@@ -15,7 +15,7 @@ class EnrollmentTest < ActiveRecord::TestCase
     student = Factory.student.create
     course.students << student
     
-    enrollment = factory.build :course => course, :email => student.email
+    enrollment = factory.build course: course, email: student.email
     
     assert enrollment.invalid?
     assert_equal ['is already in this course'], enrollment.errors[:email]
@@ -24,7 +24,7 @@ class EnrollmentTest < ActiveRecord::TestCase
   def test_validate_student
     enrollment = factory.create
     
-    enrollment.student = {:email => 'poo'}
+    enrollment.student = {email: 'poo'}
     
     assert enrollment.invalid?
     assert_equal ['is invalid'], enrollment.errors[:student]
@@ -40,17 +40,17 @@ class EnrollmentTest < ActiveRecord::TestCase
   
   def test_existing_student
     student = Factory.student.create
-    assert_equal student, factory.build(:email => student.email).student
+    assert_equal student, factory.build(email: student.email).student
   end
   
   def test_new_student?
     assert factory.build.new_student?
-    assert !factory.build(:email => Factory.student.create.email).new_student?
+    assert !factory.build(email: Factory.student.create.email).new_student?
   end
   
   def test_enroll_student
-    student = Factory.student.create :automatically_enroll => false
-    enrollment = factory.create :email => student.email
+    student = Factory.student.create automatically_enroll: false
+    enrollment = factory.create email: student.email
     
     studier = enrollment.enroll_student!
     
@@ -60,19 +60,19 @@ class EnrollmentTest < ActiveRecord::TestCase
   end
   
   def test_enabled_automatic_enrollment
-    student = Factory.student.create :automatically_enroll => true
+    student = Factory.student.create automatically_enroll: true
 
     assert_emails 1 do
-      enrollment = factory.create :email => student.email
+      enrollment = factory.create email: student.email
       assert enrollment.course.students.include?(student)
     end
   end
   
   def test_disabled_automatic_enrollment
-    student = Factory.student.create :automatically_enroll => false
+    student = Factory.student.create automatically_enroll: false
     
     assert_emails 1 do
-      enrollment = factory.create :email => student.email
+      enrollment = factory.create email: student.email
       assert !enrollment.course.students.include?(student)
     end
   end
@@ -90,10 +90,10 @@ class EnrollmentTest < ActiveRecord::TestCase
   end
   
   def test_existing_student_accepts_enrollment
-    student = Factory.student.create :automatically_enroll => false
-    enrollment = factory.create :email => student.email
+    student = Factory.student.create automatically_enroll: false
+    enrollment = factory.create email: student.email
     
-    enrollment.update_attributes :accept_enrollment => true
+    enrollment.update_attributes accept_enrollment: true
     
     assert enrollment.course.students.include?(enrollment.student)
   end

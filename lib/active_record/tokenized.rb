@@ -15,7 +15,7 @@ module ActiveRecord
 
     module ClassMethods
       def prune
-        scoped(:conditions => ['created_at < ?', 7.days.ago]).delete_all
+        where(['created_at < ?', 7.days.ago]).delete_all
       end
     end
 

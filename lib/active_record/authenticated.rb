@@ -5,7 +5,7 @@ module ActiveRecord
     extend ActiveSupport::Concern
 
     included do
-      before_save :encrypt_password, :if => :password_given?
+      before_save :encrypt_password, if: :password_given?
 
       attr_accessor :password
       attr_protected :encrypted_password, :salt

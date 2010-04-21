@@ -12,7 +12,7 @@ class Person::RememberedTest < ActiveRecord::TestCase
   end
   
   def test_forget_me
-    person = factory.create :remember_token => "big_sekret"
+    person = factory.create remember_token: "big_sekret"
 
     person.forget_me!
 

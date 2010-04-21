@@ -5,11 +5,11 @@ class Disciplines::TimeZoneTest < ActionController::TestCase
     include Disciplines::TimeZone
 
     def render_time_zone
-      render :text => Time.zone.name
+      render text: Time.zone.name
     end
 
     def current_course
-      @current_course ||= Factory.course.create :time_zone => 'Quito'
+      @current_course ||= Factory.course.create time_zone: 'Quito'
     end
   end
   

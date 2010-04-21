@@ -5,7 +5,7 @@ class LinkHelperTest < ActionView::TestCase
     controller.request.env['HTTP_REFERER'] = 'foo'
 
     assert_dom_equal(
-      link_to('Cancel', 'javascript:history.back()', :class => 'cancel'),
+      link_to('Cancel', 'javascript:history.back()', class: 'cancel'),
       cancel
     )
   end

@@ -5,20 +5,20 @@ class Teaching::AnnotationsControllerTest < ActionController::TeachingTestCase
 
   # def test_create
   #   teaching_post :create, {
-  #     :submission_id => create_submission.to_param,
-  #     :annotation => {
-  #       :comment => 'gold star',
-  #       :snippet => 'green symbolizes envy'
+  #     submission_id: create_submission.to_param,
+  #     annotation: {
+  #       comment: 'gold star',
+  #       snippet: 'green symbolizes envy'
   #     }
   #   }
   # 
   #   assert !assigns(:annotation).new_record?
-  #   assert_equal({:id => assigns(:annotation).id}.to_json, @response.body)
+  #   assert_equal({id: assigns(:annotation).id}.to_json, @response.body)
   # end
   
   def test_destroy
     submission = create_submission
-    annotation = Factory.annotation.create :submission => submission
+    annotation = Factory.annotation.create submission: submission
 
     teaching_delete :destroy, {
       :submission_id  => submission.to_param,
@@ -31,8 +31,8 @@ class Teaching::AnnotationsControllerTest < ActionController::TeachingTestCase
 
   private
     def create_submission
-      assignment = Factory.assignment.create :course => current_course
-      studier = Factory.studier.create :course => current_course
-      Factory.submission.create :assignment => assignment, :studier => studier
+      assignment = Factory.assignment.create course: current_course
+      studier = Factory.studier.create course: current_course
+      Factory.submission.create assignment: assignment, studier: studier
     end
 end

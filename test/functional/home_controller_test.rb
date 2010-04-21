@@ -12,7 +12,7 @@ class HomeControllerTest < ActionController::TestCase
   def test_index_when_authenticated
     person = Factory.person.create
 
-    get :index, {}, {:person_id => person.to_param}
+    get :index, {}, {person_id: person.to_param}
 
     assert_template 'authenticated'
   end

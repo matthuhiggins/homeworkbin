@@ -1,3 +1,3 @@
-task :classroom => 'db:reset' do
+task classroom: 'db:reset' do
   Classroom.new
 end

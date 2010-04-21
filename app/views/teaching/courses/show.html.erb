@@ -20,7 +20,7 @@
 
   <div class="stats">
     <div class="stat">
-      <%= link_to teaching_studiers_path(current_course), :class => 'count' do %>
+      <%= link_to teaching_studiers_path(current_course), class: 'count' do %>
         <strong>
           <%= @studiers_count %>
         </strong>
@@ -28,10 +28,10 @@
           <%= @studiers_count == 1 ? 'student' : 'students' %>
         </span>
       <% end %>
-      <%= link_to 'Enroll students »', teaching_enrollments_path(current_course), :class => 'add' %>
+      <%= link_to 'Enroll students »', teaching_enrollments_path(current_course), class: 'add' %>
     </div>
     <div class="stat">
-      <%= link_to teaching_assignments_path(current_course), :class => 'count' do %>
+      <%= link_to teaching_assignments_path(current_course), class: 'count' do %>
         <strong>
           <%= @assignments_count %>
         </strong>
@@ -39,7 +39,7 @@
           <%= @assignments_count == 1 ? 'assignment' : 'assignments' %>
         </span>
       <% end %>
-      <%= link_to 'Add homework »', new_teaching_assignment_path(current_course), :class => 'add' %>
+      <%= link_to 'Add homework »', new_teaching_assignment_path(current_course), class: 'add' %>
     </div>
   </div>
 <% end %>

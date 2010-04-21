@@ -4,7 +4,7 @@
 
 <ul class="enrollments">
   <% (@enrollments + @enrollments).each do |enrollment| %>
-    <%= content_tag :li, :class => 'enrollment', :id => dom_id(enrollment) do %>
+    <%= content_tag :li, class: 'enrollment', id: dom_id(enrollment) do %>
       <div>
         <span class="name">
           <%= enrollment.course.name %>
@@ -18,11 +18,11 @@
       <div class="actions">
         <%= link_to 'Dismiss', 
                     enrollment_path(enrollment),
-                    :method => :delete %>
+                    method: :delete %>
         |
         <%= link_to 'Accept',
-                    enrollment_path(enrollment, :accept_enrollment => '1'),
-                    :method => :put %>
+                    enrollment_path(enrollment, accept_enrollment: '1'),
+                    method: :put %>
       </div>
     <% end %>
   <% end %>

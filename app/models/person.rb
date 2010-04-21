@@ -3,7 +3,7 @@ class Person < ActiveRecord::Base
   include ActiveRecord::Authenticated
   include ActiveRecord::EmailValidation
 
-  validates_presence_of :password, :if => :password_given?
+  validates_presence_of :password, if: :password_given?
   validates_presence_of :full_name
 
   has_many :lost_passwords

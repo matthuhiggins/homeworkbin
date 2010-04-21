@@ -8,19 +8,19 @@
 
 <%= yui_stylesheet 'assets/skins/sam/skin' %>
 
-<%= form_for current_composition, :url => studying_assignment_path(current_course, current_assignment),
-                                 :html => {
+<%= form_for current_composition, url: studying_assignment_path(current_course, current_assignment),
+                                 html: {
                                    :method  => :put,
                                    :style   => 'display:none',
                                    :id      => 'composition-form' } do |f| %>
   <div>
     <%= f.text_area :text %>
   </div>
-  <%= f.hidden_field :hand_in, :value => false %>
+  <%= f.hidden_field :hand_in, value: false %>
   <div class="submit-cancel">
     <%= cancel %>
-    <%= f.submit 'Save draft', :id => 'save-draft' %>
-    <%= f.submit 'Turn this in', :id => 'turn-in' %>
+    <%= f.submit 'Save draft', id: 'save-draft' %>
+    <%= f.submit 'Turn this in', id: 'turn-in' %>
   </div>
 <% end %>
 

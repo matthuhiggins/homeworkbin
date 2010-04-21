@@ -15,10 +15,10 @@ class PersonTest < ActiveRecord::TestCase
   def test_validate_presence_of_password
     person = factory.create
 
-    person.update_attributes(:password => nil)
+    person.update_attributes(password: nil)
     assert person.errors[:password].empty?
     
-    person.update_attributes(:password => '')
+    person.update_attributes(password: '')
     assert person.errors[:password].include?("can't be blank")
   end
 end

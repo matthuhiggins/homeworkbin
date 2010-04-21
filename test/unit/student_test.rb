@@ -2,9 +2,9 @@ require 'active_record_test'
 
 class StudentTest < ActiveRecord::TestCase
   def test_enrollments
-    other_enrollment = Factory.enrollment.create :email => 'other@foo.bar'
-    my_enrollment = Factory.enrollment.create :email => 'me@matthewhiggins.com'
-    student = factory.create :email => 'me@matthewhiggins.com'
+    other_enrollment = Factory.enrollment.create email: 'other@foo.bar'
+    my_enrollment = Factory.enrollment.create email: 'me@matthewhiggins.com'
+    student = factory.create email: 'me@matthewhiggins.com'
     
     assert_equal [my_enrollment], student.enrollments
   end
