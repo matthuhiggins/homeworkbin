@@ -7,11 +7,11 @@ class Composition::HandInTest < ActiveRecord::TestCase
     assert composition.handed_in?
     assert_in_delta Time.current, composition.handed_in_at, 5
   end
-
-  def test_hand_in_on_update
+  
+  def test_hand_in!
     composition = factory.create
 
-    composition.update_attribute :hand_in, true
+    composition.hand_in!
 
     assert composition.handed_in?
     assert_in_delta Time.current, composition.handed_in_at, 5

@@ -5,11 +5,15 @@ class Composition
     included do
       attr_accessor :hand_in
 
-      before_save if: :hand_in do |composition|
-        composition.handed_in_at = Time.current
+      before_save if: :hand_in do
+        self.handed_in_at = Time.current
       end
     end
-    
+
+    def hand_in!
+      touch :handed_in_at
+    end
+
     def handed_in?
       handed_in_at.present?
     end
