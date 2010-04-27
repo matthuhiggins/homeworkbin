@@ -22,6 +22,10 @@ class Assignment
         where(['due_date >= ?', Date.current]).order('due_date asc, due_minutes asc')
       end
 
+      def previous
+        past.first
+      end
+
       def next
         upcoming.first
       end

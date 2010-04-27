@@ -6,12 +6,22 @@
     <%= link_to 'Edit course settings', edit_teaching_path(current_course) %>
   </h2>
   <div class="summary">
+    <% current_course.assignments.previous.tap do |assignment| %>
+      <% if assignment.present? %>
+        <p>
+          Previous homework
+          <%= link_to h(assignment.name), teaching_assignment_path(current_course, assignment) %>
+        </p>
+      <% end %>
+    <% end %>
     <% current_course.assignments.next.tap do |assignment| %>
       <% if assignment.present? %>
-        Next homework,
-        <%= link_to h(assignment.name), teaching_assignment_path(current_course, assignment) %>,
-        is due
-        <%= relative_assignment_due_date(assignment) %>.
+        <p>
+          Next homework,
+          <%= link_to h(assignment.name), teaching_assignment_path(current_course, assignment) %>,
+          is due
+          <%= relative_assignment_due_date(assignment) %>.
+        </p>
       <% else %>
         No upcoming homework.
       <% end %>

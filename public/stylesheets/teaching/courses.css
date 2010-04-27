@@ -39,6 +39,10 @@
   float: left;
 }
 
+#courses-show .summary p {
+  padding-top: 8px;
+}
+
 #courses-show .stats {
   float: right;
   width: 210px;

@@ -1,42 +1,23 @@
 require 'active_record_test'
 
 class Assignment::DueTest < ActiveRecord::TestCase
-  module FinderTests
-    def test_past
-      course = Factory.course.create start_date: 1.month.ago.to_date, end_date: 1.month.from_now.to_date
-      due_last_week = factory.create course: course, due_date: 2.days.ago.to_date
-      due_yesterday = factory.create course: course, due_date: 1.day.ago.to_date
-      due_today = factory.create course: course, due_date: Date.current
-      due_tomorrow = factory.create course: course, due_date: 1.day.from_now.to_date
-      
-      assert_equal [due_yesterday, due_last_week], course.assignments.past
-    end
-    
-    def test_upcoming
-      course = Factory.course.create start_date: 1.month.ago.to_date, end_date: 1.month.from_now.to_date
-      due_yesterday = factory.create course: course, due_date: 1.day.ago.to_date
-      due_tomorrow = factory.create course: course, due_date: 1.day.from_now.to_date
-      due_today = factory.create course: course, due_date: Date.current
-      due_next_week = factory.create course: course, due_date: 1.week.from_now.to_date
-
-      assert_equal [due_today, due_tomorrow, due_next_week], course.assignments.upcoming
-    end
-    
-    def test_next
-      course = Factory.course.create start_date: 1.month.ago.to_date, end_date: 1.month.from_now.to_date
-      due_yesterday = factory.create course: course, due_date: 1.day.ago.to_date
-      due_tomorrow = factory.create course: course, due_date: 1.day.from_now.to_date
-      due_next_week = factory.create course: course, due_date: 1.week.from_now.to_date
-      
-      assert_equal due_tomorrow, course.assignments.next
-    end
-  end
-
-  include FinderTests
-
   include ActiveRecord::DateValidationTests
   test_date_format_validation :due_date
-  
+
+  def test_finders
+    course = Factory.course.create start_date: 1.month.ago.to_date, end_date: 1.month.from_now.to_date
+    due_last_week = factory.create course: course, due_date: 2.days.ago.to_date
+    due_yesterday = factory.create course: course, due_date: 1.day.ago.to_date
+    due_today = factory.create course: course, due_date: Date.current
+    due_tomorrow = factory.create course: course, due_date: 1.day.from_now.to_date
+    due_next_week = factory.create course: course, due_date: 1.week.from_now.to_date
+
+    assert_equal [due_yesterday, due_last_week], course.assignments.past
+    assert_equal due_yesterday, course.assignments.previous
+    assert_equal [due_today, due_tomorrow, due_next_week], course.assignments.upcoming
+    assert_equal due_today, course.assignments.next
+  end
+
   def test_validate_minutes_inclusion
     assert factory.build(due_minutes: -1).invalid?
     assert factory.build(due_minutes: 1441).invalid?
