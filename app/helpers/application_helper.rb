@@ -27,4 +27,10 @@ module ApplicationHelper
       'layouts/studying_menu'
     end
   end
+
+  def if_present(object, &block)
+    if object.present?
+      capture(object, &block)
+    end
+  end
 end

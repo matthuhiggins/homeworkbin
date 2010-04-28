@@ -16,4 +16,11 @@ class TimeHelperTest < ActionView::TestCase
   def test_hour
     assert_equal '1:05am', hour(Time.utc(2005, 5, 25, 1, 5))
   end
+
+  def test_relative_date
+    assert_equal 'yesterday', relative_date(Date.current.yesterday)
+    assert_equal 'today', relative_date(Date.current)
+    assert_equal 'tomorrow', relative_date(Date.current.tomorrow)
+    assert_equal 'Thu, Dec 25', relative_date(Date.new(2003, 12, 25))
+  end
 end

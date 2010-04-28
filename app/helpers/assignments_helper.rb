@@ -63,14 +63,4 @@ module AssignmentsHelper
   def assignment_due_at(assignment)
     assignment.due_at.strftime '%a, %b %d'
   end
-  
-  def relative_assignment_due_date(assignment)
-    if assignment.due_date.today?
-      'Today'
-    elsif assignment.due_date == Date.current.tomorrow
-      'Tomorrow'
-    else
-      assignment.due_date.strftime('%a, %b %d')
-    end
-  end  
 end

@@ -6,13 +6,12 @@
     <%= link_to 'Edit course settings', edit_teaching_path(current_course) %>
   </h2>
   <div class="summary">
-    <% current_course.assignments.previous.tap do |assignment| %>
-      <% if assignment.present? %>
-        <p>
-          Previous homework
-          <%= link_to h(assignment.name), teaching_assignment_path(current_course, assignment) %>
-        </p>
-      <% end %>
+    <%= if_present(current_course.assignments.previous) do |assignment| %>
+      <p>
+        <%= link_to h(assignment.name), teaching_assignment_path(current_course, assignment) %>
+        was due 
+        <%= relative_date(assignment.due_date) %>.
+      </p>
     <% end %>
     <% current_course.assignments.next.tap do |assignment| %>
       <% if assignment.present? %>
@@ -20,7 +19,7 @@
           Next homework,
           <%= link_to h(assignment.name), teaching_assignment_path(current_course, assignment) %>,
           is due
-          <%= relative_assignment_due_date(assignment) %>.
+          <%= relative_date(assignment.due_date) %>.
         </p>
       <% else %>
         No upcoming homework.
@@ -29,17 +28,6 @@
   </div>
 
   <div class="stats">
-    <div class="stat">
-      <%= link_to teaching_studiers_path(current_course), class: 'count' do %>
-        <strong>
-          <%= @studiers_count %>
-        </strong>
-        <span>
-          <%= @studiers_count == 1 ? 'student' : 'students' %>
-        </span>
-      <% end %>
-      <%= link_to 'Enroll students »', teaching_enrollments_path(current_course), class: 'add' %>
-    </div>
     <div class="stat">
       <%= link_to teaching_assignments_path(current_course), class: 'count' do %>
         <strong>
@@ -50,6 +38,17 @@
         </span>
       <% end %>
       <%= link_to 'Add homework »', new_teaching_assignment_path(current_course), class: 'add' %>
+    </div>
+    <div class="stat">
+      <%= link_to teaching_studiers_path(current_course), class: 'count' do %>
+        <strong>
+          <%= @studiers_count %>
+        </strong>
+        <span>
+          <%= @studiers_count == 1 ? 'student' : 'students' %>
+        </span>
+      <% end %>
+      <%= link_to 'Enroll students »', teaching_enrollments_path(current_course), class: 'add' %>
     </div>
   </div>
 <% end %>

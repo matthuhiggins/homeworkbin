@@ -41,4 +41,12 @@ class ApplicationHelperTest < ActionView::TestCase
       controller_stylesheet_tag
     )
   end
+
+  def test_if_present
+    output = if_present(nil) { |o| nil.crash }
+    assert_equal nil, output
+
+    output = if_present('ja rule') { |o| "poo on #{o}" }
+    assert_equal 'poo on ja rule', output
+  end
 end

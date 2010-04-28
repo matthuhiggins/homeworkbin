@@ -69,12 +69,6 @@ class AssignmentsHelperTest < ActionView::TestCase
     assert_equal assignment.due_date.strftime('%a, %b %d'), assignment_due_at(assignment)
   end
   
-  def test_relative_due_date
-    assert_equal 'Today', relative_assignment_due_date(Assignment.new due_date: Date.current)
-    assert_equal 'Tomorrow', relative_assignment_due_date(Assignment.new due_date: Date.current.tomorrow)
-    assert_equal 'Thu, Dec 25', relative_assignment_due_date(Assignment.new due_date: Date.new(2003, 12, 25))
-  end
-  
   private
     def build_assignment(attributes = {})
       Factory.assignment.build attributes.reverse_merge!(course: current_course)

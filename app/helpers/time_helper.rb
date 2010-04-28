@@ -15,6 +15,18 @@ module TimeHelper
       format.gsub!(/^0/, '')
     end
   end
+
+  def relative_date(date)
+    if date == Date.current.yesterday
+      'yesterday'
+    elsif date.today?
+      'today'
+    elsif date == Date.current.tomorrow
+      'tomorrow'
+    else
+      date.strftime('%a, %b %d')
+    end
+  end  
   
   def month(time)
     

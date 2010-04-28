@@ -4,7 +4,7 @@
 </h2>
 
 <div class="due-date">
-  Due <%= relative_assignment_due_date @assignment %>
+  Due <%= relative_date @assignment.due_date %>
 </div>
 <% if @submissions.empty? %>
   <div class="welcome">
