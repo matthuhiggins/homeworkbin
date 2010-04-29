@@ -30,8 +30,18 @@ class CoursesHelperTest < ActionView::TestCase
     assert_equal 'Save changes', save_course_text(Factory.course.create)
   end
   
-  def test_course_form_with_new_course
-    
+  def test_course_form_options
+    new_course = Factory.course.build
+    edit_course = Factory.course.create
+
+    assert_equal(
+      {url: teachings_path, html: {id: 'course-form'}},
+      course_form_options(new_course)
+    )
+    assert_equal(
+      {url: teaching_path(edit_course), html: {method: :put, id: 'course-form'}},
+      course_form_options(edit_course)
+    )
   end
 
   # private

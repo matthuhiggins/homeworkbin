@@ -1,12 +1,10 @@
 module CoursesHelper
-  def course_form(course, &block)
+  def course_form_options(course)
     if course.new_record?
-      options = {url: teachings_path, html: {id: 'course-form'}}
+      {url: teachings_path, html: {id: 'course-form'}}
     else
-      options = {url: teaching_path(course), html: {method: :put, id: 'course-form'}}
+      {url: teaching_path(course), html: {method: :put, id: 'course-form'}}
     end
-
-    form_for course, options, &block
   end
 
   def course_start_date(course)

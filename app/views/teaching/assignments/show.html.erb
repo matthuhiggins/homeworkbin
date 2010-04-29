@@ -11,9 +11,9 @@
     No students have submitted homework for this assignment.
   </div>
 <% else %>
-  <strong>Submissions</strong>
+  <strong>Ungraded</strong>
   <ul>
-    <% @submissions.each do |submission| %>
+    <% @submissions.ungraded.each do |submission| %>
       <li class="submission">
         <%= link_to submission.studier.full_name, teaching_submission_path(current_course, submission) %>
         <%= link_to submission_preview(submission, 200), teaching_submission_path(current_course, submission), class: 'preview' %>
@@ -28,6 +28,11 @@
           <%= submission.handed_in_at.strftime('%b %d') %>
         </div>
       </li>
+    <% end %>
+  </ul>
+  <strong>Graded</strong>
+  <ul>
+    <% @submissions.ungraded.each do |submission| %>
     <% end %>
   </ul>
 <% end %>

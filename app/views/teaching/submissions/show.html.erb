@@ -3,10 +3,12 @@
 <h2>
   <%= current_submission.student.full_name %>'s
   Homework
-  <span class="tip">
-    To annotate, select text with your mouse.
-  </span>
 </h2>
+
+<div class="tip">
+  To annotate, select text with your mouse.
+</div>
+
 
 <div id="annotation-margin">
   <textarea id="annotation"></textarea>
@@ -17,17 +19,17 @@
   <%= current_submission.text %>
 </div>
 
-<button id="save-change">Save changes</button>
+<%= form_for :current_submission,
+             :url => teaching_submission_path(current_course, current_submission),
+             :html => {:method => :put} do %>
+  <button id="save-changes">Save changes</button>
+<% end %>
 
 <%= javascript_include_tag 'selection', 'annotator' %>
 
 <script>
 $(function() {
   var annotator = HW.Annotator(<%= current_submission.annotations.to_json %>);
-
-  function className(annotation) {
-    return 'annotation a_' + annotation.identifier;
-  }
 
   function removeWrap(annotation) {
     $('#submission-text .annotation.a_' + annotation.identifier).each(function() {
@@ -38,7 +40,7 @@ $(function() {
   function createWrap(annotation) {
     return function() {
       var span = document.createElement('span');
-      span.className = className(annotation);
+      span.className = 'annotation a_' + annotation.identifier;
       return span;
     };
   }
@@ -47,5 +49,25 @@ $(function() {
     var annotation = annotator.create($('annotation').val(), HW.selection.text());
     HW.selection.wrap(createWrap(annotation));
   });
+
+  // $('#')
+  // $.ajax({
+  //   url: url,
+  //   type: 'put',
+  //   contentType: 'application/json; charset=utf-8',
+  //   data: JSON.stringify(filterParams()),
+  //   dataType: 'json',
+  //   beforeSend: function(request) {
+  //     this.headers = {'X-Http-Method-Override': sekretMethod}
+  //   },
+  //   success: function(data) {
+  //     window.location = data.redirect;
+  //   },
+  //   error: function() {
+  //     $('#filter-save').show();
+  //     $('#filter-saving').hide();
+  //     alert('Something went wrong...');
+  //   }
+  // });
 });
 </script>

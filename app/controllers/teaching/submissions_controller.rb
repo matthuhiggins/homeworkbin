@@ -1,5 +1,10 @@
 class Teaching::SubmissionsController < Teaching::BaseController
   topic 'homework'
+
+  def update
+    current_submission.update_attributes params[:submission]
+    render :ok
+  end
   
   private
     def current_submission

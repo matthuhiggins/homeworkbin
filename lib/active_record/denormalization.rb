@@ -4,6 +4,7 @@ module ActiveRecord
     #   belongs_to :post, denormalize: :user
     # end
     def belongs_to(intermediate_association, options = {})
+      options = options.dup
       if (denormalized_association = options.delete(:denormalize))
         super(denormalized_association, options)
         denormalize(intermediate_association, denormalized_association)

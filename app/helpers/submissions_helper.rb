@@ -2,15 +2,7 @@ module SubmissionsHelper
   include TimeHelper
 
   def submission_handed_in_at(submission)
-    date = begin
-      if submission.handed_in_at.today?
-        'today'
-      elsif submission.handed_in_at.to_date == Date.current.yesterday
-        'yesterday'
-      else
-        submission.handed_in_at.strftime('%a, %b %d')
-      end
-    end
+    date = relative_date submission.handed_in_at.to_date
     
     date + ' at ' + hour(submission.handed_in_at)
   end

@@ -9,7 +9,12 @@
             due <%= relative_date(assignment.due_date) %>
           </span>
           <div class="options">
-            <%= link_to 'Grade submissions', teaching_assignment_path(current_course, assignment) %>
+            <% if assignment.submissions.ungraded.any? %>
+              <%= link_to pluralize(assignment.submissions.ungraded.count, 'ungraded submission'),
+                          teaching_assignment_path(current_course, assignment) %>
+            <% else %>
+              <%= link_to 'All submissions graded', teaching_assignment_path(current_course, assignment) %>
+            <% end %>
             |
             <%= link_to 'Edit', edit_teaching_assignment_path(current_course, assignment) %>
           </div>

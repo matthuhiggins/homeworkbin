@@ -1,18 +1,16 @@
 module AssignmentsHelper
-  def assignment_form(assignment, &block)
+  def assignment_form_options(assignment)
     if assignment.new_record?
-      options = {
+      {
         url:  teaching_assignments_path(current_course),
         html: {id: 'assignment-form'}
       }
     else
-      options = {
+      {
         url:  teaching_assignment_path(current_course, assignment),
         html: {method: :put, id: 'assignment-form'}
       }
     end
-
-    form_for assignment, options, &block
   end
   
   def default_assignment_due_date(assignment)

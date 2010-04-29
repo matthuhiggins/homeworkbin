@@ -1,7 +1,7 @@
 <%= yui_stylesheet 'calendar/assets/skins/sam/calendar' %>
 <%= stylesheet_link_tag 'shared/date_selector' %>
 
-<%= assignment_form @assignment do |f| %>
+<%= form_for @assignment, assignment_form_options(@assignment) do |f| %>
   <div>
     <div><%= f.label :name, 'Assignment name' %></div>
     <div><%= f.text_field :name %></div>
