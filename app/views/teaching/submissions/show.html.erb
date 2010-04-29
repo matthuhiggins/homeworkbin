@@ -3,49 +3,49 @@
 <h2>
   <%= current_submission.student.full_name %>'s
   Homework
-  <button id="annotate">Annotate Selection</button>
+  <span class="tip">
+    To annotate, select text with your mouse.
+  </span>
 </h2>
 
-<div id="submission-text">
-  <div class="text">
-    <%= current_submission.text %>
-  </div>
+<div id="annotation-margin">
+  <textarea id="annotation"></textarea>
+  <button id="annotate">Annotate Selection</button>
 </div>
 
-<!-- <div id="annotations">
-</div> -->
+<div id="submission-text">
+  <%= current_submission.text %>
+</div>
 
-<%= javascript_include_tag 'selection' %>
+<button id="save-change">Save changes</button>
+
+<%= javascript_include_tag 'selection', 'annotator' %>
 
 <script>
 $(function() {
-  var annotations = <%= current_submission.annotations.to_json %>;
-  
-  function nextAnnotationIdentifier() {
-    var max = 0;
-    for (var i = 0; i < annotations.length; i++) {
-      max = max > annotations[i].identifier ? max : annotations[i].identifier;
-    }
-    return max + 1;
+  var annotator = HW.Annotator(<%= current_submission.annotations.to_json %>);
+
+  function className(annotation) {
+    return 'annotation a_' + annotation.identifier;
   }
 
-  function createAnnotation(comment, snippet) {
-    return {
-      'identifier': nextAnnotationIdentifier(),
-      'comment': comment,
-      'snippet': snippet
-    }
+  function removeWrap(annotation) {
+    $('#submission-text .annotation.a_' + annotation.identifier).each(function() {
+      jQuery(this).replaceWith(this.childNodes);
+    });
+  }
+
+  function createWrap(annotation) {
+    return function() {
+      var span = document.createElement('span');
+      span.className = className(annotation);
+      return span;
+    };
   }
   
   $('#annotate').click(function() {
-    var annotation = createAnnotation('cool dude lol', HW.selection.text());
-    annotations.push(annotation);
-    HW.selection.wrap(function() {
-      var span = document.createElement('span');
-      span.className = 'annotation';
-      span.className += ' a_' + annotation.identifier;
-      return span;
-    });
+    var annotation = annotator.create($('annotation').val(), HW.selection.text());
+    HW.selection.wrap(createWrap(annotation));
   });
 });
 </script>

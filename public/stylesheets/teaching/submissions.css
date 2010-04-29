@@ -1,4 +1,4 @@
-#submissions-show .content {
+/*#submissions-show .content {
   bottom: 0;
   height: auto;
   left: 0;
@@ -6,18 +6,22 @@
   position: absolute;
   right: 0;
   top: 87px;
-}
+}*/
 
-#submissions-show h2 button {
-  
-}
+/*#submissions-show #annotation-margin {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 200px;
+}*/
 
-#submissions-show #submission-text {
+/*#submissions-show #submission-text {
   bottom: 0;
   position: absolute;
   top: 45px;
-  width: 100%;
-}
+  left: 0;
+  right: 200px;
+}*/
 
 #submissions-show .annotation {
   font-weight: bold;
