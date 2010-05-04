@@ -20,8 +20,6 @@ ActiveRecord::Schema.define(:version => 20100207082333) do
     t.datetime "updated_at"
   end
 
-  add_index "annotations", ["submission_id"], :name => "annotations_submission_id_fk"
-
   create_table "assignments", :force => true do |t|
     t.string   "name",                         :null => false
     t.text     "description"
@@ -33,24 +31,20 @@ ActiveRecord::Schema.define(:version => 20100207082333) do
     t.datetime "updated_at"
   end
 
-  add_index "assignments", ["course_id"], :name => "assignments_course_id_fk"
-
   create_table "compositions", :force => true do |t|
-    t.integer  "studier_id",                       :null => false
-    t.integer  "student_id",                       :null => false
-    t.integer  "assignment_id",                    :null => false
-    t.integer  "course_id",                        :null => false
-    t.text     "text",                             :null => false
+    t.integer  "studier_id",    :null => false
+    t.integer  "student_id",    :null => false
+    t.integer  "assignment_id", :null => false
+    t.integer  "course_id",     :null => false
+    t.text     "original",      :null => false
+    t.text     "annotated",     :null => false
     t.datetime "handed_in_at"
-    t.boolean  "graded",        :default => false, :null => false
+    t.datetime "graded_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "compositions", ["assignment_id", "studier_id"], :name => "index_compositions_on_assignment_id_and_studier_id", :unique => true
-  add_index "compositions", ["course_id"], :name => "compositions_course_id_fk"
-  add_index "compositions", ["student_id"], :name => "compositions_student_id_fk"
-  add_index "compositions", ["studier_id"], :name => "compositions_studier_id_fk"
 
   create_table "courses", :force => true do |t|
     t.string   "name",       :null => false
@@ -61,8 +55,6 @@ ActiveRecord::Schema.define(:version => 20100207082333) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "courses", ["teacher_id"], :name => "courses_teacher_id_fk"
 
   create_table "enrollments", :force => true do |t|
     t.string   "email",      :null => false
@@ -81,8 +73,6 @@ ActiveRecord::Schema.define(:version => 20100207082333) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "lost_passwords", ["person_id"], :name => "lost_passwords_person_id_fk"
 
   create_table "people", :force => true do |t|
     t.string   "email",                                                   :null => false
@@ -120,24 +110,5 @@ ActiveRecord::Schema.define(:version => 20100207082333) do
   end
 
   add_index "studiers", ["course_id", "student_id"], :name => "index_studiers_on_course_id_and_student_id", :unique => true
-  add_index "studiers", ["student_id"], :name => "studiers_student_id_fk"
-
-  add_foreign_key "annotations", "compositions", :name => "annotations_submission_id_fk", :column => "submission_id", :dependent => :delete
-
-  add_foreign_key "assignments", "courses", :name => "assignments_course_id_fk", :dependent => :delete
-
-  add_foreign_key "compositions", "assignments", :name => "compositions_assignment_id_fk", :dependent => :delete
-  add_foreign_key "compositions", "courses", :name => "compositions_course_id_fk", :dependent => :delete
-  add_foreign_key "compositions", "people", :name => "compositions_student_id_fk", :column => "student_id", :dependent => :delete
-  add_foreign_key "compositions", "studiers", :name => "compositions_studier_id_fk", :dependent => :delete
-
-  add_foreign_key "courses", "people", :name => "courses_teacher_id_fk", :column => "teacher_id", :dependent => :delete
-
-  add_foreign_key "enrollments", "courses", :name => "enrollments_course_id_fk", :dependent => :delete
-
-  add_foreign_key "lost_passwords", "people", :name => "lost_passwords_person_id_fk", :dependent => :delete
-
-  add_foreign_key "studiers", "courses", :name => "studiers_course_id_fk", :dependent => :delete
-  add_foreign_key "studiers", "people", :name => "studiers_student_id_fk", :column => "student_id", :dependent => :delete
 
 end

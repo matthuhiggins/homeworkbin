@@ -9,6 +9,6 @@ module SubmissionsHelper
   
   HTML_REGEX = /<\/?[^>]*>/
   def submission_preview(submission, length)
-    submission.text.gsub('<br>', ' ').gsub(HTML_REGEX, '')[0, length]
+    submission.original.gsub('<br>', ' ').gsub(HTML_REGEX, '')[0, length]
   end
 end

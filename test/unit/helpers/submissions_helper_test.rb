@@ -21,7 +21,7 @@ class SubmissionsHelperTest < ActionView::TestCase
   def test_preview
     assert_equal(
       'hello worldL',
-      submission_preview(Factory.composition.build(text: 'hello<br>world<span>Lol</span>'), 12)
+      submission_preview(Factory.composition.build(original: 'hello<br>world<span>Lol</span>'), 12)
     )
   end
 end

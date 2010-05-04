@@ -3,7 +3,7 @@ class Teaching::SubmissionsController < Teaching::BaseController
 
   def update
     current_submission.update_attributes params[:submission]
-    render :ok
+    head :ok
   end
   
   private

@@ -22,7 +22,7 @@ class Studying::AssignmentsControllerTest < ActionController::StudyingTestCase
   def test_update_before_composition_exists
     studying_put :update, {
       :id           => assignment.to_param,
-      :composition  => {text: 'The quick brown fox jumped over the lazy dog'}
+      :composition  => {original: 'The quick brown fox jumped over the lazy dog'}
     }
     
     assert !assigns(:current_composition).new_record?
@@ -33,11 +33,11 @@ class Studying::AssignmentsControllerTest < ActionController::StudyingTestCase
     
     studying_put :update, {
       :id           => assignment.to_param,
-      :composition  => {text: 'poo poo'}
+      :composition  => {original: 'poo poo'}
     }
     
     composition.reload
-    assert_equal 'poo poo', composition.text
+    assert_equal 'poo poo', composition.original
   end
 
   private

@@ -5,9 +5,10 @@ class CreateCompositions < ActiveRecord::Migration
       t.integer   :student_id,      :null => false
       t.integer   :assignment_id,   :null => false
       t.integer   :course_id,       :null => false
-      t.text      :text,            :null => false
+      t.text      :original,        :null => false
+      t.text      :annotated,       :null => false
       t.datetime  :handed_in_at,    :null => true
-      t.boolean   :graded,          :null => false, :default => false
+      t.datetime  :graded_at,       :null => true
       t.timestamps
     end
     
