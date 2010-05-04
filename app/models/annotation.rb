@@ -1,3 +1,3 @@
 class Annotation < ActiveRecord::Base
-  belongs_to :submission
+  belongs_to :composition
 end

@@ -8,6 +8,8 @@ class Composition
       before_save if: :hand_in do
         self.handed_in_at = Time.current
       end
+
+      scope :handed_in, where('handed_in_at is not null')
     end
 
     def hand_in!

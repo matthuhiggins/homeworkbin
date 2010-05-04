@@ -1,4 +1,4 @@
-class Teaching::SubmissionsController < Teaching::BaseController
+class Teaching::CompositionsController < Teaching::BaseController
   topic 'homework'
 
   def update

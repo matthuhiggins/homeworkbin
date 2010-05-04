@@ -1,6 +1,6 @@
 require 'action_controller_test'
 
-class Teaching::SubmissionsControllerTest < ActionController::TeachingTestCase
+class Teaching::CompositionsControllerTest < ActionController::TeachingTestCase
   matches_resources 'teaching/:teaching_id/submissions'
 
   def test_show

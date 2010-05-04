@@ -11,12 +11,16 @@ class Course < ActiveRecord::Base
   has_many :studiers
   has_many :students, through: :studiers, order: 'full_name'
   has_many :assignments
-  has_many :submissions
+  has_many :compositions
   has_many :enrollments, extend: Enrollment::Matriculation
 
   after_create do |course|
     course.teacher.decrement! :courses_available
     course.teacher.increment! :courses_created
+  end
+
+  def submissions
+    compositions.handed_in
   end
 
   def last

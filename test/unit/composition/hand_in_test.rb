@@ -1,6 +1,13 @@
 require 'active_record_test'
 
 class Composition::HandInTest < ActiveRecord::TestCase
+  def test_handed_in_scope
+    not_handed_in = Factory.composition.create hand_in: false
+    handed_in = Factory.composition.create hand_in: true
+
+    assert_equal [handed_in], Composition.handed_in.all
+  end
+
   def test_hand_in_on_create
     composition = factory.create hand_in: true
 

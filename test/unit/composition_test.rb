@@ -5,13 +5,6 @@ class CompositionTest < ActiveRecord::TestCase
   test_denormalization :studier, :student
   test_denormalization :assignment, :course
   
-  def test_grade_scopes
-    graded = factory.create graded_at: Time.current
-    ungraded = factory.create graded_at: nil
-    
-    assert_equal [ungraded], Composition.ungraded
-  end
-
   def test_annotated_saved_as_original
     composition = factory.create :original => 'foo'
     assert_equal 'foo', composition.annotated

@@ -2,13 +2,16 @@ class Studier < ActiveRecord::Base
   belongs_to :course
   belongs_to :student
   has_many :compositions
-  has_many :submissions
   
   delegate :teacher, to: :course
   delegate :full_name, :email, to: :student
   
   def submission_for(assignment)
     submissions_by_assignment_id[assignment.id]
+  end
+  
+  def submissions
+    compositions.handed_in
   end
   
   private

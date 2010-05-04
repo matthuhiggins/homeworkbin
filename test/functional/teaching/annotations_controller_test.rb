@@ -1,11 +1,11 @@
 require 'action_controller_test'
 
 class Teaching::AnnotationsControllerTest < ActionController::TeachingTestCase
-  matches_resources 'teaching/:teaching_id/submissions/:submission_id/annotations'
+  matches_resources 'teaching/:teaching_id/submissions/:composition_id/annotations'
 
   # def test_create
   #   teaching_post :create, {
-  #     submission_id: create_submission.to_param,
+  #     composition_id: create_composition.to_param,
   #     annotation: {
   #       comment: 'gold star',
   #       snippet: 'green symbolizes envy'
@@ -17,12 +17,12 @@ class Teaching::AnnotationsControllerTest < ActionController::TeachingTestCase
   # end
   
   def test_destroy
-    submission = create_submission
-    annotation = Factory.annotation.create submission: submission
+    composition = create_composition
+    annotation = Factory.annotation.create composition: composition
 
     teaching_delete :destroy, {
-      :submission_id  => submission.to_param,
-      :id             => annotation.to_param
+      :composition_id   => composition.to_param,
+      :id               => annotation.to_param
     }
 
     assert_response :ok
@@ -30,7 +30,7 @@ class Teaching::AnnotationsControllerTest < ActionController::TeachingTestCase
   end
 
   private
-    def create_submission
+    def create_composition
       assignment = Factory.assignment.create course: current_course
       studier = Factory.studier.create course: current_course
       Factory.submission.create assignment: assignment, studier: studier

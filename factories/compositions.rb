@@ -4,7 +4,7 @@ Factory.define :composition do |f|
   f.original    'The quick brown fox jumped over the lazy dog'
 end
 
-Factory.define :submission, :class => Submission, :parent => :composition do |s|
+Factory.define :submission, :class => Composition, :parent => :composition do |s|
   s.hand_in     true
 end
   

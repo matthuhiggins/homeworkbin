@@ -4,10 +4,14 @@ class Assignment < ActiveRecord::Base
 
   validates_presence_of :name
 
-  has_many :submissions
+  has_many :compositions
   belongs_to :course
 
   delegate :teacher, to: :course
+
+  def submissions
+    compositions.handed_in
+  end
 
   def last
     @last ||= course.assignments.last
