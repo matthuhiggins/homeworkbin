@@ -12,17 +12,18 @@
 
 <div id="annotation-margin">
   <textarea id="annotation"></textarea>
-  <button id="annotate">Annotate Selection</button>
-</div>
-
-<div id="submission-text">
-  <%= current_submission.annotated %>
+  <p>
+    <button id="annotate">Annotate Selection</button>
+  </p>
 </div>
 
 <%= form_for :current_submission,
              :url => teaching_composition_path(current_course, current_submission),
-             :html => {:method => :put} do %>
-  <button id="save-changes">Save changes</button>
+             :html => {:method => :put, :id => 'annotation-form'} do |f| %>
+  <div id="submission-text">
+    <%= current_submission.annotated %>
+  </div>
+  <%= f.submit 'Save changes', :id => 'save-changes' %>
 <% end %>
 
 <%= javascript_include_tag 'selection', 'annotator' %>
@@ -45,12 +46,37 @@ $(function() {
     };
   }
   
+  function submitData() {
+    return {
+      'annotations': annotator.all(),
+      'annotated': $('#submission-text').html()
+    }
+  }
+  
   $('#annotate').click(function() {
     var annotation = annotator.create($('annotation').val(), HW.selection.text());
     HW.selection.wrap(createWrap(annotation));
   });
 
-  // $('#')
+  $('#annotation-form').submit(function(event) {
+    event.preventDefault();
+    $.ajax({
+      'url': this.action,
+      'type': 'put',
+      'dataType': 'json',
+      'data': {'annotation': submitData()},
+      beforeSend: function(request) {
+        this.headers = {'X-Http-Method-Override': 'put'}
+      },
+      'success': function(data) {
+        alert('lol');
+        alert(data.foo);
+      },
+      'error': function() {
+        alert('brokey');
+      }
+    });
+  });
   // $.ajax({
   //   url: url,
   //   type: 'put',

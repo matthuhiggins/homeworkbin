@@ -2,8 +2,9 @@ class Teaching::CompositionsController < Teaching::BaseController
   topic 'homework'
 
   def update
-    current_submission.update_attributes params[:submission]
-    head :ok
+    # current_submission.update_attributes params[:composition]
+    render :json => {foo: 'bar'}
+    # head :ok
   end
   
   private
