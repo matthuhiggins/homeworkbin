@@ -20,7 +20,7 @@
 </div>
 
 <%= form_for :current_submission,
-             :url => teaching_submission_path(current_course, current_submission),
+             :url => teaching_composition_path(current_course, current_submission),
              :html => {:method => :put} do %>
   <button id="save-changes">Save changes</button>
 <% end %>

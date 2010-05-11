@@ -11,8 +11,8 @@
       <% @studier.submission_for(assignment).tap do |submission| %>
         <span class="preview">
           <% if submission.present? %>
-            “<%= link_to submission_preview(submission, 200),
-                        teaching_submission_path(current_course, submission) %>”
+            “<%= link_to composition_preview(submission, 200),
+                        teaching_composition_path(current_course, submission) %>”
           <% else %>
             <em>No homework submitted</em>
           <% end %>
@@ -21,7 +21,7 @@
       <div class="actions">
         <% @studier.submission_for(assignment).tap do |submission| %>
           <% if submission.present? %>
-            <%= link_to 'Grade', teaching_submission_path(current_course, submission) %>
+            <%= link_to 'Grade', teaching_composition_path(current_course, submission) %>
             |
             <%= link_to 'Edit assignment', edit_teaching_assignment_path(current_course, assignment) %>
             |

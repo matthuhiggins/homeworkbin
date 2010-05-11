@@ -15,8 +15,8 @@
   <ul>
     <% @submissions.ungraded.each do |submission| %>
       <li class="submission">
-        <%= link_to submission.studier.full_name, teaching_submission_path(current_course, submission) %>
-        <%= link_to submission_preview(submission, 200), teaching_submission_path(current_course, submission), class: 'preview' %>
+        <%= link_to submission.studier.full_name, teaching_composition_path(current_course, submission) %>
+        <%= link_to composition_preview(submission, 200), teaching_composition_path(current_course, submission), class: 'preview' %>
         <div class="handed-in-at">
           Turned in 
           <% if @assignment.late_submission? submission %>
