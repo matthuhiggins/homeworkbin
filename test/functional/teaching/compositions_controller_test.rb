@@ -16,14 +16,30 @@ class Teaching::CompositionsControllerTest < ActionController::TeachingTestCase
 
     teaching_put :update, {
       id: submission.to_param,
-      submission: {}
+      composition: {
+        annotated: '<span class="annotation a_1">realy</span> cool',
+        annotations_attributes: [
+          {
+            identifier: 1,
+            comment: 'mispelling',
+            snippet: 'realy'
+          }
+        ]
+      }
     }
+
+    submission.reload
+    assert_equal '<span class="annotation a_1">realy</span> cool', submission.annotated
+    assert_equal 1, submission.annotations.count
   end
 
   private
-    def create_submission
+    def create_submission(attributes = {})
       assignment = Factory.assignment.create course: current_course
       studier = Factory.studier.create course: current_course
-      Factory.submission.create assignment: assignment, studier: studier
+      Factory.submission.create attributes.reverse_merge(
+        assignment: assignment,
+        studier: studier
+      )
     end
 end

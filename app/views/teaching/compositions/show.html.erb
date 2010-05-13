@@ -1,7 +1,7 @@
 <% title 'Grading' %>
 
 <h2>
-  <%= current_submission.student.full_name %>'s
+  <%= current_composition.student.full_name %>'s
   Homework
 </h2>
 
@@ -17,11 +17,11 @@
   </p>
 </div>
 
-<%= form_for :current_submission,
-             :url => teaching_composition_path(current_course, current_submission),
+<%= form_for :current_composition,
+             :url => teaching_composition_path(current_course, current_composition),
              :html => {:method => :put, :id => 'annotation-form'} do |f| %>
   <div id="submission-text">
-    <%= current_submission.annotated %>
+    <%= current_composition.annotated %>
   </div>
   <%= f.submit 'Save changes', :id => 'save-changes' %>
 <% end %>
@@ -30,7 +30,7 @@
 
 <script>
 $(function() {
-  var annotator = HW.Annotator(<%= current_submission.annotations.to_json %>);
+  var annotator = HW.Annotator(<%= current_composition.annotations.to_json %>);
 
   function removeWrap(annotation) {
     $('#submission-text .annotation.a_' + annotation.identifier).each(function() {
