@@ -20,6 +20,8 @@ ActiveRecord::Schema.define(:version => 20100207082333) do
     t.datetime "updated_at"
   end
 
+  add_index "annotations", ["composition_id", "identifier"], :name => "index_annotations_on_composition_id_and_identifier", :unique => true
+
   create_table "assignments", :force => true do |t|
     t.string   "name",                         :null => false
     t.text     "description"

@@ -8,6 +8,7 @@ class CreateAnnotations < ActiveRecord::Migration
       t.timestamps
     end
 
+    add_index :annotations, [:composition_id, :identifier], :unique => true
     add_foreign_key :annotations, :compositions, :dependent => :delete
   end
 end
