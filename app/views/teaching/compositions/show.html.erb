@@ -21,7 +21,7 @@
              :url => teaching_composition_path(current_course, current_composition),
              :html => {:method => :put, :id => 'annotation-form'} do |f| %>
   <div id="submission-text">
-    <%= current_composition.annotated %>
+    <%= raw current_composition.annotated %>
   </div>
   <%= f.submit 'Save changes', :id => 'save-changes' %>
 <% end %>
@@ -30,7 +30,7 @@
 
 <script>
 $(function() {
-  var annotator = HW.Annotator(<%= current_composition.annotations.to_json %>);
+  var annotator = HW.Annotator(<%= raw current_composition.annotations.to_json %>);
 
   function removeWrap(annotation) {
     $('#submission-text .annotation.a_' + annotation.identifier).each(function() {
@@ -48,14 +48,17 @@ $(function() {
   
   function submitData() {
     return {
-      'annotations': annotator.all(),
-      'annotated': $('#submission-text').html()
-    }
+      'composition': {
+        'annotated': $('#submission-text').html(),
+        'annotations_attributes': annotator.all()
+      }
+    };
   }
   
   $('#annotate').click(function() {
-    var annotation = annotator.create($('annotation').val(), HW.selection.text());
+    var annotation = annotator.create($('#annotation').val(), HW.selection.text());
     HW.selection.wrap(createWrap(annotation));
+    $('#annotation').clear();
   });
 
   $('#annotation-form').submit(function(event) {
@@ -63,37 +66,18 @@ $(function() {
     $.ajax({
       'url': this.action,
       'type': 'put',
+      'contentType': 'application/json; charset=utf-8',
       'dataType': 'json',
-      'data': {'annotation': submitData()},
+      'data': JSON.stringify(submitData()),
       beforeSend: function(request) {
         this.headers = {'X-Http-Method-Override': 'put'}
       },
       'success': function(data) {
-        alert('lol');
         alert(data.foo);
       },
       'error': function() {
-        alert('brokey');
       }
     });
   });
-  // $.ajax({
-  //   url: url,
-  //   type: 'put',
-  //   contentType: 'application/json; charset=utf-8',
-  //   data: JSON.stringify(filterParams()),
-  //   dataType: 'json',
-  //   beforeSend: function(request) {
-  //     this.headers = {'X-Http-Method-Override': sekretMethod}
-  //   },
-  //   success: function(data) {
-  //     window.location = data.redirect;
-  //   },
-  //   error: function() {
-  //     $('#filter-save').show();
-  //     $('#filter-saving').hide();
-  //     alert('Something went wrong...');
-  //   }
-  // });
 });
 </script>

@@ -26,7 +26,7 @@ HW.Annotator = function(annotations) {
           annotations.splice(i, 1);
         }
       }
-    }
+    },
     all: function() {
       return annotations;
     }
