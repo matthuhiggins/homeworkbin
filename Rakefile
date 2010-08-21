@@ -4,4 +4,4 @@
 require File.expand_path('../config/application', __FILE__)
 require 'rake'
 
-Poop::Application.load_tasks
+Homeworkbin::Application.load_tasks
