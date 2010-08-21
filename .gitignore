@@ -1,3 +1,4 @@
+.bundle/
 log/*.log
 db/*.sql
 db/*.sqlite3
