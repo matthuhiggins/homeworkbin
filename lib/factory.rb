@@ -73,15 +73,18 @@ class Factory
   end
 
   def build(overrides = {})
-    record = model.new attributes.merge(overrides.symbolize_keys!)
+    record = model.new(attributes(overrides))
     run_after_builds(record)
     record
   end
 
-  def attributes
+  def attributes(overrides = {})
+    overrides.symbolize_keys!
+
     result = options[:parent].present? ? Factory[options[:parent]].attributes : {}
 
     defined_attributes.each do |key, value|
+      value = overrides[key] if overrides[key]
       result[key] = value.is_a?(Proc) ? value.call : value
     end
 

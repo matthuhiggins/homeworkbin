@@ -1,21 +1,6 @@
 require 'action_view_test'
 
 class AssignmentsHelperTest < ActionView::TestCase
-  def test_assignment_form_options
-    new_assignment = build_assignment
-    edit_assignment = create_assignment
-
-    assert_equal(
-      {url: teaching_assignments_path(current_course), html: {id: 'assignment-form'}},
-      assignment_form_options(new_assignment)
-    )
-
-    assert_equal(
-      {url: teaching_assignment_path(current_course, edit_assignment), html: {method: :put, id: 'assignment-form'}},
-      assignment_form_options(edit_assignment)
-    )
-  end
-  
   def test_default_due_date
     assert_equal '12/25/2005', default_assignment_due_date(build_assignment due_date: '12/25/2005')
     assert_equal Date.current.strftime('%m/%d/%Y'), default_assignment_due_date(current_course.assignments.new)
@@ -30,7 +15,7 @@ class AssignmentsHelperTest < ActionView::TestCase
   end
   
   def test_default_due_minutes_without_last
-    assert 120, default_assignment_due_minutes(build_assignment due_minutes: 120)
+    assert_equal 120, default_assignment_due_minutes(build_assignment due_minutes: 120)
     assert_equal 12 * 60, default_assignment_due_minutes(build_assignment due_minutes: nil)
   end
 

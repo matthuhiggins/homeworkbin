@@ -34,7 +34,7 @@ Homeworkbin::Application.routes.draw do
       resources :enrollments,   :path => 'enroll'
       resources :studiers,      :path => 'students'
       resources :compositions, :path => 'submissions' do
-        resources :annotations, :name_prefix => 'teaching_'
+        resources :annotations, :as => 'teaching_annotations'
       end
     end
   end 

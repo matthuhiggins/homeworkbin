@@ -1,18 +1,4 @@
 module AssignmentsHelper
-  def assignment_form_options(assignment)
-    if assignment.new_record?
-      {
-        url:  teaching_assignments_path(current_course),
-        html: {id: 'assignment-form'}
-      }
-    else
-      {
-        url:  teaching_assignment_path(current_course, assignment),
-        html: {method: :put, id: 'assignment-form'}
-      }
-    end
-  end
-  
   def default_assignment_due_date(assignment)
     if assignment.due_date.present?
       assignment.due_date.strftime '%m/%d/%Y'
