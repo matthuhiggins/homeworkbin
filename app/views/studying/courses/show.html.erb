@@ -4,7 +4,7 @@
 	Homework for <%= current_course.name %>
 </h2>
 
-<table>
+<table class="assignments">
   <tr>
     <th>Name</th>
     <th>Due</th>
@@ -21,6 +21,7 @@
       <td>
         <%# debug current_studier.submission_for(assignment) %>
         <%= if_present(current_studier.submission_for(assignment)) do |submission| %>
+          <span class="late">late!</span>
           <% if !submission.handed_in? %>
             Work on it
           <% elsif submission.handed_in? && !submission.graded? %>

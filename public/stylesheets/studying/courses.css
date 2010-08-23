@@ -1,3 +1,22 @@
 #course-index {
   
 }
+
+#courses-show .assignments th,
+#courses-show .assignments td {
+  padding: 4px 20px 4px 4px;
+}
+
+#courses-show .assignments th {
+  border-bottom: 1px solid #ccc;
+  font-style: italic;
+}
+
+#courses-show .assignments td {
+  border-bottom: 1px solid #ccc;
+  font-size: 12px;
+}
+
+#courses-show .assignments .late {
+  color: #DD3C10;
+}
