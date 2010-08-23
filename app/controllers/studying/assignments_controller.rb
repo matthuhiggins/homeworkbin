@@ -13,8 +13,8 @@ class Studying::AssignmentsController < Studying::BaseController
     current_composition.attributes = params[:composition]
 
     if current_composition.save
-      flash[:notice] = "Composition saved"
-      redirect_to studying_assignment_path(current_course, current_assignment)
+      flash[:notice] = 'Homework saved'
+      redirect_to studying_path(current_course)
     else
       render 'new'
     end

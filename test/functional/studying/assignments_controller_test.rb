@@ -2,6 +2,8 @@ require 'action_controller_test'
 
 class Studying::AssignmentsControllerTest < ActionController::StudyingTestCase
   matches_resources 'studying/:studying_id/homework'
+  # confirm_hand_in
+  # complete_hand_in
 
   def test_new_compostion
     studying_get :show, id: assignment.to_param
@@ -38,6 +40,15 @@ class Studying::AssignmentsControllerTest < ActionController::StudyingTestCase
     
     composition.reload
     assert_equal 'poo poo', composition.original
+    assert_redirected_to studying_path(current_course)
+  end
+
+  def test_confirm_hand_in
+    composition = Factory.composition.create assignment: assignment, studier: current_studier
+
+    studying_get :confirm_hand_in, :id => assignment.to_param
+
+    assert_response :ok
   end
 
   private
