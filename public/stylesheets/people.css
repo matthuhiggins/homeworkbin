@@ -15,3 +15,7 @@
 #password-form {
   margin-top: 10px;
 }
+
+#password-form input[type="password"] {
+  width: 95%;
+}
