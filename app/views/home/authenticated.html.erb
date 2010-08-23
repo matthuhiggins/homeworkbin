@@ -7,9 +7,17 @@
       <%= link_to pluralize(@enrollment_count, 'pending enrollment'), enrollments_path %>
     <% end %>
   </h2>
-  <ul>
+  <ul id="studying-courses">
     <% @studying.each do |course| %>
-      <li><%= link_to course.name, studying_path(course) %></li>
+      <li>
+        <%= link_to course.name, studying_path(course) %>
+        <span>
+          <%= if_present(course.assignments.next) do |assignment| %>
+            <%= assignment.name %>
+            is due <%= relative_date(assignment.due_date) %>
+          <% end %>
+		    </span>
+		</li>
     <% end %>
   </ul>
 <% end %>

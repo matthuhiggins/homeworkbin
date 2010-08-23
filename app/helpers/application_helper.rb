@@ -29,8 +29,6 @@ module ApplicationHelper
   end
 
   def if_present(object, &block)
-    if object.present?
-      capture(object, &block)
-    end
+    capture(object, &block) if object.present?
   end
 end

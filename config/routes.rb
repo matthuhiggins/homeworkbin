@@ -13,7 +13,7 @@ Homeworkbin::Application.routes.draw do
   scope :module => 'studying' do
     resources :enrollments, :path => 'enroll'
     resources :studyings, :controller => 'courses', :path => 'studying' do
-      resources :assignments#, :path => 'homework' do
+      resources :assignments, :path => 'homework'
         # collection do
         #   get :upcoming, :past
         # end

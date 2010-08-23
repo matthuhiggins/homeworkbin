@@ -30,3 +30,14 @@
 #home-index .answer p {
   margin-bottom: 1px;
 }
+
+#studying-courses li {
+  list-style-type: disc;
+  list-style-position: inside;
+}
+
+#studying-courses span {
+	color: #555;
+	font-size: 12px;
+	padding-left: 10px;
+}

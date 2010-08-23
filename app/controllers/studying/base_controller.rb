@@ -9,6 +9,7 @@ class Studying::BaseController < ApplicationController
     def current_studier
       @current_studier ||= current_student.studiers.find_by_course_id! params[:studying_id]
     end
+    helper_method :current_studier
 
     def current_course
       current_studier.try :course

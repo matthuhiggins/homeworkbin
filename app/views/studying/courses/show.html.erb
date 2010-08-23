@@ -1,12 +1,35 @@
 <% title current_course.name %>
 
-<h2>Homework for <%= current_course.name %></h2>
+<h2>
+	Homework for <%= current_course.name %>
+</h2>
 
-<ul>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Due</th>
+    <th></th>
+  </tr>
   <% current_course.assignments.each do |assignment| %>
-    <li>
-      <%= link_to assignment.name, studying_assignment_path(current_course, assignment) %>
-      Due <%= relative_date(assignment.due_date) %>
+    <tr>
+      <td>
+        <%= link_to assignment.name, studying_assignment_path(current_course, assignment) %>
+      </td>
+      <td>
+        <%= relative_date(assignment.due_date) %>
+      </td>
+      <td>
+        <%# debug current_studier.submission_for(assignment) %>
+        <%= if_present(current_studier.submission_for(assignment)) do |submission| %>
+          <% if !submission.handed_in? %>
+            Work on it
+          <% elsif submission.handed_in? && !submission.graded? %>
+            Waiting for grade
+          <% else submission.graded? %>
+            <%= link_to 'View grade and comments' %>
+          <% end %>
+        <% end %>
+      </td>
     </li>
   <% end %>
 </ul>

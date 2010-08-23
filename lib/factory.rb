@@ -79,11 +79,11 @@ class Factory
   end
 
   def attributes(overrides = {})
-    overrides.symbolize_keys!
+    merged_attributes = overrides.symbolize_keys.reverse_merge!(defined_attributes)
 
     result = options[:parent].present? ? Factory[options[:parent]].attributes : {}
 
-    defined_attributes.each do |key, value|
+    merged_attributes.each do |key, value|
       value = overrides[key] if overrides[key]
       result[key] = value.is_a?(Proc) ? value.call : value
     end

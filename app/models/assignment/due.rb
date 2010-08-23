@@ -6,7 +6,7 @@ class Assignment
         
         extend ActiveRecord::DateValidation
         validates_date_format :due_date
-        validate :validate_course_period_includes_due_date, if: lambda { |assignment| assignment.due_date.present? }
+        validate :validate_course_period_includes_due_date, if: lambda { |assignment| assignment.due_date.try(:acts_like?, :date) }
         
         delegate :past?, :today?, :future?, to: :due_date
         extend FinderMethods

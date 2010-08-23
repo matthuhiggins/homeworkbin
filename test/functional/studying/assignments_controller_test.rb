@@ -1,7 +1,7 @@
 require 'action_controller_test'
 
 class Studying::AssignmentsControllerTest < ActionController::StudyingTestCase
-  matches_resources 'studying/:studying_id/assignments'
+  matches_resources 'studying/:studying_id/homework'
 
   def test_new_compostion
     studying_get :show, id: assignment.to_param

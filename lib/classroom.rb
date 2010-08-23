@@ -6,7 +6,6 @@ class Classroom
     self.course = Factory.course.create teacher: teacher, start_date: 1.month.ago.to_date, end_date: 1.month.from_now.to_date
     self.studiers = enroll_students
     self.assignments = assign_homework
-    submit_homework
   end
 
   FULL_NAMES = [
@@ -52,19 +51,26 @@ class Classroom
 
   def assign_homework
     [
-      Factory.assignment.create(name: 'Memorize Pi', due_date: 1.week.ago.to_date, course: course),
-      Factory.assignment.create(name: 'Analyze a Poem', due_date: 2.days.ago.to_date, course: course),
-      Factory.assignment.create(name: 'Write a poem', due_date: Date.current, course: course),
-      Factory.assignment.create(name: 'Critique The Old Man and the Sea', due_date: 3.days.from_now.to_date, course: course),
-      Factory.assignment.create(name: 'Final Essay', due_date: 2.weeks.from_now.to_date, course: course)
+      create_assignment('Memorize Pi', 1.week.ago, handed_in_at: 5.days.ago, :graded_at => 3.days.ago),
+      create_assignment('Analyze a Poem', 2.days.ago, handed_in_at: 1.day.ago),
+      create_assignment('Write a poem', 1.week.ago, hand_in: false),
+      create_assignment('Critique Great Gatsby', 3.days.from_now),
+      create_assignment('Final Essay', 2.weeks.from_now)
     ]
   end
   
-  def submit_homework
-    studiers.each do |studier|
-      assignments.each do |assignment|
-        Factory.composition.create studier: studier, assignment: assignment, hand_in: true
+  private
+    def create_assignment(name, due_at, composition_attributes = nil)
+      assignment = Factory.assignment.create name: name, due_at: due_at, course: course
+
+      if composition_attributes
+        composition_attributes.reverse_merge! assignment: assignment
+        studiers.each do |studier|
+          Factory.composition.create(composition_attributes.reverse_merge(studier: studier))
+        end
       end
+
+      assignment
     end
-  end
+
 end

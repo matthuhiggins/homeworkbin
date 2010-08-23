@@ -22,7 +22,7 @@ class Course < ActiveRecord::Base
   def submissions
     compositions.handed_in
   end
-
+  
   def last
     @last ||= teacher.teaching.last
   end
