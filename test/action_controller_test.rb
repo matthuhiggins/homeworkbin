@@ -13,8 +13,8 @@ module ActionController
 
     def with_generic_routes
       with_routing do |set|
-        set.draw do |map|
-          map.connect ':controller/:action/:id'
+        set.draw do
+          match ':controller(/:action(/:id(.:format)))'
         end
         yield
       end
