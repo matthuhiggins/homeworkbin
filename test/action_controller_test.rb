@@ -4,8 +4,6 @@ require 'action_controller/hall_monitor_assertions'
 require 'action_controller/route_assertions'
 
 module ActionController
-  # Homeworkbin::Application.routes.draw { |map| map.connect ':controller/:action/:id' }
-  
   TestCase.class_eval do
     extend RequestMethods
     include RouteAssertions
