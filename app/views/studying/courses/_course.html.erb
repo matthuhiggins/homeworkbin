@@ -1,9 +1,3 @@
 <div class="course">
   <%= link_to course.name, studying_path(course) %>
-  <div>
-    <%= if_present(course.assignments.next) do |assignment| %>
-      <%= link_to assignment.name, studying_assignment_path(course, assignment) %>
-      due <%= relative_date(assignment.due_date) %>
-    <% end %>
-  </div>
 </div>

@@ -3,7 +3,15 @@
 <h2>Your courses</h2>
 
 <ul>
-  <% @courses.each do |course| %>
+  <% @current_courses.each do |course| %>
+    <%= render course %>
+  <% end %>
+</ul>
+
+<h2>Past courses</h2>
+
+<ul>
+  <% @past_courses.each do |course| %>
     <%= render course %>
   <% end %>
 </ul>

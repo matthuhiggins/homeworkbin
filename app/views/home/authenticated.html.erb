@@ -2,7 +2,7 @@
 
 <% if @studying.any? %>
   <h2>
-    Courses you are studying
+    Upcoming homework
     <% if @enrollment_count > 0 %>
       <%= link_to pluralize(@enrollment_count, 'pending enrollment'), enrollments_path %>
     <% end %>

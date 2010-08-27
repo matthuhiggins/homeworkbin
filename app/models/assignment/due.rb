@@ -1,16 +1,14 @@
 class Assignment
   module Due
-    def self.included base
-      base.class_eval do
-        validates_inclusion_of :due_minutes, in: 0..1440
-        
-        extend ActiveRecord::DateValidation
-        validates_date_format :due_date
-        validate :validate_course_period_includes_due_date, if: lambda { |assignment| assignment.due_date.try(:acts_like?, :date) }
-        
-        delegate :past?, :today?, :future?, to: :due_date
-        extend FinderMethods
-      end
+    included do
+      validates_inclusion_of :due_minutes, in: 0..1440
+      
+      extend ActiveRecord::DateValidation
+      validates_date_format :due_date
+      validate :validate_course_period_includes_due_date, if: lambda { |assignment| assignment.due_date.try(:acts_like?, :date) }
+      
+      delegate :past?, :today?, :future?, to: :due_date
+      extend FinderMethods
     end
 
     module FinderMethods

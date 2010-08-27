@@ -26,8 +26,4 @@ class Course < ActiveRecord::Base
   def last
     @last ||= teacher.teaching.last
   end
-
-  def date_range
-    start_date..end_date
-  end
 end
