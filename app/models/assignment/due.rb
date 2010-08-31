@@ -1,5 +1,7 @@
 class Assignment
   module Due
+    extend ActiveSupport::Concern
+    
     included do
       validates_inclusion_of :due_minutes, in: 0..1440
       

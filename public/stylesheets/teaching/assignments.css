@@ -35,11 +35,27 @@
   font-size: 90%;
 }
 
-#assignment-form .fields {
+#assignment-form .due-fields {
 }
 
-#assignment-form .fields > div {
+#assignment-form #due-date {
   float: left;
+  margin-right: 9px;
+  width: 145px;
+}
+
+#assignment-form #due-date input {
+  width: 95%;
+}
+
+#assignment-form #due-time {
+  float: left;
+  width: 145px;
+}
+
+#assignment-form #due-time select {
+  margin-top: 2px;
+  width: 100%;
 }
 
 #assignments-show {

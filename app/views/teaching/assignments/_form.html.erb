@@ -1,5 +1,8 @@
-<%= yui_stylesheet 'calendar/assets/skins/sam/calendar' %>
-<%= stylesheet_link_tag 'shared/date_selector' %>
+<script>
+$(function() {
+  $('#assignment_due_date').datepicker();
+});
+</script>
 
 <%= form_for [:teaching, @assignment], html: {id: 'assignment-form'} do |f| %>
   <div>
@@ -7,18 +10,15 @@
     <div><%= f.text_field :name %></div>
     <div><%= f.error_message_on :name, prepend: 'Name ' %></div>
   </div>
-  <div class="fields">
-    <div id="due-date" class="date-selector">
+  <div class="due-fields">
+    <div id="due-date">
       <div><%= f.label :due_date, 'Due date' %></div>
       <div>
         <%= f.text_field :due_date, value: default_assignment_due_date(@assignment), autocomplete: 'off' %>
       </div>
-      <div class="calendar-wrap">
-        <div class="calendar"></div> 
-      </div>
       <%= date_format_div @assignment, :due_date %>
     </div>
-    <div id="due-time" class="time-selector">
+    <div id="due-time">
       <div><%= f.label :due_minutes, 'Due time' %></div>
       <div>
         <%= f.select :due_minutes, assignment_due_minute_options, {selected: default_assignment_due_minutes(@assignment)} %>
@@ -33,13 +33,3 @@
 <% end %>
 
 <%= focus 'assignment_name' %>
-
-<%= yui_javascript 'yahoo-dom-event/yahoo-dom-event',
-                   'calendar/calendar-min' %>
-<%= javascript_include_tag 'date_selector' %>
-
-<script>
-$(function() {
-  HW.dateSelector('assignment-form');
-});
-</script>

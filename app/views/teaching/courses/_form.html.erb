@@ -1,5 +1,9 @@
-<%= yui_stylesheet 'calendar/assets/skins/sam/calendar' %>
-<%= stylesheet_link_tag 'shared/date_selector' %>
+<script> 
+$(function() {
+  $('#course_start_date').datepicker();
+  $('#course_end_date').datepicker();
+});
+</script>
 
 <%= form_for @course, course_form_options(@course) do |f| %>
   <div class="course-name">
@@ -11,17 +15,11 @@
     <div class="date-selector">
       <div><%= f.label :start_date, 'from' %></div>
       <div><%= f.text_field :start_date, value: course_start_date(@course), autocomplete: 'off' %></div>
-      <div class="calendar-wrap">
-        <div class="calendar"></div> 
-      </div>
       <%= date_format_div(@course, :start_date) %>
     </div>
     <div class="date-selector">
       <div><%= f.label :end_date, 'to' %></div>
       <div><%= f.text_field :end_date, value: course_end_date(@course), autocomplete: 'off' %></div>
-      <div class="calendar-wrap">
-        <div class="calendar"></div> 
-      </div>
       <%= date_format_div(@course, :end_date) %>
     </div>
     <br />
@@ -33,13 +31,3 @@
 <% end %>
 
 <%= focus 'course_name' %>
-
-<%= yui_javascript 'yahoo-dom-event/yahoo-dom-event',
-                   'calendar/calendar-min' %>
-<%= javascript_include_tag 'date_selector' %>
-
-<script> 
-$(function() {
-  HW.dateSelector('course-form');
-});
-</script>

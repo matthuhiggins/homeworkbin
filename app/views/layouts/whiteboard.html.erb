@@ -2,10 +2,10 @@
 <html>
 <head>
   <%= yui_stylesheet 'cssreset/reset-min' %>
-  <%= stylesheet_link_tag 'layouts/whiteboard', 'shared/fonts', 'shared/form' %>
+  <%= stylesheet_link_tag 'layouts/whiteboard', 'shared/fonts', 'shared/form', 'jquery/ui' %>
   <%= csrf_meta_tag %>
   <%= controller_stylesheet_tag %>
-  <%= javascript_include_tag 'json2', 'jquery', 'rails', 'hw' %>
+  <%= javascript_include_tag 'json2', 'jquery', 'jquery-ui', 'rails', 'hw' %>
   <title>
     Homework Bin<%= yield :title %>
   </title>

@@ -31,6 +31,15 @@
   float: left;
 }
 
+#course-form .date-selector {
+  margin-right: 9px;
+  width: 145px;
+}
+
+form .date-selector input[type="text"] {
+  width: 95%;
+}
+
 #courses-show {
   overflow: hidden;
 }

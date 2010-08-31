@@ -1,6 +1,10 @@
 require 'active_record_test'
 
 class Course::TermTest < ActiveRecord::TestCase
+  def test_finders
+    
+  end
+
   def test_date_range
     course = factory.create start_date: '12/25/2004', end_date: '2/20/2005'
     

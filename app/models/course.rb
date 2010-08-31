@@ -1,4 +1,5 @@
 class Course < ActiveRecord::Base
+  include Course::Term
   include Course::TimeZoneInfo
 
   validates_presence_of :name
