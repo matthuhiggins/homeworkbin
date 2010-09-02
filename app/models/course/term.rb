@@ -10,7 +10,7 @@ class Course
       def past
         where ['end_date < ?', Date.current]
       end
-      
+
       def current
         where ['? between start_date and end_date', Date.current]
       end
