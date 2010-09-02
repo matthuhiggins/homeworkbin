@@ -9,9 +9,9 @@ class HomeController < ApplicationController
   
   private
     def render_authenticated
-      @studying = current_person.student.studying.current.all
+      @studying = current_person.student.courses.current.all
       @enrollment_count = current_person.student.enrollments.count
-      @teaching = current_person.teacher.teaching.current.all
+      @teaching = current_person.teacher.courses.current.all
       render 'authenticated'
     end
     

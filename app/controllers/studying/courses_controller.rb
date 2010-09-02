@@ -1,6 +1,6 @@
 class Studying::CoursesController < Studying::BaseController
   def index
-    @courses = current_student.studying
+    @courses = current_student.courses
   end
 
   def show

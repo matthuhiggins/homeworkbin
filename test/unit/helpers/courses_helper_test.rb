@@ -19,7 +19,7 @@ class CoursesHelperTest < ActionView::TestCase
     teacher = Factory.teacher.create
     Factory.course.create start_date: '05/22/2004', end_date: '07/24/2004', teacher: teacher
 
-    course = teacher.teaching.new
+    course = teacher.courses.new
 
     assert_equal '05/22/2004', course_start_date(course)
     assert_equal '07/24/2004', course_end_date(course)

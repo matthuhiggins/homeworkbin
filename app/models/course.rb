@@ -25,6 +25,6 @@ class Course < ActiveRecord::Base
   end
   
   def last
-    @last ||= teacher.teaching.last
+    @last ||= teacher.courses.last
   end
 end

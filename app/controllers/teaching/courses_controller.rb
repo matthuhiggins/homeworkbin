@@ -2,15 +2,15 @@ class Teaching::CoursesController < Teaching::BaseController
   topic 'course'
   
   def index
-    @courses = current_teacher.teaching
+    @courses = current_teacher.courses
   end
   
   def new
-    @course = current_teacher.teaching.new
+    @course = current_teacher.courses.new
   end
   
   def create
-    @course = current_teacher.teaching.build params[:course]
+    @course = current_teacher.courses.build params[:course]
     if @course.save
       redirect_to teaching_path(@course)
     else
@@ -24,11 +24,11 @@ class Teaching::CoursesController < Teaching::BaseController
   end
   
   def edit
-    @course = current_teacher.teaching.find params[:id]
+    @course = current_teacher.courses.find params[:id]
   end
   
   def update
-    @course = current_teacher.teaching.find params[:id]
+    @course = current_teacher.courses.find params[:id]
     if @course.update_attributes params[:course]
       redirect_to teaching_path(@course)
     else
@@ -37,13 +37,13 @@ class Teaching::CoursesController < Teaching::BaseController
   end
   
   def destroy
-    @course = current_teacher.teaching.find params[:id]
+    @course = current_teacher.courses.find params[:id]
   end
   
   private
     def current_course
       if params[:id].present?
-        @current_course ||= current_teacher.teaching.find params[:id]
+        @current_course ||= current_teacher.courses.find params[:id]
       end
     end
 end

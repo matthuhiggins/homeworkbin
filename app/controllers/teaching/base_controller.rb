@@ -8,7 +8,7 @@ class Teaching::BaseController < ApplicationController
     helper_method :current_teacher
     
     def current_course
-      @current_course ||= current_teacher.teaching.find params[:teaching_id]
+      @current_course ||= current_teacher.courses.find params[:teaching_id]
     end
 
     def teaching?
