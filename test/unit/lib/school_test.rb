@@ -4,7 +4,7 @@ class SchoolTest < ActiveSupport::TestCase
   def test_initialize
     school = School.new
 
-    assert_equal school.teacher, school.course.teacher
-    assert_equal School.student_names.size, school.studiers.size
+    assert_equal school.teacher.teaching.to_set, school.courses.to_set
+    assert_equal School.student_names.size, school.students.size
   end
 end
