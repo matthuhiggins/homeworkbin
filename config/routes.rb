@@ -17,18 +17,9 @@ Homeworkbin::Application.routes.draw do
         member do
           get :confirm_hand_in
           put :complete_hand_in
+          get :review
         end
       end
-        # collection do
-        #   get :upcoming, :past
-        # end
-        
-        # member do
-        #   get :compose
-        #   post :save
-        #   post :submit
-        # end
-      # end
     end
   end
 
