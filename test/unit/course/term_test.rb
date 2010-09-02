@@ -18,5 +18,12 @@ class Course::TermTest < ActiveRecord::TestCase
     course = factory.create start_date: '12/25/2004', end_date: '2/20/2005'
     
     assert_equal Date.new(2004, 12, 25)..Date.new(2005, 2, 20), course.date_range
+    assert !course.date_range.exclude_end?
+  end
+
+  def test_current?
+    assert !factory.build(start_date: 3.months.ago.to_date, end_date: 1.month.ago.to_date).current?
+    assert factory.build(start_date: 1.month.ago.to_date, end_date: 2.months.from_now.to_date).current?
+    assert !factory.build(start_date: 1.month.from_now.to_date, end_date: 3.months.from_now.to_date).current?
   end
 end

@@ -23,5 +23,9 @@ class Course
     def date_range
       start_date..end_date
     end
+
+    def current?
+      date_range.include?(Date.current)
+    end
   end
 end
