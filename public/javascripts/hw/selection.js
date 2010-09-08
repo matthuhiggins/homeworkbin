@@ -104,20 +104,38 @@ HW.selection = (function() {
       }
     }
   }
-  
-  return {
-    range: function() {
-      var selection = window.getSelection(),
-          range = selection.getRangeAt(0);
 
-      return selection.getRangeAt(0);
-    },
-    text: function() {
-      return this.range().cloneContents().textContent;
-    },
+  function getRange() {
+    var selection = window.getSelection();
+    return selection.rangeCount > 0 ? selection.getRangeAt(0) : null;
+  }
+
+  function getText() {
+    var range = getRange();
+    return range ? range.cloneContents().textContent : '';
+  }
+
+  return {
+    text: getText,
     wrap: function(wrapperFn) {
-      wrapRange(this.range(), wrapperFn);
+      wrapRange(getRange(), wrapperFn);
       window.getSelection().removeAllRanges();
+    },
+    change: function(callback) {
+      var currentText = getText();
+      
+      var checkRangeChange = function() {
+        var previousText = currentText;
+        currentText = getText();
+
+        if (currentText.length == 0) {
+          return;
+        } else if (previousText != currentText) {
+          callback();
+        }
+      };
+      
+      setInterval(checkRangeChange, 500);
     }
   }
 })();

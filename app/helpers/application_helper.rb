@@ -2,6 +2,10 @@ module ApplicationHelper
   def title(title)
     content_for(:title) { ' - ' + title }
   end
+
+  def javascripts(*srcs)
+    content_for(:javascripts) { javascript_include_tag *srcs }    
+  end
   
   def body(&block)
     html_options = {class: 'yui-skin-sam', id: "#{controller_name}-#{action_name}"}

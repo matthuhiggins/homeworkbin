@@ -1,4 +1,5 @@
 <% title 'Grading' %>
+<% javascripts 'hw/selection', 'hw/annotator' %>
 
 <h2>
   <%= current_composition.student.full_name %>'s
@@ -26,8 +27,6 @@
   <%= f.submit 'Save changes', :id => 'save-changes' %>
 <% end %>
 
-<%= javascript_include_tag 'selection', 'annotator' %>
-
 <script>
 $(function() {
   var annotator = HW.Annotator(<%= raw current_composition.annotations.to_json %>);
@@ -36,14 +35,6 @@ $(function() {
     $('#submission-text .annotation.a_' + annotation.identifier).each(function() {
       jQuery(this).replaceWith(this.childNodes);
     });
-  }
-
-  function createWrap(annotation) {
-    return function() {
-      var span = document.createElement('span');
-      span.className = 'annotation a_' + annotation.identifier;
-      return span;
-    };
   }
   
   function submitData() {
@@ -54,11 +45,23 @@ $(function() {
       }
     };
   }
-  
+
+  $('#annotation-margin').dialog({autoOpen: false});
+
+  HW.selection.change(function () {
+    $('#annotation-margin').dialog('open');
+  });
+
   $('#annotate').click(function() {
     var annotation = annotator.create($('#annotation').val(), HW.selection.text());
-    HW.selection.wrap(createWrap(annotation));
-    $('#annotation').clear();
+
+    HW.selection.wrap(function() {
+      var span = document.createElement('span');
+      span.className = 'annotation a_' + annotation.identifier;
+      return span;
+    });
+
+    $('#annotation').empty();
   });
 
   $('#annotation-form').submit(function(event) {

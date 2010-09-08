@@ -27,6 +27,25 @@
   font-weight: bold;
 }
 
+form#annotation-form {
+  background-color: #fef3c6;
+}
+
+form#annotation-form .annotation {
+  background-color: #fbd499;
+}
+/*#c2c680*/
+form#annotation-form .annotation > .annotation {
+  background-color: #FAA399;
+}
+
+form#annotation-form .annotation:hover {
+/*  background-color: #FAA399;*/
+  border: 1px solid #999;
+  margin: -1px;
+  cursor: pointer;
+}
+
 /*#submissions-show .text {
   border-right: 1px solid #ccc;
   padding-right: 10px;
