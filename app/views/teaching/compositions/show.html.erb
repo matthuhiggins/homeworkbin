@@ -33,7 +33,7 @@ $(function() {
 
   function removeWrap(annotation) {
     $('#submission-text .annotation.a_' + annotation.identifier).each(function() {
-      jQuery(this).replaceWith(this.childNodes);
+      $(this).replaceWith(this.childNodes);
     });
   }
   
@@ -62,6 +62,7 @@ $(function() {
     });
 
     $('#annotation').empty();
+    $('#annotation-margin').dialog('close');
   });
 
   $('#annotation-form').submit(function(event) {

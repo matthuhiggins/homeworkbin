@@ -17,3 +17,21 @@ window.HW = {
     return html;
   }
 };
+
+// jQuery.postJSON = function(url, data, callback) {
+//  return jQuery.ajax({
+//     'url': url,
+//     'type': 'put',
+//     'contentType': 'application/json; charset=utf-8',
+//     'dataType': 'json',
+//     'data': JSON.stringify(submitData()),
+//     beforeSend: function(request) {
+//       this.headers = {'X-Http-Method-Override': 'put'}
+//     },
+//     'success': function(data) {
+//       alert(data.foo);
+//     },
+//     'error': function() {
+//     }
+//   });
+// };

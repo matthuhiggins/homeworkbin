@@ -6,8 +6,10 @@ Bundler.require(:default, Rails.env) if defined?(Bundler)
 
 module Homeworkbin
   class Application < Rails::Application
-    config.active_support.deprecation = :stderr
     config.autoload_paths += %W(#{config.root}/lib)
+    config.active_support.deprecation = :stderr
+    config.active_record.include_root_in_json = false
+    
     # config.time_zone = 'UTC'
     # 
     # config.action_mailer.default_url_options = {
