@@ -29,7 +29,7 @@
 
 <script>
 $(function() {
-  var annotator = HW.Annotator(<%= raw current_composition.annotations.to_json %>);
+  var annotator = HW.Annotator(<%= annotations_to_json(current_composition.annotations) %>);
 
   function removeWrap(annotation) {
     $('#submission-text .annotation.a_' + annotation.identifier).each(function() {
@@ -67,20 +67,8 @@ $(function() {
 
   $('#annotation-form').submit(function(event) {
     event.preventDefault();
-    $.ajax({
-      'url': this.action,
-      'type': 'put',
-      'contentType': 'application/json; charset=utf-8',
-      'dataType': 'json',
-      'data': JSON.stringify(submitData()),
-      beforeSend: function(request) {
-        this.headers = {'X-Http-Method-Override': 'put'}
-      },
-      'success': function(data) {
-        alert(data.foo);
-      },
-      'error': function() {
-      }
+    $.putJSON(this.action, submitData(), function(data) {
+      alert(data.foo);
     });
   });
 });
