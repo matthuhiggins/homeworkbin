@@ -37,7 +37,15 @@ class SessionsControllerTest < ActionController::TestCase
     person.reload
     assert_remembered_as person
   end
-  
+
+  def test_logout
+    person = Factory.person.create
+
+    delete :destroy, {}, {:person_id => person.id}
+
+    assert @controller.session[:person_id].nil?
+  end
+
   private
     def valid_credentials(person)
       {email: person.email, password: Factory.person.attributes[:password]}
