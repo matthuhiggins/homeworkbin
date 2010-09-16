@@ -4,7 +4,7 @@ module ActiveRecord
     
     module ClassMethods
       def tests_denormalization(intermediate_association, denormalized_association)
-        test "test_#{denormalized_association}_denormalized_through_#{intermediate_association}" do
+        test "#{denormalized_association}_denormalized_through_#{intermediate_association}" do
           record = factory.build denormalized_association => nil
 
           assert_not_nil record.send(intermediate_association)
