@@ -1,26 +1,26 @@
 require 'action_view_test'
 
 class ApplicationHelperTest < ActionView::TestCase
-  def test_title
+  test 'title' do
     @_content_for = Hash.new { |h,k| h[k] = ActiveSupport::SafeBuffer.new }
     title 'hello world'
     assert_equal ' - hello world', @_content_for[:title]
   end
 
-  def test_javascripts
+  test 'javascripts' do
     @_content_for = Hash.new { |h,k| h[k] = ActiveSupport::SafeBuffer.new }
     javascripts 'foo'
     assert_equal javascript_include_tag('foo'), @_content_for[:javascripts]
   end
 
-  def test_body
+  test 'body' do
     assert_dom_equal(
       '<body class="yui-skin-sam" id="test-index">hello world</body>',
       body { 'hello world' }
     )
   end
   
-  def test_focus
+  test 'focus' do
     script = focus 'foo'
     expected = %{
       <script>
@@ -39,7 +39,7 @@ class ApplicationHelperTest < ActionView::TestCase
     end
   end
 
-  def test_controller_stylesheet_tag
+  test 'controller_stylesheet_tag' do
     @controller = Foo::BarController.new
 
     assert_equal(
@@ -48,7 +48,7 @@ class ApplicationHelperTest < ActionView::TestCase
     )
   end
 
-  def test_if_present
+  test 'if_present' do
     output = if_present(nil) { |o| nil.crash }
     assert_equal nil, output
 

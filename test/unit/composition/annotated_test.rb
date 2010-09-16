@@ -1,7 +1,7 @@
 require 'active_record_test'
 
 class Composition::AnnotationTest < ActiveRecord::TestCase
-  def test_has_many_annotations
+  test 'has_many annotations' do
     composition = factory.create
     Factory.annotation.create :composition => composition
     Factory.annotation.create :composition => composition
@@ -19,7 +19,7 @@ class Composition::AnnotationTest < ActiveRecord::TestCase
     assert new_annotation.persisted?
   end
 
-  def test_annotations_attributes
+  test 'annotations attributes' do
     composition = factory.create
     happy_annotation = {
       :identifier => 1,

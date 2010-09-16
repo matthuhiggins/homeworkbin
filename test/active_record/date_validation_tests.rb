@@ -3,9 +3,9 @@ module ActiveRecord
     extend ActiveSupport::Concern
     
     module ClassMethods
-      def test_date_format_validation *attributes
-        define_method :test_date_format_validation do
-          attributes.each do |attribute|
+      def tests_date_format_validation *attributes
+        attributes.each do |attribute|
+          test "date_format_validation_for_#{attribute}" do
             check_invalid_date_formats attribute
             check_valid_date_formats attribute
           end

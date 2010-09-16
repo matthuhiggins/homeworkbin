@@ -6,13 +6,13 @@ class RegistrationTest < ActiveRecord::TestCase
   include ActiveRecord::AuthenticatedTests
   include ActionMailer::TestHelper
 
-  def test_mail
+  test 'mail' do
     assert_emails 1 do
       factory.create
     end
   end
   
-  def test_validate_existing_person
+  test 'validate existing person' do
     person = Factory.person.create
     
     existing_person = factory.build email: person.email
@@ -23,14 +23,14 @@ class RegistrationTest < ActiveRecord::TestCase
     assert new_person.valid?
   end
   
-  def test_validate_presence
+  test 'validate presence' do
     registration = factory.build full_name: '', password: ''
     assert registration.invalid?
     assert_equal ["can't be blank"], registration.errors[:full_name]
     assert_equal ["can't be blank"], registration.errors[:password]
   end
   
-  def test_create_teacher_copies_attributes
+  test 'create_teacher copies attributes' do
     registration = factory.create
     
     teacher = registration.create_teacher!
@@ -42,7 +42,7 @@ class RegistrationTest < ActiveRecord::TestCase
     assert_equal registration.encrypted_password, teacher.encrypted_password
   end
   
-  def test_create_teaching_destroys_related_registrations
+  test 'create_teacher destroys related registrations' do
     primary_registration = factory.create email: 'a@b.com'
     duplicate_registration = factory.create email: 'a@b.com'
     other_registration = factory.create email: 'x@y.com'

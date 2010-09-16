@@ -5,12 +5,12 @@ class EnrollmentTest < ActiveRecord::TestCase
   include ActiveRecord::EmailValidationTests
   include ActionMailer::TestHelper
   
-  def test_teaching_delegation
+  test 'teaching delegation' do
     enrollment = factory.create
     assert_equal enrollment.course.teacher, enrollment.teacher
   end
   
-  def test_validate_existing_studier
+  test 'validate existing studier' do
     course = Factory.course.create
     student = Factory.student.create
     course.students << student
@@ -21,7 +21,7 @@ class EnrollmentTest < ActiveRecord::TestCase
     assert_equal ['is already in this course'], enrollment.errors[:email]
   end
   
-  def test_validate_student
+  test 'validate student' do
     enrollment = factory.create
     
     enrollment.student = {email: 'poo'}
@@ -30,7 +30,7 @@ class EnrollmentTest < ActiveRecord::TestCase
     assert_equal ['is invalid'], enrollment.errors[:student]
   end
   
-  def test_empty_student
+  test 'empty student' do
     enrollment = factory.create
     student = enrollment.student
 
@@ -38,17 +38,17 @@ class EnrollmentTest < ActiveRecord::TestCase
     assert_equal enrollment.email, student.email
   end
   
-  def test_existing_student
+  test 'existing student' do
     student = Factory.student.create
     assert_equal student, factory.build(email: student.email).student
   end
   
-  def test_new_student?
+  test 'new student?' do
     assert factory.build.new_student?
     assert !factory.build(email: Factory.student.create.email).new_student?
   end
   
-  def test_enroll_student
+  test 'enroll_student' do
     student = Factory.student.create automatically_enroll: false
     enrollment = factory.create email: student.email
     
@@ -59,7 +59,7 @@ class EnrollmentTest < ActiveRecord::TestCase
     assert_destroyed enrollment
   end
   
-  def test_enabled_automatic_enrollment
+  test 'enabled automatic enrollment' do
     student = Factory.student.create automatically_enroll: true
 
     assert_emails 1 do
@@ -68,7 +68,7 @@ class EnrollmentTest < ActiveRecord::TestCase
     end
   end
   
-  def test_disabled_automatic_enrollment
+  test 'disabled automatic enrollment' do
     student = Factory.student.create automatically_enroll: false
     
     assert_emails 1 do
@@ -77,7 +77,7 @@ class EnrollmentTest < ActiveRecord::TestCase
     end
   end
   
-  def test_new_student_accepts_enrollment
+  test 'new student accepts enrollment' do
     enrollment = factory.create
     
     enrollment.update_attributes(
@@ -89,7 +89,7 @@ class EnrollmentTest < ActiveRecord::TestCase
     assert enrollment.course.students.include?(enrollment.student)
   end
   
-  def test_existing_student_accepts_enrollment
+  test 'existing student accepts enrollment' do
     student = Factory.student.create automatically_enroll: false
     enrollment = factory.create email: student.email
     

@@ -5,7 +5,7 @@ class Studying::AssignmentsControllerTest < ActionController::StudyingTestCase
   # confirm_hand_in
   # complete_hand_in
 
-  def test_new_compostion
+  test 'new compostion' do
     studying_get :show, id: assignment.to_param
 
     assert_kind_of Composition, assigns(:current_composition)
@@ -13,7 +13,7 @@ class Studying::AssignmentsControllerTest < ActionController::StudyingTestCase
     assert_equal current_studier, assigns(:current_composition).studier
   end
   
-  def test_edit_compostion
+  test 'edit_compostion' do
     composition = Factory.composition.create assignment: assignment, studier: current_studier
     
     studying_get :show, id: assignment.to_param
@@ -21,7 +21,7 @@ class Studying::AssignmentsControllerTest < ActionController::StudyingTestCase
     assert_equal composition, assigns(:current_composition)
   end
 
-  def test_update_before_composition_exists
+  test 'update before composition_exists' do
     studying_put :update, {
       :id           => assignment.to_param,
       :composition  => {original: 'The quick brown fox jumped over the lazy dog'}
@@ -30,7 +30,7 @@ class Studying::AssignmentsControllerTest < ActionController::StudyingTestCase
     assert !assigns(:current_composition).new_record?
   end
   
-  def test_update_existing_composition
+  test 'update existing composition' do
     composition = Factory.composition.create assignment: assignment, studier: current_studier
     
     studying_put :update, {
@@ -43,7 +43,7 @@ class Studying::AssignmentsControllerTest < ActionController::StudyingTestCase
     assert_redirected_to studying_path(current_course)
   end
 
-  def test_confirm_hand_in
+  test 'confirm hand_in' do
     composition = Factory.composition.create assignment: assignment, studier: current_studier
 
     studying_get :confirm_hand_in, :id => assignment.to_param

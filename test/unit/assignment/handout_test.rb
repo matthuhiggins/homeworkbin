@@ -3,7 +3,7 @@ require 'active_record_test'
 class Assignment::HandoutTest < ActiveRecord::TestCase
   include ActionMailer::TestHelper
 
-  def test_handout_on_create
+  test 'handout on create' do
     course = Factory.course.create
     Factory.studier.create course: course
     
@@ -13,7 +13,7 @@ class Assignment::HandoutTest < ActiveRecord::TestCase
     end
   end
 
-  def test_handout_on_update
+  test 'handout on update' do
     course = Factory.course.create
     Factory.studier.create course: course
     assignment = factory.create course: course
@@ -24,7 +24,7 @@ class Assignment::HandoutTest < ActiveRecord::TestCase
     end
   end
 
-  def test_not_handouted
+  test 'not handed out' do
     course = Factory.course.create
     Factory.studier.create course: course
     

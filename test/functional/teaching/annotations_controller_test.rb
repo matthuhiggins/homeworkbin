@@ -3,7 +3,7 @@ require 'action_controller_test'
 class Teaching::AnnotationsControllerTest < ActionController::TeachingTestCase
   matches_resources 'teaching/:teaching_id/submissions/:composition_id/annotations'
 
-  # def test_create
+  # test 'create' do
   #   teaching_post :create, {
   #     composition_id: create_composition.to_param,
   #     annotation: {
@@ -16,7 +16,7 @@ class Teaching::AnnotationsControllerTest < ActionController::TeachingTestCase
   #   assert_equal({id: assigns(:annotation).id}.to_json, @response.body)
   # end
   
-  def test_destroy
+  test 'destroy' do
     composition = create_composition
     annotation = Factory.annotation.create composition: composition
 

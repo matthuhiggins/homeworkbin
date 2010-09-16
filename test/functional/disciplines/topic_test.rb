@@ -10,11 +10,11 @@ class Disciplines::HallMonitorTest < ActionController::TestCase
     topic 'foo'
   end
 
-  def test_default_topic
+  test 'default topic' do
     assert_nil DefaultTopicController.new.topic
   end
   
-  def test_defined_topic
+  test 'defined topic' do
     assert_equal 'foo', DefinedTopicController.new.topic
   end
 end

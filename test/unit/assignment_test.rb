@@ -1,12 +1,12 @@
 require 'active_record_test'
 
 class AssignmentTest < ActiveRecord::TestCase
-  def test_teaching_delegation
+  test 'teaching delegation' do
     assignment = factory.create
     assert_equal assignment.course.teacher, assignment.teacher
   end
 
-  def test_last
+  test 'last' do
     course = Factory.course.create
     first_assignment = factory.create course: course
     second_assignment = factory.create course: course

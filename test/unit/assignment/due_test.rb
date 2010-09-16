@@ -2,9 +2,9 @@ require 'active_record_test'
 
 class Assignment::DueTest < ActiveRecord::TestCase
   include ActiveRecord::DateValidationTests
-  test_date_format_validation :due_date
+  tests_date_format_validation :due_date
 
-  def test_finders
+  test 'finders' do
     course = Factory.course.create start_date: 1.month.ago.to_date, end_date: 1.month.from_now.to_date
     due_last_week = factory.create course: course, due_date: 2.days.ago.to_date
     due_yesterday = factory.create course: course, due_date: 1.day.ago.to_date
@@ -18,14 +18,14 @@ class Assignment::DueTest < ActiveRecord::TestCase
     assert_equal due_today, course.assignments.next
   end
 
-  def test_validate_minutes_inclusion
+  test 'validate minutes inclusion' do
     assert factory.build(due_minutes: -1).invalid?
     assert factory.build(due_minutes: 1441).invalid?
     assert factory.build(due_minutes: 0).valid?
     assert factory.build(due_minutes: 1440).valid?
   end
 
-  def test_validate_due_date_within_course
+  test 'validate due_date within term' do
     course = Factory.course.create
 
     assert (assignment = factory.build(due_date: course.start_date - 1)).invalid?
@@ -38,14 +38,14 @@ class Assignment::DueTest < ActiveRecord::TestCase
     assert (assignment = factory.build(due_date: course.end_date)).valid?
   end
   
-  def test_due_at_reader
+  test 'due_at reader' do
     assert_equal(
       factory.build(due_date: '05/22/2004', due_minutes: 122).due_at,
       Time.zone.local(2004, 5, 22, 2, 2)
     )
   end
   
-  def test_due_at_sets_time_zone
+  test 'due_at sets time zone' do
     with_time_zone 'Kuwait' do
       due_at = factory.build(due_date: '01/22/2004', due_minutes: 122).due_at
       assert_equal Time.zone.utc_offset, due_at.utc_offset
@@ -54,30 +54,30 @@ class Assignment::DueTest < ActiveRecord::TestCase
     end
   end
   
-  def test_due_at_writer
+  test 'due_at writer' do
     assignment = factory.build due_at: Time.utc(2004, 10, 22, 10, 5)
     
     assert_equal Date.new(2004, 10, 22), assignment.due_date
     assert_equal 605, assignment.due_minutes
   end
   
-  def test_past?
+  test 'past?' do
     assert !factory.build(due_date: Date.current).past?
     assert factory.build(due_date: Date.current - 1).past?
   end
   
-  def test_today?
+  test 'today?' do
     assert factory.build(due_date: Date.current).today?
     assert !factory.build(due_date: Date.current - 1).today?
     assert !factory.build(due_date: Date.current - 1).today?
   end
   
-  def test_future?
+  test 'future?' do
     assert !factory.build(due_date: Date.current).future?
     assert factory.build(due_date: Date.current + 1).future?
   end
   
-  def test_late_submission?
+  test 'late_submission?' do
     course = Factory.course.create start_date: Date.new(2005, 4, 10), end_date: Date.new(2005, 6, 10)
     assignment = factory.create course: course, due_date: Date.new(2005, 5, 10), due_minutes: 180
 

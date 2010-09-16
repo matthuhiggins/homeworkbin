@@ -4,27 +4,27 @@ class LostPasswordTest < ActiveRecord::TestCase
   include ActiveRecord::TokenizedTests
   include ActionMailer::TestHelper
 
-  def test_unknown_email
+  test 'unknown email' do
     lost_password = Factory.lost_password.build email: 'joe@spu.edu'
     
     assert lost_password.invalid?
     assert_equal ['does not exist'], lost_password.errors[:email]
   end
   
-  def test_email_rejected_during_update
+  test 'email rejected during update' do
     lost_password = Factory.lost_password.create
     
     assert_raise(RuntimeError) { lost_password.email = 'foo@bar.com' }
   end
   
-  def test_person
+  test 'person' do
     person = Factory.person.create email: 'joe@spu.edu'
     lost_password = Factory.lost_password.build email: person.email
     
     assert_equal person, lost_password.person
   end
   
-  def test_email
+  test 'email' do
     person = Factory.person.create email: 'joe@spu.edu'
   
     assert_emails 1 do
@@ -32,13 +32,13 @@ class LostPasswordTest < ActiveRecord::TestCase
     end
   end
   
-  def test_new_password_rejected_during_create
+  test 'new_password rejected during create' do
     lost_password = Factory.lost_password.build
 
     assert_raise(RuntimeError) { lost_password.new_password = 'wtf' }
   end
   
-  def test_empty_password_invalid
+  test 'empty password invalid' do
     lost_password = Factory.lost_password.create
     
     lost_password.new_password = ''
@@ -47,7 +47,7 @@ class LostPasswordTest < ActiveRecord::TestCase
     assert_equal ["can't be blank"], lost_password.errors[:new_password]
   end
   
-  def test_new_password
+  test 'new_password' do
     lost_password = Factory.lost_password.create
 
     lost_password.update_attribute :new_password, 'sshh'

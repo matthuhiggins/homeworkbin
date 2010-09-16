@@ -1,11 +1,11 @@
 require 'active_record_test'
 
 class TeacherTest < ActiveRecord::TestCase
-  def test_courses_available_default
+  test 'courses_available default' do
     assert_equal 1, factory.create.courses_available
   end
   
-  def test_registered_as_teaching_default
+  test 'registered_as_teacher default' do
     assert factory.create.registered_as_teacher
   end
 end

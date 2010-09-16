@@ -33,7 +33,7 @@ class Disciplines::HallMonitorTest < ActionController::TestCase
     @controller.login_path = 'loginz'
   end
   
-  def test_login_with_remember_me
+  test 'login_with_remember_me' do
     with_generic_routes do
       get :login_with_remember_me
 
@@ -42,7 +42,7 @@ class Disciplines::HallMonitorTest < ActionController::TestCase
     end
   end
   
-  def test_login_with_redirect
+  test 'login_with_redirect' do
     with_generic_routes do
       get :login_with_redirect
 
@@ -51,7 +51,7 @@ class Disciplines::HallMonitorTest < ActionController::TestCase
     end
   end
   
-  def test_login_to_default_path
+  test 'login_to_default_path' do
     with_generic_routes do
       get :login_without_options
 
@@ -59,7 +59,7 @@ class Disciplines::HallMonitorTest < ActionController::TestCase
     end
   end
 
-  def test_login_with_original_uri
+  test 'login_with_original_uri' do
     with_generic_routes do
       get :login_without_options, {}, original_uri: '/foo'
 
@@ -67,7 +67,7 @@ class Disciplines::HallMonitorTest < ActionController::TestCase
     end
   end
   
-  def test_action_requiring_login
+  test 'action_requiring_login' do
     with_generic_routes do
       get :action_requiring_login
 

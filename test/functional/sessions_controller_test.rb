@@ -5,12 +5,12 @@ class SessionsControllerTest < ActionController::TestCase
   matches_route 'new',     'login#get'
   matches_route 'create',  'login#post'
 
-  def test_new
+  test 'new' do
     get :new
     assert_template 'new'
   end
   
-  def test_invalid_credentials
+  test 'invalid credentials' do
     person = Factory.person.create
 
     post :create, email: person.email, password: 'wrong_sekret'
@@ -21,7 +21,7 @@ class SessionsControllerTest < ActionController::TestCase
     assert_template 'new'
   end
   
-  def test_login
+  test 'login' do
     person = Factory.person.create
     
     post :create, valid_credentials(person)
@@ -29,7 +29,7 @@ class SessionsControllerTest < ActionController::TestCase
     assert_logged_in_as person
   end
   
-  def test_login_with_remember_me
+  test 'login with remember_me' do
     person = Factory.person.create
 
     post :create, valid_credentials(person).update(remember_me: '1')
@@ -38,7 +38,7 @@ class SessionsControllerTest < ActionController::TestCase
     assert_remembered_as person
   end
 
-  def test_logout
+  test 'logout' do
     person = Factory.person.create
 
     delete :destroy, {}, {:person_id => person.id}

@@ -5,13 +5,13 @@ class Teaching::RegistrationsControllerTest < ActionController::TestCase
 
   matches_resources 'signup'
 
-  def test_index
+  test 'index' do
     get :index
 
     assert assigns(:registration).is_a?(Registration)
   end
   
-  def test_create
+  test 'create' do
     assert_emails 1 do
       post(
         :create, 
@@ -26,7 +26,7 @@ class Teaching::RegistrationsControllerTest < ActionController::TestCase
     assert_template 'thanks'
   end
   
-  def test_create_using_blanks
+  test 'create using blanks' do
     post(
       :create, 
       registration: {
@@ -39,7 +39,7 @@ class Teaching::RegistrationsControllerTest < ActionController::TestCase
     assert_template 'index'
   end
   
-  def test_show
+  test 'show' do
     registration = Factory.registration.create
     get :show, id: registration.token
 
@@ -49,7 +49,7 @@ class Teaching::RegistrationsControllerTest < ActionController::TestCase
     assert_logged_in_as assigns(:teacher)
   end
   
-  def test_show_with_bad_token
+  test 'show with bad token' do
     assert_raise ActiveRecord::RecordNotFound do
       get :show, id: 'poopy'
     end

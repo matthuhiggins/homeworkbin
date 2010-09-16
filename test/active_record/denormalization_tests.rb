@@ -3,8 +3,8 @@ module ActiveRecord
     extend ActiveSupport::Concern
     
     module ClassMethods
-      def test_denormalization(intermediate_association, denormalized_association)
-        define_method "test_#{denormalized_association}_denormalized_through_#{intermediate_association}" do
+      def tests_denormalization(intermediate_association, denormalized_association)
+        test "test_#{denormalized_association}_denormalized_through_#{intermediate_association}" do
           record = factory.build denormalized_association => nil
 
           assert_not_nil record.send(intermediate_association)

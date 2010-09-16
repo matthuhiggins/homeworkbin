@@ -3,12 +3,12 @@ require 'action_controller_test'
 class Teaching::StudiersControllerTest < ActionController::TeachingTestCase
   matches_resources 'teaching/:teaching_id/students'
 
-  def test_index
+  test 'index' do
     teaching_get :index
     assert_not_nil assigns(:studiers)
   end
   
-  def test_show
+  test 'show' do
     studier = Factory.studier.create course: current_course
     
     teaching_get :show, id: studier.to_param
@@ -16,7 +16,7 @@ class Teaching::StudiersControllerTest < ActionController::TeachingTestCase
     assert_equal studier, assigns(:studier)
   end
   
-  def test_destroy
+  test 'destroy' do
     studier = Factory.studier.create course: current_course
 
     teaching_delete :destroy, id: studier.to_param

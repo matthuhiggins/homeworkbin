@@ -3,7 +3,7 @@ require 'active_record_test'
 class Enrollment::MatriculationTest < ActiveRecord::TestCase
   include ActionMailer::TestHelper
 
-  def test_matriculate_emails
+  test 'matriculate emails' do
     course = Factory.course.create
     
     enrollments = course.enrollments.matriculate_emails 'a@b.com,x@y.com f@g.com;m@n.com'
@@ -11,7 +11,7 @@ class Enrollment::MatriculationTest < ActiveRecord::TestCase
     assert_equal 4, enrollments.size
   end
   
-  def test_matriculate_new_email
+  test 'matriculate new email' do
     course = Factory.course.create
     
     enrollment = course.enrollments.matriculate_email 'a@b.com'
@@ -19,7 +19,7 @@ class Enrollment::MatriculationTest < ActiveRecord::TestCase
     assert_equal 'a@b.com', enrollment.email
   end
   
-  def test_matriculate_existing_email
+  test 'matriculate existing email' do
     course = Factory.course.create
     existing_enrollment = factory.create course: course
 
@@ -29,7 +29,7 @@ class Enrollment::MatriculationTest < ActiveRecord::TestCase
     end
   end
   
-  def test_matriculate_invalid_email
+  test 'matriculate invalid email' do
     course = Factory.course.create
 
     assert_no_emails do

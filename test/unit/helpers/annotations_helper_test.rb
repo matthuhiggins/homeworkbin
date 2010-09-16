@@ -1,7 +1,7 @@
 require 'action_view_test'
 
 class AnnotationsHelperTest < ActionView::TestCase
-  def test_annotations_to_json
+  test 'annotations_to_json' do
     annotation = Factory.annotation.create
 
     output = annotations_to_json([annotation])

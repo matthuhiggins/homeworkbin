@@ -2,10 +2,10 @@ require 'active_record_test'
 
 class CompositionTest < ActiveRecord::TestCase
   include ActiveRecord::DenormalizationTests
-  test_denormalization :studier, :student
-  test_denormalization :assignment, :course
+  tests_denormalization :studier, :student
+  tests_denormalization :assignment, :course
   
-  def test_annotated_saved_as_original
+  test 'annotated saved as original' do
     composition = factory.create :original => 'foo'
     assert_equal 'foo', composition.annotated
 

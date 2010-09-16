@@ -3,13 +3,13 @@ require 'action_controller_test'
 class LostPasswordsControllerTest < ActionController::TestCase
   matches_resources 'lost_passwords'
   
-  def test_new
+  test 'new' do
     get :new
 
     assert_kind_of LostPassword, assigns(:lost_password)
   end
   
-  def test_create_success
+  test 'create success' do
     person = Factory.person.create
 
     post :create, lost_password: {
@@ -19,7 +19,7 @@ class LostPasswordsControllerTest < ActionController::TestCase
     assert_template 'confirm'
   end
   
-  def test_create_failure
+  test 'create failure' do
     post :create, lost_password: {
       email: 'invalid'
     }
@@ -27,7 +27,7 @@ class LostPasswordsControllerTest < ActionController::TestCase
     assert_template 'new'
   end
   
-  def test_show
+  test 'show' do
     lost_password = Factory.lost_password.create
 
     get :show, id: lost_password.token
@@ -36,7 +36,7 @@ class LostPasswordsControllerTest < ActionController::TestCase
     assert_equal lost_password.person, assigns(:person)
   end
   
-  def test_update_success
+  test 'update success' do
     lost_password = Factory.lost_password.create
     
     put :update, id: lost_password.token, lost_password: {new_password: 'snoopy'}
@@ -44,7 +44,7 @@ class LostPasswordsControllerTest < ActionController::TestCase
     assert_logged_in_as lost_password.person
   end
   
-  def test_update_failure
+  test 'update failure' do
     lost_password = Factory.lost_password.create
     
     put :update, id: lost_password.token, lost_password: {new_password: ''}

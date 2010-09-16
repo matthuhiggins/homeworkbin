@@ -3,7 +3,7 @@ require 'action_controller_test'
 class Teaching::CompositionsControllerTest < ActionController::TeachingTestCase
   matches_resources 'teaching/:teaching_id/submissions'
 
-  def test_show
+  test 'show' do
     submission = create_submission
 
     teaching_get :show, id: submission.to_param
@@ -11,7 +11,7 @@ class Teaching::CompositionsControllerTest < ActionController::TeachingTestCase
     assert_response :ok
   end
 
-  def test_update
+  test 'update' do
     submission = create_submission
 
     teaching_put :update, {

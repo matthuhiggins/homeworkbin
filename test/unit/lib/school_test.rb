@@ -1,7 +1,7 @@
 require 'active_support_test'
 
 class SchoolTest < ActiveSupport::TestCase
-  def test_initialize
+  test 'initialize' do
     school = School.new
 
     assert_equal school.teacher.courses.to_set, school.courses.to_set

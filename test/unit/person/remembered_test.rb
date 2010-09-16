@@ -1,7 +1,7 @@
 require 'active_record_test'
 
 class Person::RememberedTest < ActiveRecord::TestCase
-  def test_remember_me
+  test 'remember_me' do
     person = factory.create
     assert_nil person.remember_token
 
@@ -11,7 +11,7 @@ class Person::RememberedTest < ActiveRecord::TestCase
     assert !person.changed?
   end
   
-  def test_forget_me
+  test 'forget_me' do
     person = factory.create remember_token: "big_sekret"
 
     person.forget_me!

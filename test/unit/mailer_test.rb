@@ -1,7 +1,7 @@
 require 'active_record_test'
 
 class MailerTest < ActionMailer::TestCase
-  def test_registration
+  test 'registration' do
     registration = Factory.registration.create
 
     with_mail :registration, registration do |sent|
@@ -11,7 +11,7 @@ class MailerTest < ActionMailer::TestCase
     end
   end
   
-  def test_enrollment
+  test 'enrollment' do
     enrollment = Factory.enrollment.create
 
     with_mail :enrollment, enrollment do |sent|
@@ -21,7 +21,7 @@ class MailerTest < ActionMailer::TestCase
     end
   end
 
-  def test_lost_password
+  test 'lost_password' do
     lost_password = Factory.lost_password.create
 
     with_mail :lost_password, lost_password do |sent|
@@ -31,7 +31,7 @@ class MailerTest < ActionMailer::TestCase
     end
   end
   
-  def test_studier
+  test 'studier' do
     studier = Factory.studier.build
     
     with_mail :studier, studier do |sent|

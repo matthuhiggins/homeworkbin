@@ -1,7 +1,7 @@
 require 'active_record_test'
 
 class StudentTest < ActiveRecord::TestCase
-  def test_enrollments
+  test 'enrollments' do
     other_enrollment = Factory.enrollment.create email: 'other@foo.bar'
     my_enrollment = Factory.enrollment.create email: 'me@matthewhiggins.com'
     student = factory.create email: 'me@matthewhiggins.com'

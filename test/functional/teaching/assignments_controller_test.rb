@@ -3,18 +3,18 @@ require 'action_controller_test'
 class Teaching::AssignmentsControllerTest < ActionController::TeachingTestCase
   matches_resources 'teaching/:teaching_id/homework'
   
-  def test_index
+  test 'index' do
     teaching_get :index
     assert_kind_of Array, assigns(:upcoming_assignments)
     assert_kind_of Array, assigns(:past_assignments)
   end
 
-  def test_new
+  test 'new' do
     teaching_get :new
     assert_kind_of Assignment, assigns(:assignment)
   end
   
-  def test_create
+  test 'create' do
     teaching_post :create, assignment: {
       :name         => 'CSE 142',
       :due_date     => (current_course.start_date + 5).strftime('%m/%d/%Y'),
@@ -25,7 +25,7 @@ class Teaching::AssignmentsControllerTest < ActionController::TeachingTestCase
     assert_redirected_to teaching_assignment_path(current_course, assigns(:assignment))
   end
   
-  def test_edit
+  test 'edit' do
     assignment = Factory.assignment.create course: current_course 
 
     teaching_get :edit, id: assignment.to_param
@@ -33,7 +33,7 @@ class Teaching::AssignmentsControllerTest < ActionController::TeachingTestCase
     assert_equal assignment, assigns(:assignment)
   end
   
-  def test_update
+  test 'update' do
     assignment = Factory.assignment.create course: current_course 
     
     teaching_put :update, {
@@ -46,7 +46,7 @@ class Teaching::AssignmentsControllerTest < ActionController::TeachingTestCase
     assert_redirected_to teaching_assignment_path(current_course, assignment)
   end
   
-  def test_destroy
+  test 'destroy' do
     assignment = Factory.assignment.create course: current_course 
     
     teaching_delete :destroy, id: assignment.to_param

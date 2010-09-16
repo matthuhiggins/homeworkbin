@@ -9,7 +9,7 @@ class Teaching::BaseControllerTest < ActionController::TeachingTestCase
 
   tests TestController
   
-  def test_context
+  test 'context' do
     with_generic_routes do
       teaching_get :index
 

@@ -4,15 +4,15 @@ class PersonTest < ActiveRecord::TestCase
   include ActiveRecord::AuthenticatedTests
   include ActiveRecord::EmailValidationTests
   
-  def test_teacher
+  test 'teacher' do
     assert_kind_of Teacher, factory.build.teacher
   end
   
-  def test_student
+  test 'student' do
     assert_kind_of Student, factory.build.student
   end
   
-  def test_validate_presence_of_password
+  test 'validate presence of password' do
     person = factory.create
 
     person.update_attributes(password: nil)

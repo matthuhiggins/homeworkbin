@@ -9,7 +9,7 @@ class ApplicationControllerTest < ActionController::TestCase
 
   tests TestController
 
-  def test_context
+  test 'context' do
     with_generic_routes do
       get :index
       assert !@controller.send(:teaching?)

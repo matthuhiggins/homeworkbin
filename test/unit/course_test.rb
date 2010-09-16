@@ -2,9 +2,9 @@ require 'active_record_test'
 
 class CourseTest < ActiveRecord::TestCase
   include ActiveRecord::DateValidationTests
-  test_date_format_validation :start_date, :end_date
+  tests_date_format_validation :start_date, :end_date
   
-  def test_create_decrements_courses_available
+  test 'create decrements courses available' do
     teacher = Factory.teacher.create
     assert_equal 1, teacher.courses_available
     
@@ -13,7 +13,7 @@ class CourseTest < ActiveRecord::TestCase
     assert_equal 0, teacher.courses_available
   end
 
-  def test_create_increments_courses_created
+  test 'create increments courses created' do
     teacher = Factory.teacher.create
     assert_equal 0, teacher.courses_created
 
@@ -22,7 +22,7 @@ class CourseTest < ActiveRecord::TestCase
     assert_equal 1, teacher.courses_created
   end
 
-  def test_last
+  test 'last' do
     teacher = Factory.teacher.create
     first_course = factory.create teacher: teacher
     second_course = factory.create teacher: teacher

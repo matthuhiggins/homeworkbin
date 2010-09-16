@@ -1,7 +1,7 @@
 require 'action_view_test'
 
 class LinkHelperTest < ActionView::TestCase
-  def test_cancel_with_referral
+  test 'cancel_with_referral' do
     controller.request.env['HTTP_REFERER'] = 'foo'
 
     assert_dom_equal(
@@ -10,12 +10,12 @@ class LinkHelperTest < ActionView::TestCase
     )
   end
   
-  def test_cancel_link_without_referral
+  test 'cancel_link_without_referral' do
     controller.request.env['HTTP_REFERER'] = nil
     assert_equal '', cancel
   end
   
-  def test_topic_tag
+  test 'topic_tag' do
     controller.class_eval { def topic; 'foo'; end }
 
     assert_dom_equal(

@@ -3,13 +3,13 @@ require 'action_controller_test'
 class PeopleControllerTest < ActionController::PersonTestCase
   matches_resource 'settings'
 
-  def text_show
+  test 'show' do
     person_get :show
 
     assert_response :ok
   end
 
-  def test_update
+  test 'update' do
     @request.env['HTTP_REFERER'] = 'foo'
 
     person_put :update, person: {full_name: 'Joe'}

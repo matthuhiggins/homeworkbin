@@ -3,13 +3,13 @@ require 'action_controller_test'
 class HomeControllerTest < ActionController::TestCase
   matches_route 'index', '#get'
 
-  def test_index_when_unauthenticated
+  test 'index when unauthenticated' do
     get 'index'
     
     assert_template 'unauthenticated'
   end
   
-  def test_index_when_authenticated
+  test 'index when authenticated' do
     person = Factory.person.create
 
     get :index, {}, {person_id: person.to_param}

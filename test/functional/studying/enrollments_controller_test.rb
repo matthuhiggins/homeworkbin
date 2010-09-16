@@ -3,7 +3,7 @@ require 'action_controller_test'
 class Studying::EnrollmentsControllerTest < ActionController::PersonTestCase
   matches_resources 'enroll'
 
-  def test_index
+  test 'index' do
     enrollment = Factory.enrollment.create email: current_person.email
 
     person_get :index
@@ -11,7 +11,7 @@ class Studying::EnrollmentsControllerTest < ActionController::PersonTestCase
     assert_equal [enrollment], assigns(:enrollments)
   end
 
-  def test_show
+  test 'show' do
     enrollment = Factory.enrollment.create
 
     get :show, id: enrollment.to_param
@@ -19,7 +19,7 @@ class Studying::EnrollmentsControllerTest < ActionController::PersonTestCase
     assert_equal enrollment, assigns(:enrollment)
   end
   
-  def test_update_new_student
+  test 'update new student' do
     enrollment = Factory.enrollment.create
     
     put :update,
@@ -33,7 +33,7 @@ class Studying::EnrollmentsControllerTest < ActionController::PersonTestCase
     assert_redirected_to studying_path(enrollment.course)
   end
   
-  def test_update_new_invalid_student
+  test 'update new invalid student' do
     enrollment = Factory.enrollment.create
     
     put :update,
@@ -46,7 +46,7 @@ class Studying::EnrollmentsControllerTest < ActionController::PersonTestCase
     assert_template 'show'
   end
   
-  def test_update_existing_student
+  test 'update existing student' do
     student = Factory.student.create
     enrollment = Factory.enrollment.create email: student.email
     
@@ -61,7 +61,7 @@ class Studying::EnrollmentsControllerTest < ActionController::PersonTestCase
     assert_redirected_to studying_path(enrollment.course)
   end
   
-  def test_destroy
+  test 'destroy' do
     enrollment = Factory.enrollment.create
     
     delete :destroy, id: enrollment.to_param

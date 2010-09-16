@@ -1,21 +1,21 @@
 require 'action_view_test'
 
 class CoursesHelperTest < ActionView::TestCase
-  def test_date_uses_existing_values
+  test 'date_uses_existing_values' do
     course = Factory.course.build start_date: '05/22/2004', end_date: '07/24/2004'
 
     assert_equal '05/22/2004', course_start_date(course)
     assert_equal '07/24/2004', course_end_date(course)
   end
   
-  def test_date_defaults_without_last
+  test 'date_defaults_without_last' do
     course = Factory.course.build start_date: nil, end_date: nil
 
     assert_equal Date.current.strftime('%m/%d/%Y'), course_start_date(course)
     assert_equal (Date.current + 90).strftime('%m/%d/%Y'), course_end_date(course)
   end
   
-  def test_date_defaults_to_last
+  test 'date_defaults_to_last' do
     teacher = Factory.teacher.create
     Factory.course.create start_date: '05/22/2004', end_date: '07/24/2004', teacher: teacher
 
@@ -25,12 +25,12 @@ class CoursesHelperTest < ActionView::TestCase
     assert_equal '07/24/2004', course_end_date(course)
   end
 
-  def test_save_course_text
+  test 'save_course_text' do
     assert_equal 'Create course', save_course_text(Factory.course.build)
     assert_equal 'Save changes', save_course_text(Factory.course.create)
   end
   
-  def test_course_form_options
+  test 'course_form_options' do
     new_course = Factory.course.build
     edit_course = Factory.course.create
 

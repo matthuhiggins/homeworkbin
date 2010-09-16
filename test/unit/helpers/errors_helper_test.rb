@@ -4,7 +4,7 @@ class ErrorsHelperTest < ActionView::TestCase
   class TestModel < Struct.new(:errors)
   end
   
-  def test_error_message_on
+  test 'error_message_on' do
     assert_errors_on '', []
     assert_errors_on '<div class="error">is fucked</div>', ['is fucked']
     assert_errors_on '<div class="error">foo</div>', ['foo', 'bar']

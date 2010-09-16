@@ -1,7 +1,7 @@
 require 'action_view_test'
 
 class CompositionsHelperTest < ActionView::TestCase
-  def test_handed_in_at
+  test 'handed_in_at' do
     assert_equal(
       'today at 3:20am',
       composition_handed_in_at(Factory.composition.build handed_in_at: Time.current.change(hour: 3, min: 20))
@@ -18,7 +18,7 @@ class CompositionsHelperTest < ActionView::TestCase
     )
   end
   
-  def test_preview
+  test 'preview' do
     assert_equal(
       'hello worldL',
       composition_preview(Factory.composition.build(original: 'hello<br>world<span>Lol</span>'), 12)

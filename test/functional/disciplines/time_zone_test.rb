@@ -15,7 +15,7 @@ class Disciplines::TimeZoneTest < ActionController::TestCase
   
   tests TestController
 
-  def test_time_zone_set_from_course
+  test 'time_zone set from course' do
     with_generic_routes do
       get :render_time_zone
       assert_equal 'Quito', Time.zone.name
