@@ -10,7 +10,6 @@ module Homeworkbin
     config.active_support.deprecation = :stderr
     config.active_record.include_root_in_json = false
     
-    # config.time_zone = 'UTC'
     # 
     # config.action_mailer.default_url_options = {
     #   :host => 'homeworkbin.com',
