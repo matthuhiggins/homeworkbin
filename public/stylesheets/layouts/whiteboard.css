@@ -14,7 +14,7 @@ br {
 }
 
 body > .header {
-  background-color: #FAFAFA;
+  background-color: #F4F4F4;
 }
 
 body > .header .menu {
@@ -82,6 +82,7 @@ body > .header .sub.menu .topics li.current {
 
 body > .header .sub.menu .topics li a {
   display: inline-block;
+  font-size: 14px;
   height: 26px;
   padding: 8px 10px 0 10px;
   text-align: center;

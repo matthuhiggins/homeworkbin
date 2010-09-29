@@ -40,3 +40,7 @@ jQuery.extend({
     return jQuery.submitJSON(url, data, callback, 'put')
   }
 });
+
+$(function() {
+  $('button, input:submit').button();
+});

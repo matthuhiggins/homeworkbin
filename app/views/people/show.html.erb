@@ -2,57 +2,64 @@
 
 <h2>Settings</h2>
 
-<%= form_for current_person, url: person_path, html: {method: :put, id: 'person-form'} do |f| %>
-  <div>
-    <div><%= f.label :full_name, 'Your name' %></div>
-    <div><%= f.text_field :full_name %></div>
-    <div><%= f.error_message_on :full_name, prepend: 'Your name ' %></div>
-  </div>
-  <div>
-    <div><%= f.label :email %></div>
-    <div><%= f.text_field :email %></div>
-    <div><%= f.error_message_on :email, prepend: 'Email ' %></div>
-  </div>
-  <div class="submit">
-    <%= f.submit 'Update information' %>
-  </div>
-<% end %>
-
-<div id="extra-settings">
+<div id="settings">
   <ul>
-    <li>
-      <%= link_to 'Change password', nil, id: 'change-password'  %>
-      <%= form_for current_person, {
-        url: person_path,
-        html: {
-          method: :put,
-          :id     => 'password-form',
-          :style  => 'display: none;' } } do |pw| %>
-        <div>
-          <div><%= pw.label :password, 'New password' %></div>
-          <div><%= pw.password_field :password %></div>
-        </div>
-        <div class="submit">
-          <%= pw.submit 'Change password' %>
-        </div>
-      <% end %>
-    </li>
+    <li><a href="#personal-info">Personal Info</a></li>
+    <li><a href="#change-password">Change Password</a></li>
   </ul>
+  <%= form_for current_person, {
+    url: person_path, 
+    html: {
+      method: :put, 
+      id: 'personal-info'} } do |f| %>
+    <div>
+      <div><%= f.label :full_name, 'Your name' %></div>
+      <div><%= f.text_field :full_name %></div>
+      <div><%= f.error_message_on :full_name, prepend: 'Your name ' %></div>
+    </div>
+    <div>
+      <div><%= f.label :email %></div>
+      <div><%= f.text_field :email %></div>
+      <div><%= f.error_message_on :email, prepend: 'Email ' %></div>
+    </div>
+    <div class="submit">
+      <%= f.submit 'Update information' %>
+    </div>
+  <% end %>
+
+  <%= form_for current_person, {
+    url: person_path,
+    html: {
+      method: :put,
+      id: 'change-password'} } do |pw| %>
+    <div>
+      <div><%= pw.label :password, 'New password' %></div>
+      <div><%= pw.password_field :password, autocomplete: 'off' %></div>
+    </div>
+    <div class="submit">
+      <%= pw.submit 'Change password' %>
+    </div>
+  <% end %>
 </div>
 
 <%= focus 'person_full_name' %>
 
 <script>
 $(function() {
-  var jPasswordForm = $('#password-form');
+  $('#person_full_name').focus();
+
+  var focusFields = {
+    'personal-info': '#person_full_name',
+    'change-password': '#person_password'
+  };
   
-  $('#change-password').click(function(e) {
-    e.preventDefault();
-    jPasswordForm.toggle();
-    if (jPasswordForm.is(':visible')) {
-      $('#person_password').focus();
+  $('#settings').tabs({
+    selected: 0,
+    select: function(event, ui) {
+      setTimeout(function() {
+        $(focusFields[ui.panel.id]).focus();
+      }, 0);
     }
   });
-  
 });
 </script>
