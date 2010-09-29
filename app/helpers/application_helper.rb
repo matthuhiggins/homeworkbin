@@ -20,8 +20,8 @@ module ApplicationHelper
     eval
   end
   
-  def controller_stylesheet_tag
-    stylesheet_link_tag controller.class.name.gsub(/Controller/, '').underscore
+  def controller_stylesheet
+    controller.class.name.gsub(/Controller/, '').underscore
   end
 
   def sub_menu_partial

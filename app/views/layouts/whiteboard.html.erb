@@ -2,9 +2,12 @@
 <html>
 <head>
   <%= yui_stylesheet 'cssreset/reset-min' %>
-  <%= stylesheet_link_tag 'layouts/whiteboard', 'shared/fonts', 'shared/form', 'jquery/ui' %>
+  <%= stylesheet_link_tag 'layouts/whiteboard',
+                          'shared/fonts',
+                          'shared/form',
+                          'black-tie/jquery-ui-1.8.5',
+                          controller_stylesheet %>
   <%= csrf_meta_tag %>
-  <%= controller_stylesheet_tag %>
   <%= javascript_include_tag 'json2', 'jquery', 'jquery-ui', 'rails', 'hw/hw' %>
   <%= yield :javascripts %>
   <title>

@@ -59,7 +59,7 @@ module ActionController
 
       params.merge!(
         controller: @controller.class.name.underscore.gsub(/_controller/, ''),
-        :action     => expected_action
+        action:     expected_action
       )
       
       assert_recognizes(params, request_options)

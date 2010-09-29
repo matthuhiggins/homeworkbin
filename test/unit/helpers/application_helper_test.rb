@@ -39,13 +39,10 @@ class ApplicationHelperTest < ActionView::TestCase
     end
   end
 
-  test 'controller_stylesheet_tag' do
+  test 'controller_stylesheet' do
     @controller = Foo::BarController.new
 
-    assert_equal(
-      stylesheet_link_tag('foo/bar'),
-      controller_stylesheet_tag
-    )
+    assert_equal 'foo/bar', controller_stylesheet
   end
 
   test 'if_present' do
