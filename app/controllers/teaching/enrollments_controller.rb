@@ -1,5 +1,5 @@
 class Teaching::EnrollmentsController < Teaching::BaseController
-  topic 'students'
+  shows_topic 'students'
 
   def index
     @enrollments = current_course.enrollments

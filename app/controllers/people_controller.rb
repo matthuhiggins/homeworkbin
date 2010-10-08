@@ -1,5 +1,6 @@
 class PeopleController < ApplicationController
   require_login
+  shows_sub_menu 'people'
 
   def show
   end

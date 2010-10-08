@@ -1,5 +1,5 @@
 class Studying::AssignmentsController < Studying::BaseController
-  topic 'homework'
+  shows_topic 'homework'
   
   def index
     render text: 'wtf'

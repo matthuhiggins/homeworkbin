@@ -1,5 +1,6 @@
 class Studying::BaseController < ApplicationController
   require_login
+  shows_sub_menu 'studying'
   
   private
     def current_student
@@ -13,9 +14,5 @@ class Studying::BaseController < ApplicationController
 
     def current_course
       current_studier.try :course
-    end
-
-    def studying?
-      true
     end
 end

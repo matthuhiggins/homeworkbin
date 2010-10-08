@@ -15,7 +15,7 @@ class Teaching::BaseControllerTest < ActionController::TeachingTestCase
 
       assert_equal current_teacher, @controller.send(:current_teacher)
       assert_equal current_course, @controller.send(:current_course)
-      assert @controller.send(:teaching?)
+      assert_equal 'teaching', @controller.sub_menu
     end
   end
 end

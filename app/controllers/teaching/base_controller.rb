@@ -1,5 +1,6 @@
 class Teaching::BaseController < ApplicationController
   require_login
+  shows_sub_menu 'teaching'
   
   private
     def current_teacher
@@ -9,9 +10,5 @@ class Teaching::BaseController < ApplicationController
     
     def current_course
       @current_course ||= current_teacher.courses.find params[:teaching_id]
-    end
-
-    def teaching?
-      true
     end
 end

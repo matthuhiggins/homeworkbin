@@ -1,5 +1,5 @@
 class Teaching::AnnotationsController < Teaching::BaseController
-  topic 'homework'
+  shows_topic 'homework'
   
   def create
     @annotation = current_composition.annotations.create params[:annotation]

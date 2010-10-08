@@ -24,14 +24,6 @@ module ApplicationHelper
     controller.class.name.gsub(/Controller/, '').underscore
   end
 
-  def sub_menu_partial
-    if teaching?
-      'layouts/teaching_menu'
-    elsif studying?
-      'layouts/studying_menu'
-    end
-  end
-
   def if_present(object, &block)
     capture(object, &block) if object.present?
   end

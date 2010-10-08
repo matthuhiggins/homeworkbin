@@ -1,5 +1,5 @@
 class Teaching::StudiersController < Teaching::BaseController
-  topic 'students'
+  shows_topic 'students'
 
   def index
     @studiers = current_course.studiers.includes(:student).order('people.full_name').all

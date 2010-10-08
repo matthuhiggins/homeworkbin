@@ -11,14 +11,4 @@ class ApplicationController < ActionController::Base
       nil
     end
     helper_method :current_course
-
-    def teaching?
-      false
-    end
-    helper_method :teaching?
-
-    def studying?
-      false
-    end
-    helper_method :studying?
 end

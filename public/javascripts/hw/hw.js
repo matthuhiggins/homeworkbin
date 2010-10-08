@@ -27,7 +27,10 @@ jQuery.extend({
       'dataType': 'json',
       'data': JSON.stringify(data),
       beforeSend: function(request) {
-        this.headers = {'X-Http-Method-Override': type}
+        this.headers = {
+          'X-Http-Method-Override': type,
+          'X-Requested-With': 'XMLHttpRequest'
+        }
       },
       'success': function(data) {
         alert(data.foo);
@@ -38,6 +41,9 @@ jQuery.extend({
   },
   putJSON: function(url, data, callback) {
     return jQuery.submitJSON(url, data, callback, 'put')
+  },
+  postJSON: function(url, data, callback) {
+    return jQuery.submitJSON(url, data, callback, 'post')
   }
 });
 

@@ -22,8 +22,8 @@
       <% end %>
       <%= render 'layouts/global_links' %>
     </div>
-    <% if current_course.present? %>
-      <%= render sub_menu_partial %>
+    <% if controller.show_sub_menu? %>
+      <%= render controller.sub_menu_partial %>
     <% end %>
   </div>
   <div class="content">

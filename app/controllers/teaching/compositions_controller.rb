@@ -1,5 +1,5 @@
 class Teaching::CompositionsController < Teaching::BaseController
-  topic 'homework'
+  shows_topic 'homework'
 
   def update
     current_composition.update_attributes params[:composition]

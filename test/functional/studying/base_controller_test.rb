@@ -16,7 +16,7 @@ class Studying::BaseControllerTest < ActionController::StudyingTestCase
       assert_equal current_student, @controller.send(:current_student)
       assert_equal current_studier, @controller.send(:current_studier)
       assert_equal current_course, @controller.send(:current_course)
-      assert @controller.send(:studying?)
+      assert_equal 'studying', @controller.sub_menu
     end
   end
 end

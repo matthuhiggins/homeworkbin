@@ -1,5 +1,5 @@
 class Teaching::AssignmentsController < Teaching::BaseController
-  topic 'homework'
+  shows_topic 'homework'
 
   def index
     @upcoming_assignments = current_course.assignments.upcoming.all

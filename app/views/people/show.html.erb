@@ -26,40 +26,26 @@
       <%= f.submit 'Update information' %>
     </div>
   <% end %>
-
-  <%= form_for current_person, {
-    url: person_path,
-    html: {
-      method: :put,
-      id: 'change-password'} } do |pw| %>
-    <div>
-      <div><%= pw.label :password, 'New password' %></div>
-      <div><%= pw.password_field :password, autocomplete: 'off' %></div>
-    </div>
-    <div class="submit">
-      <%= pw.submit 'Change password' %>
-    </div>
-  <% end %>
 </div>
 
 <%= focus 'person_full_name' %>
 
 <script>
-$(function() {
-  $('#person_full_name').focus();
-
-  var focusFields = {
-    'personal-info': '#person_full_name',
-    'change-password': '#person_password'
-  };
-  
-  $('#settings').tabs({
-    selected: 0,
-    select: function(event, ui) {
-      setTimeout(function() {
-        $(focusFields[ui.panel.id]).focus();
-      }, 0);
-    }
-  });
-});
+// $(function() {
+//   $('#person_full_name').focus();
+// 
+//   var focusFields = {
+//     'personal-info': '#person_full_name',
+//     'change-password': '#person_password'
+//   };
+//   
+//   $('#settings').tabs({
+//     selected: 0,
+//     select: function(event, ui) {
+//       setTimeout(function() {
+//         $(focusFields[ui.panel.id]).focus();
+//       }, 0);
+//     }
+//   });
+// });
 </script>
