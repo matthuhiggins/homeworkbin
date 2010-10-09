@@ -4,11 +4,18 @@ class PeopleController < ApplicationController
 
   def show
   end
-  
+
   def update
     if current_person.update_attributes params[:person]
-      flash[:notice] = 'Settings saved'
+      redirect_to settings_path, notice: 'Settings saved'
+    else
+      render 'show'
     end
-    redirect_to :back
+  end
+
+  def password
+    if request.put? && current_person.update_attributes(params[:person])
+      redirect_to settings_path, notice: 'Password updated'
+    end
   end
 end

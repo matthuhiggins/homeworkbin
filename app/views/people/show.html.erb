@@ -8,7 +8,7 @@
     <li><a href="#change-password">Change Password</a></li>
   </ul>
   <%= form_for current_person, {
-    url: person_path, 
+    url: settings_path, 
     html: {
       method: :put, 
       id: 'personal-info'} } do |f| %>

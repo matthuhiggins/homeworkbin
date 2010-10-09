@@ -2,7 +2,10 @@ Homeworkbin::Application.routes.draw do
   root :to => 'home#index'
 
   resources :lost_passwords
-  resource :person, :path => 'settings'
+
+  resource :person, :path => 'settings', as: 'settings' do
+    match :password, :on => :member
+  end
 
   controller :sessions do
     get     'login',  :to => :new,      :as => 'login'

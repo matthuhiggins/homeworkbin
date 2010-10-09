@@ -1,0 +1,8 @@
+<div class="sub menu">
+  <%= link_to 'Settings', settings_path %>
+  <ul class="topics">
+    <%= topic_tag :li, 'password' do %>
+      <%= link_to 'Change Password', password_settings_path %>
+    <% end %>
+  </ul>
+</div>

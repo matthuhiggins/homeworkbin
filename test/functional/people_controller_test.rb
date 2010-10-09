@@ -10,12 +10,21 @@ class PeopleControllerTest < ActionController::PersonTestCase
   end
 
   test 'update' do
-    @request.env['HTTP_REFERER'] = 'foo'
-
     person_put :update, person: {full_name: 'Joe'}
 
     current_person.reload
     assert_equal 'Joe', current_person.full_name
-    assert_redirected_to 'foo'
+    assert_redirected_to settings_path
+  end
+
+  test 'get password' do
+    person_get :password
+    assert_response :ok
+  end
+
+  test 'put password' do
+    person_put :password, person: {password: 'baz'}
+
+    assert_redirected_to settings_path
   end
 end
