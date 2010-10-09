@@ -10,11 +10,9 @@ module Homeworkbin
     config.active_support.deprecation = :stderr
     config.active_record.include_root_in_json = false
     
-    # 
-    # config.action_mailer.default_url_options = {
-    #   :host => 'homeworkbin.com',
-    #   :only_path => false
-    # }
+    config.action_mailer.default_url_options = {
+      :host => 'homeworkbin.com'
+    }
 
     # Configure sensitive parameters which will be filtered from the log file.
     # config.filter_parameters << :password

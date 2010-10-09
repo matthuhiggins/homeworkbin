@@ -1,6 +1,6 @@
 class Mailer < ActionMailer::Base
   helper ActionController::Base.send(:all_application_helpers)
-  default from: 'no-reply@homeworkbin.com', host: 'homeworkbin.com'
+  default from: 'no-reply@homeworkbin.com'
   
   def registration registration
     @registration = registration  
@@ -25,7 +25,7 @@ class Mailer < ActionMailer::Base
 
     mail(
       recipients:  lost_password.person.email,
-      subject:     "Homework Bin password change"
+      subject:     'Homework Bin password change'
     )
   end
   
