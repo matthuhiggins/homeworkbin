@@ -1,6 +1,6 @@
 class Mailer < ActionMailer::Base
   helper ActionController::Base.send(:all_application_helpers)
-  default from: 'no-reply@homeworkbin.com'
+  default from: 'no-reply@homeworkbin.com', host: 'homeworkbin.com'
   
   def registration registration
     @registration = registration  
