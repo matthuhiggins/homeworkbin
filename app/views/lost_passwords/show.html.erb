@@ -3,10 +3,10 @@
 <%= form_for @lost_password do |f| %>
   <div>
     <div><%= f.label :new_password, 'New password' %></div>
-    <div><%= f.password_field :new_password %></div>
+    <div><%= f.password_field :new_password, autocomplete: 'off' %></div>
     <div><%= f.error_message_on :new_password, prepend: 'Password ' %></div>
   </div>
-  <div>
+  <div class="submit">
     <%= f.submit 'Save password' %>
   </div>
 <% end %>

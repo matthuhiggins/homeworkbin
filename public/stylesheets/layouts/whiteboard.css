@@ -30,14 +30,26 @@ body > .header .menu {
 .header .main.menu .logo {
   color: black;
   float: left;
-  font-family: "minion-pro-1","minion-pro-2","Times New Roman",Georgia,serif;
-  font-size: 24px;
+  font-size: 30px;
+  overflow: hidden;
   text-decoration: none;
+}
+
+.header .main.menu .logo .symbol {
+  color: red;
+  float: left;
+  font-size: 22px;
+  padding: 5px 0 0 0;  
+}
+
+.header .main.menu .logo .copy {
+  float: left;
+  font-family: "minion-pro-1","minion-pro-2","Times New Roman",Georgia,serif;
 }
 
 .header .main.menu ul.links {
   float: right;
-  padding-top: 6px;
+  padding-top: 9px;
   text-align: right;
 }
 

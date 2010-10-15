@@ -1,6 +1,8 @@
 form {
   border: 1px solid #dadbdb;
-  background: url(/images/form_bg.png) repeat-x scroll 0 0;
+  background: transparent url(/images/form_bg.png) repeat-x scroll 0 0;
+  border-radius: 4px;
+  -moz-border-radius: 4px;
 /*  background-color: #F9F6EF;*/
   display: table;
   padding: 5px 15px 20px 15px;
